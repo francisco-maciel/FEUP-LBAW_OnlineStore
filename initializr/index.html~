@@ -63,7 +63,7 @@
             </div>
             <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
             <button type="submit" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
-							<span class="badge shopping-cart" >0</span></button>
+							<span class="badge">0</span></button>
           </form>	
 	</li>
                   <li class="dropdown">
