@@ -9393,7 +9393,7 @@
                                                                                             parentOffset = offsetParent.offset();
                                                                                         }
 
-                                                                                        // Add offsetParent borders
+                                                                                        // Add offsetParent bOrders
                                                                                         parentOffset.top += jQuery.css(offsetParent[ 0 ], "borderTopWidth", true);
                                                                                         parentOffset.left += jQuery.css(offsetParent[ 0 ], "borderLeftWidth", true);
                                                                                     }

@@ -20,8 +20,8 @@
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <link href="css/shop-homepage.css" rel="stylesheet">
         <link href="css/general.css" rel="stylesheet">
+        <link href="css/manage_comments.css" rel="stylesheet">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -92,71 +92,114 @@
 
 
         <div class="container">
-            <fieldset><legend>Manage Orders</legend></fieldset>
+            <br><br>
+            
             <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Orders</h3>
-                            <div class="pull-right">
-                                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-                                    <i class="glyphicon glyphicon-filter"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Orders" />
-                        </div>
-                        <table class="table table-hover" id="dev-table">
-
-                            <thead class="cf">
-                                <tr>
-                                    <th class="numeric">orderId</th>
-                                    <th class="numeric">prodId</th>
-                                    <th>Title</th>
-                                    <th class="numeric">Quantity</th>
-                                    <th class="numeric">Price uni</th>
-                                    <th class="numeric">Price Total</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td data-title="orderId">00000001</td>
-                                    <td data-title="prodId">00000012</td>
-                                    <td data-title="Title">Prod x from country y to eat</td>
-                                    <td data-title="Quantity">2</td>
-                                    <td data-title="Price uni">10.0€</td>
-                                    <td data-title="Price Total">20.0€</td>
-                                    <td data-title="Date">12-12-2010 00:00:00</td>
-                                </tr>
-                                <tr>
-                                    <td data-title="orderId">00000002</td>
-                                    <td data-title="prodId">00000022</td>
-                                    <td data-title="Title">Prod b from country ce to store</td>
-                                    <td data-title="Quantity">4</td>
-                                    <td data-title="Price uni">5.0€</td>
-                                    <td data-title="Price Total">20.0€</td>
-                                    <td data-title="Date">12-12-2010 00:00:00</td>
-                                </tr>
-
-                            </tbody>
-                        </table>
+                <fieldset><legend>Manage Comments</legend></fieldset>
+                <div class="panel panel-default widget">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-comment"></span>
+                        <h3 class="panel-title">
+                            Recent Comments</h3>
+                        <span class="label label-info">
+                            78</span>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-1">
+                                        <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                                    <div class="col-xs-10 col-md-11">
+                                        <div>
+                                            <a href="http://www.jquery2dotnet.com/2013/10/google-style-login-page-desing-usign.html">
+                                                Google Style Login Page Design Using Bootstrap</a>
+                                            <div class="mic-info">
+                                                By: <a href="#">Bhaumik Patel</a> on 2 Aug 2013
+                                            </div>
+                                        </div>
+                                        <div class="comment-text">
+                                            Awesome design
+                                        </div>
+                                        <div class="action">
+                                            <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-success btn-xs" title="Approved">
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs" title="Delete">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-1">
+                                        <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                                    <div class="col-xs-10 col-md-11">
+                                        <div>
+                                            <a href="http://bootsnipp.com/BhaumikPatel/snippets/Obgj">Admin Panel Quick Shortcuts</a>
+                                            <div class="mic-info">
+                                                By: <a href="#">Bhaumik Patel</a> on 11 Nov 2013
+                                            </div>
+                                        </div>
+                                        <div class="comment-text">
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                                        </div>
+                                        <div class="action">
+                                            <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-success btn-xs" title="Approved">
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs" title="Delete">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-2 col-md-1">
+                                        <img src="http://placehold.it/80" class="img-circle img-responsive" alt="" /></div>
+                                    <div class="col-xs-10 col-md-11">
+                                        <div>
+                                            <a href="http://bootsnipp.com/BhaumikPatel/snippets/4ldn">Cool Sign Up</a>
+                                            <div class="mic-info">
+                                                By: <a href="#">Bhaumik Patel</a> on 11 Nov 2013
+                                            </div>
+                                        </div>
+                                        <div class="comment-text">
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                                            euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim
+                                        </div>
+                                        <div class="action">
+                                            <button type="button" class="btn btn-primary btn-xs" title="Edit">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-success btn-xs" title="Approved">
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs" title="Delete">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span class="glyphicon glyphicon-refresh"></span> More</a>
                     </div>
                 </div>
             </div>
 
-            <div class="container text-center">
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
-            </div>
+
 
         </div>
 
