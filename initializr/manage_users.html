@@ -20,8 +20,9 @@
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
-        <link href="css/shop-homepage.css" rel="stylesheet">
+
         <link href="css/general.css" rel="stylesheet">
+        <link href="css/manage_users.css" rel="stylesheet">
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -69,12 +70,12 @@
                         <li class="dropdown">
                             <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Welcome #Admin#<b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li role="presentation" class="dropdown-header">Staff</li>
-                                <li><a href="#">Manage Admins</a></li>
+                                <li role="presentation" class="dropdown-header">Users</li>
+                                <li><a href="#">Manage Users</a></li>
                                 <li class="divider"></li>
                                 <li role="presentation" class="dropdown-header">Store</li>
                                 <li><a href="#">Add Product</a></li>
-                                <li><a href="#">Manage orders</a></li>
+                                <li><a href="#">Manage Orders</a></li>
                                 <li><a href="#">Manage Comments</a></li>
                             </ul>
                         </li>
@@ -92,89 +93,278 @@
 
 
         <div class="container">
-            <h1>Click the user name</h1>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Admins</h3>
-                            <div class="pull-right">
-                                <span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
-                                    <i class="glyphicon glyphicon-filter"></i>
+            <br>
+            <fieldset><legend>Manage Users</legend></fieldset>
+            
+            <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+                <div class="row user-row">
+                    <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                        <img class="img-circle"
+                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                             alt="User Pic">
+                    </div>
+                    <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                        <strong>Cyruxx</strong><br>
+                        <span class="text-muted">User level: Administrator</span>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".cyruxx">
+                        <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+                    </div>
+                </div>
+                <div class="row user-infos cyruxx">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">User information</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                        <img class="img-circle"
+                                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                             alt="User Pic">
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                        <img class="img-circle"
+                                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                                             alt="User Pic">
+                                    </div>
+                                    <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                        <strong>Cyruxx</strong><br>
+                                        <dl>
+                                            <dt>User level:</dt>
+                                            <dd>Administrator</dd>
+                                            <dt>Registered since:</dt>
+                                            <dd>11/12/2013</dd>
+                                            <dt>Comments</dt>
+                                            <dd>15</dd>
+                                            <dt>Warnings</dt>
+                                            <dd>0</dd>
+                                        </dl>
+                                    </div>
+                                    <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                        <strong>Cyruxx</strong><br>
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>User level:</td>
+                                                    <td>Administrator</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Registered since:</td>
+                                                    <td>11/12/2013</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Comments</td>
+                                                    <td>15</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Warnings</td>
+                                                    <td>0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-sm btn-primary" type="button"
+                                        data-toggle="tooltip"
+                                        data-original-title="Send message to user"><i class="glyphicon glyphicon-envelope"></i></button>
+                                <span class="pull-right">
+                                    <button class="btn btn-sm btn-warning" type="button"
+                                            data-toggle="tooltip"
+                                            data-original-title="Edit this user"><i class="glyphicon glyphicon-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger" type="button"
+                                            data-toggle="tooltip"
+                                            data-original-title="Remove this user"><i class="glyphicon glyphicon-remove"></i></button>
                                 </span>
                             </div>
                         </div>
-                        <div class="panel-body">
-                            <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Admins" />
-                        </div>
-                        <table class="table table-hover" id="dev-table">
-
-                            <thead class="cf">
-                                <tr>
-                                    <th>Username</th>
-                                    <th>Name</th>
-                                    <th>Role</th>
-                                    <th>Email</th>
-                                    <th>Last Login</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td data-title="Username">user1</td>
-                                    <td data-title="Name">Vitor Manuel Mota Cardoso da Silva</td>
-                                    <td data-title="Role">Product Manager</td>
-                                    <td data-title="Email">ei12166@fe.up.pt</td>
-                                    <td data-title="Last Login">12-12-2010 00:00:00</td>
-
-                                </tr>
-                                <tr>
-                                    <td data-title="Username">admin2</td>
-                                    <td data-title="Name">Miao Sun</td>
-                                    <td data-title="Role">Sales Manager</td>
-                                    <td data-title="Email">sales@lbaw.pt</td>
-                                    <td data-title="Last Login">12-12-2010 00:00:00</td>
-
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
-            </div>
 
 
-        </div>
-
-        <div class="container">
-
-
-            <hr>
-            <div class="row">
-                <div class="col-xs-6">
-                    <form>
-                        <div class="form-group">
-
-                            <label>Roles</label>
-                            <div class="form-group input-group">
-                                <select name="multiple[]" class="form-control">
-                                    <option value="">Role 1</option>
-                                    <option value="">Role 2</option>
-                                    <option value="">Role 3</option>
-                                </select>
-                                <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span>
+                <div class="row user-row">
+                    <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                        <img class="img-circle"
+                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                             alt="User Pic">
+                    </div>
+                    <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                        <strong>User 2</strong><br>
+                        <span class="text-muted">User level: Registered</span>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".user2">
+                        <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+                    </div>
+                </div>
+                <div class="row user-infos user2">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">User information</h3>
                             </div>
-                            <!-- Button (Double) -->
-                            <div class="control-group">
-                                <label class="control-label" for="manage_admins_save"></label>
-                                <div class="controls">
-                                    <button id="manage_admins_save" name="manage_admins_save" class="btn btn-success">Save</button>
-                                    <button id="manage_admins_delete" name="manage_admins_delete" class="btn btn-danger">Delete</button>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                        <img class="img-circle"
+                                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                             alt="User Pic">
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                        <img class="img-circle"
+                                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                                             alt="User Pic">
+                                    </div>
+                                    <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                        <strong>Cyruxx</strong><br>
+                                        <dl>
+                                            <dt>User level:</dt>
+                                            <dd>Administrator</dd>
+                                            <dt>Registered since:</dt>
+                                            <dd>11/12/2013</dd>
+                                            <dt>Comments</dt>
+                                            <dd>15</dd>
+                                            <dt>Warnings</dt>
+                                            <dd>0</dd>
+                                        </dl>
+                                    </div>
+                                    <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                        <strong>Cyruxx</strong><br>
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>User level:</td>
+                                                    <td>Administrator</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Registered since:</td>
+                                                    <td>11/12/2013</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Comments</td>
+                                                    <td>15</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Warnings</td>
+                                                    <td>0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-sm btn-primary" type="button"
+                                        data-toggle="tooltip"
+                                        data-original-title="Send message to user"><i class="glyphicon glyphicon-envelope"></i></button>
+                                <span class="pull-right">
+                                    <button class="btn btn-sm btn-warning" type="button"
+                                            data-toggle="tooltip"
+                                            data-original-title="Edit this user"><i class="glyphicon glyphicon-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger" type="button"
+                                            data-toggle="tooltip"
+                                            data-original-title="Remove this user"><i class="glyphicon glyphicon-remove"></i></button>
+                                </span>
+                            </div>
                         </div>
-                    </form>
-                </div>        
+                    </div>
+                </div>
+                <div class="row user-row">
+                    <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                        <img class="img-circle"
+                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                             alt="User Pic">
+                    </div>
+                    <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                        <strong>Cyruxx</strong><br>
+                        <span class="text-muted">User level: Administrator</span>
+                    </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".user3">
+                        <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+                    </div>
+                </div>
+                <div class="row user-infos user3">
+                    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">User information</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                        <img class="img-circle"
+                                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                             alt="User Pic">
+                                    </div>
+                                    <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                        <img class="img-circle"
+                                             src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                                             alt="User Pic">
+                                    </div>
+                                    <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                        <strong>Cyruxx</strong><br>
+                                        <dl>
+                                            <dt>User level:</dt>
+                                            <dd>Administrator</dd>
+                                            <dt>Registered since:</dt>
+                                            <dd>11/12/2013</dd>
+                                            <dt>Comments</dt>
+                                            <dd>15</dd>
+                                            <dt>Warnings</dt>
+                                            <dd>0</dd>
+                                        </dl>
+                                    </div>
+                                    <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                        <strong>Cyruxx</strong><br>
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                                <tr>
+                                                    <td>User level:</td>
+                                                    <td>Administrator</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Registered since:</td>
+                                                    <td>11/12/2013</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Comments</td>
+                                                    <td>15</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Warnings</td>
+                                                    <td>0</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-sm btn-primary" type="button"
+                                        data-toggle="tooltip"
+                                        data-original-title="Send message to user"><i class="glyphicon glyphicon-envelope"></i></button>
+                                <span class="pull-right">
+                                    <button class="btn btn-sm btn-warning" type="button"
+                                            data-toggle="tooltip"
+                                            data-original-title="Edit this user"><i class="glyphicon glyphicon-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger" type="button"
+                                            data-toggle="tooltip"
+                                            data-original-title="Remove this user"><i class="glyphicon glyphicon-remove"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
             </div>
         </div>
+
+
 
         <!-- /.container -->
 
@@ -201,101 +391,8 @@
 
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <<script src="js/manage_users.js"></script>
 
-        <script>
-
-            $('tr').click(function() {
-                alert("Not yet implemented");
-            });
-
-            var _gaq = [['_setAccount', 'UA-XXXXX-X'], ['_trackPageview']];
-            (function(d, t) {
-                var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-                g.src = '//www.google-analytics.com/ga.js';
-                s.parentNode.insertBefore(g, s)
-            }(document, 'script'));
-        </script>
-        <script>
-            $(document).ready(function() {
-                //Handles menu drop down
-                $('.dropdown-menu').find('form').click(function(e) {
-                    e.stopPropagation();
-                });
-            });
-        </script>
-
-        <script>
-            (function() {
-                'use strict';
-                var $ = jQuery;
-                $.fn.extend({
-                    filterTable: function() {
-                        return this.each(function() {
-                            $(this).on('keyup', function(e) {
-                                $('.filterTable_no_results').remove();
-                                var $this = $(this), search = $this.val().toLowerCase(), target = $this.attr('data-filters'), $target = $(target), $rows = $target.find('tbody tr');
-                                if (search == '') {
-                                    $rows.show();
-                                } else {
-                                    $rows.each(function() {
-                                        var $this = $(this);
-                                        $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
-                                    })
-                                    if ($target.find('tbody tr:visible').size() === 0) {
-                                        var col_count = $target.find('tr').first().find('td').size();
-                                        var no_results = $('<tr class="filterTable_no_results"><td colspan="' + col_count + '">No results found</td></tr>')
-                                        $target.find('tbody').append(no_results);
-                                    }
-                                }
-                            });
-                        });
-                    }
-                });
-                $('[data-action="filter"]').filterTable();
-            })(jQuery);
-
-            $(function() {
-                // attach table filter plugin to inputs
-                $('[data-action="filter"]').filterTable();
-
-                $('.container').on('click', '.panel-heading span.filter', function(e) {
-                    var $this = $(this),
-                            $panel = $this.parents('.panel');
-
-                    $panel.find('.panel-body').slideToggle();
-                    if ($this.css('display') != 'none') {
-                        $panel.find('.panel-body input').focus();
-                    }
-                });
-                $('[data-toggle="tooltip"]').tooltip();
-            })
-
-        </script>
-
-        <script>
-
-            $(document).on('click', '.btn-add', function(event) {
-                event.preventDefault();
-
-                var field = $(this).closest('.form-group');
-                var field_new = field.clone();
-
-                $(this)
-                        .toggleClass('btn-default')
-                        .toggleClass('btn-add')
-                        .toggleClass('btn-danger')
-                        .toggleClass('btn-remove')
-                        .html('–');
-
-                field_new.find('input').val('');
-                field_new.insertAfter(field);
-            });
-
-            $(document).on('click', '.btn-remove', function(event) {
-                event.preventDefault();
-                $(this).closest('.form-group').remove();
-            });
-        </script>
 
     </body>
 
