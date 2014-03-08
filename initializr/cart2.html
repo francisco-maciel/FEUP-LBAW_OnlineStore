@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Loja Online - Carrinho de Compras</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="css/general.css" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="index.html">Loja Online</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="shop-item.html">About</a>
+                    </li>
+                    <li><a href="shop-item.html">Services</a>
+                    </li>
+                    <li><a href="shop-item.html">Contact</a>
+                    </li>
+
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                   <li>
+                       <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                          <input type="text" placeholder="Search" class="form-control">
+                      </div>
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                      <button type="submit" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
+                         <span class="badge shopping-cart" >0</span></button>
+                     </form>	
+                 </li>
+                 <li class="dropdown">
+                   <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                   <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                    <li>
+                     <div class="row">
+                      <div class="col-md-12">
+                       <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                        <div class="form-group">
+                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                         <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                     </div>
+                     <div class="form-group">
+                         <label class="sr-only" for="exampleInputPassword2">Password</label>
+                         <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                     </div>
+                     <div class="checkbox">
+                         <label>
+                             <input type="checkbox"> Remember me
+                         </label>
+                     </div>
+                     <div class="form-group">
+                         <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </li>
+     <li class="divider"></li>
+     <li>
+         <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Register">
+     </li>
+ </ul>
+</li>
+
+
+</ul>
+
+
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+
+
+<div class="container">
+    <div class="row">
+
+    <div class="stepwizard">
+    <div class="stepwizard-row">
+        <div class="stepwizard-step">
+            <button type="button" class="btn btn-primary btn-circle">1</button>
+            <p>Carrinho</p>
+        </div>
+        <div class="stepwizard-step">
+            <button type="button" class="btn btn-default btn-circle">2</button>
+            <p>Shipping</p>
+        </div>
+        <div class="stepwizard-step">
+            <button type="button" class="btn btn-default btn-circle" disabled="disabled">3</button>
+            <p>Pagamento</p>
+        </div>
+        <div class="stepwizard-step">
+            <button type="button" class="btn btn-default btn-circle" disabled="disabled">3</button>
+            <p>Confirmação</p>
+        </div>
+    </div>
+    <br><br>
+</div>
+
+       <!-- SHOPPING CART -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+                            </div>
+                            <div class="col-xs-6">
+                                <button type="button" class="btn btn-primary btn-sm btn-block">
+                                    <span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
+                        </div>
+                        <div class="col-xs-4">
+                            <h4 class="product-name"><strong>Product name</strong></h4><h4><small>Product description</small></h4>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-xs-6 text-right">
+                                <h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control input-sm" value="1">
+                            </div>
+                            <div class="col-xs-2">
+                                <button type="button" class="btn btn-link btn-xs">
+                                    <span class="glyphicon glyphicon-trash"> </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
+                        </div>
+                        <div class="col-xs-4">
+                            <h4 class="product-name"><strong>Product name</strong></h4><h4><small>Product description</small></h4>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-xs-6 text-right">
+                                <h6><strong>25.00 <span class="text-muted">x</span></strong></h6>
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control input-sm" value="1">
+                            </div>
+                            <div class="col-xs-2">
+                                <button type="button" class="btn btn-link btn-xs">
+                                    <span class="glyphicon glyphicon-trash"> </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="text-center">
+                            <div class="col-xs-9">
+                                <h6 class="text-right">Added items?</h6>
+                            </div>
+                            <div class="col-xs-3">
+                                <button type="button" class="btn btn-default btn-sm btn-block">
+                                    Update cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="row text-center">
+                        <div class="col-xs-9">
+                            <h4 class="text-right">Total <strong>$50.00</strong></h4>
+                        </div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-success btn-block">
+                                Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      <!-- END SHOPPING CART -->
+
+</div>
+
+
+
+</div>
+
+<div class="container">
+
+    <hr>
+
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Footer</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<!-- /.container -->
+
+<!-- JavaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+<script src="js/vendor/bootstrap.min.js"></script>
+
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+<script>
+  $(document).ready(function(){
+			//Handles menu drop down
+			$('.dropdown-menu').find('form').click(function (e) {
+				e.stopPropagation();
+			});
+		});
+</script>
+
+</body>
+
+</html>
