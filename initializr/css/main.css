@@ -77,4 +77,15 @@ body{margin:40px;}
 .menu .collapse.in { overflow: visible; }
 
 
+/********************************************************************************/
 
+body { margin-top:20px; }
+.panel-title {display: inline;font-weight: bold;}
+.checkbox.pull-right { margin: 0; }
+.pl-ziro { padding-left: 0px; }
+
+/*********************************************************************** credit card *********/ 
+
+.submit-button {
+  margin-top: 10px;
+}
