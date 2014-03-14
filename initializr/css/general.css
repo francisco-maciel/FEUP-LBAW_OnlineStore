@@ -11,12 +11,12 @@
     border-radius: 0px;
 }
 
-a {
+.thumbnail a {
     color: #000;
     text-decoration: none;
 }
 
-a:hover {
+.thumbnail a:hover {
     color: #000;
     text-decoration: none;
 }
