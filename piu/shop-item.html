@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Loja Online - Item</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <link href="css/shop-homepage.css" rel="stylesheet">
+    <link href="css/general.css" rel="stylesheet">
+
+    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                </button>
+                <a class="navbar-brand" href="index.html">Loja Online</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="shop-item.html">About</a>
+                    </li>
+                    <li><a href="shop-item.html">Services</a>
+                    </li>
+                    <li><a href="shop-item.html">Contact</a>
+                    </li>
+
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                   <li>
+                       <form class="navbar-form navbar-right">
+                        <div class="form-group">
+                          <input type="text" placeholder="Search" class="form-control">
+                      </div>
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                      <button type="submit" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
+                         <span class="badge shopping-cart" >0</span></button>
+                     </form>	
+                 </li>
+                 <li class="dropdown">
+                   <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
+                   <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                    <li>
+                     <div class="row">
+                      <div class="col-md-12">
+                       <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                        <div class="form-group">
+                         <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                         <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                     </div>
+                     <div class="form-group">
+                         <label class="sr-only" for="exampleInputPassword2">Password</label>
+                         <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                     </div>
+                     <div class="checkbox">
+                         <label>
+                             <input type="checkbox"> Remember me
+                         </label>
+                     </div>
+                     <div class="form-group">
+                         <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     </li>
+     <li class="divider"></li>
+     <li>
+         <input class="btn btn-primary btn-block" type="button" id="sign-in-google" value="Register">
+     </li>
+ </ul>
+</li>
+
+
+</ul>
+
+
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3 column margintop20">
+           <ul class="nav nav-pills nav-stacked">
+             <li class="active"><a href="#"><span class="glyphicon "></span> Category</a></li>
+             <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 1</a></li>
+             <li><a href="#" class="active2"><span class="glyphicon glyphicon-chevron-right"></span> Category 2</a></li>
+             <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 3</a></li>
+             <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 4</a></li>
+             <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 5</a></li>
+         </ul>
+     </div>
+
+     <div class="col-md-9">
+
+
+        <div class="thumbnail">
+
+         <ol class="breadcrumb">
+                  <li><a href="#">Home</a></li>
+                  <li><a href="#">Category X</a></li>
+                  <li class="active">Current Product</li>
+              </ol>
+
+            <img class="img-responsive" src="resources/img4.jpg" alt="">
+            <div class="caption-full">
+
+              <h4 class="pull-right">Price €</h4>
+              <h4><a href="#">Product Name</a>
+              </h4>
+              <p><strong>Description:</strong> ...</p>
+              <p><strong>Reference:</strong> 0000000</p>
+              <p>...</p>
+              <p>...</p>
+
+
+              <!-- Buttons Add Cart & Share -->
+              <div class="text-left">
+                  <label class="control-label" for=""></label>
+                  <div class="controls">
+                    <button id="" name="" class="btn btn-success">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span> </button>
+                    <button id="" name="" class="btn btn-labeled btn-warning">Add to wish-list <span class="glyphicon glyphicon glyphicon-star"></span> </button>
+                    <!--  Botões partilha FB e twitter -->
+                    <div class="pull-right">
+                    
+                        <a href="#" class="btn btn-primary"><!--<i class="icon-facebook"></i>--> Share on Facebook </a>
+                        <a href="#" class="btn btn-info"><!-- <i class="icon-twitter"></i>--> Share on Twitter </a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+        <div class="ratings">
+            <p class="pull-right">3 reviews</p>
+            <p>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+                4.0 stars
+            </p>
+        </div>
+    </div>
+
+    <div class="well">
+                <!--
+                    <div class="text-right">
+                        <a class="btn btn-success">Leave a Review</a>
+                    </div>
+
+                    <hr>
+                -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        User1
+                        <span class="pull-right">10 days ago</span>
+                        <p>This product was great in terms of quality. I would definitely buy another!</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        User2
+                        <span class="pull-right">12 days ago</span>
+                        <p>I've alredy ordered another one!</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        User3
+                        <span class="pull-right">15 days ago</span>
+                        <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div >
+
+                <hr>
+                <br><br>
+
+                <h4><a href="#">Other Products</a>
+                </h4>
+
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                 <div class="thumbnail">
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">€</h4>
+                        <h4><a href="#">Product 1</a>
+                        </h4>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">€</h4>
+                        <h4><a href="#">Product 2</a>
+                        </h4>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">12 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/320x150" alt="">
+                    <div class="caption">
+                        <h4 class="pull-right">€</h4>
+                        <h4><a href="#">Product 3</a>
+                        </h4>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">31 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+        </div>
+
+</div>
+
+  <div class="container">
+
+        <hr>
+
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                <!-- FOOTER  -->
+          
+     <div class="container">    
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-md-3">
+        <ul class="list-unstyled">
+          <li>Loja Online<li>
+          <li><a href="#">About us</a></li>
+          <li><a href="#">Contact & support</a></li>
+          <li><a href="#">Enterprise</a></li>
+          <li><a href="#">Group</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <ul class="list-unstyled">
+          <li>Help<li>
+          <li><a href="#">Frequently Asked Questions</a></li>
+          <li><a href="#">Payment</a></li>
+          <li><a href="#">Delivery Rates & Policies</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Customer Support</a></li>              
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <ul class="list-unstyled">
+          <li>Legal Information<li>
+          <li><a href="#">General Conditions of Sale</a></li>
+          <li><a href="#">Privacy Notice</a></li>
+          <li><a href="#">Security and confidentiality</a></li>
+           <li><a href="#"> Cookies & Internet Advertising</a></li>            
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <ul class="list-unstyled">
+          <li>Other Services<li>
+          <li><a href="#">Product Help</a></li>
+          <li><a href="#">Jobs</a></li>             
+        </ul>
+      </div>  
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+    <div class="col-md-8"> <!-- 
+        <a href="#">Terms of Service</a>    
+        <a href="#">Privacy</a>    
+        <a href="#">Security</a> -->
+      </div> 
+      <div class="col-md-4">
+        <p class="muted pull-right">© 2014 Loja Online. All rights reserved</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END FOOTER -->
+                </div>
+            </div>
+        </footer>
+
+    </div>
+<!-- /.container -->
+
+<!-- JavaScript -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+
+<script src="js/vendor/bootstrap.min.js"></script>
+
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src='//www.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+<script>
+  $(document).ready(function(){
+			//Handles menu drop down
+			$('.dropdown-menu').find('form').click(function (e) {
+				e.stopPropagation();
+			});
+		});
+</script>
+
+</body>
+
+</html>
