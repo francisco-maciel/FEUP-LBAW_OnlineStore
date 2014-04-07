@@ -10,7 +10,7 @@
       $photo = 'images/users/'.$tweet['username'].'.png';
     if (file_exists($BASE_DIR.'images/users/'.$tweet['username'].'.jpg'))
       $photo = 'images/users/'.$tweet['username'].'.jpg';
-    if (!$photo) $photo = 'images/assets/default.png';
+    if (!isset($photo)) $photo = 'images/assets/default.png';
     $tweets[$key]['photo'] = $photo;
   }
     

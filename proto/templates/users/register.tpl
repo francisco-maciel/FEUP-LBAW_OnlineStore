@@ -14,7 +14,7 @@
     </label>
     <br>
     <label>Password:<br> 
-      <input type="password" name="password" value="">
+      <input type="password" name="password" value="{$USERNAME}">
     </label>
     <br>
     <label>Photo:<br>
