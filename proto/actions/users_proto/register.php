@@ -1,6 +1,7 @@
 <?php
   include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/users.php');
+  include_once($BASE_DIR .'database/users_proto.php');
+// TODO continuar a acao de registo
 
   if (!$_POST['username'] || !$_POST['realname'] || !$_POST['password']) {
     $_SESSION['error_messages'][] = 'All fields are mandatory';

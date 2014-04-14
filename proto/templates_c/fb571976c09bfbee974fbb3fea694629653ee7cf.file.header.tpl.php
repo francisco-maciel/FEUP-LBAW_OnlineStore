@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-07 16:15:07
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-12 12:35:49
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common\header.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:305855342cf0b697160-88322250%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:1284653493325905da4-89608438%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '305855342cf0b697160-88322250',
+  'nocache_hash' => '1284653493325905da4-89608438',
   'function' => 
   array (
   ),
@@ -26,9 +26,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5342cf0b6d76a6_67355333',
+  'unifunc' => 'content_5349332593c9c0_76252218',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5342cf0b6d76a6_67355333')) {function content_5342cf0b6d76a6_67355333($_smarty_tpl) {?><!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_5349332593c9c0_76252218')) {function content_5349332593c9c0_76252218($_smarty_tpl) {?><!DOCTYPE html>
 <html>
   <head>
     <title>Fritter</title>

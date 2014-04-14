@@ -5,7 +5,7 @@
 
   <form action="{$BASE_URL}actions/users/register.php" method="post" enctype="multipart/form-data">
     <label>Name:<br> 
-      <input type="text" name="realname" value="{$FORM_VALUES.realname}"> 
+      <input type="text" name="realname" value="{$FORM_VALUES.realname}">
       <span class="field_error">{$FIELD_ERRORS.username}</span>
     </label>
     <br>

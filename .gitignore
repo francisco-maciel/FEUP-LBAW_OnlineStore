@@ -3,3 +3,5 @@
 project.xml
 project.properties
 nbproject
+proto/.idea/
+proto/proto.iml

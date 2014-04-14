@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-07 16:15:07
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-12 12:35:49
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common\menu_logged_out.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:278385342cf0b732336-01787854%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:455953493325973622-37900563%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,7 +11,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '278385342cf0b732336-01787854',
+  'nocache_hash' => '455953493325973622-37900563',
   'function' => 
   array (
   ),
@@ -21,9 +21,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5342cf0b73c2a9_25083106',
+  'unifunc' => 'content_5349332597baa2_95166617',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5342cf0b73c2a9_25083106')) {function content_5342cf0b73c2a9_25083106($_smarty_tpl) {?><a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+<?php if ($_valid && !is_callable('content_5349332597baa2_95166617')) {function content_5349332597baa2_95166617($_smarty_tpl) {?><a href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 pages/users/register.php">Register</a>
 <form action="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 actions/users/login.php" method="post">

@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-07 16:15:07
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-12 12:35:49
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\tweets\list.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:236165342cf0b5c4593-86784911%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:11433534933256c6846-64895049%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'a07570d4c65dd5dab642aef7378c9f5d9dbb56d9' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\tweets\\list.tpl',
-      1 => 1396860193,
+      1 => 1397305856,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '236165342cf0b5c4593-86784911',
+  'nocache_hash' => '11433534933256c6846-64895049',
   'function' => 
   array (
   ),
@@ -24,9 +24,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
   'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5342cf0b657534_04021857',
+  'unifunc' => 'content_5349332588a0f5_92658850',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5342cf0b657534_04021857')) {function content_5342cf0b657534_04021857($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+<?php if ($_valid && !is_callable('content_5349332588a0f5_92658850')) {function content_5349332588a0f5_92658850($_smarty_tpl) {?><?php echo $_smarty_tpl->getSubTemplate ('common/header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
 
 <section id="tweets">
