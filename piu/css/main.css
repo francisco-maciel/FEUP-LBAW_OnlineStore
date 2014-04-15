@@ -89,3 +89,10 @@ body { margin-top:20px; }
 .submit-button {
   margin-top: 10px;
 }
+
+
+.form-group.dynamic {
+    width: 68%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}

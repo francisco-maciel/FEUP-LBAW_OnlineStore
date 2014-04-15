@@ -2,8 +2,8 @@
   session_set_cookie_params(3600, '/'); 
   session_start();
 
-  $BASE_DIR = 'C:\Users\Francisco\Documents\lbaw-loja-online\proto\\'; 
-  $BASE_URL = '/'; //FIXME
+  $BASE_DIR = '/vagrant/public/lbaw-loja-online/proto/'; 
+  $BASE_URL = '/lbaw-loja-online/proto/'; //FIXME
 
   $conn = new PDO('pgsql:host=vdbm.fe.up.pt;port=5432;dbname=lbaw1324', 'lbaw1324', 'zN327sa7'); 
   $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
