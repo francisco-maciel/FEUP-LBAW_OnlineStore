@@ -9,7 +9,7 @@
   $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $conn->exec('SET SCHEMA \'frmk\'');
+  $conn->exec('SET SCHEMA \'proto\'');
 
   include_once($BASE_DIR . 'lib\smarty\Smarty.class.php');
   
@@ -23,7 +23,18 @@
   $smarty->assign('SUCCESS_MESSAGES', array_key_exists('success_messages',$_SESSION) ? $_SESSION['success_messages'] : null);
   $smarty->assign('FORM_VALUES',array_key_exists('form_values',$_SESSION) ?  $_SESSION['form_values'] : null);
   $smarty->assign('USERNAME', array_key_exists('username',$_SESSION) ? $_SESSION['username'] : null);
-  
+  $smarty->assign('PERMISSION', array_key_exists('permission',$_SESSION) ? $_SESSION['permission'] : null);
+
+
+abstract class Permisson
+{
+    const NONE = -1;
+    const BUYER = 0;
+    const MANAGER = 1;
+    const ADMIN = 2;
+
+}
+
   unset($_SESSION['success_messages']);
   unset($_SESSION['error_messages']);  
   unset($_SESSION['field_errors']);
