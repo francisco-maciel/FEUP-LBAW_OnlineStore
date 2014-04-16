@@ -1,36 +1,52 @@
 <?php
   include_once('../../config/init.php');
   include_once($BASE_DIR .'database/users_proto.php');
-// TODO continuar a acao de registo
+// TODO variable checks
+  if ( !isset($_POST['nif']) ||!isset($_POST['door']) || !isset($_POST['realname']) || !isset($_POST['email']) ||
+      !isset($_POST['password']) || !isset($_POST['address']) || !isset($_POST['postcode'])
+      || !isset($_POST['city']) || !isset($_POST['phone']) ||
+      !isset($_POST['day']) || !isset($_POST['month']) || !isset($_POST['year'])) {
 
-  if (!$_POST['username'] || !$_POST['realname'] || !$_POST['password']) {
     $_SESSION['error_messages'][] = 'All fields are mandatory';
     $_SESSION['form_values'] = $_POST;
-    header("Location: $BASE_URL" . 'pages/users/register.php');
+    header("Location: $BASE_URL" . 'pages/users_proto/register.php');
     exit;
   }
 
   $realname = strip_tags($_POST['realname']);
-  $username = strip_tags($_POST['username']);
-  $password = $_POST['password'];
+  $email = strip_tags($_POST['email']);
+  $password = strip_tags($_POST['password']);
+  $address = strip_tags($_POST['address']. " ".$_POST['city']);
+  $postcode = strip_tags($_POST['postcode']);
+  $city = strip_tags($_POST['city']);
+  $phone = strip_tags($_POST['phone']);
+  $birthdate = strip_tags($_POST['year']."-".$_POST['month']."-".$_POST['day']) ;
+  $door = strip_tags($_POST['door']);
+  $nif = strip_tags($_POST['nif']);
 
-  $photo = $_FILES['photo'];
-  $extension = end(explode(".", $photo["name"]));
+global $conn;
 
   try {
-    createUser($realname, $username, $password);
-    move_uploaded_file($photo["tmp_name"], $BASE_DIR . "images/users/" . $username . '.' . $extension); // this is dangerous
-    chmod($BASE_DIR . "images/users/" . $username . '.' . $extension, 0644);
-  } catch (PDOException $e) {
-  
+      createBuyer($email, $password, $realname, $phone, $birthdate, $address,$door, $postcode, $city, $nif);
+  }
+  catch (PDOException $e) {
+      $conn->rollBack();
     if (strpos($e->getMessage(), 'users_pkey') !== false) {
       $_SESSION['error_messages'][] = 'Duplicate username';
       $_SESSION['field_errors']['username'] = 'Username already exists';
     }
-    else $_SESSION['error_messages'][] = 'Error creating user';
+    else if(strpos($e->getMessage(), 'uq_user_email') !== false)  {
+        $_SESSION['error_messages'][] = 'Duplicate email';
+        $_SESSION['field_errors']['username'] = 'Email already exists';
+    }
+    else if(strpos($e->getMessage(), 'uq_buyer_nif') !== false) {
+        $_SESSION['error_messages'][] = 'Duplicate nif';
+        $_SESSION['field_errors']['username'] = 'Nif already exists';
+    }
+    else  $_SESSION['error_messages'][] = 'Error creating user'. $e->getMessage() ;
 
-    $_SESSION['form_values'] = $_POST;
-    header("Location: $BASE_URL" . 'pages/users/register.php');
+      $_SESSION['form_values'] = $_POST;
+    header("Location: $BASE_URL" . 'pages/users_proto/register.php');
     exit;
   }
   $_SESSION['success_messages'][] = 'User registered successfully';  
