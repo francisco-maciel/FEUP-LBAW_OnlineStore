@@ -67,7 +67,11 @@
                     </form>
                 </li>
 
-
+                {if $USERNAME}
+                    {include file='common_proto/menu_logged_in.tpl'}
+                {else}
+                    {include file='common_proto/menu_logged_out.tpl'}
+                {/if}
 
 
             </ul>
