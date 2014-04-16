@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-14 11:01:27
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-16 12:11:11
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common_proto\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3975534bbbd4d03916-67468853%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '587c6e9aa07442ff2d4263646e85819a3153ae9d' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common_proto\\header.tpl',
-      1 => 1397473286,
+      1 => 1397650199,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'BASE_URL' => 0,
+    'USERNAME' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -98,7 +99,13 @@ javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
                     </form>
                 </li>
 
+                <?php if ($_smarty_tpl->tpl_vars['USERNAME']->value) {?>
+                    <?php echo $_smarty_tpl->getSubTemplate ('common_proto/menu_logged_in.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
 
+                <?php } else { ?>
+                    <?php echo $_smarty_tpl->getSubTemplate ('common_proto/menu_logged_out.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+
+                <?php }?>
 
 
             </ul>

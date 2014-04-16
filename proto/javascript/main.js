@@ -1,6 +1,6 @@
 BASE_URL = '...';
 
-$(document).ready(function() {
+$(document).ready(function(){
   initMessageClosers();
 });
 
