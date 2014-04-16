@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
         <style>
             body {
                 padding-top: 50px;
@@ -39,7 +40,7 @@
                         <span class="icon-bar"></span>
 
                     </button>
-                    <a class="navbar-brand" href="">Loja Online</a>
+                    <a class="navbar-brand" href="index.html">Loja Online</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -70,12 +71,12 @@
                             <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Welcome #Admin#<b class="caret"></b></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li role="presentation" class="dropdown-header">Users</li>
-                                <li><a href="#">Manage Users</a></li>
+                                <li><a href="manage_users.html">Manage Users</a></li>
                                 <li class="divider"></li>
                                 <li role="presentation" class="dropdown-header">Store</li>
-                                <li><a href="#">Add Product</a></li>
-                                <li><a href="#">Manage Orders</a></li>
-                                <li><a href="#">Manage Comments</a></li>
+                                <li><a href="add_product.html">Add Product</a></li>
+                                <li><a href="manage_orders.html">Manage Orders</a></li>
+                                <li><a href="manage_comments.html">Manage Comments</a></li>
                             </ul>
                         </li>
 
@@ -93,8 +94,8 @@
 
             <div class="row">
 
-                <form class="form-horizontal">
-                    <fieldset>
+                <form class="form-horizontal" method="POST" action="insert_product.php" >
+                    <fieldset id="add_product">
 
                         <!-- Form Name -->
                         <legend>Add new Product</legend>
@@ -111,7 +112,7 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="prod_family">Product Department</label>
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <select id="prod_family" name="prod_family" class="form-control">
                                     <option value="1">Accessories</option>
                                     <option value="2">Electronic</option>
@@ -135,7 +136,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="prod_desc">Description</label>
                             <div class="col-md-4">                     
-                                <textarea class="form-control" id="prod_desc" name="prod_desc">Add a description</textarea>
+                                <textarea onclick="clearText('prod_desc')" class="form-control" id="prod_desc" name="prod_desc">Add a description</textarea>
                             </div>
                         </div>
 
@@ -148,11 +149,11 @@
                         </div>
 
                         <!-- Button (Double) -->
-                        <div class="form-group">
+                        <div class="form-group" id="form_submit">
                             <label class="col-md-4 control-label" for="prod_add_new_row"></label>
                             <div class="col-md-8">
-                                <button id="prod_add_new_row" name="prod_add_new_row" class="btn btn-info">Add new Field</button>
-                                <button id="prod_clear" name="prod_clear" class="btn btn-danger">Clear</button>
+                                <button type="button" id="prod_add_new_row" onclick="appendToForm('form_submit')" name="prod_add_new_row" class="btn btn-info">Add new Field</button>
+                                <button type="reset" id="prod_clear" name="prod_clear" class="btn btn-danger">Clear</button>
                                 <button id="prod_save" name="prod_save" class="btn btn-success">Save</button>
                             </div>
                         </div>
@@ -262,6 +263,7 @@
                     e.stopPropagation();
                 });
             });
+            
         </script>
 
     </body>
