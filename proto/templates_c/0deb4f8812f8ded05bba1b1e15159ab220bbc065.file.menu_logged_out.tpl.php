@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-17 11:32:57
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-17 14:03:07
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common_proto\menu_logged_out.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2597534e735f5afee5-91206551%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0deb4f8812f8ded05bba1b1e15159ab220bbc065' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common_proto\\menu_logged_out.tpl',
-      1 => 1397734374,
+      1 => 1397743375,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'BASE_URL' => 0,
+    'FORM_VALUES' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -33,7 +34,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 actions/users_proto/login.php" accept-charset="UTF-8" id="login-nav">
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                            <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                            <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['email'];?>
+">
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputPassword2">Password</label>

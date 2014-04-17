@@ -7,7 +7,7 @@
                     <form class="form" role="form" method="post" action="{$BASE_URL}actions/users_proto/login.php" accept-charset="UTF-8" id="login-nav">
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                            <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                            <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="{$FORM_VALUES.email}">
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputPassword2">Password</label>

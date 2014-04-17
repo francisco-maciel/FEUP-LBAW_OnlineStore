@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-17 11:44:12
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-17 14:03:07
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\users_proto\register.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:13254534bbbd4ca9d87-59205678%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8a7d3ab070501c6e44666c37265bd44326b4eb27' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\users_proto\\register.tpl',
-      1 => 1397670083,
+      1 => 1397743338,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'BASE_URL' => 0,
+    'FORM_VALUES' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -49,7 +50,8 @@ actions/users_proto/register.php" method="post" enctype="multipart/form-data" cl
                         <div class="form-group"> <!--  TODO add action script-->
                             <label class="col-md-4 control-label" for="user_name">Name</label>  
                             <div class="col-md-6">
-                                <input id="user_name" name="realname" type="text" placeholder="Full name" class="form-control input-md" required="" value= "">
+                                <input id="user_name" name="realname" type="text" placeholder="Full name" class="form-control input-md" required="" value= "<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['realname'];?>
+">
 
                             </div>
                         </div>
@@ -57,7 +59,8 @@ actions/users_proto/register.php" method="post" enctype="multipart/form-data" cl
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="user_email">Email</label>  
                             <div class="col-md-5">
-                                <input id="user_email" name="email" type="text" placeholder="example@mail.com" class="form-control input-md" required="" value="">
+                                <input id="user_email" name="email" type="text" placeholder="example@mail.com" class="form-control input-md" required="" value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['email'];?>
+">
 
                             </div>
                         </div>
@@ -66,13 +69,16 @@ actions/users_proto/register.php" method="post" enctype="multipart/form-data" cl
                        <div class="form-group">
                            <label class="col-md-4 control-label" for="user_email">Date of Birth</label>
                            <div class="col-md-1">
-                               <input id="" name="day" type="number" placeholder="day"   class="form-control input-md" required="" value="">
+                               <input id="" name="day" type="number" placeholder="day"   class="form-control input-md" required="" value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['day'];?>
+">
                            </div>
                            <div class="col-md-2">
-                               <input id="" name="month" type="number" placeholder="month" class="form-control input-md" required="" value="">
+                               <input id="" name="month" type="number" placeholder="month" class="form-control input-md" required="" value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['month'];?>
+">
                            </div>
                            <div class="col-md-3">
-                               <input id="" name="year" type="number" placeholder="year" class="form-control input-md" required="" value="">
+                               <input id="" name="year" type="number" placeholder="year" class="form-control input-md" required="" value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['year'];?>
+">
                            </div>
                        </div>
 						
@@ -80,7 +86,8 @@ actions/users_proto/register.php" method="post" enctype="multipart/form-data" cl
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="user_password">Password</label>  
                             <div class="col-md-3">
-                                <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required="" value="">
+                                <input id="password" name="password" type="password" placeholder="password" class="form-control input-md" required="" value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['password'];?>
+">
                             </div>
                         </div>
 						
@@ -98,10 +105,12 @@ actions/users_proto/register.php" method="post" enctype="multipart/form-data" cl
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="prod_stock">Address</label>  
                             <div class="col-md-5">
-                                <input id="name" name="address" type="text" placeholder="Street name" class="form-control input-md" required=""  value="">
+                                <input id="name" name="address" type="text" placeholder="Street name" class="form-control input-md" required=""  value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['address'];?>
+">
                             </div>
                             <div class="col-md-2">
-                                <input id="city" name="door" type="text" placeholder="Door Number" class="form-control input-md" required=""  value="">
+                                <input id="city" name="door" type="text" placeholder="Door Number" class="form-control input-md" required=""  value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['door'];?>
+">
                             </div>
 							 
                         </div>
@@ -109,25 +118,29 @@ actions/users_proto/register.php" method="post" enctype="multipart/form-data" cl
 						 <div class="form-group">
                             <label class="col-md-4 control-label" for="prod_stock">Post-code</label>  
                             <div class="col-md-2">
-                                <input id="name" name="postcode" type="text" placeholder="Code" class="form-control input-md" required=""  value="">
+                                <input id="name" name="postcode" type="text" placeholder="Code" class="form-control input-md" required=""  value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['postcode'];?>
+">
 
 		
                             </div>
 							   <div class="col-md-2">
-                                <input id="city" name="city" type="text" placeholder="City" class="form-control input-md" required=""  value="">
+                                <input id="city" name="city" type="text" placeholder="City" class="form-control input-md" required=""  value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['city'];?>
+">
                             </div>
                         </div>
 						
 						   <div class="form-group">
                             <label class="col-md-4 control-label" for="prod_stock">Contact</label>  
                             <div class="col-md-3">
-                                <input id="name" name="phone" type="text" placeholder="Phone number" class="form-control input-md" required=""  value="">
+                                <input id="name" name="phone" type="text" placeholder="Phone number" class="form-control input-md" required=""  value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['phone'];?>
+">
                             </div>
 							 </div>
                        <div class="form-group">
                            <label class="col-md-4 control-label" for="prod_stock">NIF</label>
                            <div class="col-md-3">
-                               <input id="name" name="nif" type="number" pattern="^\d+$" placeholder="NIF" class="form-control input-md" required=""  value="">
+                               <input id="name" name="nif" type="number" pattern="^\d+$" placeholder="NIF" class="form-control input-md" required=""  value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['nif'];?>
+">
                            </div>
                        </div>
 

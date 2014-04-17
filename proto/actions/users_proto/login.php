@@ -18,7 +18,8 @@
     $_SESSION['permission'] = $permission;
     $_SESSION['success_messages'][] = 'Login successful';  
   } else {
-    $_SESSION['error_messages'][] = 'Login failed';  
+    $_SESSION['error_messages'][] = 'Wrong username or password';
+    $_SESSION['form_values'] = $_POST;
   }
   header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
