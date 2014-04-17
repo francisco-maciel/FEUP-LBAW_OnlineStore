@@ -5,7 +5,7 @@
 		<img src="http://placehold.it/320x150" alt="">
 		<div class="caption">
 			<h4 class="pull-right">{$prod.price}</h4>
-			<h4><a href="shop-item.html">{$prod.title}</a>
+			<h4><a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}">{$prod.title}</a>
 			</h4>
 		</div>
 		<div class="ratings">
