@@ -2,7 +2,24 @@
   include_once('../../config/init.php');
   include_once($BASE_DIR .'database/products.php');
 
-  $products = getAllProcucts();  
+/*
+if (!$_GET['search']) {
+    $_SESSION['error_messages'][] = 'Invalid search';
+    $_SESSION['form_values'] = $_GET;
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit;
+  }
+  */
+
+  if (!$_GET['search']) {
+    $products = getNotRemovedProducts(); 
+  }
+  else
+  {
+    $namepart = $_GET['search'];
+    $products = getProductsByName($namepart);
+  }
+  
   
   /*
   foreach ($tweets as $key => $tweet) {

@@ -57,9 +57,9 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <form class="navbar-form navbar-right">
+                    <form class="navbar-form navbar-right" action="{$BASE_URL}pages/products/search-prods.php" method="get">
                         <div class="form-group">
-                            <input type="text" placeholder="Search" class="form-control">
+                            <input type="text" placeholder="Search" name="search" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                         <button type="submit" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
