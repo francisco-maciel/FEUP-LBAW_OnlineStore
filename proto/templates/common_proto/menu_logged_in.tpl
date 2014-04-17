@@ -7,5 +7,6 @@
         <li role="presentation" class="dropdown-header">Profile</li>
         <li><a href="#">Wish List</a></li>
         <li><a href="#">My orders</a></li>
+        <li><a href="{$BASE_URL}actions/users_proto/logout.php">Logout</a></li>
     </ul>
 </li>

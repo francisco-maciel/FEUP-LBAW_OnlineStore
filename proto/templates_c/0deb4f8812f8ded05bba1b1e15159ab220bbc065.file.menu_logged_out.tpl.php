@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-16 12:22:17
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-17 11:32:57
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common_proto\menu_logged_out.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:2597534e735f5afee5-91206551%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '0deb4f8812f8ded05bba1b1e15159ab220bbc065' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common_proto\\menu_logged_out.tpl',
-      1 => 1397650936,
+      1 => 1397734374,
       2 => 'file',
     ),
   ),
@@ -29,14 +29,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <li>
             <div class="row">
                 <div class="col-md-12">
-                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                    <form class="form" role="form" method="post" action="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+actions/users_proto/login.php" accept-charset="UTF-8" id="login-nav">
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                            <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
                         </div>
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputPassword2">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                            <input name="password" type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
                         </div>
                         <div class="checkbox">
                             <label>

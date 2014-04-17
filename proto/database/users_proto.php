@@ -21,10 +21,14 @@
   function isLoginCorrect($email, $password) {
       //TODO ver tabela buyer
     global $conn;
-    $stmt = $conn->prepare("SELECT * 
+    $stmt = $conn->prepare("SELECT user_type
                             FROM user_
                             WHERE email = ? AND password = ?");
     $stmt->execute(array($email, hash('sha256', $password)));
-    return $stmt->fetch() == true;
+    $type = $stmt->fetch();
+   if ($type) {
+        return $type['user_type'];
+   }
+      else return Permisson::NONE;
   }
 ?>
