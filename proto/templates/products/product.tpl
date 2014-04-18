@@ -31,6 +31,7 @@
     {else}
         <img class="img-responsive" src="{$BASE_URL}images/products/default.png" alt="">
     {/if}
+
     <div class="caption-full">
 
       <h4 class="pull-right">{$product.price}</h4>

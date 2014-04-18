@@ -1,4 +1,9 @@
 <?php
   include_once('../config/init.php');
-    $smarty->display('common_proto/homepage.tpl');
+  include_once($BASE_DIR .'database/products.php');
+  
+  $products = getNotRemovedProducts();
+  $smarty->assign('products', $products);
+  
+  $smarty->display('common_proto/homepage.tpl');
 ?>
