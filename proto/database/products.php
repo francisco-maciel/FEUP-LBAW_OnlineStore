@@ -16,16 +16,16 @@ function getNotRemovedProducts() {
 
 function getProductsByName($namepart){
 	global $conn;
-	$stmt = $conn->prepare("SELECT * FROM product WHERE LOWER(title) LIKE LOWER('%$namepart%') and removed=false");
-	$stmt->execute();
+	$stmt = $conn->prepare("SELECT * FROM product WHERE LOWER(title) LIKE LOWER(?) and removed=false");
+	$stmt->execute(array("%".$namepart."%"));
 	return $stmt->fetchAll();
 }
 
 
 function getProductById($id) {
 	global $conn;
-	$stmt = $conn->prepare("SELECT * FROM product WHERE idproduct=$id");
-	$stmt->execute();
+	$stmt = $conn->prepare("SELECT * FROM product WHERE idproduct=?");
+	$stmt->execute(array($id));
 	return $stmt->fetch();	
 }
 
