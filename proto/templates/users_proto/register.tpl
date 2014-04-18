@@ -19,7 +19,7 @@
                         <legend>Sign up</legend>
 						
                         <!-- Text input-->
-                        <div class="form-group"> <!--  TODO add action script-->
+                        <div class="form-group">
                             <label class="col-md-4 control-label" for="user_name">Name</label>  
                             <div class="col-md-6">
                                 <input id="user_name" name="realname" type="text" placeholder="Full name" class="form-control input-md" required="" value= "{$FORM_VALUES.realname}">

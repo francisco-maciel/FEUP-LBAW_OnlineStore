@@ -1,7 +1,6 @@
 <?php
   
   function createBuyer($email, $password, $realname, $phone, $birthdate , $street,$door,  $postcode , $address, $nif) {
-     // TODO add address
     global $conn;
     $date_signed  = date("Y-n-j");
 
