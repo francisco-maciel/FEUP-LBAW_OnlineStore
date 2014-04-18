@@ -30,7 +30,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="user_email">Email</label>  
                             <div class="col-md-5">
-                                <input id="user_email" name="email" type="text" placeholder="example@mail.com" class="form-control input-md" required="" value="{$FORM_VALUES.email}">
+                                <input id="user_email" name="email" type="email" placeholder="example@mail.com" class="form-control input-md" required="" value="{$FORM_VALUES.email}">
 
                             </div>
                         </div>

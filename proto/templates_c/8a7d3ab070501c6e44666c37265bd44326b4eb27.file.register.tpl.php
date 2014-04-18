@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-17 14:03:07
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-18 17:05:48
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\users_proto\register.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:13254534bbbd4ca9d87-59205678%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8a7d3ab070501c6e44666c37265bd44326b4eb27' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\users_proto\\register.tpl',
-      1 => 1397743338,
+      1 => 1397840747,
       2 => 'file',
     ),
   ),
@@ -59,7 +59,7 @@ actions/users_proto/register.php" method="post" enctype="multipart/form-data" cl
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="user_email">Email</label>  
                             <div class="col-md-5">
-                                <input id="user_email" name="email" type="text" placeholder="example@mail.com" class="form-control input-md" required="" value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['email'];?>
+                                <input id="user_email" name="email" type="email" placeholder="example@mail.com" class="form-control input-md" required="" value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['email'];?>
 ">
 
                             </div>

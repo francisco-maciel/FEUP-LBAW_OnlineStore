@@ -5,8 +5,8 @@ $(document).ready(function(){
 });
 
 function initMessageClosers() {
-  $('.close').click(function() {
-    $(this).parent().fadeOut();
+  $('.message-closer').click(function() {
+    $(this).closest(".row").fadeOut();
   });
 }
 

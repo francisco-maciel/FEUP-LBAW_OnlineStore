@@ -50,3 +50,11 @@ li.search-button {
     font-weight: bold;
 }
 
+
+.clickable{
+    cursor: pointer;
+}
+
+.panel-heading span {
+    font-size: 15px;
+}

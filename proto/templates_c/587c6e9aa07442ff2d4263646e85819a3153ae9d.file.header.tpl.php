@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-17 11:22:12
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-18 17:03:07
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common_proto\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3975534bbbd4d03916-67468853%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '587c6e9aa07442ff2d4263646e85819a3153ae9d' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common_proto\\header.tpl',
-      1 => 1397733203,
+      1 => 1397840587,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'BASE_URL' => 0,
     'USERNAME' => 0,
+    'SUCCESS_MESSAGES' => 0,
+    'success' => 0,
+    'ERROR_MESSAGES' => 0,
+    'error' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -117,4 +121,63 @@ pages/products/search-prods.php" method="get">
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
-</nav><?php }} ?>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <?php  $_smarty_tpl->tpl_vars['success'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['success']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['SUCCESS_MESSAGES']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['success']->key => $_smarty_tpl->tpl_vars['success']->value) {
+$_smarty_tpl->tpl_vars['success']->_loop = true;
+?>
+
+        <div class="col-md-12">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?php echo $_smarty_tpl->tpl_vars['success']->value;?>
+ </h3>
+                    <span class="pull-right clickable message-closer"><i class="glyphicon glyphicon-remove"></i></span>
+                </div>
+
+            </div>
+        </div>
+        <?php } ?>
+
+    </div>
+
+    <div class="row">
+        <?php  $_smarty_tpl->tpl_vars['error'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['error']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['ERROR_MESSAGES']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['error']->key => $_smarty_tpl->tpl_vars['error']->value) {
+$_smarty_tpl->tpl_vars['error']->_loop = true;
+?>
+            <div class="col-md-12">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?php echo $_smarty_tpl->tpl_vars['error']->value;?>
+</h3>
+                        <span class="pull-right clickable message-closer"><i class="glyphicon glyphicon-remove"></i></span>
+                    </div>
+
+                </div>
+            </div>
+        <?php } ?>
+
+    </div>
+<!-- TODO adicionar field erros
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Warning1</h3>
+                    <span class="pull-right clickable message-closer"><i class="glyphicon glyphicon-remove"></i></span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+--><?php }} ?>

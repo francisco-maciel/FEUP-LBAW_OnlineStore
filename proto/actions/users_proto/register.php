@@ -31,11 +31,8 @@ global $conn;
   }
   catch (PDOException $e) {
       $conn->rollBack();
-    if (strpos($e->getMessage(), 'users_pkey') !== false) {
-      $_SESSION['error_messages'][] = 'Duplicate username';
-      $_SESSION['field_errors']['username'] = 'Username already exists';
-    }
-    else if(strpos($e->getMessage(), 'uq_user_email') !== false)  {
+
+     if(strpos($e->getMessage(), 'uq_user_email') !== false)  {
         $_SESSION['error_messages'][] = 'Duplicate email';
         $_SESSION['field_errors']['username'] = 'Email already exists';
     }
