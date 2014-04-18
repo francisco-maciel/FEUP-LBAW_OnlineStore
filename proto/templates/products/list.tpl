@@ -21,5 +21,13 @@
 	</div>
 	<br>
 </div>
-
 {/foreach}
+
+
+{if $message}
+
+    <div class="col-sm-12 col-lg-12 col-md-12">
+        <div class="row"></div>
+        <h4 style="color:gray">{$message}</h4>
+    </div>
+{/if}

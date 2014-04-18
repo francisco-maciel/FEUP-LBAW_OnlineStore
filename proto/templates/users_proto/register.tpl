@@ -110,7 +110,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="prod_add_new_row"></label>
                             <div class="col-md-8">
-                                <input type="submit"  id="prod_save"  class="btn btn-success" value="Register"></input>
+                                <input type="submit"  id="prod_save"  class="btn btn-success" value="Register">
                             </div>
                         </div>
 

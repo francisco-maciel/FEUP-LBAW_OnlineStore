@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-18 17:19:43
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-18 17:58:12
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common_proto\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3975534bbbd4d03916-67468853%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '587c6e9aa07442ff2d4263646e85819a3153ae9d' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common_proto\\header.tpl',
-      1 => 1397841569,
+      1 => 1397843891,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'BASE_URL' => 0,
+    'FORM_VALUES' => 0,
     'USERNAME' => 0,
     'SUCCESS_MESSAGES' => 0,
     'success' => 0,
@@ -97,7 +98,8 @@ javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
                     <form class="navbar-form navbar-right" action="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 pages/products/search-prods.php" method="get">
                         <div class="form-group">
-                            <input type="text" placeholder="Search" name="search" class="form-control">
+                            <input type="text" placeholder="Search" name="search" class="form-control" value = "<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['search'];?>
+">
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
                         <button type="submit" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>

@@ -11,27 +11,31 @@ if (!$_GET['search']) {
   }
   */
 
-  if (!$_GET['search']) {
-    $products = getNotRemovedProducts(); 
+  if (!isset($_GET['search'])) {
+    $products = getNotRemovedProducts();
   }
   else
   {
     $namepart = $_GET['search'];
     $products = getProductsByName($namepart);
+    global $smarty;
+    $smarty->assign('FORM_VALUES',$_GET);
   }
-  
-  
-  /*
-  foreach ($tweets as $key => $tweet) {
-    unset($photo);
-    if (file_exists($BASE_DIR.'images/users/'.$tweet['username'].'.png'))
-      $photo = 'images/users/'.$tweet['username'].'.png';
-    if (file_exists($BASE_DIR.'images/users/'.$tweet['username'].'.jpg'))
-      $photo = 'images/users/'.$tweet['username'].'.jpg';
-    if (!$photo) $photo = 'images/assets/default.png';
-    $tweets[$key]['photo'] = $photo;
-  }
-  */
+    if (empty($products)) $smarty->assign('message', 'No items found that match your search');
+    else  $smarty->assign('message', false);
+
+
+/*
+foreach ($tweets as $key => $tweet) {
+  unset($photo);
+  if (file_exists($BASE_DIR.'images/users/'.$tweet['username'].'.png'))
+    $photo = 'images/users/'.$tweet['username'].'.png';
+  if (file_exists($BASE_DIR.'images/users/'.$tweet['username'].'.jpg'))
+    $photo = 'images/users/'.$tweet['username'].'.jpg';
+  if (!$photo) $photo = 'images/assets/default.png';
+  $tweets[$key]['photo'] = $photo;
+}
+*/
 
   //$smarty->assign('last_tweet_id', $tweets[0]['id']); 
   
