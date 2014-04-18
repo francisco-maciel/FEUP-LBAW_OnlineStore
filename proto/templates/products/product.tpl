@@ -26,7 +26,11 @@
       <li class="active">Current Product</li>
     </ol>
 
-    <img class="img-responsive" src="{$BASE_URL}images/homepage/img4.jpg" alt="">
+    {if $product.img }
+        <img class="img-responsive" src="{$BASE_URL}images/products/{$product.img}" alt="">
+    {else}
+        <img class="img-responsive" src="{$BASE_URL}images/products/default.png" alt="">
+    {/if}
     <div class="caption-full">
 
       <h4 class="pull-right">{$product.price}</h4>
@@ -34,8 +38,7 @@
       </h4>
       <p><strong>Description: </strong>{$product.description}</p>
       <p><strong>Reference:</strong> {$product.idproduct}</p>
-      <p>...</p>
-      <p>...</p>
+      
 
 
       <!-- Buttons Add Cart & Share -->
