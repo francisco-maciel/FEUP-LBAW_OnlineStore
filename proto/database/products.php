@@ -35,10 +35,9 @@ function getProductById($id) {
 function addProduct($title,$description,$price,$stock){
     global $conn;
     
-    $sql = "INSERT INTO product(title,description,price,stock)"
-            . "VALUES ($title,$description,$price,$stock)";
-    
-    return $conn->query($sql);
+    $stmt =$conn->prepare("INSERT INTO product(title,description,price,stock) VALUES (?,?,?,?)");
+   
+    return $stmt->exectute(array($title,$description,$price,$stock));
 }
 
 
