@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 function initMessageClosers() {
   $('.message-closer').click(function() {
-    $(this).closest(".row").fadeOut();
+    $(this).closest(".message").fadeOut();
   });
 }
 

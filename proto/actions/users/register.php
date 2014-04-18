@@ -32,6 +32,6 @@
     header("Location: $BASE_URL" . 'pages/users/register.php');
     exit;
   }
-  $_SESSION['success_messages'][] = 'User registered successfully';  
+  $_SESSION['success_messages'][] = 'User registered successfully';
   header("Location: $BASE_URL");
 ?>

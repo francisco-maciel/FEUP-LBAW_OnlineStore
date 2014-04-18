@@ -87,7 +87,7 @@
     <div class="row">
         {foreach $SUCCESS_MESSAGES as $success}
 
-        <div class="col-md-12">
+        <div class="col-md-12 message">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title">{$success} </h3>
@@ -102,7 +102,7 @@
 
     <div class="row">
         {foreach $ERROR_MESSAGES as $error}
-            <div class="col-md-12">
+            <div class="col-md-12 message">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
                         <h3 class="panel-title">{$error}</h3>

@@ -19,7 +19,6 @@
   }
 
   function isLoginCorrect($email, $password) {
-      //TODO ver tabela buyer
     global $conn;
     $stmt = $conn->prepare("SELECT user_type
                             FROM user_
@@ -30,5 +29,14 @@
         return $type['user_type'];
    }
       else return Permisson::NONE;
+  }
+
+  function getNameByEmail($email) {
+      global $conn;
+      $stmt = $conn->prepare("SELECT name
+                            FROM user_
+                            WHERE email = ?");
+      $stmt->execute(array($email));
+      return $stmt->fetch()['name'];
   }
 ?>

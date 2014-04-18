@@ -13,8 +13,9 @@
   $password = $_POST['password'];
   $permission = isLoginCorrect($username, $password);
   if ($permission != Permisson::NONE) {
-    $_SESSION['username'] = $username;
-      if ($permission == Permisson::BUYER) echo $permission;
+    $_SESSION['username'] = getNameByEmail($username);
+    $_SESSION['email'] = $username;
+
     $_SESSION['permission'] = $permission;
     $_SESSION['success_messages'][] = 'Login successful';  
   } else {

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-18 17:03:07
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-18 17:19:43
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common_proto\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3975534bbbd4d03916-67468853%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '587c6e9aa07442ff2d4263646e85819a3153ae9d' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common_proto\\header.tpl',
-      1 => 1397840587,
+      1 => 1397841569,
       2 => 'file',
     ),
   ),
@@ -131,7 +131,7 @@ foreach ($_from as $_smarty_tpl->tpl_vars['success']->key => $_smarty_tpl->tpl_v
 $_smarty_tpl->tpl_vars['success']->_loop = true;
 ?>
 
-        <div class="col-md-12">
+        <div class="col-md-12 message">
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title"><?php echo $_smarty_tpl->tpl_vars['success']->value;?>
@@ -151,7 +151,7 @@ $_smarty_tpl->tpl_vars['success']->_loop = true;
 foreach ($_from as $_smarty_tpl->tpl_vars['error']->key => $_smarty_tpl->tpl_vars['error']->value) {
 $_smarty_tpl->tpl_vars['error']->_loop = true;
 ?>
-            <div class="col-md-12">
+            <div class="col-md-12 message">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
                         <h3 class="panel-title"><?php echo $_smarty_tpl->tpl_vars['error']->value;?>

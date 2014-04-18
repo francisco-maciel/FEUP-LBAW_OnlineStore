@@ -46,6 +46,9 @@ global $conn;
     header("Location: $BASE_URL" . 'pages/users_proto/register.php');
     exit;
   }
-  $_SESSION['success_messages'][] = 'User registered successfully';  
-  header("Location: $BASE_URL");
+  $_SESSION['success_messages'][] = 'User registered successfully';
+  $_POST['password'] = $password;
+  $_POST['email'] = $email;
+  $_SERVER['HTTP_REFERER'] = $BASE_URL;
+  include($BASE_DIR."actions/users_proto/login.php");
 ?>
