@@ -62,10 +62,11 @@
                             <input type="text" placeholder="Search" name="search" class="form-control" value = "{$FORM_VALUES.search}">
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        <button type="submit" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
-                            <span class="badge shopping-cart" >0</span></button>
+                        <a type="" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span class="badge shopping-cart" >0</span></a>
                     </form>
                 </li>
+           
 
                 {if $USERNAME}
                     {include file='common_proto/menu_logged_in.tpl'}
