@@ -95,7 +95,8 @@ CREATE TABLE Product (
 	description text,
 	price number NOT NULL,
 	stock integer NOT NULL,
-	removed boolean DEFAULT false NOT NULL
+	removed boolean DEFAULT false NOT NULL,
+	img text
 )
 ;
 
