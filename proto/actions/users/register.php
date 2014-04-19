@@ -48,7 +48,7 @@ global $conn;
   }
   $_SESSION['success_messages'][] = 'User registered successfully';
   $_POST['password'] = $password;
-  $_POST['email'] = $email;
+  $_POST['login'] = $email;
   $_SERVER['HTTP_REFERER'] = $BASE_URL;
   include($BASE_DIR."actions/users/login.php");
 ?>
