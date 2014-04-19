@@ -71,12 +71,20 @@
                     </form>
                 </li>
 
-                {*{if $ADMIN}*}
-                    {include file='common/menu_admin_logged.tpl'}
-                {*{else if $USERNAME}
-                    {include file='common/menu_logged_in.tpl'}
+                {if $USERNAME}
+                    {if $PERMISSION == 0}
+                        {include file='common/menu_logged_in.tpl'}
+                    {else}
+                        {include file='common/menu_admin_logged.tpl'}
+                    {/if}
+
                 {else}
                     {include file='common/menu_logged_out.tpl'}
+                {/if}
+                {*{else if $USERNAME}
+
+                {else}
+
                 {/if}*}
 
 

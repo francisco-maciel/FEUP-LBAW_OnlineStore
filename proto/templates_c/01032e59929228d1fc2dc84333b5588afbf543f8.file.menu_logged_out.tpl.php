@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-19 02:11:50
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-19 19:48:22
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common\menu_logged_out.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:30885351db66797dc9-54436491%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '01032e59929228d1fc2dc84333b5588afbf543f8' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common\\menu_logged_out.tpl',
-      1 => 1397871578,
+      1 => 1397936896,
       2 => 'file',
     ),
   ),
@@ -15,14 +15,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.15',
+  'unifunc' => 'content_5351db667afd03_36314960',
   'variables' => 
   array (
     'BASE_URL' => 0,
     'FORM_VALUES' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.15',
-  'unifunc' => 'content_5351db667afd03_36314960',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5351db667afd03_36314960')) {function content_5351db667afd03_36314960($_smarty_tpl) {?><li class="dropdown">
     <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
@@ -34,11 +34,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 actions/users/login.php" accept-charset="UTF-8" id="login-nav">
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                            <?php if (isset($_smarty_tpl->tpl_vars['FORM_VALUES']->value['email'])) {?>
-                            <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['email'];?>
+                            <?php if (isset($_smarty_tpl->tpl_vars['FORM_VALUES']->value['login'])) {?>
+                            <input name="login" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="<?php echo $_smarty_tpl->tpl_vars['FORM_VALUES']->value['login'];?>
 ">
                                 <?php } else { ?>
-                                <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="">
+                                <input name="login" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="">
 
                             <?php }?>
                         </div>

@@ -2,14 +2,14 @@
   include_once('../../config/init.php');
   include_once($BASE_DIR .'database/users.php');
 
-  if (!isset($_POST['email']) || !isset($_POST['password'])) {
+  if (!isset($_POST['login']) || !isset($_POST['password'])) {
     $_SESSION['error_messages'][] = 'Invalid login';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
   }
 
-  $username = $_POST['email'];
+  $username = $_POST['login'];
   $password = $_POST['password'];
   $permission = isLoginCorrect($username, $password);
   if ($permission != Permisson::NONE) {

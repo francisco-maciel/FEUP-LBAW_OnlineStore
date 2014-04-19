@@ -7,7 +7,7 @@
  */
 
 include_once('../../config/init.php');
-include_once($BASE_DIR .'database/produts.php');
+include_once($BASE_DIR .'database/products.php');
 
 ###############################################################################
 #### TODO: Check if indeed is an admin requesting this page
@@ -33,7 +33,6 @@ try{
     //Start transaction and make all the changes
     $conn->beginTransaction();
     $res = addProduct($title, $desc, $price, $stock);
-    
     //And commit if all where successfull
     $conn->commit();
 }  catch (PDOException $excep){

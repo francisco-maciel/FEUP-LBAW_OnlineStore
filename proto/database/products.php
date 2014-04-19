@@ -33,7 +33,7 @@ function addProduct($title, $description, $price, $stock) {
 
     $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock) VALUES (?,?,?,?)");
 
-    return $stmt->exectute(array($title, $description, $price, $stock));
+    return $stmt->execute(array($title, $description, $price, $stock));
 }
 
 ?>

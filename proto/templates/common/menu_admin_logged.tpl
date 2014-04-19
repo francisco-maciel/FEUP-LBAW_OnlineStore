@@ -8,5 +8,6 @@
         <li><a href="{$BASE_URL}pages/admin_area/add_product.php">Add Product</a></li>
         <li><a href="{$BASE_URL}pages/admin_area/manage_orders.php">Manage Orders</a></li>
         <li><a href="{$BASE_URL}pages/admin_area/manage_comments.php">Manage Comments</a></li>
+        <li><a href="{$BASE_URL}actions/users/logout.php">Logout</a></li>
     </ul>
 </li>
