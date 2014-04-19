@@ -70,13 +70,14 @@
                             <span class="badge shopping-cart" >0</span></a>
                     </form>
                 </li>
-           
 
-                {if $USERNAME}
+                {*{if $ADMIN}*}
+                    {include file='common/menu_admin_logged.tpl'}
+                {*{else if $USERNAME}
                     {include file='common/menu_logged_in.tpl'}
                 {else}
                     {include file='common/menu_logged_out.tpl'}
-                {/if}
+                {/if}*}
 
 
             </ul>
