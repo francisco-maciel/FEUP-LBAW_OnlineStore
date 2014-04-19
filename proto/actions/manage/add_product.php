@@ -7,7 +7,7 @@
  */
 
 include_once('../../config/init.php');
-include_once($BASE_DIR .'database/produts.php');
+include_once($BASE_DIR .'database/products.php');
 
 ###############################################################################
 #### TODO: Check if indeed is an admin requesting this page
@@ -25,6 +25,7 @@ $title = filter_input(INPUT_POST, 'prod_name');
 $desc = filter_input(INPUT_POST, 'prod_desc');
 $price = filter_input(INPUT_POST, 'prod_price');
 $stock = filter_input(INPUT_POST, 'prod_stock');
+$img = filter_input(INPUT_POST, 'prod_img');
 
 global $conn;
 
@@ -32,8 +33,7 @@ global $conn;
 try{
     //Start transaction and make all the changes
     $conn->beginTransaction();
-    $res = addProduct($title, $desc, $price, $stock);
-    
+    $res = addProduct($title, $desc, $price, $stock, $img);
     //And commit if all where successfull
     $conn->commit();
 }  catch (PDOException $excep){
@@ -41,6 +41,7 @@ try{
     $conn->rollBack();
     $_SESSION['error_messages'][] = $excep->getMessage();
 }  catch (Exception $ex){
+    //DEBUG
     $error = $excep->getMessage();
 }
 

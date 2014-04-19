@@ -28,12 +28,12 @@ function getProductById($id) {
     return $stmt->fetch();
 }
 
-function addProduct($title, $description, $price, $stock) {
+function addProduct($title, $description, $price, $stock, $img) {
     global $conn;
 
-    $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock) VALUES (?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock,img) VALUES (?,?,?,?,?)");
 
-    return $stmt->exectute(array($title, $description, $price, $stock));
+    return $stmt->execute(array($title, $description, $price, $stock, $img));
 }
 
 ?>

@@ -60,9 +60,9 @@
 
                         <!-- File Button --> 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="prod_image">Add images</label>
+                            <label class="col-md-4 control-label" for="prod_img">Add images</label>
                             <div class="col-md-4">
-                                <input id="prod_image" name="prod_image" class="input-file" type="file">
+                                <input id="prod_image" name="prod_img" class="input-file" type="file">
                             </div>
                         </div>
 
