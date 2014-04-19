@@ -7,10 +7,10 @@
                     <form class="form" role="form" method="post" action="{$BASE_URL}actions/users/login.php" accept-charset="UTF-8" id="login-nav">
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                            {if isset($FORM_VALUES.email)}
-                            <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="{$FORM_VALUES.email}">
+                            {if isset($FORM_VALUES.login)}
+                            <input name="login" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="{$FORM_VALUES.login}">
                                 {else}
-                                <input name="email" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="">
+                                <input name="login" type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required value="">
 
                             {/if}
                         </div>
