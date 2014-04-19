@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-19 19:36:54
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-19 22:14:43
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:63555351db666a2545-81599640%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fb571976c09bfbee974fbb3fea694629653ee7cf' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common\\header.tpl',
-      1 => 1397936204,
+      1 => 1397945682,
       2 => 'file',
     ),
   ),
@@ -178,6 +178,7 @@ $_smarty_tpl->tpl_vars['error']->_loop = true;
         <?php } ?>
 
     </div>
+</div>
 <!-- TODO adicionar field erros
     <div class="row">
 

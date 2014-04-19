@@ -128,6 +128,7 @@
         {/foreach}
 
     </div>
+</div>
 <!-- TODO adicionar field erros
     <div class="row">
 
