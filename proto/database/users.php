@@ -36,6 +36,7 @@
                             FROM user_
                             WHERE email = ?");
       $stmt->execute(array($email));
-      return $stmt->fetch()['name'];
+      $result = $stmt->fetch();
+      return $result['name'];
   }
 ?>
