@@ -321,7 +321,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data
                         break;
 
                         default:
-                        header($_SERVER['SERVER_PROTOCOL'].' 304 Not Modified');
+                        header($_SERVER['SERVERCOL'].' 304 Not Modified');
                         break;
                     }
                 } else {

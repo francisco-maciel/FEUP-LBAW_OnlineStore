@@ -1,22 +1,26 @@
 <?php
   include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/users.php');  
+  include_once($BASE_DIR .'database/users.php');
 
-  if (!$_POST['username'] || !$_POST['password']) {
+  if (!isset($_POST['email']) || !isset($_POST['password'])) {
     $_SESSION['error_messages'][] = 'Invalid login';
     $_SESSION['form_values'] = $_POST;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
     exit;
   }
 
-  $username = $_POST['username'];
+  $username = $_POST['email'];
   $password = $_POST['password'];
-  
-  if (isLoginCorrect($username, $password)) {
-    $_SESSION['username'] = $username;
+  $permission = isLoginCorrect($username, $password);
+  if ($permission != Permisson::NONE) {
+    $_SESSION['username'] = getNameByEmail($username);
+    $_SESSION['email'] = $username;
+
+    $_SESSION['permission'] = $permission;
     $_SESSION['success_messages'][] = 'Login successful';  
   } else {
-    $_SESSION['error_messages'][] = 'Login failed';  
+    $_SESSION['error_messages'][] = 'Wrong username or password';
+    $_SESSION['form_values'] = $_POST;
   }
   header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>

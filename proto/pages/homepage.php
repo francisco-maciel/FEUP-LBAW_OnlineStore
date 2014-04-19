@@ -5,5 +5,5 @@
   $products = getNotRemovedProducts();
   $smarty->assign('products', $products);
   
-  $smarty->display('common_proto/homepage.tpl');
+  $smarty->display('common/homepage.tpl');
 ?>

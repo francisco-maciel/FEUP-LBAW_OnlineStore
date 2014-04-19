@@ -1,4 +1,4 @@
-{include file='common_proto/header.tpl'}
+{include file='common/header.tpl'}
 
 <div class="container">
 
@@ -30,4 +30,4 @@
 	</div>
 </div>
 
-{include file='common_proto/footer.tpl'}
+{include file='common/footer.tpl'}

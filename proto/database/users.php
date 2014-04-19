@@ -1,17 +1,41 @@
 <?php
   
-  function createUser($realname, $username, $password) {
+  function createBuyer($email, $password, $realname, $phone, $birthdate , $street,$door,  $postcode , $address, $nif) {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO users VALUES (?, ?, ?)");
-    $stmt->execute(array($username, $realname, sha1($password)));
+    $date_signed  = date("Y-n-j");
+
+    $conn->beginTransaction();
+    $stmt = $conn->prepare('INSERT INTO user_ VALUES (DEFAULT,?,?,?,?,?,?,0);');
+    $stmt->execute(array($email,   hash('sha256', $password), $realname,  $phone ,$date_signed,$birthdate));
+    $id =  $conn->lastInsertId("user__iduser_seq");
+
+    $stmt = $conn->prepare('INSERT INTO buyer VALUES (?,DEFAULT,?);');
+    $stmt->execute(array($id,$nif ));
+
+    $stmt = $conn->prepare('INSERT INTO address VALUES (DEFAULT,?,?,?,?,?);');
+    $stmt->execute(array($street,$door, $postcode , $address,  $id ));
+    $conn->commit();
   }
 
-  function isLoginCorrect($username, $password) {
+  function isLoginCorrect($email, $password) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * 
-                            FROM users
-                            WHERE username = ? AND password = ?");
-    $stmt->execute(array($username, sha1($password)));
-    return $stmt->fetch() == true;
+    $stmt = $conn->prepare("SELECT user_type
+                            FROM user_
+                            WHERE email = ? AND password = ?");
+    $stmt->execute(array($email, hash('sha256', $password)));
+    $type = $stmt->fetch();
+   if ($type) {
+        return $type['user_type'];
+   }
+      else return Permisson::NONE;
+  }
+
+  function getNameByEmail($email) {
+      global $conn;
+      $stmt = $conn->prepare("SELECT name
+                            FROM user_
+                            WHERE email = ?");
+      $stmt->execute(array($email));
+      return $stmt->fetch()['name'];
   }
 ?>

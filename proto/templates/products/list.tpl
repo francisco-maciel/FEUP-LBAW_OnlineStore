@@ -30,7 +30,7 @@
 {/foreach}
 
 
-{if $message}
+{if isset($message)}
 
     <div class="col-sm-12 col-lg-12 col-md-12">
         <div class="row"></div>
