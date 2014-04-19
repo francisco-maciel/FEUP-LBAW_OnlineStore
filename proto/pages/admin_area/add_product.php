@@ -9,11 +9,4 @@
 include_once '../../config/init.php';
 include_once $BASE_DIR . 'database/products.php';
 
-$prod_result = addProduct($_POST['prod_title'], $_POST['prod_desc'], $_POST['prod_price'], $_POST['prod_stock']);
-
-if ($prod_result == FALSE) {
-    //The operation failed
-    
-} else {
-    
-}
+$smarty->display('manage/add_product.tpl');
