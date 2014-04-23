@@ -1,6 +1,6 @@
 {include file='common/header.tpl'}
 <!--  TODO already logged in-->
-<!--  TODO add birthdate-->
+<!--  TODO check nif and password standards     -->
 
 <div class="jumbotron" style="background: #3399FF; color:white">
         <div class="container">
@@ -38,15 +38,8 @@
                        <!-- TODO change to dropdown with month | check other values-->
                        <div class="form-group">
                            <label class="col-md-4 control-label" for="user_email">Date of Birth</label>
-                           <div class="col-md-1">
-                               <input id="" name="day" type="number" placeholder="day"   class="form-control input-md" required="" value="{$FORM_VALUES.day}">
-                           </div>
-                           <div class="col-md-2">
-                               <input id="" name="month" type="number" placeholder="month" class="form-control input-md" required="" value="{$FORM_VALUES.month}">
-                           </div>
-                           <div class="col-md-3">
-                               <input id="" name="year" type="number" placeholder="year" class="form-control input-md" required="" value="{$FORM_VALUES.year}">
-                           </div>
+                           <div class="picker" id="picker" ></div>
+
                        </div>
 						
 						<!-- Text input-->
@@ -122,7 +115,9 @@
 
         </div>
         <!-- /.container -->
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="{$BASE_URL}javascript/register.js"></script>
 
 {include file='common/footer.tpl'}
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
+<script src="{$BASE_URL}javascript/register.js"></script>

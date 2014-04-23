@@ -23,7 +23,12 @@
     <link href="{$BASE_URL}css/shop-homepage.css" rel="stylesheet">
     <link href="{$BASE_URL}css/general.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="{$BASE_URL}css/alertify.core.css" />
+    <link rel="stylesheet" href="{$BASE_URL}css/alertify.default.css" />
+
     <script src="{$BASE_URL}javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
+
 </head>
 
 

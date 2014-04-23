@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.15, created on 2014-04-19 22:14:43
+<?php /* Smarty version Smarty-3.1.15, created on 2014-04-23 19:39:14
          compiled from "C:\Users\Francisco\Documents\lbaw-loja-online\proto\templates\common\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:63555351db666a2545-81599640%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'fb571976c09bfbee974fbb3fea694629653ee7cf' => 
     array (
       0 => 'C:\\Users\\Francisco\\Documents\\lbaw-loja-online\\proto\\templates\\common\\header.tpl',
-      1 => 1397945682,
+      1 => 1398281953,
       2 => 'file',
     ),
   ),
@@ -60,8 +60,16 @@ css/shop-homepage.css" rel="stylesheet">
     <link href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 css/general.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+css/alertify.core.css" />
+    <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+css/alertify.default.css" />
+
     <script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
 javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="<?php echo $_smarty_tpl->tpl_vars['BASE_URL']->value;?>
+javascript/external_libs/alertify.min.js"></script>
+
 </head>
 
 

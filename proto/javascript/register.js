@@ -4,10 +4,27 @@ $(document).ready(function() {
     $("#confirmPassword").change(checkPasswordMatch);
     $("#password").change(checkPasswordMatch);
 
+    $("#register_form").submit(checkForm);
 
-    $("#register_form").submit(check_password_submit)
+
+
 });
+function checkForm(event){
+        var result = true;
+    if (!check_password_submit(event))  {
 
+        alertify.error("passwords dont match!");
+        result = false;
+    }
+
+    if (!check_date(event)) {
+
+        alertify.error("You must fill your birthdate!");
+        result= false;
+    }
+
+    return result;
+}
 function checkPasswordMatch() {
     var password = $("#password").val();
     var confirmPassword = $("#confirmPassword").val();
@@ -27,8 +44,30 @@ function checkPasswordMatch() {
 
 function check_password_submit(event) {
     if (!checkPasswordMatch()) {
-        alert("Please make sure your passwords match");
+        //alert("Please make sure your passwords match");
         return false;
     }
     else return true;
 }
+
+function check_date() {
+
+    if ($(".birth-day").val() == 0  ||
+        $(".birth-month").val() == 0 ||
+        $(".birth-year").val() == 0)
+    {
+        //alert("Please make sure you fill your birthdate");
+        return false;
+    }
+    return true;
+}
+
+// Date picking
+
+$(document).ready(function(){
+    $("#picker").birthdaypicker({
+        dateFormat: "littleEndian",
+        monthFormat   : "long",
+        defaultDate: false
+    });
+});
