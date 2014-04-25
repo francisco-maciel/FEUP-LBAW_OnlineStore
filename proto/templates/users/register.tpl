@@ -20,7 +20,7 @@
 						
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="user_name">Name</label>  
+                            <label class="col-md-4 control-label" for="user_name" maxlength="50">Name</label>
                             <div class="col-md-6">
                                 <input id="user_name" name="realname" type="text" placeholder="Full name" class="form-control input-md" required="" value= "{$FORM_VALUES.realname}">
 
@@ -28,7 +28,7 @@
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="user_email">Email</label>  
+                            <label class="col-md-4 control-label" for="user_email"  maxlength="50">Email</label>
                             <div class="col-md-5">
                                 <input id="user_email" name="email" type="email" placeholder="example@mail.com" class="form-control input-md" required="" value="{$FORM_VALUES.email}">
 
@@ -76,7 +76,6 @@
                             <label class="col-md-4 control-label" for="prod_stock">Post-code</label>  
                             <div class="col-md-2">
                                 <input id="name" name="postcode" type="text" placeholder="Code" class="form-control input-md" required=""  value="{$FORM_VALUES.postcode}">
-
 		
                             </div>
 							   <div class="col-md-2">
@@ -87,13 +86,13 @@
 						   <div class="form-group">
                             <label class="col-md-4 control-label" for="prod_stock">Contact</label>  
                             <div class="col-md-3">
-                                <input id="name" name="phone" type="text" placeholder="Phone number" class="form-control input-md" required=""  value="{$FORM_VALUES.phone}">
+                                <input id="contact" name="phone" type="text" maxlength="20" placeholder="Phone number" class="form-control input-md" required=""  value="{$FORM_VALUES.phone}">
                             </div>
 							 </div>
                        <div class="form-group">
                            <label class="col-md-4 control-label" for="prod_stock">NIF</label>
                            <div class="col-md-3">
-                               <input id="name" name="nif" type="number" pattern="^\d+$" placeholder="NIF" class="form-control input-md" required=""  value="{$FORM_VALUES.nif}">
+                               <input id="nif" name="nif" pattern="^\d+$" placeholder="NIF" title="Por favor insera um NIF válido" class="form-control input-md" required=""  value="{$FORM_VALUES.nif}">
                            </div>
                        </div>
 
