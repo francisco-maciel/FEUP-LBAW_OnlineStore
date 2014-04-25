@@ -1,7 +1,8 @@
 BASE_URL = '...';
 
+
 $(document).ready(function(){
-  initMessageClosers();
+    initMessageClosers();
 });
 
 function initMessageClosers() {
@@ -9,6 +10,7 @@ function initMessageClosers() {
     $(this).closest(".message").fadeOut();
   });
 }
+
 
 function clearText(id) {
     var element = document.getElementById(id);

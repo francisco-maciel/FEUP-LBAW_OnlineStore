@@ -24,11 +24,12 @@
                             WHERE email = ? AND password = ?");
     $stmt->execute(array($email, hash('sha256', $password)));
     $type = $stmt->fetch();
-   if ($type) {
+    if ($type) {
         return $type['user_type'];
-   }
-      else return Permisson::NONE;
-  }
+    } else {
+        return Permisson::NONE;
+    }
+}
 
   function getNameByEmail($email) {
       global $conn;

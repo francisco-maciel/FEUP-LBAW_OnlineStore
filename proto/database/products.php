@@ -28,6 +28,13 @@ function getProductById($id) {
     return $stmt->fetch();
 }
 
+function getMaxProdId() {
+    global $conn;
+    $stmt = $conn->prepare("SELECT Max(idproduct) FROM product");
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
+
 function addProduct($title, $description, $price, $stock, $img) {
     global $conn;
 
@@ -36,4 +43,3 @@ function addProduct($title, $description, $price, $stock, $img) {
     return $stmt->execute(array($title, $description, $price, $stock, $img));
 }
 
-?>
