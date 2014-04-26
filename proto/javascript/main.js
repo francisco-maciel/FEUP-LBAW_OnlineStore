@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 function initMessageClosers() {
   $('.message-closer').click(function() {
-    $(this).closest(".message").fadeOut();
+    $(this).closest(".message").hide('slow');
   });
 }
 

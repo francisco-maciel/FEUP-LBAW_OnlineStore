@@ -1,6 +1,6 @@
 {include file='common/header.tpl'}
 <!--  TODO already logged in-->
-<!--  TODO add birthdate-->
+<!--  TODO check nif and password standards     -->
 
 <div class="jumbotron" style="background: #3399FF; color:white">
         <div class="container">
@@ -20,7 +20,7 @@
 						
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="user_name">Name</label>  
+                            <label class="col-md-4 control-label" for="user_name" maxlength="50">Name</label>
                             <div class="col-md-6">
                                 <input id="user_name" name="realname" type="text" placeholder="Full name" class="form-control input-md" required="" value= "{$FORM_VALUES.realname}">
 
@@ -28,7 +28,7 @@
                         </div>
                         <!-- Text input-->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="user_email">Email</label>  
+                            <label class="col-md-4 control-label" for="user_email"  maxlength="50">Email</label>
                             <div class="col-md-5">
                                 <input id="user_email" name="email" type="email" placeholder="example@mail.com" class="form-control input-md" required="" value="{$FORM_VALUES.email}">
 
@@ -38,15 +38,8 @@
                        <!-- TODO change to dropdown with month | check other values-->
                        <div class="form-group">
                            <label class="col-md-4 control-label" for="user_email">Date of Birth</label>
-                           <div class="col-md-1">
-                               <input id="" name="day" type="number" placeholder="day"   class="form-control input-md" required="" value="{$FORM_VALUES.day}">
-                           </div>
-                           <div class="col-md-2">
-                               <input id="" name="month" type="number" placeholder="month" class="form-control input-md" required="" value="{$FORM_VALUES.month}">
-                           </div>
-                           <div class="col-md-3">
-                               <input id="" name="year" type="number" placeholder="year" class="form-control input-md" required="" value="{$FORM_VALUES.year}">
-                           </div>
+                           <div class="picker" id="picker" ></div>
+
                        </div>
 						
 						<!-- Text input-->
@@ -83,7 +76,6 @@
                             <label class="col-md-4 control-label" for="prod_stock">Post-code</label>  
                             <div class="col-md-2">
                                 <input id="name" name="postcode" type="text" placeholder="Code" class="form-control input-md" required=""  value="{$FORM_VALUES.postcode}">
-
 		
                             </div>
 							   <div class="col-md-2">
@@ -94,13 +86,13 @@
 						   <div class="form-group">
                             <label class="col-md-4 control-label" for="prod_stock">Contact</label>  
                             <div class="col-md-3">
-                                <input id="name" name="phone" type="text" placeholder="Phone number" class="form-control input-md" required=""  value="{$FORM_VALUES.phone}">
+                                <input id="contact" name="phone" type="text" maxlength="20" placeholder="Phone number" class="form-control input-md" required=""  value="{$FORM_VALUES.phone}">
                             </div>
 							 </div>
                        <div class="form-group">
                            <label class="col-md-4 control-label" for="prod_stock">NIF</label>
                            <div class="col-md-3">
-                               <input id="name" name="nif" type="number" pattern="^\d+$" placeholder="NIF" class="form-control input-md" required=""  value="{$FORM_VALUES.nif}">
+                               <input id="nif" name="nif" pattern="^\d+$" placeholder="NIF" title="Por favor insera um NIF válido" class="form-control input-md" required=""  value="{$FORM_VALUES.nif}">
                            </div>
                        </div>
 
@@ -122,7 +114,9 @@
 
         </div>
         <!-- /.container -->
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="{$BASE_URL}javascript/register.js"></script>
 
 {include file='common/footer.tpl'}
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
+<script src="{$BASE_URL}javascript/register.js"></script>

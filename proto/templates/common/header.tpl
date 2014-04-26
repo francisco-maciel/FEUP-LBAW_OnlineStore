@@ -23,7 +23,11 @@
     <link href="{$BASE_URL}css/shop-homepage.css" rel="stylesheet">
     <link href="{$BASE_URL}css/general.css" rel="stylesheet">
 
+
+
     <script src="{$BASE_URL}javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
+
 </head>
 
 
@@ -114,9 +118,10 @@
 
     </div>
 
-    <div class="row">
+    <div class="row" id="error_messages">
+
         {foreach $ERROR_MESSAGES as $error}
-            <div class="col-md-12 message">
+            <div class="col-md-12 message error_message">
                 <div class="panel panel-danger">
                     <div class="panel-heading">
                         <h3 class="panel-title">{$error}</h3>
