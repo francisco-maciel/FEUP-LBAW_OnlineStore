@@ -20,10 +20,10 @@ function getDepartmentCategories($id) {
 function addCatFilter_Rel($cat_id, $filter_ids) {
     global $conn;
     $sql = "INSERT INTO catfilter(idcategory,idfilter) VALUES";
-    foreach ($id as $filter_ids) {
-        $sql .= "($cat_id,$id),";
+    foreach ($filter_ids as $row) {
+        $sql .= "($cat_id," . $row['id'] . "),";
     }
-    rtrim($sql, ',');
-    $stmt = $conn->prepare($sql);
+    $sql_trimmed = substr($sql, 0, -1);
+    $stmt = $conn->prepare($sql_trimmed);
     return $stmt->execute();
 }
