@@ -7,6 +7,16 @@ function getAllProcucts() {
     return $stmt->fetchAll();
 }
 
+function updateProduct($id, $title, $description, $price, $stock, $img) {
+    global $conn;
+
+    $stmt = $conn->prepare("UPDATE product SET "
+            . "title = '?', img = '?', description = '?', price = '?', stock = '?' "
+            . "WHERE idproduct = $id");
+
+    return $stmt->execute(array($title, $img, $description, $price, $stock));
+}
+
 function getNotRemovedProducts() {
     global $conn;
     $stmt = $conn->prepare("SELECT * FROM product WHERE removed=false");
@@ -21,11 +31,25 @@ function getProductsByName($namepart) {
     return $stmt->fetchAll();
 }
 
+//Full details
 function getProductById($id) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * FROM product WHERE idproduct=?");
-    $stmt->execute(array($id));
-    return $stmt->fetch();
+    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        pf.idfilter, pf.value_string, pf.value_int, cat.idcategory,
+        cat.iddepartment, f.filter_name
+        FROM product
+        INNER JOIN prodfilter pf
+        ON pf.idproduct = product.idproduct
+        INNER JOIN catfilter cf
+        ON pf.idfilter = cf.idfilter
+        INNER JOIN category cat
+        ON cf.idcategory = cat.idcategory
+        INNER JOIN filter f
+        ON f.idfilter = pf.idfilter
+        WHERE product.idproduct = $id");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getMaxProdId() {
@@ -42,4 +66,3 @@ function addProduct($title, $description, $price, $stock, $img) {
 
     return $stmt->execute(array($title, $description, $price, $stock, $img));
 }
-

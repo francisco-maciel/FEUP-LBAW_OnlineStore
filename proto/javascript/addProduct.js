@@ -8,6 +8,15 @@
 
 
 $(document).ready(function() {
+    var id = window.location.search;
+    if (id !== "") {
+        if (!getProductFillForm(parseInt(id.split("=")[1]))) {
+            //product is retrieved and form filled, return
+            return;
+        }
+        //fails
+        alert("Something went wrong, couldn't load the product...");
+    } 
     loadDepartments();
     loadCategories(1);
 });
@@ -43,7 +52,8 @@ function isInt(n) {
     return (n % 1 === 0 && n >= 0);
 }
 
-function loadDepartments() {
+function loadDepartments(selected) {
+    selected = selected || 1;
     var loc = document.URL.replace("pages/admin_area/add_product.php", "actions/manage/getDepartments.php");
     $.ajax({
         url: loc,
@@ -53,12 +63,12 @@ function loadDepartments() {
         data.forEach(function(obj) {
             $('#prod_family').append("<option value=" + obj.id + ">" + obj.name + "</option>");
         });
-        
-        
+        $('#prod_family option[value=' + selected + ']').attr("selected", "selected");
     });
 }
 
-function loadCategories(id) {
+function loadCategories(id, selected) {
+    selected = selected || 1;
     $('#prod_category').empty();
     var loc = document.URL.replace("pages/admin_area/add_product.php", "actions/manage/getDepCategories.php?id=" + id);
     $.ajax({
@@ -69,7 +79,32 @@ function loadCategories(id) {
         data.forEach(function(obj) {
             $('#prod_category').append("<option value=" + obj.id + ">" + obj.name + "</option>");
         });
+        $('#prod_category option[value=' + selected + ']').attr("selected", "selected");
+    });
+}
 
+function getProductFillForm(id) {
+    if (id === NaN && !isInt(id)) {
+        return false;
+    }
+    var dep_id, cat_id;
+    var loc = document.URL.replace("pages/admin_area/add_product.php", "actions/products/getProduct.php");
+    $.ajax({
+        url: loc,
+        context: document.body,
+        dataType: "json"
+    }).done(function(data) {
+        data.forEach(function(obj) {
+            if (typeof obj.error === 'undefined') {
+                //we got a proper response from api
+                var o = obj.price;
+                $('#prod_name').val(obj.title);
+                $('#prod_stock').val(obj.stock);
+                $('#prod_price').val(obj.price);
+                $('#prod_desc').val(obj.description);
+
+            }
+        });
 
     });
 }

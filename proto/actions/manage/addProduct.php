@@ -14,8 +14,9 @@ include_once($BASE_DIR . 'database/categories.php');
 
 ###############################################################################
 #### TODO: Check if indeed is an admin requesting this page
-#### TODO: Check the product has ONE department and ONE Category
-#### TODO: Insert product and filters relations on DB
+#### TODO: -- DONE
+#### TODO: -- DONE
+#### TODO: Make this script able to process a product update
 ###############################################################################
 //-----------------------------------------------------------------------------
 // Add a product
@@ -35,9 +36,16 @@ $dep_id = filter_input(INPUT_POST, 'prod_family');
 $allowedExts = array("jpeg", "jpg", "png");
 $temp = explode(".", $_FILES["prod_img"]["name"]);
 $extension = end($temp);
-$prod_id = getMaxProdId()->max + 1;
-$target_dir = $BASE_DIR . "images/products/$prod_id/";
 
+if (isset(filter_input(INPUT_GET, 'prod_id'))) {
+    //means this is a product edition not creation
+    $edition = TRUE;
+    $prod_id = filter_input(INPUT_GET, 'prod_id');
+} else {
+    $prod_id = getMaxProdId()->max + 1;
+}
+
+$target_dir = $BASE_DIR . "images/products/$prod_id/";
 
 if ((($_FILES["prod_img"]["type"] == "image/jpeg") || ($_FILES["prod_img"]["type"] == "image/jpg") || ($_FILES["prod_img"]["type"] == "image/pjpeg") || ($_FILES["prod_img"]["type"] == "image/x-png") || ($_FILES["prod_img"]["type"] == "image/png")) && ($_FILES["prod_img"]["size"] < 10000000) && in_array($extension, $allowedExts)) {
     if ($_FILES["prod_img"]["error"] > 0) {
@@ -91,8 +99,13 @@ global $conn;
 try {
     //Start transaction and make all the changes
     $conn->beginTransaction();
-    //add a product
-    $res_prod = addProduct($title, $desc, $price, $stock, "$prod_id/$img");
+    if ($edition) {
+        //edit a product
+        $res_prod = updateProduct($prod_id, $title, $description, $price, $stock, "$prod_id/$img");
+    } else {
+        //add a product
+        $res_prod = addProduct($title, $desc, $price, $stock, "$prod_id/$img");
+    }
     //add filters
     addFilters_failsafe($name_arr);
     $filter_ids = getFilterIdsByName_BULK($name_arr);

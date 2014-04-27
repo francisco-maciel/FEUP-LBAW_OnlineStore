@@ -46,8 +46,13 @@
       <div class="text-left">
         <label class="control-label" for=""></label>
         <div class="controls">
-          <button id="" name="" class="btn btn-success">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span> </button>
-          <button id="" name="" class="btn btn-labeled btn-warning">Add to wish-list <span class="glyphicon glyphicon glyphicon-star"></span> </button>
+            {if $PERMISSION != 0}
+                <button onclick="editProduct()" id="" name="" class="btn btn-warning">Edit details <span class="glyphicon glyphicon-edit"></span> </button>
+            {else}
+                <button id="" name="" class="btn btn-success">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span> </button>
+                <button id="" name="" class="btn btn-labeled btn-warning">Add to wish-list <span class="glyphicon glyphicon glyphicon-star"></span> </button>
+            {/if}
+            
           <!--  Botões partilha FB e twitter -->
           <div class="pull-right">
             
@@ -206,4 +211,13 @@
 
 
 
-{include file='common/footer.tpl'}
+            {include file='common/footer.tpl'}
+
+            <script type="text/javascript">
+
+                function editProduct(){
+                   //var id = window.location.search;
+                   var loc = document.URL.replace("products/product.php", "admin_area/add_product.php");
+                   window.location = loc;
+                }
+            </script>
