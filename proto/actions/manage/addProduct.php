@@ -14,8 +14,8 @@ include_once($BASE_DIR . 'database/categories.php');
 
 ###############################################################################
 #### TODO: Check if indeed is an admin requesting this page
-#### TODO: -- DONE
-#### TODO: -- DONE
+#### DONE: Check the product has ONE department and ONE Category
+#### DONE: Insert product and filters relations on DB
 #### TODO: Make this script able to process a product update
 ###############################################################################
 //-----------------------------------------------------------------------------
@@ -42,10 +42,11 @@ if (isset(filter_input(INPUT_GET, 'prod_id'))) {
     $edition = TRUE;
     $prod_id = filter_input(INPUT_GET, 'prod_id');
 } else {
-    $prod_id = getMaxProdId()->max + 1;
+	$prod_id = getNextProdId()->last_value + 1;
 }
 
 $target_dir = $BASE_DIR . "images/products/$prod_id/";
+
 
 if ((($_FILES["prod_img"]["type"] == "image/jpeg") || ($_FILES["prod_img"]["type"] == "image/jpg") || ($_FILES["prod_img"]["type"] == "image/pjpeg") || ($_FILES["prod_img"]["type"] == "image/x-png") || ($_FILES["prod_img"]["type"] == "image/png")) && ($_FILES["prod_img"]["size"] < 10000000) && in_array($extension, $allowedExts)) {
     if ($_FILES["prod_img"]["error"] > 0) {
@@ -110,9 +111,12 @@ try {
     addFilters_failsafe($name_arr);
     $filter_ids = getFilterIdsByName_BULK($name_arr);
     //populate prodFilter table
-    addFiltersProduts_Rel($prod_id, $filter_ids, $type_arr, $value_arr);
-    //populate catFilter table
-    addCatFilter_Rel($cat_id, $filter_ids);
+    if ($value_arr) {
+        //getting here means some dynamic categories where added
+        addFiltersProduts_Rel($prod_id, $filter_ids, $type_arr, $value_arr);
+        //populate catFilter table
+        addCatFilter_Rel($cat_id, $filter_ids);
+    }
     //And commit if all where successfull
     $conn->commit();
     $_SESSION['success_messages']["prod_success"] = "Product added!";
