@@ -7,3 +7,6 @@ proto/.idea/
 proto/proto.iml
 proto/config/init.php
 proto/templates_c/
+*.orig
+
+*~
