@@ -20,10 +20,23 @@ function getDepartmentCategories($id) {
 function addCatFilter_Rel($cat_id, $filter_ids) {
     global $conn;
     $sql = "INSERT INTO catfilter(idcategory,idfilter) VALUES";
-    foreach ($filter_ids as $row) {
-        $sql .= "($cat_id," . $row['id'] . "),";
+    foreach ($filter_ids as $filter) {
+        $res = findCatFilter($cat_id, $filter['id']);
+        if (!$res) {
+            $sql .= "($cat_id," . $filter['id'] . "),";
+        }
     }
     $sql_trimmed = substr($sql, 0, -1);
     $stmt = $conn->prepare($sql_trimmed);
     return $stmt->execute();
+}
+
+function findCatFilter($cat_id, $filter_id) {
+    global $conn;
+    $sql = "SELECT * FROM catfilter
+        WHERE idcategory = $cat_id AND
+        idfilter = $filter_id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetch();
 }

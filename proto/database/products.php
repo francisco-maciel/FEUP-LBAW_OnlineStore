@@ -28,9 +28,17 @@ function getProductById($id) {
     return $stmt->fetch();
 }
 
+//DEPRECATED - use getNextProdId
 function getMaxProdId() {
     global $conn;
     $stmt = $conn->prepare("SELECT Max(idproduct) FROM product");
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
+
+function getNextProdId() {
+    global $conn;
+    $stmt = $conn->prepare("SELECT last_value FROM product_idproduct_seq");
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_OBJ);
 }

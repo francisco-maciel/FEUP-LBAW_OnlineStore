@@ -35,7 +35,7 @@ $dep_id = filter_input(INPUT_POST, 'prod_family');
 $allowedExts = array("jpeg", "jpg", "png");
 $temp = explode(".", $_FILES["prod_img"]["name"]);
 $extension = end($temp);
-$prod_id = getMaxProdId()->max + 1;
+$prod_id = getNextProdId()->last_value + 1;
 $target_dir = $BASE_DIR . "images/products/$prod_id/";
 
 
