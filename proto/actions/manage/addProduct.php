@@ -97,9 +97,12 @@ try {
     addFilters_failsafe($name_arr);
     $filter_ids = getFilterIdsByName_BULK($name_arr);
     //populate prodFilter table
-    addFiltersProduts_Rel($prod_id, $filter_ids, $type_arr, $value_arr);
-    //populate catFilter table
-    addCatFilter_Rel($cat_id, $filter_ids);
+    if ($value_arr) {
+        //getting here means some dynamic categories where added
+        addFiltersProduts_Rel($prod_id, $filter_ids, $type_arr, $value_arr);
+        //populate catFilter table
+        addCatFilter_Rel($cat_id, $filter_ids);
+    }
     //And commit if all where successfull
     $conn->commit();
     $_SESSION['success_messages']["prod_success"] = "Product added!";
