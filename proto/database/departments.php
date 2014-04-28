@@ -14,3 +14,10 @@ function getAllDepartments() {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
+
+function getAllDepartmentsSmarty() {
+	 global $conn;
+    $stmt = $conn->prepare("SELECT * FROM department");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}

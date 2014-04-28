@@ -6,12 +6,11 @@
 
         <div class="col-md-3 column margintop20">
             <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><span class="glyphicon "></span> Category </a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 1</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 2</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 3</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 4</a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 5</a></li>
+                <li class="active"><a href="#"><span class="glyphicon "></span> Departments </a></li>              
+               {foreach $departments as $dep}
+                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$dep.name} </a></li>
+                {/foreach} 
+            <!--   { var_dump($departments) } -->
             </ul>
         </div>
 
