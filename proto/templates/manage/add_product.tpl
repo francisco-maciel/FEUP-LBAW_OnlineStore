@@ -4,7 +4,7 @@
 
     <div class="row">
 
-        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php" >
+        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php{$param}" >
             <fieldset id="add_product">
 
                 <!-- Form Name -->

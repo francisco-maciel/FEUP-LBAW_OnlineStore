@@ -26,20 +26,20 @@
       <li class="active">Current Product</li>
     </ol>
 
-    {if $product.img }
-        <img class="img-responsive" src="{$BASE_URL}images/products/{$product.img}" alt="">
-    {else}
+        {if $product['img'] }
+            <img class="img-responsive" src="{$BASE_URL}images/products/{$product['img']}" alt="">
+        {else}
         <img class="img-responsive" src="{$BASE_URL}images/products/default.png" alt="">
     {/if}
 
     <div class="caption-full">
 
-      <h4 class="pull-right">{$product.price}</h4>
-      <h4><a href="#">{$product.title}</a>
-      </h4>
-      <p><strong>Description: </strong>{$product.description}</p>
-      <p><strong>Reference:</strong> {$product.idproduct}</p>
-      
+        <h4 class="pull-right">{$product['price']}</h4>
+        <h4><a href="#">{$product['title']}</a>
+        </h4>
+        <p><strong>Description: </strong>{$product['description']}</p>
+        <p><strong>Reference:</strong> {$product['idproduct']}</p>
+
 
 
       <!-- Buttons Add Cart & Share -->

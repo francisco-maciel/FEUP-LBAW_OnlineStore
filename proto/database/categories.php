@@ -23,8 +23,12 @@ function addCatFilter_Rel($cat_id, $filter_ids) {
     foreach ($filter_ids as $filter) {
         $res = findCatFilter($cat_id, $filter['id']);
         if (!$res) {
+            $data = TRUE;
             $sql .= "($cat_id," . $filter['id'] . "),";
         }
+    }
+    if (!$data) {
+        return;
     }
     $sql_trimmed = substr($sql, 0, -1);
     $stmt = $conn->prepare($sql_trimmed);

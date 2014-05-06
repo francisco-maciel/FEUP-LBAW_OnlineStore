@@ -9,4 +9,11 @@
 include_once '../../config/init.php';
 include_once $BASE_DIR . 'database/products.php';
 
+$param = filter_input(INPUT_GET, 'id');
+
+if ($param) {
+    $param = '?id=' . $param;
+    $smarty->assign('param', $param);
+}
+
 $smarty->display('manage/add_product.tpl');

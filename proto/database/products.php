@@ -10,11 +10,12 @@ function getAllProcucts() {
 function updateProduct($id, $title, $description, $price, $stock, $img) {
     global $conn;
 
-    $stmt = $conn->prepare("UPDATE product SET "
-            . "title = '?', img = '?', description = '?', price = '?', stock = '?' "
-            . "WHERE idproduct = $id");
+    $sql = 'UPDATE product SET title =?, ' .
+            ($img ? 'img =' . $img . ',' : '') .
+            ' description =?, price = ?, stock = ? WHERE idproduct = ?';
 
-    return $stmt->execute(array($title, $img, $description, $price, $stock));
+    $stmt = $conn->prepare($sql);
+    return $stmt->execute(array($title, $description, $price, $stock, $id));
 }
 
 function getNotRemovedProducts() {
@@ -31,13 +32,25 @@ function getProductsByName($namepart) {
     return $stmt->fetchAll();
 }
 
-//Full details
+//Return a product filers by prod id
+function getProductFilters($prod_id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * from filter
+                    INNER JOIN prodfilter
+                    ON filter.idfilter = prodfilter.idfilter
+                    WHERE prodfilter.idproduct = $prod_id");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+//Full details, except filters
 function getProductById($id) {
     global $conn;
     $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
-        pf.idfilter, pf.value_string, pf.value_int, cat.idcategory,
-        cat.iddepartment, f.filter_name
+        product.img, product.description,
+        cat.idcategory,
+        cat.iddepartment
         FROM product
         INNER JOIN prodfilter pf
         ON pf.idproduct = product.idproduct
@@ -47,9 +60,10 @@ function getProductById($id) {
         ON cf.idcategory = cat.idcategory
         INNER JOIN filter f
         ON f.idfilter = pf.idfilter
-        WHERE product.idproduct = $id");
+        WHERE product.idproduct = $id
+        GROUP BY cat.idcategory, product.idproduct");
     $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 //DEPRECATED - use getNextProdId

@@ -12,15 +12,30 @@ include_once($BASE_DIR . 'database/filters.php');
 include_once($BASE_DIR . 'database/departments.php');
 include_once($BASE_DIR . 'database/categories.php');
 
+if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
+    header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER'));
+}
+
 ###############################################################################
-#### TODO: Check if indeed is an admin requesting this page
+#### DONE: Check if indeed is an admin or manager requesting this page
 #### DONE: Check the product has ONE department and ONE Category
 #### DONE: Insert product and filters relations on DB
 #### TODO: Make this script able to process a product update
 ###############################################################################
 //-----------------------------------------------------------------------------
-// Add a product
+// Add/Edit a product
 //-----------------------------------------------------------------------------
+
+$prod_id = filter_input(INPUT_GET, 'id');
+
+if (isset($prod_id)) {
+//means this is a product edition not creation
+    $edition = TRUE;
+} else {
+    $prod_id = getNextProdId()->last_value + 1;
+}
+
+
 //Should verify if _post data is set? It is already verified at form...
 //but with javascript
 $title = filter_input(INPUT_POST, 'prod_name');
@@ -37,16 +52,7 @@ $allowedExts = array("jpeg", "jpg", "png");
 $temp = explode(".", $_FILES["prod_img"]["name"]);
 $extension = end($temp);
 
-if (isset(filter_input(INPUT_GET, 'prod_id'))) {
-    //means this is a product edition not creation
-    $edition = TRUE;
-    $prod_id = filter_input(INPUT_GET, 'prod_id');
-} else {
-	$prod_id = getNextProdId()->last_value + 1;
-}
-
 $target_dir = $BASE_DIR . "images/products/$prod_id/";
-
 
 if ((($_FILES["prod_img"]["type"] == "image/jpeg") || ($_FILES["prod_img"]["type"] == "image/jpg") || ($_FILES["prod_img"]["type"] == "image/pjpeg") || ($_FILES["prod_img"]["type"] == "image/x-png") || ($_FILES["prod_img"]["type"] == "image/png")) && ($_FILES["prod_img"]["size"] < 10000000) && in_array($extension, $allowedExts)) {
     if ($_FILES["prod_img"]["error"] > 0) {
@@ -67,6 +73,7 @@ if ((($_FILES["prod_img"]["type"] == "image/jpeg") || ($_FILES["prod_img"]["type
     }
 } else {
     echo "Invalid file";
+    $no_img = TRUE;
 }
 
 //parse dynamic attributes
@@ -102,7 +109,7 @@ try {
     $conn->beginTransaction();
     if ($edition) {
         //edit a product
-        $res_prod = updateProduct($prod_id, $title, $description, $price, $stock, "$prod_id/$img");
+        $res_prod = updateProduct($prod_id, $title, $desc, $price, $stock, $no_img ? null : "$prod_id/$img");
     } else {
         //add a product
         $res_prod = addProduct($title, $desc, $price, $stock, "$prod_id/$img");

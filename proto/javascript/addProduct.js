@@ -5,7 +5,7 @@
  */
 
 
-
+var dep_id, cat_id;
 
 $(document).ready(function() {
     var id = window.location.search;
@@ -16,7 +16,7 @@ $(document).ready(function() {
         }
         //fails
         alert("Something went wrong, couldn't load the product...");
-    } 
+    }
     loadDepartments();
     loadCategories(1);
 });
@@ -54,7 +54,7 @@ function isInt(n) {
 
 function loadDepartments(selected) {
     selected = selected || 1;
-    var loc = document.URL.replace("pages/admin_area/add_product.php", "actions/manage/getDepartments.php");
+    var loc = document.URL.replace(/pages\/admin_area\/add_product.php(.*)/, "actions/manage/getDepartments.php");
     $.ajax({
         url: loc,
         context: document.body,
@@ -70,7 +70,7 @@ function loadDepartments(selected) {
 function loadCategories(id, selected) {
     selected = selected || 1;
     $('#prod_category').empty();
-    var loc = document.URL.replace("pages/admin_area/add_product.php", "actions/manage/getDepCategories.php?id=" + id);
+    var loc = document.URL.replace(/pages\/admin_area\/add_product.php(.*)/, "actions/manage/getDepCategories.php?id=" + id);
     $.ajax({
         url: loc,
         context: document.body,
@@ -87,24 +87,26 @@ function getProductFillForm(id) {
     if (id === NaN && !isInt(id)) {
         return false;
     }
-    var dep_id, cat_id;
+   
     var loc = document.URL.replace("pages/admin_area/add_product.php", "actions/products/getProduct.php");
     $.ajax({
         url: loc,
         context: document.body,
         dataType: "json"
     }).done(function(data) {
-        data.forEach(function(obj) {
-            if (typeof obj.error === 'undefined') {
+        if (typeof data.error === 'undefined') {
                 //we got a proper response from api
-                var o = obj.price;
-                $('#prod_name').val(obj.title);
-                $('#prod_stock').val(obj.stock);
-                $('#prod_price').val(obj.price);
-                $('#prod_desc').val(obj.description);
-
-            }
-        });
+            $('#prod_name').val(data.title);
+            $('#prod_stock').val(data.stock);
+            $('#prod_price').val(data.price);
+            $('#prod_desc').val(data.description);
+            //$('#prod_image').val(data.img.split('/')[1]);
+            dep_id = data.idcategory;
+            cat_id = data.iddepartment;
+            loadDepartments(dep_id);
+            loadCategories(dep_id, cat_id);
+        }
 
     });
+    
 }
