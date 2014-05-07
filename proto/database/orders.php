@@ -22,3 +22,18 @@ function getOrders() {
     $stmt->execute();
     return $stmt->fetchAll();
 }
+
+function getOrderTotal($id_order) {
+    global $conn;
+    $sql = 'SELECT SUM(price_per_unit * quantity) AS Total FROM OrderLine WHERE idOrder =' . $id_order;
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
+function setOrderState($idorder, $idstate) {
+    global $conn;
+    $sql = 'UPDATE order_ SET idstate = ? WHERE idorder = ?';
+    $stmt = $conn->prepare($sql);
+    return $stmt->execute(array($idstate, $idorder));
+}

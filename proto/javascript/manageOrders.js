@@ -52,7 +52,6 @@ $(document).ready(function() {
     });
 
     loadOrderStates();
-    loadOrders();
 });
 
 function loadOrderStates() {
@@ -63,28 +62,50 @@ function loadOrderStates() {
         dataType: 'json'
     }).done(function(data) {
         states = data;
-        createSelect();
+        loadOrders();
+        //createSelect();
 
+    }).fail(function(jqXHR, textStatus) {
+        alert("FAILED!\nWhat: OrderStates\nWhy: " + textStatus);
     });
 }
 
 function loadOrders() {
     var loc = document.URL.replace(/pages\/admin_area\/manage_orders.php(.*)/, "actions/manage/getOrders.php");
+    $('h3.panel-title').html("Manage Orders (Loading...)");
     $.ajax({
         url: loc,
         context: document.body,
         dataType: 'json'
     }).done(function(data) {
+        $('h3.panel-title').html("Manage Orders");
         data.forEach(function(obj) {
             //create row on table
+            getOrderTotal(obj.idorder);
             $('tbody').append('<tr>\n\
-                <td>' + obj.idorder + '</td>' +
+                <td id="order' + obj.idorder + '">' + obj.idorder + '</td>' +
                     //'<td><select class="form-control">' + stateSelect + '</select></td>'+
                     '<td>' + states[obj.idstate - 1].name + '</td>' +
-                    '<td>' + obj.date_placed + '</td>\n\
-                <td> ##SUBTOTAL## </td>\n\
-            </tr>');
+                    '<td>' + obj.date_placed + '</td>' +
+                    '<td id="total' + obj.idorder + '"> Calculating... </td>' +
+                    '</tr>');
+        }).fail(function(jqXHR, textStatus) {
+            alert("FAILED!\nWhat: Orders\nWhy: " + textStatus);
         });
+    });
+
+}
+
+function getOrderTotal(idOrder) {
+    var loc = document.URL.replace(/pages\/admin_area\/manage_orders.php(.*)/, "actions/manage/orderTotal.php?id=" + idOrder);
+    $.ajax({
+        url: loc,
+        context: document.body,
+        dataType: 'json'
+    }).done(function(data) {
+        $('#total' + idOrder).html(data.total);
+    }).fail(function(jqXHR, textStatus) {
+        alert("FAILED!\nWhat: OrderTotal\nWhy: " + textStatus);
     });
 }
 
@@ -94,4 +115,25 @@ function createSelect() {
 
     }
     //stateSelect = '<option value="2"></option><option value="3"></option><option value="6"></option>';
+}
+
+function processCtxMenuSel(selectedMenu, invokedOn) {
+    var idState = getIdStateByName(selectedMenu.text());
+    var id = invokedOn.context.previousSibling.textContent;
+    var loc = document.URL.replace(/pages\/admin_area\/manage_orders.php(.*)/, "actions/manage/setOrderState.php");
+    $.post(loc, {orderId: id, stateId: idState})
+            .done(function(data) {
+                //alert("Data Loaded: " + data);
+                $('#order' + id).next().html(states[idState - 1].name);
+            });
+   
+
+}
+
+function getIdStateByName(name) {
+    for (var i = 0; i < states.length; i++) {
+        if (states[i].name === name) {
+            return states[i].idstate;
+        }
+    }
 }
