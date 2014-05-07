@@ -62,12 +62,19 @@ function loadOrderStates() {
         dataType: 'json'
     }).done(function(data) {
         states = data;
+        initContextMenu();
         loadOrders();
         //createSelect();
 
     }).fail(function(jqXHR, textStatus) {
         alert("FAILED!\nWhat: OrderStates\nWhy: " + textStatus);
     });
+}
+
+function initContextMenu() {
+    for (var i = 0; i < states.length; i++) {
+        $('#contextMenu li.divider').after('<li><a href="#">' + states[i].name + '</a></li>');
+    }
 }
 
 function loadOrders() {

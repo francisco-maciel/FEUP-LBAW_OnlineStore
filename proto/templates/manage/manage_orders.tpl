@@ -35,10 +35,6 @@
 <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
     <li role="presentation" class="dropdown-header">Set State</li>
     <li class="divider"></li>
-    <li><a tabindex="0" href="#">Placed</a></li>
-    <li><a tabindex="-1" href="#">Accepted</a></li>
-    <li><a tabindex="1" href="#">Shipped</a></li>
-    <li><a tabindex="2" href="#">Declined</a></li>
 
 </ul>
 
