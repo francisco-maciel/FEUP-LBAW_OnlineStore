@@ -13,7 +13,7 @@ include_once($BASE_DIR . 'database/departments.php');
 include_once($BASE_DIR . 'database/categories.php');
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
-    header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER'));
+    header('Location: ' . $NO_ACCESS);
 }
 
 ###############################################################################

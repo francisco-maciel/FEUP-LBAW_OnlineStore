@@ -5,7 +5,8 @@
  */
 
 
-var dep_id, cat_id;
+var dep_id;
+var cat_id;
 
 $(document).ready(function() {
     var id = window.location.search;
@@ -25,6 +26,7 @@ $('#prod_family').change(function()
 {
     loadCategories($(this).val());
 });
+
 
 $('#prod_stock').on('input', function() {
     var input = ($(this).val());

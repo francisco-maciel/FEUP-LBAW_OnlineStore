@@ -79,13 +79,13 @@ function initContextMenu() {
 
 function loadOrders() {
     var loc = document.URL.replace(/pages\/admin_area\/manage_orders.php(.*)/, "actions/manage/getOrders.php");
-    $('h3.panel-title').html("Manage Orders (Loading...)");
+    $('h3.panel-title').html("Orders (Loading...)");
     $.ajax({
         url: loc,
         context: document.body,
         dataType: 'json'
     }).done(function(data) {
-        $('h3.panel-title').html("Manage Orders");
+        $('h3.panel-title').html("Orders");
         data.forEach(function(obj) {
             //create row on table
             getOrderTotal(obj.idorder);

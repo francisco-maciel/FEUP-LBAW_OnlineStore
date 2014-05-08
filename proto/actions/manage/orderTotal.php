@@ -10,7 +10,7 @@ include_once '../../config/init.php';
 include_once $BASE_DIR . 'database/orders.php';
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
-    header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER'));
+    header('Location: ' . $NO_ACCESS);
 }
 
 $id = filter_input(INPUT_GET, 'id');
