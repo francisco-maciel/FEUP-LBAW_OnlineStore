@@ -3,7 +3,7 @@
 <div class="container">
 
   <div class="row">
-
+<!--
     <div class="col-md-3 column margintop20">
      <ul class="nav nav-pills nav-stacked">
        <li class="active"><a href="#"><span class="glyphicon "></span> Category</a></li>
@@ -16,7 +16,7 @@
    </div>
 
    <div class="col-md-9">
-
+-->
 
     <div class="thumbnail">
 
@@ -202,7 +202,7 @@
                 </div>
               </div>
 
-            </div>
+           <!-- </div>  ("col-md-9")-->
 
           </div>
 
