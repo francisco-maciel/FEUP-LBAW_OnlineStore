@@ -21,9 +21,10 @@
     <div class="thumbnail">
 
      <ol class="breadcrumb">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Category X</a></li>
-      <li class="active">Current Product</li>
+      <li><a href="{$BASE_URL}">Home</a></li>
+      <li><a href="{$BASE_URL}pages/products/search-prods.php?dep={$product['iddepartment']}">{$product['depname']}</a></li>
+      <li><a href="{$BASE_URL}pages/products/search-prods.php?cat={$product['idcategory']}">{$product['catname']}</a></li>
+      <li class="active">{$product['title']}</li>
     </ol>
 
         {if $product['img'] }
