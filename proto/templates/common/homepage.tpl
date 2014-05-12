@@ -8,7 +8,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a><span class="glyphicon "></span> Departments </a></li>              
                 {foreach $departments as $dep}
-                <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$dep.name} </a></li>
+                <li><a href="{$BASE_URL}pages/products/search-prods.php?dep={$dep.iddepartment}"><span class="glyphicon glyphicon-chevron-right"></span> {$dep.name} </a></li>
                 {/foreach} 
                 <!--   { var_dump($departments) } -->
             </ul>
