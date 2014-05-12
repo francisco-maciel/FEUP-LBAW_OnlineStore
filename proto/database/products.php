@@ -81,10 +81,10 @@ function getNextProdId() {
     return $stmt->fetch(PDO::FETCH_OBJ);
 }
 
-function addProduct($title, $description, $price, $stock, $img) {
+function addProduct($title, $description, $price, $stock, $img, $catid) {
     global $conn;
 
-    $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock,img) VALUES (?,?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock,img,idcategory) VALUES (?,?,?,?,?,?)");
 
-    return $stmt->execute(array($title, $description, $price, $stock, $img));
+    return $stmt->execute(array($title, $description, $price, $stock, $img, $catid));
 }
