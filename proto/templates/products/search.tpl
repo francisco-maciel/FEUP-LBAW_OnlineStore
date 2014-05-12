@@ -4,6 +4,9 @@
 
 	<div class="row">
 
+		{if $sidebar == 1 }
+			{include file='common/sidebar.tpl'}
+		{else}
 		<div class="col-md-3 column margintop20">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active">  <a href="#"><span class="glyphicon "></span> Filters</a></li>
@@ -15,9 +18,10 @@
 				<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Model</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Price Limits</a></li>
 				<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Others</a></li>
-
 			</ul>
 		</div>
+		{/if}
+		
 
 		<div class="col-md-9">
 			<div >

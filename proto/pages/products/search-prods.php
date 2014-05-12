@@ -1,6 +1,7 @@
 <?php
   include_once('../../config/init.php');
   include_once($BASE_DIR .'database/products.php');
+  include_once($BASE_DIR .'database/departments.php');
 
 /*
 if (!$_GET['search']) {
@@ -11,8 +12,11 @@ if (!$_GET['search']) {
   }
   */
   
+    $departments = getAllDepartmentsSmarty();
+  	$smarty->assign('departments', $departments);
    
     //NEW
+  	$sidebar = 0;
     if (isset($_GET['search'])) {
         $namepart = $_GET['search'];
         $products = getProductsByName($namepart);
@@ -24,6 +28,7 @@ if (!$_GET['search']) {
     }
     elseif(isset($_GET['dep'])){
         $products = getProductsByDep($_GET['dep']);
+        $sidebar = 1;
     }
     else
         $products = getNotRemovedProducts();
@@ -45,7 +50,7 @@ foreach ($tweets as $key => $tweet) {
 */
 
   //$smarty->assign('last_tweet_id', $tweets[0]['id']); 
-  
+  $smarty->assign('sidebar',$sidebar);
   $smarty->assign('products', $products);
   $smarty->display('products/search.tpl');
 ?>
