@@ -3,8 +3,13 @@
 <div class="container">
 
     <div class="row">
-
+        {if (isset($param))}
         <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php{$param}" >
+            {else}
+            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php" >
+
+            {/if}
+
             <fieldset id="add_product">
 
                 <!-- Form Name -->

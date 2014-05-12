@@ -32,7 +32,42 @@ function getProductsByName($namepart) {
     return $stmt->fetchAll();
 }
 
-//Return a product filers by prod id
+
+function getProductsByCat($idcat) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        ");
+    $stmt->execute(array($idcat));
+    return $stmt->fetchAll();
+}
+
+
+function getProductsByDep($iddep) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name,
+        cat.iddepartment, dep.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        INNER JOIN department dep
+        ON dep.iddepartment = cat.iddepartment
+        WHERE dep.iddepartment = ?
+        ");
+    $stmt->execute(array($iddep));
+    return $stmt->fetchAll();
+}
+
+//Return a product filters by prod id
 function getProductFilters($prod_id) {
     global $conn;
     $stmt = $conn->prepare("SELECT * from filter
@@ -50,7 +85,9 @@ function getProductById($id) {
         product.stock, product.price,
         product.img, product.description,
         cat.idcategory,
-        cat.iddepartment
+        cat.iddepartment,
+        cat.name as catname,
+        dep.name as depname
         FROM product
         INNER JOIN prodfilter pf
         ON pf.idproduct = product.idproduct
@@ -58,10 +95,12 @@ function getProductById($id) {
         ON pf.idfilter = cf.idfilter
         INNER JOIN category cat
         ON cf.idcategory = cat.idcategory
+        INNER JOIN department dep
+        ON cat.iddepartment = dep.iddepartment
         INNER JOIN filter f
         ON f.idfilter = pf.idfilter
         WHERE product.idproduct = $id
-        GROUP BY cat.idcategory, product.idproduct");
+        GROUP BY dep.iddepartment, cat.idcategory, product.idproduct");
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }

@@ -3,7 +3,7 @@
 <div class="container">
 
   <div class="row">
-
+<!--
     <div class="col-md-3 column margintop20">
      <ul class="nav nav-pills nav-stacked">
        <li class="active"><a href="#"><span class="glyphicon "></span> Category</a></li>
@@ -16,14 +16,15 @@
    </div>
 
    <div class="col-md-9">
-
+-->
 
     <div class="thumbnail">
 
      <ol class="breadcrumb">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Category X</a></li>
-      <li class="active">Current Product</li>
+      <li><a href="{$BASE_URL}">Home</a></li>
+      <li><a href="{$BASE_URL}pages/products/search-prods.php?dep={$product['iddepartment']}">{$product['depname']}</a></li>
+      <li><a href="{$BASE_URL}pages/products/search-prods.php?cat={$product['idcategory']}">{$product['catname']}</a></li>
+      <li class="active">{$product['title']}</li>
     </ol>
 
         {if $product['img'] }
@@ -201,7 +202,7 @@
                 </div>
               </div>
 
-            </div>
+           <!-- </div>  ("col-md-9")-->
 
           </div>
 

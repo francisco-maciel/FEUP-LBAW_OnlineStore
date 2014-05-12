@@ -10,7 +10,8 @@ if (!$_GET['search']) {
     exit;
   }
   */
-
+  
+/*
   if (!isset($_GET['search'])) {
     $products = getNotRemovedProducts();
   }
@@ -23,8 +24,28 @@ if (!$_GET['search']) {
   }
     if (empty($products)) $smarty->assign('message', 'No items found that match your search');
     else  $smarty->assign('message', false);
-
-
+*/
+   
+    //NEW
+    if (isset($_GET['search'])) {
+        $namepart = $_GET['search'];
+        $products = getProductsByName($namepart);
+        global $smarty;
+        $smarty->assign('FORM_VALUES',$_GET);
+    }
+    elseif(isset($_GET['cat'])) {
+        $products = getProductsByCat($_GET['cat']);
+    }
+    elseif(isset($_GET['dep'])){
+        $products = getProductsByDep($_GET['dep']);
+    }
+    else
+        $products = getNotRemovedProducts();
+    
+    if (empty($products)) $smarty->assign('message', 'No items found that match your search');
+    else  $smarty->assign('message', false);
+    
+    
 /*
 foreach ($tweets as $key => $tweet) {
   unset($photo);
