@@ -11,20 +11,6 @@ if (!$_GET['search']) {
   }
   */
   
-/*
-  if (!isset($_GET['search'])) {
-    $products = getNotRemovedProducts();
-  }
-  else
-  {
-    $namepart = $_GET['search'];
-    $products = getProductsByName($namepart);
-    global $smarty;
-    $smarty->assign('FORM_VALUES',$_GET);
-  }
-    if (empty($products)) $smarty->assign('message', 'No items found that match your search');
-    else  $smarty->assign('message', false);
-*/
    
     //NEW
     if (isset($_GET['search'])) {
