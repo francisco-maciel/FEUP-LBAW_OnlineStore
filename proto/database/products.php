@@ -114,10 +114,27 @@ function getNextProdId() {
     return $stmt->fetch(PDO::FETCH_OBJ);
 }
 
-function addProduct($title, $description, $price, $stock, $img) {
+function addProduct($title, $description, $price, $stock, $img, $catid) {
     global $conn;
 
-    $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock,img) VALUES (?,?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock,img,idcategory) VALUES (?,?,?,?,?,?)");
 
-    return $stmt->execute(array($title, $description, $price, $stock, $img));
+    return $stmt->execute(array($title, $description, $price, $stock, $img, $catid));
+}
+
+function getWishListProducts($email) {
+    global $conn;
+
+    $stmt = $conn->prepare("select product.idproduct,
+    product.title, product.description,
+    product.price,product.stock,
+    product.removed,product.img,
+    product.idcategory from product,user_,
+    wishlist where user_.email = ?
+    AND user_.idUser = wishlist.idUser
+    AND product.idProduct = wishlist.idProduct;");
+    $stmt->execute(array($email));
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 }
