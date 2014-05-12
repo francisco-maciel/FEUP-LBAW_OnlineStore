@@ -32,32 +32,37 @@ function getProductsByName($namepart) {
     return $stmt->fetchAll();
 }
 
-//TODO
+
 function getProductsByCat($idcat) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
         product.img, product.description,
-        cat.idcategory,
-        cat.iddepartment
+        product.idcategory, cat.name
         FROM product
-        INNER JOIN prodfilter pf
-        ON pf.idproduct = product.idproduct
-        INNER JOIN catfilter cf
-        ON pf.idfilter = cf.idfilter
         INNER JOIN category cat
-        ON cat.idcategory = cf.idcategory
-        INNER JOIN filter f
-        ON f.idfilter = pf.idfilter
+        ON cat.idcategory = product.idcategory
         WHERE cat.idcategory = ?
-        GROUP BY cat.idcategory, product.idproduct");
+        ");
     $stmt->execute(array($idcat));
     return $stmt->fetchAll();
 }
-//TODO
+
+
 function getProductsByDep($iddep) {
     global $conn;
-   // $stmt = $conn->prepare("SELECT * FROM product WHERE LOWER(title) LIKE LOWER(?) and removed=false");
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name,
+        cat.iddepartment, dep.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        INNER JOIN department dep
+        ON dep.iddepartment = cat.iddepartment
+        WHERE dep.iddepartment = ?
+        ");
     $stmt->execute(array($iddep));
     return $stmt->fetchAll();
 }
