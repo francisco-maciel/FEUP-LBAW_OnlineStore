@@ -89,19 +89,13 @@ function getProductById($id) {
         cat.name as catname,
         dep.name as depname
         FROM product
-        INNER JOIN prodfilter pf
-        ON pf.idproduct = product.idproduct
-        INNER JOIN catfilter cf
-        ON pf.idfilter = cf.idfilter
         INNER JOIN category cat
-        ON cf.idcategory = cat.idcategory
+        ON cat.idcategory = product.idcategory
         INNER JOIN department dep
         ON cat.iddepartment = dep.iddepartment
-        INNER JOIN filter f
-        ON f.idfilter = pf.idfilter
-        WHERE product.idproduct = $id
-        GROUP BY dep.iddepartment, cat.idcategory, product.idproduct");
-    $stmt->execute();
+        WHERE product.idproduct = ?");
+        //GROUP BY dep.iddepartment, cat.idcategory, product.idproduct
+    $stmt->execute(array($id));
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
