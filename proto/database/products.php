@@ -127,3 +127,20 @@ function addProduct($title, $description, $price, $stock, $img) {
 
     return $stmt->execute(array($title, $description, $price, $stock, $img));
 }
+
+function getWishListProducts($email) {
+    global $conn;
+
+    $stmt = $conn->prepare("select product.idproduct,
+    product.title, product.description,
+    product.price,product.stock,
+    product.removed,product.img,
+    product.idcategory from product,user_,
+    wishlist where user_.email = ?
+    AND user_.idUser = wishlist.idUser
+    AND product.idProduct = wishlist.idProduct;");
+    $stmt->execute(array($email));
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
