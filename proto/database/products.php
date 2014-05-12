@@ -138,3 +138,21 @@ function getWishListProducts($email) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 }
+
+function addProductToWishList($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("INSERT INTO wishlist(iduser,idproduct,date_added)
+    VALUES ((SELECT user_.iduser from user_ where user_.email = ?),?,null)");
+
+   return $stmt->execute(array($email, $id));
+}
+
+function isOnWishList($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM wishlist,user_ where user_.email = ? AND
+    wishlist.iduser = user_.idUser AND wishlist.idProduct = ?");
+    $stmt->execute(array($email, $id));
+    return $stmt->fetchAll();
+}
