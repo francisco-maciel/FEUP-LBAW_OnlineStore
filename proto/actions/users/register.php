@@ -13,6 +13,16 @@
     exit;
   }
 
+//---------------------------------------------------------
+// Register / Edit an Account
+//---------------------------------------------------------
+
+$user_id = filter_input(INPUT_GET, 'id');
+
+if(isset($user_id)) {
+    $edition = TRUE;
+}
+
   $realname = strip_tags($_POST['realname']);
   $email = strip_tags($_POST['email']);
   $password = strip_tags($_POST['password']);
@@ -27,8 +37,8 @@
 global $conn;
 
   try {
-      createBuyer($email, $password, $realname, $phone, $birthdate, $address,$door, $postcode, $city, $nif);
-  }
+       createBuyer($email, $password, $realname, $phone, $birthdate, $address,$door, $postcode, $city, $nif);
+}
   catch (PDOException $e) {
       $conn->rollBack();
 

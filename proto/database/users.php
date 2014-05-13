@@ -16,6 +16,32 @@ function createBuyer($email, $password, $realname, $phone, $birthdate, $street, 
     $stmt->execute(array($street, $door, $postcode, $address, $id));
     $conn->commit();
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function updateProfile($id, $email, $password, $realname, $phone, $birthdate, $street, $door, $postcode, $address, $nif) {
+    global $conn;
+
+    $sql = 'UPDATE user_ SET email=?, password=?, name=?, phone=?, birthdate=?';
+    $stmt = $conn->prepare($sql);
+    $res = $stmt->execute(array($email, $password, $realname, $phone, $birthdate));
+
+    $sql = 'UPDATE buyer SET iduser=?, nif=?';
+    $stmt = $conn->prepare($sql);
+    $res += $stmt->execute(array($id, $nif));
+
+    $sql = 'UPDATE address SET street=?, door_nr=?, postcode=?, formatted_address=?';
+    $stmt = $conn->prepare($sql);
+    $res += $stmt->execute(array($street, $door, $postcode, $address));
+
+    return $res;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function changePassword($oldPassword, $newPassword) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE user_ SET password=? WHERE password=?");
+    return $stmt->execute(array($newPassword ,$oldPassword));
+}
 
 function isLoginCorrect($email, $password) {
     global $conn;
@@ -39,6 +65,13 @@ function getNameByEmail($email) {
     $stmt->execute(array($email));
     $result = $stmt->fetch();
     return $result['name'];
+}
+
+function getBuyerByEmail($email) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM user_, address, buyer WHERE email = ? AND user_.iduser = address.idbuyer AND user_.iduser = buyer.iduser");
+    $stmt->execute(array($email));
+    return $stmt->fetch();
 }
 
 //Excludes admins
