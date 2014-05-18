@@ -13,16 +13,6 @@
     exit;
   }
 
-//---------------------------------------------------------
-// Register / Edit an Account
-//---------------------------------------------------------
-
-$user_id = filter_input(INPUT_GET, 'id');
-
-if(isset($user_id)) {
-    $edition = TRUE;
-}
-
   $realname = strip_tags($_POST['realname']);
   $email = strip_tags($_POST['email']);
   $password = strip_tags($_POST['password']);

@@ -17,30 +17,30 @@ function createBuyer($email, $password, $realname, $phone, $birthdate, $street, 
     $conn->commit();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function updateProfile($id, $email, $password, $realname, $phone, $birthdate, $street, $door, $postcode, $address, $nif) {
+function updateProfile($id, $email, $realname, $phone, /*$birthdate,*/ $street, $door, $postcode, $address, $nif) {
     global $conn;
 
-    $sql = 'UPDATE user_ SET email=?, password=?, name=?, phone=?, birthdate=?';
+    $sql = 'UPDATE user_ SET email=?, name=?, phone=?, /*birthdate=?*/ WHERE iduser=?';
     $stmt = $conn->prepare($sql);
-    $res = $stmt->execute(array($email, $password, $realname, $phone, $birthdate));
+    $res = $stmt->execute(array($email, $realname, $phone,/* $birthdate,*/ $id));
 
-    $sql = 'UPDATE buyer SET iduser=?, nif=?';
+    $sql = 'UPDATE buyer SET nif=? WHERE iduser=?';
     $stmt = $conn->prepare($sql);
-    $res += $stmt->execute(array($id, $nif));
+    $res += $stmt->execute(array($nif, $id));
 
-    $sql = 'UPDATE address SET street=?, door_nr=?, postcode=?, formatted_address=?';
+    $sql = 'UPDATE address SET street=?, door_nr=?, postcode=?, formatted_address=? WHERE idbuyer=?';
     $stmt = $conn->prepare($sql);
-    $res += $stmt->execute(array($street, $door, $postcode, $address));
+    $res += $stmt->execute(array($street, $door, $postcode, $address, $id));
 
     return $res;
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-function changePassword($oldPassword, $newPassword) {
+function changePassword($email, $oldPassword, $newPassword) {
     global $conn;
-    $stmt = $conn->prepare("UPDATE user_ SET password=? WHERE password=?");
-    return $stmt->execute(array($newPassword ,$oldPassword));
+    $stmt = $conn->prepare("UPDATE user_ SET password=? WHERE email=? AND password=?");
+    return $stmt->execute(array(hash('sha256',$newPassword) ,$email, hash('sha256',$oldPassword)));
 }
 
 function isLoginCorrect($email, $password) {
