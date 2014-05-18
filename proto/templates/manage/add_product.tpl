@@ -46,7 +46,7 @@
 
                 <!-- Text input-->
                 <div class="form-group has-feedback">
-                    <label class="col-md-4 control-label" for="prod_stock">Stock availiable</label>
+                    <label class="col-md-4 control-label" for="prod_stock">Stock available</label>
                     <div class="col-md-2 ">
                         <input id="prod_stock" name="prod_stock" placeholder="Enter stock" class="form-control input-md" required="">
                         <span class="form-control-feedback"></span>

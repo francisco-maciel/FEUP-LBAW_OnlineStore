@@ -2,6 +2,7 @@
   include_once('../../config/init.php');
   include_once($BASE_DIR .'database/products.php');
   include_once($BASE_DIR .'database/departments.php');
+  include_once($BASE_DIR .'database/categories.php');
 
 /*
 if (!$_GET['search']) {
@@ -13,10 +14,10 @@ if (!$_GET['search']) {
   */
   
     $departments = getAllDepartmentsSmarty();
-  	$smarty->assign('departments', $departments);
+    $smarty->assign('departments', $departments);
    
     //NEW
-  	$sidebar = 0;
+  	$sidebar = false;
     if (isset($_GET['search'])) {
         $namepart = $_GET['search'];
         $products = getProductsByName($namepart);
@@ -25,10 +26,15 @@ if (!$_GET['search']) {
     }
     elseif(isset($_GET['cat'])) {
         $products = getProductsByCat($_GET['cat']);
+        $cat = $_GET['cat'];
+        $smarty->assign('cat',$cat);
     }
     elseif(isset($_GET['dep'])){
         $products = getProductsByDep($_GET['dep']);
-        $sidebar = 1;
+        $dep = getDepartmentName($_GET['dep']);
+        $smarty->assign('dep',$dep['name']);
+        $categories = getDepartmentCategoriesSmarty($_GET['dep']);
+        $smarty->assign('categories',$categories);
     }
     else
         $products = getNotRemovedProducts();

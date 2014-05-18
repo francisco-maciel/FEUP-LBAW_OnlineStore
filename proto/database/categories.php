@@ -13,6 +13,13 @@ function getDepartmentCategories($id) {
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
+function getDepartmentCategoriesSmarty($id) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT idcategory as id, "name" FROM category WHERE iddepartment=? ORDER BY name');
+    $stmt->execute(array($id));
+    return $stmt->fetchAll();
+}
+
 //-----------------------------------------------------------------------------
 // CatFilter table operations
 //-----------------------------------------------------------------------------
