@@ -1,6 +1,6 @@
 {include file='common/header.tpl'}
 
-<link rel="stylesheet" href="{$BASE_URL}css/manageOrders.css">
+<link rel="stylesheet" href="{$BASE_URL}css/tablefix.css">
 
 
 <div class="container">
