@@ -4,13 +4,13 @@
         <div  class="thumbnail">
             <!-- <img src="http://placehold.it/320x150" alt=""> -->
             {if $prod.img }
-                <a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}"> <img style="min-height:200px; max-height:200px; width:auto" class="img-responsive" src="{$BASE_URL}images/products/{$prod.img}" alt=""> </a>
+                <a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}"> <img style="min-height:200px; max-height:200px; width:auto;" class="img-responsive" src="{$BASE_URL}images/products/{$prod.img}" alt=""> </a>
                 {else}
                 <a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}"> <img class="img-responsive" src="{$BASE_URL}images/products/default.png" alt=""> </a>
                 {/if}
 
             <div class="caption">
-                <h4 class="pull-right">{$prod.price}</h4>
+                <h4 class="pull-right">€{$prod.price}</h4>
                 <h4><a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}">{$prod.title}</a>
                 </h4>
             </div>
