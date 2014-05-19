@@ -12,7 +12,7 @@
                     <label class="col-sm-4 control-label">Name</label>
 
                     <div class="col-sm-3">
-                        <p class="form-control-update" name="realname">{$USERNAME}</p>
+                        <p class="form-control-update" name="realname">{$user['name']}</p>
                     </div>
                 </div>
 
@@ -103,87 +103,69 @@
         <div>
             <label class="col-md-4 control-label"></label>
 
-            <div class="col-md-1" id="button-edit" style="padding-left:1px">
+            <div class="col-md-1" id="button-edit">
                 <button id="edit_profile" name="" class="btn btn-success">Edit profile</button>
             </div>
-            <form class="form-horizontal" method="post" action="{$BASE_URL}actions/users/changePassword.php"
-                  accept-charset="UTF-8">
-                <div class="col-md-5">
-                    <a href="#" id="change" class="btn btn-default">Change Password</a>
-                    <div class="row change" style=" display:none">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="user_password">Old Password</label>
-                                <div class="col-md-6">
-                                    <input id="oldPassword" name="oldPassword" type="password" placeholder="Old password" class="form-control" required="" value="">
+            {if $PERMISSION == 0}
+                <form class="form-horizontal" method="post" action="{$BASE_URL}actions/users/changePassword.php"
+                      accept-charset="UTF-8">
+                    <div class="col-md-5">
+                        <a href="#" id="change" class="btn btn-default">Change Password</a>
+                        <div class="row change" style=" display:none">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="user_password">Old Password</label>
+                                    <div class="col-md-6">
+                                        <input id="oldPassword" name="oldPassword" type="password" placeholder="Old password" class="form-control" required="" value="">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="user_password">Password</label>
-                                <div class="col-md-6">
-                                    <input id="password" name="password" type="password" placeholder="New password" class="form-control" required="" value="">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="user_password">Password</label>
+                                    <div class="col-md-6">
+                                        <input id="password" name="password" type="password" placeholder="New password" class="form-control" required="" value="">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="user_password">Confirm password</label>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="user_password">Confirm password</label>
 
-                                <div class="col-md-6">
-                                    <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm new password" class="form-control" required="" value="">
+                                    <div class="col-md-6">
+                                        <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Confirm new password" class="form-control" required="" value="">
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <div class="col-md-5">
-                                    <button type="submit" class="btn btn-success btn-block">Change</button>
-                                </div>
-                                <div class="col-md-5" id="cancel_password">
-                                    <button type="reset" class="btn btn-danger btn-block">Cancel</button>
+                                <div class="form-group">
+                                    <div class="col-md-5">
+                                        <button type="submit" class="btn btn-success btn-block">Change</button>
+                                    </div>
+                                    <div class="col-md-5" id="cancel_password">
+                                        <button type="reset" class="btn btn-danger btn-block">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </form>
+            {else}
+                <!-- Added on 19-05 by Vitor Mota, add admin ban funcionality -->
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-danger" onclick="banUser({$user['iduser']})">Ban User</button>
                 </div>
-            </form>
+            {/if}
+
         </div>
 
     </div>
+
+
 
 </div>
 <!-- /.container -->
 
 {include file='common/footer.tpl'}
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#change").click(function () {
-            $(".change").slideToggle();
-        });
-
-
-        $("#edit_profile").click(function () {
-            $('.form-horizontal').find('.form-control-update').each(function () {
-                $("<input type='text' />").attr({ name:this.name, value: $(this).html() }).insertBefore(this);
-            }).remove();
-
-            $('.form-horizontal').find('#birthdate').each(function () {
-                $(this).html('<div class="picker" id="picker"></div>');
-            })
-
-            $('#form-hide').hide();
-            $('#button-edit').hide();
-            $('#buttons_hide').show();
-
-            $('.form-group #birthdate').hide();
-            $('.form-group #picker').show()
-        });
-
-        $('#cancel_password').click(function () {
-            $(".change").slideUp();
-        })
-    });
-</script>
+<script type="text/javascript" src="{$BASE_URL}javascript/userprofile.js"
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
 <script src="{$BASE_URL}javascript/register.js"></script>

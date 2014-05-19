@@ -74,6 +74,16 @@ function getBuyerByEmail($email) {
     return $stmt->fetch();
 }
 
+function getUserById($id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM user_, address, buyer "
+            . "WHERE user_.iduser = $id "
+            . "AND user_.iduser = address.idbuyer "
+            . "AND user_.iduser = buyer.iduser");
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
 //Excludes admins
 function getUsersNoAdmins() {
     global $conn;
@@ -82,6 +92,13 @@ function getUsersNoAdmins() {
             . "ORDER BY user_type;");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function banUser($userId) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE buyer SET banned = true WHERE iduser = $userId");
+    $result = $stmt->execute();
     return $result;
 }
 
