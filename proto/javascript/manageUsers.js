@@ -90,6 +90,7 @@ function loadUsers() {
                     '<td>' + types[obj.user_type] + '</td>' +
                     '<td>' + obj.name + '</td>' +
                     '<td> ' + obj.email + ' </td>' +
+                    '<td> ' + obj.banned + ' </td>' +
                     '</tr>');
         }).fail(function(jqXHR, textStatus) {
             alert("FAILED!\nWhat: Load Users\nWhy: " + textStatus);

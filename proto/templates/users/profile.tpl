@@ -1,5 +1,24 @@
 {include file='common/header.tpl'}
 
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+            </div>
+            <div class="modal-body">
+                <p>Banning a user means he/she can no longer log in</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger btn-primary" data-dismiss="modal" onclick="banUser({$user['iduser']})">Yes I am</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
 <div class="container">
 
     <div class="row">
@@ -149,8 +168,10 @@
                 </form>
             {else}
                 <!-- Added on 19-05 by Vitor Mota, add admin ban funcionality -->
+
                 <div class="col-md-1">
-                    <button type="button" class="btn btn-danger" onclick="banUser({$user['iduser']})">Ban User</button>
+                    <button class="btn btn-warning btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Ban User</button>
+                    {*<button type="button" class="btn btn-danger" onclick="banUser({$user['iduser']})">Ban User</button>*}
                 </div>
             {/if}
 
@@ -167,5 +188,5 @@
 
 <script type="text/javascript" src="{$BASE_URL}javascript/userprofile.js"
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
-<script src="{$BASE_URL}javascript/register.js"></script>
+    <script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
+    <script src="{$BASE_URL}javascript/register.js"></script>

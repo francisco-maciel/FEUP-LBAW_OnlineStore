@@ -87,9 +87,12 @@ function getUserById($id) {
 //Excludes admins
 function getUsersNoAdmins() {
     global $conn;
-    $stmt = $conn->prepare("SELECT iduser, user_type, email, name "
-            . "FROM User_ WHERE user_type != 2 "
-            . "ORDER BY user_type;");
+    $stmt = $conn->prepare("SELECT user_.iduser, user_.user_type, user_.email, user_.name, buyer.banned "
+            . "FROM User_ "
+            . "INNER JOIN buyer ON "
+            . "user_.iduser = buyer.iduser "
+            . "WHERE user_.user_type != 2 "
+            . "ORDER BY user_.user_type;");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
