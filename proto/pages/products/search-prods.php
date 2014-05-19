@@ -17,7 +17,6 @@ if (!$_GET['search']) {
     $smarty->assign('departments', $departments);
    
     //NEW
-  	$sidebar = false;
     if (isset($_GET['search'])) {
         $namepart = $_GET['search'];
         $products = getProductsByName($namepart);
@@ -26,8 +25,12 @@ if (!$_GET['search']) {
     }
     elseif(isset($_GET['cat'])) {
         $products = getProductsByCat($_GET['cat']);
+        $catname = getCategoryName($_GET['cat']);
         $cat = $_GET['cat'];
+        $smarty->assign('catname',$catname['name']);
         $smarty->assign('cat',$cat);
+        $filters = getCatFilters($_GET['cat']);
+        $smarty->assign('filters',$filters);
     }
     elseif(isset($_GET['dep'])){
         $products = getProductsByDep($_GET['dep']);
@@ -56,7 +59,6 @@ foreach ($tweets as $key => $tweet) {
 */
 
   //$smarty->assign('last_tweet_id', $tweets[0]['id']); 
-  $smarty->assign('sidebar',$sidebar);
   $smarty->assign('products', $products);
   $smarty->display('products/search.tpl');
 ?>

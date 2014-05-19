@@ -20,6 +20,13 @@ function getDepartmentCategoriesSmarty($id) {
     return $stmt->fetchAll();
 }
 
+function getCategoryName($id) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT name FROM category WHERE idcategory=?');
+    $stmt->execute(array($id));
+    return $stmt->fetch();
+}
+
 //-----------------------------------------------------------------------------
 // CatFilter table operations
 //-----------------------------------------------------------------------------
@@ -50,4 +57,18 @@ function findCatFilter($cat_id, $filter_id) {
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetch();
+}
+
+function getCatFilters($catid) {
+    global $conn;
+    $stmt = $conn->prepare("
+        SELECT filter.idfilter as id, filter.filter_name as name
+        FROM filter
+        INNER JOIN CatFilter
+        ON catfilter.idfilter = filter.idfilter
+        WHERE catFilter.idcategory=?
+        GROUP BY filter.idfilter, filter.filter_name
+        ORDER BY filter_name");
+    $stmt->execute(array($catid));
+    return $stmt->fetchAll();
 }

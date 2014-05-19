@@ -1,15 +1,21 @@
 {if isset($cat) }
 <div class="col-md-3 column margintop20">
 	<ul class="nav nav-pills nav-stacked">
-		<li class="active">  <a href="#"><span class="glyphicon "></span> Filters</a></li>
+		<li class="active">  <a href="#"><span class="glyphicon "></span> {$catname}</a></li>
+		<!--
 		<li><a href="#"><span class="glyphicon glyphicon-chevron-down"></span> Brand</a></li>
 		<li><a href="#"><span class="glyphicon "></span> Sony</a></li>
 		<li><a href="#"><span class="glyphicon "></span> Samsung</a></li>
-		<li><a href="#"><span class="glyphicon "></span> LG</a></li>
-
+		<li><a href="#"><span class="glyphicon "></span> LG</a></li> -->
+		{foreach $filters as $filter}
+		<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
+		{/foreach}
+		<!--
 		<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Model</a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Price Limits</a></li>
 		<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Others</a></li>
+		-->
+		<!-- {$filters|@var_dump} -->
 	</ul>
 </div>
 
@@ -20,8 +26,7 @@
 		<li class="active"><a><span class="glyphicon "></span> {$dep} </a></li>              
 		{foreach $categories as $cat}
 		<li><a href="{$BASE_URL}pages/products/search-prods.php?cat={$cat.id}"><span class="glyphicon glyphicon-chevron-right"></span> {$cat.name} </a></li>
-		{/foreach} 
-		<!--   { var_dump($departments) } -->
+		{/foreach}
 	</ul>
 </div>
 
