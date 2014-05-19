@@ -180,6 +180,16 @@
                   </div>
                 </div>
 
+            </div>
+
+            <div>
+
+                <hr>
+                <br><br>
+
+                <h4><a href="#">Other Products</a>
+                </h4>
+
                 <div class="col-sm-4 col-lg-4 col-md-4">
                   <div class="thumbnail">
                     <img src="http://placehold.it/320x150" alt="">
@@ -202,14 +212,35 @@
                 </div>
               </div>
 
-           <!-- </div>  ("col-md-9")-->
+                <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="thumbnail">
+                        <img src="http://placehold.it/320x150" alt="">
 
-          </div>
+                        <div class="caption">
+                            <h4 class="pull-right">€</h4>
+                            <h4><a href="#">Product 3</a>
+                            </h4>
+                        </div>
+                        <div class="ratings">
+                            <p class="pull-right">31 reviews</p>
 
+                            <p>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
 
+    </div>
 
+</div>
 
 
             {include file='common/footer.tpl'}

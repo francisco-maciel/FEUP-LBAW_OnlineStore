@@ -27,8 +27,8 @@
 global $conn;
 
   try {
-      createBuyer($email, $password, $realname, $phone, $birthdate, $address,$door, $postcode, $city, $nif);
-  }
+       createBuyer($email, $password, $realname, $phone, $birthdate, $address,$door, $postcode, $city, $nif);
+}
   catch (PDOException $e) {
       $conn->rollBack();
 

@@ -16,6 +16,32 @@ function createBuyer($email, $password, $realname, $phone, $birthdate, $street, 
     $stmt->execute(array($street, $door, $postcode, $address, $id));
     $conn->commit();
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function updateProfile($id, $email, $realname, $phone, /*$birthdate,*/ $street, $door, $postcode, $address, $nif) {
+    global $conn;
+
+    $sql = 'UPDATE user_ SET email=?, name=?, phone=?, /*birthdate=?*/ WHERE iduser=?';
+    $stmt = $conn->prepare($sql);
+    $res = $stmt->execute(array($email, $realname, $phone,/* $birthdate,*/ $id));
+
+    $sql = 'UPDATE buyer SET nif=? WHERE iduser=?';
+    $stmt = $conn->prepare($sql);
+    $res += $stmt->execute(array($nif, $id));
+
+    $sql = 'UPDATE address SET street=?, door_nr=?, postcode=?, formatted_address=? WHERE idbuyer=?';
+    $stmt = $conn->prepare($sql);
+    $res += $stmt->execute(array($street, $door, $postcode, $address, $id));
+
+    return $res;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+function changePassword($email, $oldPassword, $newPassword) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE user_ SET password=? WHERE email=? AND password=?");
+    return $stmt->execute(array(hash('sha256',$newPassword) ,$email, hash('sha256',$oldPassword)));
+}
 
 function isLoginCorrect($email, $password) {
     global $conn;
@@ -41,14 +67,41 @@ function getNameByEmail($email) {
     return $result['name'];
 }
 
+function getBuyerByEmail($email) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM user_, address, buyer WHERE email = ? AND user_.iduser = address.idbuyer AND user_.iduser = buyer.iduser");
+    $stmt->execute(array($email));
+    return $stmt->fetch();
+}
+
+function getUserById($id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM user_, address, buyer "
+            . "WHERE user_.iduser = $id "
+            . "AND user_.iduser = address.idbuyer "
+            . "AND user_.iduser = buyer.iduser");
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
 //Excludes admins
 function getUsersNoAdmins() {
     global $conn;
-    $stmt = $conn->prepare("SELECT iduser, user_type, email, name "
-            . "FROM User_ WHERE user_type != 2 "
-            . "ORDER BY user_type;");
+    $stmt = $conn->prepare("SELECT user_.iduser, user_.user_type, user_.email, user_.name, buyer.banned "
+            . "FROM User_ "
+            . "INNER JOIN buyer ON "
+            . "user_.iduser = buyer.iduser "
+            . "WHERE user_.user_type != 2 "
+            . "ORDER BY user_.user_type;");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function banUser($userId) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE buyer SET banned = true WHERE iduser = $userId");
+    $result = $stmt->execute();
     return $result;
 }
 

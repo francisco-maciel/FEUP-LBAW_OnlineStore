@@ -80,15 +80,17 @@ function loadUsers() {
         dataType: 'json'
     }).done(function(data) {
         $('h3.panel-title').html("Users");
+        loc = document.URL.replace(/pages(.*)/, "pages/users/profile.php");
         data.forEach(function(obj) {
             //create row on table
 
             $('tbody').append('<tr>\n\
-                <td id="user' + obj.iduser + '">' + obj.iduser + '</td>' +
+                <td id="user' + obj.iduser + '"><a href="' + loc + '?id=' + obj.iduser + '">' + obj.iduser + '</a></td>' +
                     //'<td><select class="form-control">' + stateSelect + '</select></td>'+
                     '<td>' + types[obj.user_type] + '</td>' +
                     '<td>' + obj.name + '</td>' +
                     '<td> ' + obj.email + ' </td>' +
+                    '<td> ' + obj.banned + ' </td>' +
                     '</tr>');
         }).fail(function(jqXHR, textStatus) {
             alert("FAILED!\nWhat: Load Users\nWhy: " + textStatus);

@@ -21,6 +21,7 @@
                         <th><input type="text" class="form-control" placeholder="Level" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Name" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Email" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Banned" disabled></th>
                     </tr>
                 </thead>
                 <tbody>
