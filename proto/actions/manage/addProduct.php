@@ -112,7 +112,7 @@ try {
         $res_prod = updateProduct($prod_id, $title, $desc, $price, $stock, $no_img ? null : "$prod_id/$img");
     } else {
         //add a product
-        $res_prod = addProduct($title, $desc, $price, $stock, "$prod_id/$img");
+        $res_prod = addProduct($title, $desc, $price, $stock, "$prod_id/$img", $cat_id);
     }
     //add filters
     addFilters_failsafe($name_arr);

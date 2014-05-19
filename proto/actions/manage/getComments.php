@@ -7,9 +7,13 @@
  */
 
 include_once '../../config/init.php';
+include_once $BASE_DIR . 'database/comments.php';
+
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
 
-$smarty->display('manage/manage_orders.tpl');
+$res = getComments();
+
+print_r(json_encode($res));
