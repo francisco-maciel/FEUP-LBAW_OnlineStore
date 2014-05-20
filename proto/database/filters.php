@@ -80,3 +80,14 @@ function addFiltersProduts_Rel($id_product, $filterIds_arr, $types_arr, $values_
     $stmt = $conn->prepare($sql_trimmed);
     return $stmt->execute();
 }
+
+
+function getFilterValues($id) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT value_string, value_int, type
+                            FROM prodfilter
+                            WHERE idfilter=?
+                            GROUP BY value_string, value_int, type');
+    $stmt->execute(array($id));
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}

@@ -1,14 +1,15 @@
 {if isset($cat) }
+<div id="aqui"></div>
 <div class="col-md-3 column margintop20">
 	<ul class="nav nav-pills nav-stacked">
-		<li class="active">  <a href="#"><span class="glyphicon "></span> {$catname}</a></li>
+		<li class="active">  <a><span class="glyphicon "></span> {$catname}</a></li>
 		<!--
 		<li><a href="#"><span class="glyphicon glyphicon-chevron-down"></span> Brand</a></li>
 		<li><a href="#"><span class="glyphicon "></span> Sony</a></li>
 		<li><a href="#"><span class="glyphicon "></span> Samsung</a></li>
 		<li><a href="#"><span class="glyphicon "></span> LG</a></li> -->
 		{foreach $filters as $filter}
-		<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
+		<li class="filter" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
 		{/foreach}
 		<!--
 		<li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Model</a></li>
@@ -43,3 +44,6 @@
 </div>
 
 {/if}
+
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{$BASE_URL}javascript/sidebar.js"></script>
