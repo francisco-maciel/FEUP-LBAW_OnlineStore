@@ -11,17 +11,14 @@ if (!$_GET['id']) {
   }
 
   $product = getProductById($_GET['id']);
-
-  $show_wish_list = false;
+  $addWishListButton = false;
   if (isset($_SESSION['permission']) && isset($_SESSION['email'])) {
-      if ($_SESSION['permission'] == Permisson::BUYER) $show_wish_list = true;
 
       $addWishListButton = !isOnWishList($_SESSION['email'], $_GET['id']);
   }
 
   $smarty->assign('product', $product);
-  $smarty->assign('show_wish_list', $product);
-  $smarty->assign('addWishListButton', $product);
+  $smarty->assign('addWishListButton', $addWishListButton);
 // TODO USAR No template
   $smarty->display('products/product.tpl');
 
