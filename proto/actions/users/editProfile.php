@@ -20,12 +20,13 @@ $city = strip_tags($_POST['city']);
 $phone = strip_tags($_POST['phone']);
 $nif = strip_tags($_POST['nif']);
 //$birthdate = strip_tags($_POST['year']."-".$_POST['month']."-".$_POST['day']) ;
-$user_id = filter_input(INPUT_GET, 'id');
+$old_email = $_SESSION['email'];
 
 global $conn;
 
 try {
-    updateProfile($user_id, $email, $realname, $phone, /*$birthdate,*/ $street, $door, $postcode, $address, $nif);
+    $conn->beginTransaction();
+    updateProfile($old_email, $email, $realname, $phone, $street, $door, $postcode, $city, $nif);
 }
 catch (PDOException $e) {
     $conn->rollBack();

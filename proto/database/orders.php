@@ -23,10 +23,11 @@ function getOrders() {
     return $stmt->fetchAll();
 }
 
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getOrdersByBuyer($idbuyer) {
     global $conn;
-    $sql = 'SELECT * FROM Order_, State, Transporter, Address WHERE Order_.idbuyer = ? AND Order_.idstate=State.idstate AND order_.idtransporter=Transporter.idtransporter AND order_.idaddress=Address.idaddress';
+    $sql = 'SELECT * FROM order_, state WHERE order_.idbuyer=? AND order_.idstate=state.idstate ORDER BY order_.idorder';
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($idbuyer));
     return $stmt->fetchAll();

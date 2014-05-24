@@ -6,9 +6,6 @@ include_once($BASE_DIR .'database/orders.php');
 $user = getBuyerByEmail($_SESSION['email']);
 $smarty->assign('user', $user);
 
-$myOrders = getOrdersByBuyer($user['iduser']);
-$smarty->assign('myOrders', $myOrders);
-
 $smarty->display('users/profile.tpl');
 
 ?>

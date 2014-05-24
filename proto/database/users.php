@@ -17,12 +17,12 @@ function createBuyer($email, $password, $realname, $phone, $birthdate, $street, 
     $conn->commit();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function updateProfile($id, $email, $realname, $phone, /*$birthdate,*/ $street, $door, $postcode, $address, $nif) {
+function updateProfile($old_email, $email, $realname, $phone, $street, $door, $postcode, $city, $nif) {
     global $conn;
 
-    $sql = 'UPDATE user_ SET email=?, name=?, phone=?, /*birthdate=?*/ WHERE iduser=?';
+    $sql = 'UPDATE user_ SET email=?, name=?, phone=? WHERE email=?';
     $stmt = $conn->prepare($sql);
-    $res = $stmt->execute(array($email, $realname, $phone,/* $birthdate,*/ $id));
+    $res = $stmt->execute(array($email, $realname, $phone, $old_email));
 
     $sql = 'UPDATE buyer SET nif=? WHERE iduser=?';
     $stmt = $conn->prepare($sql);
@@ -30,7 +30,7 @@ function updateProfile($id, $email, $realname, $phone, /*$birthdate,*/ $street, 
 
     $sql = 'UPDATE address SET street=?, door_nr=?, postcode=?, formatted_address=? WHERE idbuyer=?';
     $stmt = $conn->prepare($sql);
-    $res += $stmt->execute(array($street, $door, $postcode, $address, $id));
+    $res += $stmt->execute(array($street, $door, $postcode, $city, $id));
 
     return $res;
 }

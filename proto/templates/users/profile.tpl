@@ -76,7 +76,7 @@
                         <!-- ################################################################################
                             Priority Medium, TODO later
                             ################################################################################ -->
-                        <p class="form-control-hide">Click <a style="color:#0033CC" href="">here</a> to view your past
+                        <p class="form-control-hide">Click <a href="{$BASE_URL}pages/users/myOrders.php" style="color:#0033CC" href="">here</a> to view your past
                             purchases </p>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                     <label class="col-md-4 control-label"></label>
 
                     <div class="col-md-1" id="button-save">
-                        <button type="submit" id="save_profile" name="" class="btn btn-success">Save</button>
+                        <button type="submit" id="save_profile" name="" value="Submit form" class="btn btn-success">Save</button>
                     </div>
                     <div class="col-md-1" id="button-reset">
                         <button type="reset" class="btn btn-info">Reset</button>
@@ -155,35 +155,7 @@
 
 {include file='common/footer.tpl'}
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#change").click(function () {
-            $(".change").slideToggle();
-        });
-
-
-        $("#edit_profile").click(function () {
-            $('.form-horizontal').find('.form-control-update').each(function () {
-                $("<input type='text' />").attr({ name:this.name, value: $(this).html() }).insertBefore(this);
-            }).remove();
-
-            $('.form-horizontal').find('#birthdate').each(function () {
-                $(this).html('<div class="picker" id="picker"></div>');
-            })
-
-            $('#form-hide').hide();
-            $('#button-edit').hide();
-            $('#buttons_hide').show();
-
-            $('.form-group #birthdate').hide();
-            $('.form-group #picker').show()
-        });
-
-        $('#cancel_password').click(function () {
-            $(".change").slideUp();
-        })
-    });
-</script>
+<script src="{$BASE_URL}javascript/profile.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
 <script src="{$BASE_URL}javascript/register.js"></script>
