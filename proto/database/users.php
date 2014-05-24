@@ -17,12 +17,12 @@ function createBuyer($email, $password, $realname, $phone, $birthdate, $street, 
     $conn->commit();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function updateProfile($old_email, $email, $realname, $phone, $street, $door, $postcode, $city, $nif) {
+function updateProfile($email, $realname, $phone, $birthdate, $street, $door, $postcode, $city, $nif, $id) {
     global $conn;
 
-    $sql = 'UPDATE user_ SET email=?, name=?, phone=? WHERE email=?';
+    $sql = 'UPDATE user_ SET name=?, phone=?, birthdate=? WHERE email=?';
     $stmt = $conn->prepare($sql);
-    $res = $stmt->execute(array($email, $realname, $phone, $old_email));
+    $res = $stmt->execute(array($realname, $phone, $birthdate, $email));
 
     $sql = 'UPDATE buyer SET nif=? WHERE iduser=?';
     $stmt = $conn->prepare($sql);
@@ -57,6 +57,20 @@ function isLoginCorrect($email, $password) {
     }
 }
 
+function nifExist($nif, $id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT nif
+                            FROM buyer
+                            WHERE nif = ? AND iduser <> ?");
+    $stmt->execute(array($nif, $id));
+    $exist = $stmt->fetch();
+    if ($exist) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function getNameByEmail($email) {
     global $conn;
     $stmt = $conn->prepare("SELECT name
@@ -65,6 +79,16 @@ function getNameByEmail($email) {
     $stmt->execute(array($email));
     $result = $stmt->fetch();
     return $result['name'];
+}
+
+function getIdByEmail($email) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT iduser
+                            FROM user_
+                            WHERE email = ?");
+    $stmt->execute(array($email));
+    $result = $stmt->fetch();
+    return $result['iduser'];
 }
 
 function getBuyerByEmail($email) {

@@ -1,9 +1,9 @@
 {include file='common/header.tpl'}
 
-<div class="container">
+<div class="container" id="profile">
 
     <div class="row">
-        <form class="form-horizontal" method="post" action="{$BASE_URL}actions/users/editProfile.php"
+        <form id="profile_form" class="form-horizontal" method="post" action="{$BASE_URL}actions/users/editProfile.php"
               accept-charset="UTF-8">
             <fieldset>
                 <legend>Your account</legend>
@@ -12,7 +12,7 @@
                     <label class="col-sm-4 control-label">Name</label>
 
                     <div class="col-sm-3">
-                        <p class="form-control-update" name="realname">{$USERNAME}</p>
+                        <p class="form-control-update" name="realname">{$user['name']}</p>
                     </div>
                 </div>
 
@@ -20,7 +20,7 @@
                     <label class="col-md-4 control-label" for="user_email">Email</label>
 
                     <div class="col-md-5">
-                        <p class="form-control-update" name="email">{$user['email']}</p>
+                        <p class="" name="email">{$user['email']}</p>
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@
                     <label class="col-md-4 control-label" for="">NIF</label>
 
                     <div class="col-md-3">
-                        <p class="form-control-update" name="nif">{$user['nif']}</p>
+                        <p class="form-control-update" name="nif" id="nif">{$user['nif']}</p>
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
                     <label class="col-md-4 control-label" for="birth_date">Date of Birth</label>
 
                     <div class="picker col-md-8" id="birthdate">
-                        <p class="form-control-static" name="birthdate">{$user['birthdate']}</p>
+                        <p class="form-control-static" name="birthdate" id="birth">{$user['birthdate']}</p>
                     </div>
                     <div class="picker" id="picker" style="display:none"></div>
                 </div>
@@ -73,9 +73,6 @@
                     <label class="col-md-4 control-label" for="prod_stock"></label>
 
                     <div class="col-md-3">
-                        <!-- ################################################################################
-                            Priority Medium, TODO later
-                            ################################################################################ -->
                         <p class="form-control-hide">Click <a href="{$BASE_URL}pages/users/myOrders.php" style="color:#0033CC" href="">here</a> to view your past
                             purchases </p>
                     </div>
@@ -106,11 +103,11 @@
             <div class="col-md-1" id="button-edit" style="padding-left:1px">
                 <button id="edit_profile" name="" class="btn btn-success">Edit profile</button>
             </div>
-            <form class="form-horizontal" method="post" action="{$BASE_URL}actions/users/changePassword.php"
+            <form id="change_password_form" class="form-horizontal" method="post" action="{$BASE_URL}actions/users/changePassword.php"
                   accept-charset="UTF-8">
                 <div class="col-md-5">
-                    <a href="#" id="change" class="btn btn-default">Change Password</a>
-                    <div class="row change" style=" display:none">
+                    <a href="#" id="change_password" class="btn btn-default">Change Password</a>
+                    <div class="row change_password" style=" display:none">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="user_password">Old Password</label>
@@ -158,4 +155,3 @@
 <script src="{$BASE_URL}javascript/profile.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
-<script src="{$BASE_URL}javascript/register.js"></script>
