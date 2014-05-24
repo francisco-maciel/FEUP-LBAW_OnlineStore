@@ -14,6 +14,15 @@ if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
 
-$res = getComments();
+$offset = filter_input(INPUT_GET, 'offset');
+$limit = filter_input(INPUT_GET, 'limit');
+
+if (isset($offset) && isset($limit)) {
+    $res = getCommentsPortion($limit, $offset);
+} else {
+    $res = getComments();
+}
+
+
 
 print_r(json_encode($res));

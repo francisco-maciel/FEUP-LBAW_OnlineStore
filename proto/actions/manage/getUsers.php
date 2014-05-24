@@ -13,6 +13,14 @@ if ($_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
 
-$res = getUsersNoAdmins();
+$offset = filter_input(INPUT_GET, 'offset');
+$limit = filter_input(INPUT_GET, 'limit');
+
+if (isset($offset) && isset($limit)) {
+    $res = getUsersNoAdminsPortion($limit, $offset);
+} else {
+    $res = getUsersNoAdmins();
+}
+
 
 print_r(json_encode($res));

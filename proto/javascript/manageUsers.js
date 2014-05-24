@@ -48,7 +48,7 @@ $(document).ready(function() {
         }
     });
 
-    loadUsers();
+    loadUsers(0);
 });
 
 function processCtxMenuSel(selectedMenu, invokedOn) {
@@ -71,14 +71,17 @@ var types = [
     "Manager"
 ];
 
-function loadUsers() {
+function loadUsers(batch) {
+    var limit = 20;
+    var offset = 20 * batch;
     $('h3.panel-title').html("Users (Loading...)");
-    var loc = document.URL.replace(/pages(.*)/, "actions/manage/getUsers.php");
+    var loc = document.URL.replace(/pages(.*)/, "actions/manage/getUsers.php?limit=" + limit + "&offset=" + offset);
     $.ajax({
         url: loc,
         context: document.body,
         dataType: 'json'
     }).done(function(data) {
+        $('tbody').empty();
         $('h3.panel-title').html("Users");
         loc = document.URL.replace(/pages(.*)/, "pages/users/profile.php");
         data.forEach(function(obj) {

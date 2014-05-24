@@ -48,18 +48,21 @@ $(document).ready(function() {
         }
     });
 
-    loadComments();
+    loadComments(0);
 });
 
 
-function loadComments() {
-    var loc = document.URL.replace(/pages\/(.*)/, "actions/manage/getComments.php");
+function loadComments(batch) {
+    var limit = 20;
+    var offset = 20 * batch;
+    var loc = document.URL.replace(/pages\/(.*)/, "actions/manage/getComments.php?limit=" + limit + "&offset=" + offset);
     $('h3.panel-title').html("Comments (Loading...)");
     $.ajax({
         url: loc,
         context: document.body,
         dataType: 'json'
     }).done(function(data) {
+        $('tbody').empty();
         $('h3.panel-title').html("Comments");
         data.forEach(function(obj) {
             //create row on table

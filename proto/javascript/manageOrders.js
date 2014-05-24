@@ -63,7 +63,7 @@ function loadOrderStates() {
     }).done(function(data) {
         states = data;
         initContextMenu();
-        loadOrders();
+        loadOrders(0);
         //createSelect();
 
     }).fail(function(jqXHR, textStatus) {
@@ -77,24 +77,27 @@ function initContextMenu() {
     }
 }
 
-function loadOrders() {
-    var loc = document.URL.replace(/pages\/admin_area\/manage_orders.php(.*)/, "actions/manage/getOrders.php");
+function loadOrders(batch) {
+    var limit = 20;
+    var offset = 20 * batch;
+    var loc = document.URL.replace(/pages\/admin_area\/manage_orders.php(.*)/, "actions/manage/getOrders.php?limit=" + limit + "&offset=" + offset);
     $('h3.panel-title').html("Orders (Loading...)");
     $.ajax({
         url: loc,
         context: document.body,
         dataType: 'json'
     }).done(function(data) {
+        $('tbody').empty();
         $('h3.panel-title').html("Orders");
         data.forEach(function(obj) {
             //create row on table
-            getOrderTotal(obj.idorder);
+            //getOrderTotal(obj.idorder);
             $('tbody').append('<tr>\n\
                 <td id="order' + obj.idorder + '">' + obj.idorder + '</td>' +
                     //'<td><select class="form-control">' + stateSelect + '</select></td>'+
                     '<td>' + states[obj.idstate - 1].name + '</td>' +
                     '<td>' + obj.date_placed + '</td>' +
-                    '<td id="total' + obj.idorder + '"> Calculating... </td>' +
+                    '<td id="total' + obj.idorder + '">' + obj.ordertotal + ' </td>' +
                     '</tr>');
         }).fail(function(jqXHR, textStatus) {
             alert("FAILED!\nWhat: Orders\nWhy: " + textStatus);

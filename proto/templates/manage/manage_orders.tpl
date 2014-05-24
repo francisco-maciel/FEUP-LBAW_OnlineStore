@@ -30,7 +30,18 @@
         </div>
     </div>
 
+    <div class="row text-center">
+
+        <ul class="pagination">
+            {for $i = 0 to $pages}
+                <li><a href="#" onclick="loadOrders({$i})">{$i+1}</a></li>
+            {/for}
+        </ul>
+    </div>
+
 </div>
+
+
 
 <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
     <li role="presentation" class="dropdown-header">Set State</li>

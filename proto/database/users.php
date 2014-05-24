@@ -111,3 +111,33 @@ function setUserLevel($id, $level) {
     $result = $stmt->execute(array($level, $id));
     return $result;
 }
+
+/**
+ * Fecth all users that are not admins limiting the results, retrieving
+ * only a portion
+ */
+function getUsersNoAdminsPortion($limit, $offset) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT user_.iduser, user_.user_type, user_.email, user_.name, buyer.banned "
+            . "FROM User_ "
+            . "INNER JOIN buyer ON "
+            . "user_.iduser = buyer.iduser "
+            . "WHERE user_.user_type != 2 "
+            . "ORDER BY user_.date_signed "
+            . "OFFSET $offset LIMIT $limit;");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function countBuyers() {
+    global $conn;
+    $stmt = $conn->prepare("SELECT Count(user_.iduser)
+        from user_
+        Inner join buyer
+        on buyer.iduser = user_.iduser
+        where user_type !=2;");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $result;
+}

@@ -30,6 +30,14 @@
             </table>
         </div>
     </div>
+    <div class="row text-center">
+
+        <ul class="pagination">
+            {for $i = 0 to $pages}
+                <li><a href="#" onclick="loadUsers({$i})">{$i+1}</a></li>
+            {/for}
+        </ul>
+    </div>
 
 </div>
 
