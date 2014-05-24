@@ -41,7 +41,7 @@ function countComments() {
  */
 function getCommentsPortion($limit, $offset) {
     global $conn;
-    $stmt = $conn->prepare("SELECT r.idreview, o.idbuyer, r.reported, r.text, r.rating
+    $stmt = $conn->prepare("SELECT r.idproduct, r.idreview, o.idbuyer, r.reported, r.text, r.rating
         FROM proto.review AS r
         INNER JOIN order_ AS o ON
         o.idorder = r.idorder

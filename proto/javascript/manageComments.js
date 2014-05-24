@@ -64,10 +64,11 @@ function loadComments(batch) {
     }).done(function(data) {
         $('tbody').empty();
         $('h3.panel-title').html("Comments");
+        loc = document.URL.replace(/pages(.*)/, "pages/products/product.php");
         data.forEach(function(obj) {
             //create row on table
             $('tbody').append('<tr id="review' + obj.idreview + '">' +
-                    '<td>' + obj.idreview + '</td>' +
+                    '<td> <a href="' + loc + '?id=' + obj.idproduct + '">' + obj.idreview + '</a></td>' +
                     //'<td><select class="form-control">' + stateSelect + '</select></td>'+
                     '<td id="buyer' + obj.idbuyer + '">' + obj.idbuyer + '</td>' +
                     '<td>' + obj.reported + ' </td>' +
