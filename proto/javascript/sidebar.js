@@ -138,9 +138,9 @@ function getProducts(loc) {
             result+="<div class=\"caption\">"+
                 "<h4 class=\"pull-right\">€"+obj.price+"</h4>";
             if(obj.title.length>18)
-                result+="<h4> <a href=\"{$BASE_URL}pages/products/product.php?id="+obj.idproduct+"\">"+(obj.title).substr(0,18)+"</a> </h4>";
+                result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\">"+(obj.title).substr(0,18)+"</a> </h4>";
              else   
-                result+="<h4> <a href=\"{$BASE_URL}pages/products/product.php?id="+obj.idproduct+"\">"+obj.title+"</a> </h4>";    
+                result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\">"+obj.title+"</a> </h4>";    
                             
             result+="</div>"+
             "<div class=\"ratings\">"+
