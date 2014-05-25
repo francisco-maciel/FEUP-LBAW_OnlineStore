@@ -17,6 +17,11 @@
 
 //}(window.jQuery);
 
+    var activeFilters={};
+    var category = $('#cattitle').attr("catid");
+
+
+
 function loadFilterValues(id) {
 //selected = selected || 1;
     //$('#prod_category').empty();
@@ -30,9 +35,9 @@ function loadFilterValues(id) {
             //var myObject = JSON.stringify(obj);
             //alert(myObject);
             if(obj.type===0)
-                $('#filter'+id).after("<li class=\"filterson filter"+id+"class\"><a class=\"active_selected\" href=\"#\"><span class=\"glyphicon\"></span>"+ obj.value_string +"</a></li>");
+                $('#filter'+id).after("<li class=\"filterson "+id+"\ filter=\""+id+"\" type=\""+obj.type+"\" value=\""+obj.value_string+"\"><a class=\"\" href=\"#\"><span class=\"glyphicon\"></span>"+ obj.value_string +"</a></li>");
             else
-                $('#filter'+id).after("<li class=\"filterson filter"+id+"class\"><a class=\"active_selected\" href=\"#\"><span class=\"glyphicon\"></span>"+ obj.value_int +"</a></li>");
+                $('#filter'+id).after("<li class=\"filterson "+id+"\ filter=\""+id+"\" type=\""+obj.type+"\" value=\""+obj.value_int+"\"><a class=\"\" href=\"#\"><span class=\"glyphicon\"></span>"+ obj.value_int +"</a></li>");
       });
         //$('#prod_category option[value=' + selected + ']').attr("selected", "selected");
     });
@@ -40,25 +45,33 @@ function loadFilterValues(id) {
 
 
     $('li.filter').click(function() {
-        /*var id = $(this).attr("fid");
+        var id = $(this).attr("fid");
         $(this).find("span").toggleClass('glyphicon-chevron-down glyphicon-chevron-right');
         if($(this).find("span").attr("class") === "glyphicon glyphicon-chevron-right")
-            $('.filter'+id+'class').remove();
+            $('.filterson.'+id).remove();
         else
-            loadFilterValues(id);*/
-         $('.filterson').toggle();
+            loadFilterValues(id);
     });
     
-    $('li.filterson').click(function() {
+    
+    $(document).on("click",'li.filterson', function() {
         $(this).find("a").toggleClass('active_selected');
+        var fid = $(this).attr("filter");
+        var tp = $(this).attr("type");
+        var val = $(this).attr("value");
+        var filter = {id:fid, type:tp, value:val};
+        var i = activeFilters.indexOf(filter);
+        if(i===-1)
+         activeFilters.push(filter);
+        else
+         activeFilters.splice(i,1);
+     
         filtering();
     });
     
     
+    
     function filtering() {
+        
         $('#results').empty();
     }
-    
-    $(document).ready(function() {
-         $('.filterson').toggle();
-    });

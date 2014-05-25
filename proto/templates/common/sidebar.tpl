@@ -1,22 +1,14 @@
 {if isset($cat) }
-<div id="aqui"></div>
+
 <div class="col-md-3 column margintop20">
 	<ul class="nav nav-pills nav-stacked">
-		<li class="active">  <a><span class="glyphicon "></span> {$catname}</a></li>
+		<li id="cattitle" class="active" catid="{$cat}">  <a><span class="glyphicon "></span> {$catname}</a></li>
 		
-		{for $i=0 to sizeof($filters)-1 }
-		<li class="filter active2" id="filter{$filters[$i].id}" fid="{$filters[$i].id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filters[$i].name}</a></li>
-                    {foreach $filtervalues[$i] as $fv}
-                           {if $fv.type==0}
-                        <li class="filterson filterclass"><a class="active_selected" href="#"><span class="glyphicon"></span>{$fv.value_string}</a></li>
-                            {else}
-                        <li class="filterson filterclass"><a class="active_selected" href="#"><span class="glyphicon"></span>{$fv.value_int}</a></li>
-                            {/if}
-                    {/foreach}
-                {/for}
-		<li class="filterson filterclass"><a class="active_selected" href="#"><span class="glyphicon"></span>ahsbcksaj</a></li>
+		{foreach $filters as $filter}
+		<li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
+		{/foreach}
 		<!-- <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Others</a></li> -->
-		<!-- {$filtervalues|@var_dump} -->
+		<!-- {$filters|@var_dump} -->
 	</ul>
 </div>
 
