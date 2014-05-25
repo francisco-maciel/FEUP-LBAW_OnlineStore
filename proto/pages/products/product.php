@@ -11,9 +11,11 @@ if (!$_GET['id']) {
   }
 
   $product = getProductById($_GET['id']);
+  $specs = getProductSpecs($_GET['id']);
 
 
   $smarty->assign('product', $product);
+  $smarty->assign('specs', $specs);
   $smarty->display('products/product.tpl');
 
   ?>

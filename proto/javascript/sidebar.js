@@ -50,6 +50,7 @@ function getProducts(loc) {
         dataType: "json"
     }).done(function(data) {
         $('#results').empty();
+        //verificar se data está vazio, se sim adiciona "no items found"
         data.forEach(function(obj) {
             listProducts(obj);               
       });

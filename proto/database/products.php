@@ -114,6 +114,18 @@ function getProductById($id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function getProductSpecs($id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT filter.filter_name as name, prodfilter.type as type, prodfilter.value_int as vint, prodfilter.value_string as vstring
+        FROM prodfilter
+        INNER JOIN filter
+        ON prodfilter.idfilter = filter.idfilter
+        WHERE prodfilter.idproduct = ?");
+        //GROUP BY dep.iddepartment, cat.idcategory, product.idproduct
+    $stmt->execute(array($id));
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 //DEPRECATED - use getNextProdId
 function getMaxProdId() {
     global $conn;
