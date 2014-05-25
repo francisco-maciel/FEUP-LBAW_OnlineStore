@@ -58,3 +58,11 @@ li.search-button {
 .panel-heading span {
     font-size: 15px;
 }
+
+#profile .control-label {
+    padding-top: 0px;
+}
+
+#profile .change_password {
+    padding-top: 20px;
+}
