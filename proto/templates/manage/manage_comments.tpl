@@ -19,6 +19,7 @@
                         <th><input type="text" class="form-control" placeholder="Review ID" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Buyer ID" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Reported" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Removed" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Rating" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Text" disabled></th>
                     </tr>

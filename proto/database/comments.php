@@ -8,7 +8,7 @@
 
 function getComments() {
     global $conn;
-    $stmt = $conn->prepare('SELECT r.idreview, o.idbuyer, r.reported, r.text, r.rating
+    $stmt = $conn->prepare('SELECT r.idreview, o.idbuyer, r.reported, r.removed, r.text, r.rating
         FROM proto.review AS r
         INNER JOIN order_ AS o ON
         o.idorder = r.idorder;');
@@ -18,7 +18,7 @@ function getComments() {
 
 function setReviewState($idreview, $state) {
     global $conn;
-    $stmt = $conn->prepare('UPDATE review SET reported = ?
+    $stmt = $conn->prepare('UPDATE review SET removed = ?
         WHERE review.idreview = ?;');
     return $stmt->execute(array($state, $idreview));
 }
@@ -41,7 +41,7 @@ function countComments() {
  */
 function getCommentsPortion($limit, $offset) {
     global $conn;
-    $stmt = $conn->prepare("SELECT r.idproduct, r.idreview, o.idbuyer, r.reported, r.text, r.rating
+    $stmt = $conn->prepare("SELECT r.idproduct, r.idreview, o.idbuyer, r.reported, r.removed, r.text, r.rating
         FROM proto.review AS r
         INNER JOIN order_ AS o ON
         o.idorder = r.idorder

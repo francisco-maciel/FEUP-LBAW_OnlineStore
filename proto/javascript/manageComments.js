@@ -72,6 +72,7 @@ function loadComments(batch) {
                     //'<td><select class="form-control">' + stateSelect + '</select></td>'+
                     '<td id="buyer' + obj.idbuyer + '">' + obj.idbuyer + '</td>' +
                     '<td>' + obj.reported + ' </td>' +
+                    '<td>' + obj.removed + ' </td>' +
                     '<td>' + obj.rating + ' </td>' +
                     '<td>' + obj.text + '</td>' +
                     '</tr>');
@@ -92,7 +93,7 @@ function processCtxMenuSel(selectedMenu, invokedOn) {
     $.post(loc, {review: id, state: state})
             .done(function(data) {
                 //alert("Data Loaded: " + data);
-                $('#review' + id + '>:eq(2)').html(state);
+                $('#review' + id + '>:eq(3)').html(state);
             });
 
 
