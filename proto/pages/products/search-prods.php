@@ -67,3 +67,7 @@ foreach ($tweets as $key => $tweet) {
   $smarty->assign('products', $products);
   $smarty->display('products/search.tpl');
 ?>
+
+<script type="text/javascript">
+    var base_url = "<?php echo $BASE_URL; ?>";
+</script>

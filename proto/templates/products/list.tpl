@@ -1,6 +1,6 @@
 <!-- {$d = json_encode($products)}
 {var_dump($d)} -->
-<h3>Search Results</h3>
+
 {foreach $products as $prod}
 
     <div class="col-sm-4 col-lg-4 col-md-4">

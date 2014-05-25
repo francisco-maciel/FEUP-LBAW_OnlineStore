@@ -91,3 +91,10 @@ function getFilterValues($id) {
     $stmt->execute(array($id));
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
+
+function getFilteredProducts($q) {
+    global $conn;
+    $stmt = $conn->prepare($q);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}

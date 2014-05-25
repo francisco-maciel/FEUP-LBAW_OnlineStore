@@ -48,11 +48,19 @@ function getProductsByCat($idcat) {
     return $stmt->fetchAll();
 }
 
-function filter($query) {
+function getFilteredProductsByCat($idcat) {
     global $conn;
-   $stmt = $conn->prepare($query);
-    $stmt->execute();
-    return $stmt->fetchAll();
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        ");
+    $stmt->execute(array($idcat));
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
 
