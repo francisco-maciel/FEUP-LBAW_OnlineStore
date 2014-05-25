@@ -7,9 +7,8 @@
 			{include file='common/sidebar.tpl'}
 
 		<div class="col-md-9">
-			<div >
-				<h3>Search Results</h3>
-
+			<div id="results">
+				
 				{include file='products/list.tpl'}
 
 			</div>

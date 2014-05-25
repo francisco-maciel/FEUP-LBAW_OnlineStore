@@ -89,5 +89,5 @@ function getFilterValues($id) {
                             WHERE idfilter=?
                             GROUP BY value_string, value_int, type');
     $stmt->execute(array($id));
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
+    return $stmt->fetchAll();
 }

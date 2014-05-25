@@ -3,6 +3,7 @@
   include_once($BASE_DIR .'database/products.php');
   include_once($BASE_DIR .'database/departments.php');
   include_once($BASE_DIR .'database/categories.php');
+  include_once($BASE_DIR .'database/filters.php');
 
 /*
 if (!$_GET['search']) {
@@ -30,6 +31,10 @@ if (!$_GET['search']) {
         $smarty->assign('catname',$catname['name']);
         $smarty->assign('cat',$cat);
         $filters = getCatFilters($_GET['cat']);
+        for($i=0; $i<sizeof($filters); $i++) {
+            $filtervalues[$i] = getFilterValues($filters[$i]['id']);
+        }
+        $smarty->assign('filtervalues',$filtervalues);
         $smarty->assign('filters',$filters);
     }
     elseif(isset($_GET['dep'])){

@@ -27,22 +27,35 @@ function loadFilterValues(id) {
         dataType: "json"
     }).done(function(data) {
         data.forEach(function(obj) {
-            var myObject = JSON.stringify(obj);
+            //var myObject = JSON.stringify(obj);
             //alert(myObject);
-            if(obj.type==0)
-                $('#filter'+id).after("<li><a><span class=\"glyphicon\"></span>"+ obj.value_string +"</a></li>");
+            if(obj.type===0)
+                $('#filter'+id).after("<li class=\"filterson filter"+id+"class\"><a class=\"active_selected\" href=\"#\"><span class=\"glyphicon\"></span>"+ obj.value_string +"</a></li>");
             else
-                $('#filter'+id).after("<li><a><span class=\"glyphicon\"></span>"+ obj.value_int +"</a></li>");
-
+                $('#filter'+id).after("<li class=\"filterson filter"+id+"class\"><a class=\"active_selected\" href=\"#\"><span class=\"glyphicon\"></span>"+ obj.value_int +"</a></li>");
       });
         //$('#prod_category option[value=' + selected + ']').attr("selected", "selected");
     });
 }
 
-$(document).ready(function() {
+
     $('li.filter').click(function() {
+        var id = $(this).attr("fid");
         $(this).find("span").toggleClass('glyphicon-chevron-down glyphicon-chevron-right');
-        loadFilterValues($(this).attr("fid"));
-        //$('#aqui').append("<li>  <a><span></span> YEAH</a></li>");
+        if($(this).find("span").attr("class") === "glyphicon glyphicon-chevron-right")
+            $('.filter'+id+'class').remove();
+        else
+            loadFilterValues(id);
     });
-});
+    
+    $('li.filterson').click(function() {
+        $(this).find("a").toggleClass('active_selected');
+        filtering();
+    });
+    
+    
+    function filtering() {
+        $('#results').empty();
+    }
+    
+ 

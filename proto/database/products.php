@@ -48,6 +48,13 @@ function getProductsByCat($idcat) {
     return $stmt->fetchAll();
 }
 
+function filter($query) {
+    global $conn;
+   $stmt = $conn->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
 
 function getProductsByDep($iddep) {
     global $conn;
