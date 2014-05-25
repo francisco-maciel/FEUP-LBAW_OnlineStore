@@ -17,7 +17,7 @@
 
 //}(window.jQuery);
 
-    var activeFilters={};
+    var activeFilters=[];
     var category = $('#cattitle').attr("catid");
 
 
@@ -53,24 +53,31 @@ function loadFilterValues(id) {
             loadFilterValues(id);
     });
     
-    
+    function include(id) {
+        for(var x=0; x < activeFilters.length; x++) {
+            if(activeFilters[x].fid === id)
+                return x;
+        }
+        return -1;
+    }
+
     $(document).on("click",'li.filterson', function() {
         $(this).find("a").toggleClass('active_selected');
         var fid = $(this).attr("filter");
-        var tp = $(this).attr("type");
-        var val = $(this).attr("value");
-        var filter = {id:fid, type:tp, value:val};
-        var i = activeFilters.indexOf(filter);
-        if(i===-1)
+        var i = include(fid);
+        if(i===-1){
+         var tp = $(this).attr("type");
+         var val = $(this).attr("value");
+         var filter = {id:fid, type:tp, value:val};
          activeFilters.push(filter);
-        else
+        }
+        else{
          activeFilters.splice(i,1);
-     
+        }
         filtering();
     });
     
-    
-    
+   
     function filtering() {
         
         $('#results').empty();
