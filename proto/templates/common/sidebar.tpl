@@ -3,7 +3,7 @@
 <div class="col-md-3 column margintop20">
 	<ul class="nav nav-pills nav-stacked">
 		<li class="active">  <a><span class="glyphicon "></span> {$catname}</a></li>
-		{$filtervalues|@var_dump}
+		
 		{for $i=0 to sizeof($filters)-1 }
 		<li class="filter active2" id="filter{$filters[$i].id}" fid="{$filters[$i].id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filters[$i].name}</a></li>
                     {foreach $filtervalues[$i] as $fv}

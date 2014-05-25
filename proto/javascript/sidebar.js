@@ -40,12 +40,13 @@ function loadFilterValues(id) {
 
 
     $('li.filter').click(function() {
-        var id = $(this).attr("fid");
+        /*var id = $(this).attr("fid");
         $(this).find("span").toggleClass('glyphicon-chevron-down glyphicon-chevron-right');
         if($(this).find("span").attr("class") === "glyphicon glyphicon-chevron-right")
             $('.filter'+id+'class').remove();
         else
-            loadFilterValues(id);
+            loadFilterValues(id);*/
+         $('.filterson').toggle();
     });
     
     $('li.filterson').click(function() {
@@ -58,4 +59,6 @@ function loadFilterValues(id) {
         $('#results').empty();
     }
     
- 
+    $(document).ready(function() {
+         $('.filterson').toggle();
+    });
