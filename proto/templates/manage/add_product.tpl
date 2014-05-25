@@ -3,8 +3,13 @@
 <div class="container">
 
     <div class="row">
-
+        {if (isset($param))}
         <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php{$param}" >
+            {else}
+            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php" >
+
+            {/if}
+
             <fieldset id="add_product">
 
                 <!-- Form Name -->
@@ -43,7 +48,7 @@
                 <div class="form-group has-feedback">
                     <label class="col-md-4 control-label" for="prod_stock">Stock availiable</label>
                     <div class="col-md-2 ">
-                        <input id="prod_stock" name="prod_stock" type="number" placeholder="Enter stock" class="form-control input-md" required="">
+                        <input id="prod_stock" name="prod_stock" placeholder="Enter stock" class="form-control input-md" required="">
                         <span class="form-control-feedback"></span>
                     </div>
                 </div>
@@ -52,7 +57,7 @@
                 <div class="form-group has-feedback">
                     <label class="col-md-4 control-label" for="prod_price">Price</label>
                     <div class="col-md-2">
-                        <input id="prod_price" name="prod_price" type="number" placeholder="Enter price" class="form-control input-md" required="">
+                        <input id="prod_price" name="prod_price" placeholder="Enter price" class="form-control input-md" required="">
                         <span class="form-control-feedback"></span>
                     </div>
                 </div>

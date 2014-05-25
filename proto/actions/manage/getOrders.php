@@ -13,6 +13,13 @@ if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
 
-$res = getOrders();
+$offset = filter_input(INPUT_GET, 'offset');
+$limit = filter_input(INPUT_GET, 'limit');
+
+if (isset($offset) && isset($limit)) {
+    $res = getOrdersPortion($limit, $offset);
+} else {
+    $res = getOrders();
+}
 
 print_r(json_encode($res));

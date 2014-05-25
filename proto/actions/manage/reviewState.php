@@ -7,14 +7,20 @@
  */
 
 include_once '../../config/init.php';
-include_once $BASE_DIR . 'database/orders.php';
+include_once $BASE_DIR . 'database/comments.php';
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
 
-$count = countOrders();
+$idreview = filter_input(INPUT_POST, 'review');
+$state = filter_input(INPUT_POST, 'state');
 
-$smarty->assign('pages', (int) ($count['count'] / 20));
+if (!isset($idreview) || !isset($state)) {
+    print_r("Invalid Request params.");
+    exit();
+}
 
-$smarty->display('manage/manage_orders.tpl');
+$res = setReviewState($idreview, $state);
+
+print_r(json_encode($res));

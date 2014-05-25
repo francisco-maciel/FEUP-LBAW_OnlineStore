@@ -98,14 +98,34 @@ function getBuyerByEmail($email) {
     return $stmt->fetch();
 }
 
+function getUserById($id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM user_, address, buyer "
+            . "WHERE user_.iduser = $id "
+            . "AND user_.iduser = address.idbuyer "
+            . "AND user_.iduser = buyer.iduser");
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
 //Excludes admins
 function getUsersNoAdmins() {
     global $conn;
-    $stmt = $conn->prepare("SELECT iduser, user_type, email, name "
-            . "FROM User_ WHERE user_type != 2 "
-            . "ORDER BY user_type;");
+    $stmt = $conn->prepare("SELECT user_.iduser, user_.user_type, user_.email, user_.name, buyer.banned "
+            . "FROM User_ "
+            . "INNER JOIN buyer ON "
+            . "user_.iduser = buyer.iduser "
+            . "WHERE user_.user_type != 2 "
+            . "ORDER BY user_.user_type;");
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function banUser($userId) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE buyer SET banned = true WHERE iduser = $userId");
+    $result = $stmt->execute();
     return $result;
 }
 
@@ -113,5 +133,35 @@ function setUserLevel($id, $level) {
     global $conn;
     $stmt = $conn->prepare("UPDATE user_ SET user_type = ? WHERE iduser = ?");
     $result = $stmt->execute(array($level, $id));
+    return $result;
+}
+
+/**
+ * Fecth all users that are not admins limiting the results, retrieving
+ * only a portion
+ */
+function getUsersNoAdminsPortion($limit, $offset) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT user_.iduser, user_.user_type, user_.email, user_.name, buyer.banned "
+            . "FROM User_ "
+            . "INNER JOIN buyer ON "
+            . "user_.iduser = buyer.iduser "
+            . "WHERE user_.user_type != 2 "
+            . "ORDER BY user_.date_signed "
+            . "OFFSET $offset LIMIT $limit;");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function countBuyers() {
+    global $conn;
+    $stmt = $conn->prepare("SELECT Count(user_.iduser)
+        from user_
+        Inner join buyer
+        on buyer.iduser = user_.iduser
+        where user_type !=2;");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }

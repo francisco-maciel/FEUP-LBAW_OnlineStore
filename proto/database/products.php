@@ -32,7 +32,42 @@ function getProductsByName($namepart) {
     return $stmt->fetchAll();
 }
 
-//Return a product filers by prod id
+
+function getProductsByCat($idcat) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        ");
+    $stmt->execute(array($idcat));
+    return $stmt->fetchAll();
+}
+
+
+function getProductsByDep($iddep) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name,
+        cat.iddepartment, dep.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        INNER JOIN department dep
+        ON dep.iddepartment = cat.iddepartment
+        WHERE dep.iddepartment = ?
+        ");
+    $stmt->execute(array($iddep));
+    return $stmt->fetchAll();
+}
+
+//Return a product filters by prod id
 function getProductFilters($prod_id) {
     global $conn;
     $stmt = $conn->prepare("SELECT * from filter
@@ -50,19 +85,17 @@ function getProductById($id) {
         product.stock, product.price,
         product.img, product.description,
         cat.idcategory,
-        cat.iddepartment
+        cat.iddepartment,
+        cat.name as catname,
+        dep.name as depname
         FROM product
-        INNER JOIN prodfilter pf
-        ON pf.idproduct = product.idproduct
-        INNER JOIN catfilter cf
-        ON pf.idfilter = cf.idfilter
         INNER JOIN category cat
-        ON cf.idcategory = cat.idcategory
-        INNER JOIN filter f
-        ON f.idfilter = pf.idfilter
-        WHERE product.idproduct = $id
-        GROUP BY cat.idcategory, product.idproduct");
-    $stmt->execute();
+        ON cat.idcategory = product.idcategory
+        INNER JOIN department dep
+        ON cat.iddepartment = dep.iddepartment
+        WHERE product.idproduct = ?");
+        //GROUP BY dep.iddepartment, cat.idcategory, product.idproduct
+    $stmt->execute(array($id));
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
@@ -81,10 +114,45 @@ function getNextProdId() {
     return $stmt->fetch(PDO::FETCH_OBJ);
 }
 
-function addProduct($title, $description, $price, $stock, $img) {
+function addProduct($title, $description, $price, $stock, $img, $catid) {
     global $conn;
 
-    $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock,img) VALUES (?,?,?,?,?)");
+    $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock,img,idcategory) VALUES (?,?,?,?,?,?)");
 
-    return $stmt->execute(array($title, $description, $price, $stock, $img));
+    return $stmt->execute(array($title, $description, $price, $stock, $img, $catid));
+}
+
+function getWishListProducts($email) {
+    global $conn;
+
+    $stmt = $conn->prepare("select product.idproduct,
+    product.title, product.description,
+    product.price,product.stock,
+    product.removed,product.img,
+    product.idcategory from product,user_,
+    wishlist where user_.email = ?
+    AND user_.idUser = wishlist.idUser
+    AND product.idProduct = wishlist.idProduct;");
+    $stmt->execute(array($email));
+
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+function addProductToWishList($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("INSERT INTO wishlist(iduser,idproduct,date_added)
+    VALUES ((SELECT user_.iduser from user_ where user_.email = ?),?,null)");
+
+   return $stmt->execute(array($email, $id));
+}
+
+function isOnWishList($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM wishlist,user_ where user_.email = ? AND
+    wishlist.iduser = user_.idUser AND wishlist.idProduct = ?");
+    $stmt->execute(array($email, $id));
+    return $stmt->fetchAll();
 }

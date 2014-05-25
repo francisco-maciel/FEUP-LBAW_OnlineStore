@@ -7,14 +7,22 @@
  */
 
 include_once '../../config/init.php';
-include_once $BASE_DIR . 'database/orders.php';
+include_once $BASE_DIR . 'database/comments.php';
+
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
 
-$count = countOrders();
+$offset = filter_input(INPUT_GET, 'offset');
+$limit = filter_input(INPUT_GET, 'limit');
 
-$smarty->assign('pages', (int) ($count['count'] / 20));
+if (isset($offset) && isset($limit)) {
+    $res = getCommentsPortion($limit, $offset);
+} else {
+    $res = getComments();
+}
 
-$smarty->display('manage/manage_orders.tpl');
+
+
+print_r(json_encode($res));

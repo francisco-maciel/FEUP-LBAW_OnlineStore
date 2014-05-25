@@ -22,11 +22,20 @@
 
     <link href="{$BASE_URL}css/shop-homepage.css" rel="stylesheet">
     <link href="{$BASE_URL}css/general.css" rel="stylesheet">
+    <link href="{$BASE_URL}css/alertify.core.css" rel="stylesheet">
 
+    <link href="{$BASE_URL}css/alertify.default.css" rel="stylesheet">
 
+    <!--
+    <link href="{$BASE_URL}css/sidebar.css" rel="stylesheet">
+    <link href="{$BASE_URL}css/bootstrap-combined.min.css" rel="stylesheet">
+    <script src="{$BASE_URL}javascript/sidebar.js"></script> -->
 
     <script src="{$BASE_URL}javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
+
+    
+
 
 </head>
 

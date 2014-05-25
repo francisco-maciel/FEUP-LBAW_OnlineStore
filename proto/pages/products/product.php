@@ -11,9 +11,15 @@ if (!$_GET['id']) {
   }
 
   $product = getProductById($_GET['id']);
+  $addWishListButton = false;
+  if (isset($_SESSION['permission']) && isset($_SESSION['email'])) {
 
+      $addWishListButton = !isOnWishList($_SESSION['email'], $_GET['id']);
+  }
 
   $smarty->assign('product', $product);
+  $smarty->assign('addWishListButton', $addWishListButton);
+// TODO USAR No template
   $smarty->display('products/product.tpl');
 
   ?>

@@ -48,55 +48,52 @@ $(document).ready(function() {
         }
     });
 
-    loadUsers(0);
+    loadComments(0);
 });
 
-function processCtxMenuSel(selectedMenu, invokedOn) {
-    var level = selectedMenu.text();
-    var id = invokedOn.context.previousSibling.textContent;
-    var loc = document.URL.replace(/pages(.*)/, "actions/manage/setUserLevel.php");
-    $.post(loc, {userId: id, level: level})
-            .done(function(data) {
-                //alert("Data Loaded: " + data);
-                if (data === "true") {
-                    $('#user' + id).next().html(level);
-                }
-            }).fail(function(jqXHR, textStatus) {
-        alert("FAILED!\nWhat: SetLevel\nWhy: " + textStatus);
-    });
-}
 
-var types = [
-    "Buyer",
-    "Manager"
-];
-
-function loadUsers(batch) {
+function loadComments(batch) {
     var limit = 20;
     var offset = 20 * batch;
-    $('h3.panel-title').html("Users (Loading...)");
-    var loc = document.URL.replace(/pages(.*)/, "actions/manage/getUsers.php?limit=" + limit + "&offset=" + offset);
+    var loc = document.URL.replace(/pages\/(.*)/, "actions/manage/getComments.php?limit=" + limit + "&offset=" + offset);
+    $('h3.panel-title').html("Comments (Loading...)");
     $.ajax({
         url: loc,
         context: document.body,
         dataType: 'json'
     }).done(function(data) {
         $('tbody').empty();
-        $('h3.panel-title').html("Users");
-        loc = document.URL.replace(/pages(.*)/, "pages/users/profile.php");
+        $('h3.panel-title').html("Comments");
+        loc = document.URL.replace(/pages(.*)/, "pages/products/product.php");
         data.forEach(function(obj) {
             //create row on table
-
-            $('tbody').append('<tr>\n\
-                <td id="user' + obj.iduser + '"><a href="' + loc + '?id=' + obj.iduser + '">' + obj.iduser + '</a></td>' +
+            $('tbody').append('<tr id="review' + obj.idreview + '">' +
+                    '<td> <a href="' + loc + '?id=' + obj.idproduct + '">' + obj.idreview + '</a></td>' +
                     //'<td><select class="form-control">' + stateSelect + '</select></td>'+
-                    '<td>' + types[obj.user_type] + '</td>' +
-                    '<td>' + obj.name + '</td>' +
-                    '<td> ' + obj.email + ' </td>' +
-                    '<td> ' + obj.banned + ' </td>' +
+                    '<td id="buyer' + obj.idbuyer + '">' + obj.idbuyer + '</td>' +
+                    '<td>' + obj.reported + ' </td>' +
+                    '<td>' + obj.rating + ' </td>' +
+                    '<td>' + obj.text + '</td>' +
                     '</tr>');
         }).fail(function(jqXHR, textStatus) {
-            alert("FAILED!\nWhat: Load Users\nWhy: " + textStatus);
+            alert("FAILED!\nWhat: Comments\nWhy: " + textStatus);
         });
     });
+}
+
+function processCtxMenuSel(selectedMenu, invokedOn) {
+    var state = selectedMenu.text();
+    if (state === "Yes")
+        state = "true";
+    else
+        state = "false";
+    var id = invokedOn.parent().attr("id").split("review")[1];
+    var loc = document.URL.replace(/pages\/(.*)/, "actions/manage/reviewState.php");
+    $.post(loc, {review: id, state: state})
+            .done(function(data) {
+                //alert("Data Loaded: " + data);
+                $('#review' + id + '>:eq(2)').html(state);
+            });
+
+
 }

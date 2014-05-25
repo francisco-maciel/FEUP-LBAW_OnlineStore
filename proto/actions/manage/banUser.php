@@ -7,14 +7,20 @@
  */
 
 include_once '../../config/init.php';
-include_once $BASE_DIR . 'database/orders.php';
+include_once $BASE_DIR . 'database/users.php';
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
 
-$count = countOrders();
 
-$smarty->assign('pages', (int) ($count['count'] / 20));
+$buyerid = filter_input(INPUT_GET, 'id');
 
-$smarty->display('manage/manage_orders.tpl');
+if (!isset($buyerid)) {
+    print_r("Invalid Request params.");
+    exit();
+}
+
+$res = banUser($buyerid);
+
+print_r(json_encode($res));
