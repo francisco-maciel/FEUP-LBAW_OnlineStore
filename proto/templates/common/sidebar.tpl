@@ -11,6 +11,7 @@
 		{foreach $filters as $filter}
 		<li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
 		{/foreach}
+                <li class="example sliderbox active2"><text class="pricerange" id=pr1></text> - <text class="pricerange" id=pr2></text><div class="slider"></div></li>
 		<!-- <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Others</a></li> -->
 		<!-- {$filters|@var_dump} -->
 	</ul>
@@ -39,6 +40,7 @@
                     <li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
                     {/foreach}
                 {/if}
+                <li class="example sliderbox active2"><div id="prg">Price Range: <text class="pricerange" id=pr1></text> - <text class="pricerange" id=pr2></text></div><div class="slider"></div></li>
 	</ul>
 </div>
 
@@ -54,5 +56,10 @@
 </div>
 {/if}
 
+
+
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="{$BASE_URL}javascript/vendor/jquery.nouislider.min.js"></script>
+<link href="{$BASE_URL}css/jquery.nouislider.css" rel="stylesheet">
+
 <script src="{$BASE_URL}javascript/sidebar.js"></script>

@@ -174,3 +174,39 @@ function listProduct(obj) {
     
     $('#results').append(result);
 }
+
+
+
+$('.slider').noUiSlider({
+    start: [ 20, 30 ],
+    connect: true,
+    range: {
+        'min': 10,
+        'max': 40
+    },
+    
+    serialization: {
+        lower: [
+            $.Link({
+                target: $("#pr1"),
+                method: updateRange
+            })
+        ],
+		upper: [
+            $.Link({
+                target: $("#pr2"),
+                method: updateRange
+            })
+        ],
+        format: {
+            decimals: 0   
+        }
+    }
+});
+
+/*
+$('.slider').on('slide', updateRange);
+*/
+function updateRange(value) {
+     $(this).html(value);
+}

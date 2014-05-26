@@ -75,3 +75,33 @@ li.search-button {
     color: #000090;
 }
 
+/*
+.example:before {
+content: "Example";
+position: absolute;
+
+font: 700 12px Arial;
+color: #bbb;
+text-transform: uppercase;
+letter-spacing: 1px;
+}*/
+
+
+
+.pricerange {
+    font-weight: bold;
+}
+
+#prg {
+   color:#428bca;
+   padding: 3px 5px 10px;
+}
+
+.sliderbox {
+border: 1px solid #ddd;
+border-radius: 4px;
+position: relative;
+padding: 5px 15px 10px;
+margin: 20px 0;
+overflow: hidden;
+}
