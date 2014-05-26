@@ -152,11 +152,11 @@ function getProducts(loc) {
                             
             result+="</div><div class=\"ratings\">"+
                     "<p class=\"pull-right\">15 reviews</p><p>"+
-                    "<span class=\"glyphicon glyphicon-star\"></span>"+
-                    "<span class=\"glyphicon glyphicon-star\"></span>"+
-                    "<span class=\"glyphicon glyphicon-star\"></span>"+
-                    "<span class=\"glyphicon glyphicon-star\"></span>"+
-                    "<span class=\"glyphicon glyphicon-star\"></span>"+
+                    "<span class=\"glyphicon glyphicon-star\"></span>\n"+
+                    "<span class=\"glyphicon glyphicon-star\"></span>\n"+
+                    "<span class=\"glyphicon glyphicon-star\"></span>\n"+
+                    "<span class=\"glyphicon glyphicon-star\"></span>\n"+
+                    "<span class=\"glyphicon glyphicon-star\"></span>\n"+
                     "</p></div></div><br></div>";
             
      $('#results').append(result);
