@@ -33,6 +33,26 @@ $(document).ready(function () {
     $('#change_password_form').submit(checkPassword);
 })
 
+function banUser(id) {
+    var loc = document.URL.replace(/pages(.*)/, "actions/manage/banUser.php?id=" + id);
+    $.get(loc, function() {
+        alert("Buyer banned");      //FIXME
+        window.location.replace("http://localhost:4567/lbaw-loja-online/proto/pages/admin_area/manage_users.php");
+    }).fail(function(data) {
+        alert("ERROR!\nWhat: Ban User\nWhy: " + data.statusText);
+    });
+}
+
+function deleteAccount(id) {
+    var loc = document.URL.replace(/pages(.*)/, "actions/users/deleteAccount.php?id=" + id);
+    $.get(loc, function() {
+        alert("Account Deleted");      //FIXME
+        window.location.replace("http://localhost/lbaw/proto/pages/homepage.php");
+    }).fail(function(data) {
+        alert("ERROR!\nWhat: Delete Account\nWhy: " + data.statusText);
+    });
+}
+
 function addError(error_text) {
     $('#error_messages').hide().append( "<div class='col-md-12 message error_message'><div class='panel panel-danger'><div class='panel-heading'><h3 class='panel-title'>"+error_text+"</h3><span class='pull-right clickable message-closer'><i class='glyphicon glyphicon-remove'></i></span></div> </div></div>");
 

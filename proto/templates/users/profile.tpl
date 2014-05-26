@@ -21,6 +21,27 @@
     <!-- /.modal-dialog -->
 </div>
 
+<div class="modal fade delete-account" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+            </div>
+            <div class="modal-body">
+                <p>Deleting your account means all you data will be removed form our database, and you can no longer log in</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger btn-primary" data-dismiss="modal" onclick="deleteAccount({$user['iduser']})">Yes I am</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
 <div class="container" id="profile">
     <div class="row">
         <form id="profile_form" class="form-horizontal" method="post" action="{$BASE_URL}actions/users/editProfile.php" accept-charset="UTF-8">
@@ -155,6 +176,12 @@
                         </div>
                     </div>
                 </form>
+
+                <div class="col-md-1" style="left:-250px">
+                    <button class="btn btn-warning btn-danger" data-toggle="modal" data-target=".delete-account">
+                        Delete Account
+                    </button>
+                </div>
             {else}
                 <!-- Added on 19-05 by Vitor Mota, add admin ban funcionality -->
                 <div class="col-md-1">

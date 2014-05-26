@@ -122,6 +122,19 @@ function getUsersNoAdmins() {
     return $result;
 }
 
+function deleteAccount($userId) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE buyer SET banned = true, nif=999999990 WHERE iduser = $userId");
+    $result = $stmt->execute();
+
+    $stmt = $conn->prepare("UPDATE user_ SET name='User Deleted', phone=' ', email=' ', password=' ' WHERE iduser = $userId");
+    $result += $stmt->execute();
+
+    $stmt = $conn->prepare("UPDATE address SET street=' ', door_nr=' ', postcode=' ', formatted_address=' ' WHERE idbuyer = $userId");
+    $result += $stmt->execute();
+    return $result;
+}
+
 function banUser($userId) {
     global $conn;
     $stmt = $conn->prepare("UPDATE buyer SET banned = true WHERE iduser = $userId");
