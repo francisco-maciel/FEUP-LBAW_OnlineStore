@@ -1,6 +1,3 @@
-<!-- {$d = json_encode($products)}
-{var_dump($d)} -->
-
 {foreach $products as $prod}
 
     <div class="col-sm-4 col-lg-4 col-md-4">
@@ -13,13 +10,13 @@
                 {/if}
 
             <div class="caption">
-                <h4 class="pull-right">€{$prod.price}</h4>
-                {if (strlen($prod.title)>18)}
-                <h4> <a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}">{substr($prod.title,0,18)}</a> </h4>
+                
+                {if (strlen($prod.title)>28)}
+                <h4> <a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}">{substr($prod.title,0,28)}</a> </h4>
                 {else}
                 <h4> <a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}">{$prod.title}</a> </h4>
                 {/if}
-                
+                <h4 class="pull-right">€{$prod.price}</h4>
             </div>
             <div class="ratings">
                 <p class="pull-right">15 reviews</p>

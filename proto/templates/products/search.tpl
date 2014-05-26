@@ -5,7 +5,9 @@
 	<div class="row">
         <ol class="breadcrumb">
         <li><a href="{$BASE_URL}">Home</a></li>
-        {if isset($cat) }
+        {if isset($search)}
+        <li class="active">Search: {$search}</li>
+        {elseif isset($cat) }
         <li><a href="{$BASE_URL}pages/products/search-prods.php?dep={$depm.id}">{$depm.name}</a></li>
         <li class="active"><a href="{$BASE_URL}pages/products/search-prods.php?cat={$cat}">{$catname}</a></li>
         {else}

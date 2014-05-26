@@ -20,8 +20,13 @@ if (!$_GET['search']) {
     //NEW
     if (isset($_GET['search'])) {
         $namepart = $_GET['search'];
-        $products = getProductsByName($namepart);
+        $products = getProductsByName($namepart); 
         global $smarty;
+        if(!empty($products)) {
+            $filters = getSearchFilters($products);
+            $smarty->assign('filters',$filters);
+        }
+        $smarty->assign('search',$namepart);
         $smarty->assign('FORM_VALUES',$_GET);
     }
     elseif(isset($_GET['cat'])) {
@@ -33,10 +38,6 @@ if (!$_GET['search']) {
         $depm = getDepfromCat($catid);
         $smarty->assign('depm',$depm);
         $filters = getCatFilters($_GET['cat']);
-     /*   for($i=0; $i<sizeof($filters); $i++) {
-            $filtervalues[$i] = getFilterValues($filters[$i]['id']);
-        }
-        $smarty->assign('filtervalues',$filtervalues); */
         $smarty->assign('filters',$filters);
     }
     elseif(isset($_GET['dep'])){

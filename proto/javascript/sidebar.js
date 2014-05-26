@@ -1,25 +1,5 @@
-//!function ($) {
-
-    // Le left-menu sign
-    // for older jquery version
-/*
-    $('#filters').click(function () {
-        $(this).find('i:first').toggleClass("glyphicon glyphicon-chevron-down"); 
-    }); */
-   /*
-    $(document).on("click","#filters ul.nav li.parent > a > span.filter", function(){          
-        $(this).find('i:first').toggleClass("glyphicon glyphicon-chevron-down");      
-    }); 
-*/
-    // Open Le current menu
-    //$("#left ul.nav li.parent.active > a > span.sign").find('i:first').addClass("icon-minus");
-   // $("#left ul.nav li.current").parents('ul.children').addClass("in");
-
-//}(window.jQuery);
-
-    var activeFilters=[];
-    var category = $('#cattitle').attr("catid");
-
+var activeFilters=[];
+var category = $('#cattitle').attr("catid");
 
 
 function loadFilterValues(id) {

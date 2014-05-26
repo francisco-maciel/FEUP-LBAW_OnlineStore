@@ -98,3 +98,24 @@ function getFilteredProducts($q) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
+
+function getSearchFilters($list) {
+    global $conn;
+    $wherefield = "where (";
+    for($i=0; $i<sizeof($list); $i++) {
+        if($i!=0){
+            $wherefield .= " OR ";
+        }
+        $wherefield.="prodfilter.idproduct=".($list[$i]['idproduct']);
+    }
+    $wherefield .= ")";
+    $stmt = $conn->prepare("
+        SELECT filter.idfilter as id, filter.filter_name as name
+        FROM filter
+        INNER JOIN prodfilter
+        ON prodfilter.idfilter = filter.idfilter ". $wherefield.
+        " GROUP BY filter.idfilter, filter.filter_name
+        ORDER BY filter_name");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}

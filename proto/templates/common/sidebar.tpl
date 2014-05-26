@@ -27,8 +27,22 @@
 	</ul>
 </div>
 
-{else}
+{elseif isset($search)}
 
+<div class="col-md-3 column margintop20">
+	<ul class="nav nav-pills nav-stacked">
+		<li id="searchtitle" class="active" search="{$search}">  <a><span class="glyphicon "></span> Filters</a></li>          
+		{if (!isset($filters))}
+                   <li class="active2"><a href="#"><span class="glyphicon"></span> No Filters!</a></li>
+                {else}
+                    {foreach $filters as $filter}
+                    <li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
+                    {/foreach}
+                {/if}
+	</ul>
+</div>
+
+{else}
 <div class="col-md-3 column margintop20">
 	<ul class="nav nav-pills nav-stacked">
 		<li class="active"><a><span class="glyphicon "></span> Departments </a></li>              
@@ -38,7 +52,6 @@
 		<!--   { var_dump($departments) } -->
 	</ul>
 </div>
-
 {/if}
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
