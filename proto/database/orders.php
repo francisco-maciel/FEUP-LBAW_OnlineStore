@@ -42,12 +42,13 @@ function getOrdersPortion($limit, $offset) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getOrdersByBuyer($idbuyer) {
     global $conn;
-    $sql = 'SELECT * FROM order_, state WHERE order_.idbuyer=? AND order_.idstate=state.idstate ORDER BY order_.idorder';
+    $sql = 'SELECT order_.idorder, state.name, order_.date_placed, order_.date_shipped, SUM(orderline.price_per_unit * orderline.quantity) AS ordertotal, transporter.price
+            FROM order_, state, orderline, transporter WHERE order_.idbuyer=? AND order_.idstate=state.idstate AND order_.idorder = orderline.idorder AND order_.idtransporter = transporter.idtransporter GROUP BY order_.idorder,state.name, transporter.price ORDER BY order_.idorder';
     $stmt = $conn->prepare($sql);
     $stmt->execute(array($idbuyer));
     return $stmt->fetchAll();
 }
-
+//    $sql = 'SELECT SUM(price_per_unit * quantity) AS total FROM OrderLine WHERE idOrder =' . $id_order;
 function getOrderDetailById($idOrder) {
     global $conn;
     $sql = "SELECT order_.idorder AS orderid, user_.name AS buyername, user_.email, buyer.nif, address.street, address.door_nr, address.postcode, address.formatted_address, state.name AS orderstate,

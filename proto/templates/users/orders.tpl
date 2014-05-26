@@ -4,7 +4,7 @@
         <th>{$myOrder.name}</th>
         <th>{$myOrder.date_placed}</th>
         <th>{$myOrder.date_shipped}</th>
-        <th></th>
+        <th>€{$myOrder.ordertotal + $myOrder.price}</th>
     </tbody>
 {/foreach}
 
