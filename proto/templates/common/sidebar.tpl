@@ -3,7 +3,11 @@
 <div class="col-md-3 column margintop20">
 	<ul class="nav nav-pills nav-stacked">
 		<li id="cattitle" class="active" catid="{$cat}">  <a><span class="glyphicon "></span> {$catname}</a></li>
-		
+                
+                {if (!$filters)}
+                   <li class="active2"><a href="#"><span class="glyphicon"></span> No Filters!</a></li>
+                {/if}
+
 		{foreach $filters as $filter}
 		<li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
 		{/foreach}
