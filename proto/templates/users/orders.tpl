@@ -1,6 +1,6 @@
 {foreach $myOrders as $myOrder}
     <tbody>
-        <th>{$myOrder.idorder}</th>
+        <th><a href="{$BASE_URL}pages/users/order.php/?id={$myOrder.idorder}">{$myOrder.idorder}</a></th>
         <th>{$myOrder.name}</th>
         <th>{$myOrder.date_placed}</th>
         <th>{$myOrder.date_shipped}</th>

@@ -1,9 +1,6 @@
 
 {include file='common/header.tpl'}
 
-<link rel="stylesheet" href="{$BASE_URL}css/manageOrders.css">
-
-
 <div class="container">
     <h3>My orders</h3>
     <hr>
