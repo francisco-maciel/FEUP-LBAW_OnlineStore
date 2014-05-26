@@ -208,5 +208,5 @@ $('.slider').noUiSlider({
 $('.slider').on('slide', updateRange);
 */
 function updateRange(value) {
-     $(this).html(value);
+     $(this).html(value+"€");
 }
