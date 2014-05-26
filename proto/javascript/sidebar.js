@@ -1,4 +1,4 @@
-var activeFilters=[];
+var activeFilters=[]; //{id:fid, type:tp, value:val}
 var category = $('#cattitle').attr("catid");
 var search = $('#searchtitle').attr("search");
 var openfilters=[];
@@ -50,7 +50,23 @@ function getProducts(loc) {
     });
 }
 
+function include(id) {
+    for(var x=0; x < activeFilters.length; x++) {
+        if(activeFilters[x].id === id)
+            return x;
+    }
+    return -1;
+}
 
+function removeFromActive(id) {
+    for(var x=0; x < activeFilters.length; x++) {
+        if(activeFilters[x].id === id){
+            activeFilters.slice(x,1);
+        }
+    }
+}
+
+//filter name click (expand/collapse)
 $('li.filter').click(function() {
     var id = $(this).attr("fid");
     $(this).find("span").toggleClass('glyphicon-chevron-down glyphicon-chevron-right');
@@ -62,17 +78,18 @@ $('li.filter').click(function() {
         $('.filterson.'+id).toggle();
 });
 
-
-function include(id) {
-    for(var x=0; x < activeFilters.length; x++) {
-        if(activeFilters[x].id === id)
-            return x;
-    }
-    return -1;
-}
-
+//filter value click
 $(document).on("click",'li.filterson', function() {
-    //falta verificar se já está activado outro valor p o mesmo filtro
+    //verificar se já está activado outro valor p o mesmo filtro
+    
+    if(($(this).find("a").attr("class"))!=='active_selected') {
+        var ffid=parseInt($(this).attr("filter"));
+        var findex = include(ffid);
+        if(findex!==-1) {
+            activeFilters.splice(findex,1);
+            $('.filterson.'+ffid).find("a").removeClass('active_selected');
+        }
+    }
     $(this).find("a").toggleClass('active_selected');
     var fid = parseInt($(this).attr("filter"));
     var i = include(fid);
@@ -83,25 +100,19 @@ $(document).on("click",'li.filterson', function() {
             val = $(this).attr("value");
         else
             val = parseInt($(this).attr("value"));
-        // var filter = {id:fid, type:tp, value:val};
         
         activeFilters.push({id:fid, type:tp, value:val});
     }
     else{
         activeFilters.splice(i,1);
     }
-    //alert(JSON.stringify(activeFilters));
     filtering();
 });
 
-
+//queries para filtragem de resultados
 function filtering() {
-    //se activeFilters = vazio -> pesquisa categoria
-    //senao, forma query e faz pedido à bd
-    //apaga produtos e insere novo resultado
-    //se sem resultados, mostrar mensagem
     var loc;
-    if(activeFilters.length===0) {
+    if(activeFilters.length===0) { //no active filters
         if(category === undefined)
             loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllSearchProducts.php?s=" + search);
         else
