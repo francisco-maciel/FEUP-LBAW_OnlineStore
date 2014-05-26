@@ -33,7 +33,7 @@
 
 {if isset($message)}
 
-    <div class="col-sm-12 col-lg-12 col-md-12">
+    <div id="no_items_message" class="col-sm-12 col-lg-12 col-md-12">
         {if $message != ""}
             <div class="row"></div>
         {/if}
