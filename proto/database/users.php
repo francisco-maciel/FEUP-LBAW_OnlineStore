@@ -17,12 +17,12 @@ function createBuyer($email, $password, $realname, $phone, $birthdate, $street, 
     $conn->commit();
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-function updateProfile($id, $email, $realname, $phone, /*$birthdate,*/ $street, $door, $postcode, $address, $nif) {
+function updateProfile($email, $realname, $phone, $birthdate, $street, $door, $postcode, $city, $nif, $id) {
     global $conn;
 
-    $sql = 'UPDATE user_ SET email=?, name=?, phone=?, /*birthdate=?*/ WHERE iduser=?';
+    $sql = 'UPDATE user_ SET name=?, phone=?, birthdate=? WHERE email=?';
     $stmt = $conn->prepare($sql);
-    $res = $stmt->execute(array($email, $realname, $phone,/* $birthdate,*/ $id));
+    $res = $stmt->execute(array($realname, $phone, $birthdate, $email));
 
     $sql = 'UPDATE buyer SET nif=? WHERE iduser=?';
     $stmt = $conn->prepare($sql);
@@ -30,7 +30,7 @@ function updateProfile($id, $email, $realname, $phone, /*$birthdate,*/ $street, 
 
     $sql = 'UPDATE address SET street=?, door_nr=?, postcode=?, formatted_address=? WHERE idbuyer=?';
     $stmt = $conn->prepare($sql);
-    $res += $stmt->execute(array($street, $door, $postcode, $address, $id));
+    $res += $stmt->execute(array($street, $door, $postcode, $city, $id));
 
     return $res;
 }
@@ -57,6 +57,20 @@ function isLoginCorrect($email, $password) {
     }
 }
 
+function nifExist($nif, $id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT nif
+                            FROM buyer
+                            WHERE nif = ? AND iduser <> ?");
+    $stmt->execute(array($nif, $id));
+    $exist = $stmt->fetch();
+    if ($exist) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function getNameByEmail($email) {
     global $conn;
     $stmt = $conn->prepare("SELECT name
@@ -65,6 +79,16 @@ function getNameByEmail($email) {
     $stmt->execute(array($email));
     $result = $stmt->fetch();
     return $result['name'];
+}
+
+function getIdByEmail($email) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT iduser
+                            FROM user_
+                            WHERE email = ?");
+    $stmt->execute(array($email));
+    $result = $stmt->fetch();
+    return $result['iduser'];
 }
 
 function getBuyerByEmail($email) {
@@ -98,6 +122,19 @@ function getUsersNoAdmins() {
     return $result;
 }
 
+function deleteAccount($userId) {
+    global $conn;
+    $stmt = $conn->prepare("UPDATE buyer SET banned = true, nif=999999990 WHERE iduser = $userId");
+    $result = $stmt->execute();
+
+    $stmt = $conn->prepare("UPDATE user_ SET name='User Deleted', phone=' ', email=' ', password=' ' WHERE iduser = $userId");
+    $result += $stmt->execute();
+
+    $stmt = $conn->prepare("UPDATE address SET street=' ', door_nr=' ', postcode=' ', formatted_address=' ' WHERE idbuyer = $userId");
+    $result += $stmt->execute();
+    return $result;
+}
+
 function banUser($userId) {
     global $conn;
     $stmt = $conn->prepare("UPDATE buyer SET banned = true WHERE iduser = $userId");
@@ -109,5 +146,35 @@ function setUserLevel($id, $level) {
     global $conn;
     $stmt = $conn->prepare("UPDATE user_ SET user_type = ? WHERE iduser = ?");
     $result = $stmt->execute(array($level, $id));
+    return $result;
+}
+
+/**
+ * Fecth all users that are not admins limiting the results, retrieving
+ * only a portion
+ */
+function getUsersNoAdminsPortion($limit, $offset) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT user_.iduser, user_.user_type, user_.email, user_.name, buyer.banned "
+            . "FROM User_ "
+            . "INNER JOIN buyer ON "
+            . "user_.iduser = buyer.iduser "
+            . "WHERE user_.user_type != 2 "
+            . "ORDER BY user_.date_signed "
+            . "OFFSET $offset LIMIT $limit;");
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $result;
+}
+
+function countBuyers() {
+    global $conn;
+    $stmt = $conn->prepare("SELECT Count(user_.iduser)
+        from user_
+        Inner join buyer
+        on buyer.iduser = user_.iduser
+        where user_type !=2;");
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
     return $result;
 }

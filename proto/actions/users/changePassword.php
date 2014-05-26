@@ -22,14 +22,6 @@ if (isLoginCorrect($email, $oldPassword) == -1) {
     exit;
 }
 
-
-if ($password != $confirmPassword) {
-    $_SESSION['error_messages'][] = 'Please confirm your password';
-    $_SESSION['form_values'] = $_POST;
-    header("Location: $BASE_URL" . 'pages/users/profile.php');
-    exit;
-}
-
 if ($password == $oldPassword) {
     $_SESSION['error_messages'][] = 'No change in password';
     $_SESSION['form_values'] = $_POST;
