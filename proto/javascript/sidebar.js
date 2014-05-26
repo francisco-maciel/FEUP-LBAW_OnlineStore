@@ -57,8 +57,7 @@ function getProducts(loc) {
         dataType: "json"
     }).done(function(data) {
         $('#results').empty();
-        //verificar se data está vazio, se sim adiciona "no items found"
-        if((data.length)===0) {
+        if((data.length)===0) { //se vazio adiciona "no items found"
             noResultsMsg();
         }
         data.forEach(function(obj) {
@@ -139,34 +138,26 @@ function getProducts(loc) {
     
     
     function listProducts(obj) {
-        var result = "<div class=\"col-sm-4 col-lg-4 col-md-4\">"+
-                                   "<div  class=\"thumbnail\">";
+        var result = "<div class=\"col-sm-4 col-lg-4 col-md-4\"><div class=\"thumbnail\">";
             if(obj.img)
                 result+="<a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\"> <img style=\"min-height:200px; max-height:200px; width:auto;\" class=\"img-responsive\" src=\""+base_url+"images/products/"+obj.img+"\" alt=\"\"> </a>";
             else
                 result+="<a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\"> <img class=\"img-responsive\" src=\""+base_url+"images/products/default.png\" alt=\"\"> </a>";    
 
-            result+="<div class=\"caption\">"+
-                "<h4 class=\"pull-right\">€"+obj.price+"</h4>";
+            result+="<div class=\"caption\"><h4 class=\"pull-right\">€"+obj.price+"</h4>";
             if(obj.title.length>18)
                 result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\">"+(obj.title).substr(0,18)+"</a> </h4>";
              else   
                 result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\">"+obj.title+"</a> </h4>";    
                             
-            result+="</div>"+
-            "<div class=\"ratings\">"+
-                "<p class=\"pull-right\">15 reviews</p>"+
-                "<p>"+
+            result+="</div><div class=\"ratings\">"+
+                    "<p class=\"pull-right\">15 reviews</p><p>"+
                     "<span class=\"glyphicon glyphicon-star\"></span>"+
                     "<span class=\"glyphicon glyphicon-star\"></span>"+
                     "<span class=\"glyphicon glyphicon-star\"></span>"+
                     "<span class=\"glyphicon glyphicon-star\"></span>"+
                     "<span class=\"glyphicon glyphicon-star\"></span>"+
-                "</p>"+
-            "</div>"+
-       "</div>"+
-        "<br>"+
-    "</div>";
+                    "</p></div></div><br></div>";
             
      $('#results').append(result);
     }

@@ -27,6 +27,14 @@ function getCategoryName($id) {
     return $stmt->fetch();
 }
 
+function getDepfromCat($id) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT department.name as name, department.iddepartment as id FROM category, department
+                        WHERE category.iddepartment = department.iddepartment AND idcategory=?');
+    $stmt->execute(array($id));
+    return $stmt->fetch();
+}
+
 //-----------------------------------------------------------------------------
 // CatFilter table operations
 //-----------------------------------------------------------------------------

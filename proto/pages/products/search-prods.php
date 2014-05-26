@@ -27,9 +27,11 @@ if (!$_GET['search']) {
     elseif(isset($_GET['cat'])) {
         $products = getProductsByCat($_GET['cat']);
         $catname = getCategoryName($_GET['cat']);
-        $cat = $_GET['cat'];
+        $catid = $_GET['cat'];
         $smarty->assign('catname',$catname['name']);
-        $smarty->assign('cat',$cat);
+        $smarty->assign('cat',$catid);
+        $depm = getDepfromCat($catid);
+        $smarty->assign('depm',$depm);
         $filters = getCatFilters($_GET['cat']);
      /*   for($i=0; $i<sizeof($filters); $i++) {
             $filtervalues[$i] = getFilterValues($filters[$i]['id']);
