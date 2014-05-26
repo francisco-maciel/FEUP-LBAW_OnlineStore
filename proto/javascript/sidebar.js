@@ -43,6 +43,13 @@ function loadFilterValues(id) {
     });
 }
 
+function noResultsMsg() {
+    var msg = "<div class=\"col-sm-12 col-lg-12 col-md-12\">"+
+            "<div class=\"row\"></div>"+
+            "<h4 style=\"color:gray\">No items found that match your search</h4></div>";
+    $('#results').append(msg);
+}
+
 function getProducts(loc) {
     $.ajax({
         url: loc,
@@ -51,6 +58,9 @@ function getProducts(loc) {
     }).done(function(data) {
         $('#results').empty();
         //verificar se data está vazio, se sim adiciona "no items found"
+        if((data.length)===0) {
+            noResultsMsg();
+        }
         data.forEach(function(obj) {
             listProducts(obj);               
       });
