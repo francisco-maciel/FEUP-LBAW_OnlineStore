@@ -1,7 +1,8 @@
+
 {foreach $products as $prod}
 
     <div class="col-sm-4 col-lg-4 col-md-4">
-        <div  class="thumbnail">
+        <div  class="thumbnail" id="{$prod.idproduct}">
             <!-- <img src="http://placehold.it/320x150" alt=""> -->
             {if $prod.img }
                 <a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}"> <img style="min-height:200px; max-height:200px; width:auto;" class="img-responsive" src="{$BASE_URL}images/products/{$prod.img}" alt=""> </a>

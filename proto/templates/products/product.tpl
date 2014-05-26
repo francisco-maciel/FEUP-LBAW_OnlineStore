@@ -54,7 +54,9 @@
                 {if $addWishListButton == true}
                     <button id="add_wish_list_button" name="" class="btn btn-labeled btn-warning" href="">Add to wish-list <span class="glyphicon glyphicon glyphicon-star"></span> </button>
                 {else}
-                    <button id="" name="" " title="This is item is on your wish list!" class="btn btn-labeled btn-warning" ><span class="glyphicon glyphicon glyphicon-star"></span> </button>
+                    {if isset($PERMISSION) && $PERMISSION == 0 }
+                    <button href="{$BASE_URL}pages/users/wish_list.php" id="wish_list_added" name="" " title="This is item is on your wish list!" class="btn btn-labeled btn-warning" ><span class="glyphicon glyphicon glyphicon-star"></span> </button>
+                    {/if}
                 {/if}
             {/if}
             
