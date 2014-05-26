@@ -5,8 +5,6 @@ var openfilters=[];
 
 
 function loadFilterValues(id) {
-    //selected = selected || 1;
-    //$('#prod_category').empty();
     var loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilterValues.php?id=" + id);
     $.ajax({
         url: loc,
@@ -14,14 +12,11 @@ function loadFilterValues(id) {
         dataType: "json"
     }).done(function(data) {
         data.forEach(function(obj) {
-            //var myObject = JSON.stringify(obj);
-            //alert(myObject);
             if(obj.type===0)
                 $('#filter'+id).after("<li class=\"filterson "+id+"\" filter=\""+id+"\" type=\""+obj.type+"\" value=\""+obj.value_string+"\"><a class=\"\" href=\"#\"><span class=\"glyphicon\"></span>"+ obj.value_string +"</a></li>");
             else
                 $('#filter'+id).after("<li class=\"filterson "+id+"\" filter=\""+id+"\" type=\""+obj.type+"\" value=\""+obj.value_int+"\"><a class=\"\" href=\"#\"><span class=\"glyphicon\"></span>"+ obj.value_int +"</a></li>");
         });
-        //$('#prod_category option[value=' + selected + ']').attr("selected", "selected");
     });
 }
 
@@ -153,22 +148,23 @@ function filtering() {
     getProducts(loc);
 }
 
-
 function listProduct(obj) {
     var result = "<div class=\"col-sm-4 col-lg-4 col-md-4\"><div class=\"thumbnail\">";
     if(obj.img)
-        result+="<a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\"> <img style=\"min-height:200px; max-height:200px; width:auto;\" class=\"img-responsive\" src=\""+base_url+"images/products/"+obj.img+"\" alt=\"\"> </a>";
+        result+="<a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\"> <img style=\"min-height:200px; max-height:200px; width:auto;\" class=\"img-responsive\" src=\""+base_url+"images/products/"+obj.img+"\" > </a>\n";
     else
-        result+="<a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\"> <img class=\"img-responsive\" src=\""+base_url+"images/products/default.png\" alt=\"\"> </a>";    
+        result+="<a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\"> <img class=\"img-responsive\" src=\""+base_url+"images/products/default.png\" alt=\"\"> </a>\n";    
+    
+    result+="<div class=\"caption\">";
     
     if(obj.title.length>28)
-        result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\">"+(obj.title).substr(0,28)+"</a> </h4>";
+        result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\">"+(obj.title).substr(0,28)+"</a> </h4>\n";
     else   
-        result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\">"+obj.title+"</a> </h4>";    
+        result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\"> "+obj.title+" </a> </h4>\n";    
     
-    result+="<div class=\"caption\"><h4 class=\"pull-right\">€"+obj.price+"</h4>";
-    result+="</div><div class=\"ratings\">"+
-            "<p class=\"pull-right\">15 reviews</p><p>"+
+    result+="<h4 class=\"pull-right\">€"+obj.price+"</h4>";
+    result+="</div><div class=\"ratings\">\n"+
+            "<p class=\"pull-right\">15 reviews</p><p>\n"+
             "<span class=\"glyphicon glyphicon-star\"></span>\n"+
             "<span class=\"glyphicon glyphicon-star\"></span>\n"+
             "<span class=\"glyphicon glyphicon-star\"></span>\n"+
