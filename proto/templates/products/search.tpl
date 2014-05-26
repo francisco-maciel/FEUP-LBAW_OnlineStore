@@ -6,7 +6,11 @@
         <ol class="breadcrumb">
         <li><a href="{$BASE_URL}">Home</a></li>
         {if isset($search)}
-        <li class="active">Search: {$search}</li>
+            {if !empty($search)}
+            <li class="active">Search: {$search}</li>
+            {else}
+            <li class="active">Search: All Products</li>
+            {/if}
         {elseif isset($cat) }
         <li><a href="{$BASE_URL}pages/products/search-prods.php?dep={$depm.id}">{$depm.name}</a></li>
         <li class="active"><a href="{$BASE_URL}pages/products/search-prods.php?cat={$cat}">{$catname}</a></li>

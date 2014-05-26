@@ -17,7 +17,6 @@ if (!$_GET['search']) {
     $departments = getAllDepartmentsSmarty();
     $smarty->assign('departments', $departments);
    
-    //NEW
     if (isset($_GET['search'])) {
         $namepart = $_GET['search'];
         $products = getProductsByName($namepart); 

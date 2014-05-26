@@ -63,7 +63,6 @@ function getFilteredProductsByCat($idcat) {
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
-
 function getProductsByDep($iddep) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
