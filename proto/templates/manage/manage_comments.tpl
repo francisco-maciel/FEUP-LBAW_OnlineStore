@@ -16,12 +16,12 @@
             <table id="has_context" class="table table-hover">
                 <thead>
                     <tr class="filters">
-                        <th><input type="text" class="form-control" placeholder="Review ID" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Buyer ID" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Reported" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Removed" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Rating" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Text" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Review ID" name="idreview" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Buyer ID" name="idbuyer" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Reported" name="reported" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Removed" name="removed" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Rating" name="rating" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Text" name="text" disabled></th>
                     </tr>
                 </thead>
                 <tbody>

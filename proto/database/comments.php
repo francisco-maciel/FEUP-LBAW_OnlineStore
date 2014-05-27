@@ -1,10 +1,12 @@
 <?php
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+include_once $BASE_DIR . 'database/genericDB.php';
 
 function getComments() {
     global $conn;
@@ -47,6 +49,26 @@ function getCommentsPortion($limit, $offset) {
         o.idorder = r.idorder
         ORDER BY r.idreview DESC
         LIMIT $limit OFFSET $offset;");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getCommentsPortionFilter($limit, $offset, $col, $text) {
+    global $conn;
+    if ($col == "idbuyer") {
+        $table = "o";
+    } else {
+        $table = "review";
+    }
+    $stmt = $conn->prepare("SELECT r.idproduct, r.idreview, o.idbuyer, r.reported, r.removed, r.text, r.rating "
+            . "FROM proto.review AS r "
+            . "INNER JOIN order_ AS o ON "
+            . "o.idorder = r.idorder "
+            . "WHERE r.idreview IN (SELECT review.idreview FROM review "
+            . "INNER JOIN order_ AS o ON o.idorder = review.idorder "
+            . "WHERE $table.$col::varchar(255) ~* '$text') "
+            . "ORDER BY r.idreview DESC "
+            . "LIMIT $limit OFFSET $offset;");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

@@ -51,7 +51,7 @@ $('#prod_price').on('input', function() {
 });
 
 function isInt(n) {
-    return (n % 1 === 0 && n >= 0);
+    return (n % 1 === 0 && n >= 0 && n < 2147483647);
 }
 
 function loadDepartments(selected) {
@@ -68,6 +68,21 @@ function loadDepartments(selected) {
         $('#prod_family option[value=' + selected + ']').attr("selected", "selected");
     });
 }
+
+$("form").on("submit", function() {
+    if ($('.glyphicon-remove') !== null) {
+        $('span.glyphicon-remove').prev().tooltip('show');
+        setTimeout(function() {
+            $('span.glyphicon-remove').prev().prev().tooltip('hide');
+        }, 2000);
+        return false;
+    }
+        
+});
+
+
+
+
 
 function loadCategories(id, selected) {
     selected = selected || 1;
