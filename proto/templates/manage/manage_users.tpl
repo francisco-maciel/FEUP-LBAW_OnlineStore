@@ -17,11 +17,11 @@
             <table id="has_context" class="table table-hover">
                 <thead>
                     <tr class="filters">
-                        <th><input type="text" class="form-control" placeholder="User ID" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Level" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Name" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Email" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Banned" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="User ID" name="iduser" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Level" name="user_type" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Name" name="name" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Email" name="email" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Banned" name="banned" disabled></th>
                     </tr>
                 </thead>
                 <tbody>

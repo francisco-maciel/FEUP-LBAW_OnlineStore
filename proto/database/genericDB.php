@@ -32,13 +32,24 @@ function containsSubquery($table, $field, $text) {
     return $stmt;
 }
 
-
 function containsSubqueryCount($table, $field, $text) {
     global $names;
     global $conn;
     $stmt = $conn->prepare("SELECT count($table." . $names[$table]
             . ") FROM $table "
-            . "WHERE $table.$field::varchar(255) ~* '$text'");
+            . "WHERE $table.$field::varchar(255) ~* '$text' ");
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
+function countFilteredUsers($field, $text) {
+    global $names;
+    global $conn;
+    $table = $field == "banned" ? "buyer" : "user_";
+    $stmt = $conn->prepare("SELECT count(user_." . $names[$table]
+            . ") FROM user_ "
+            . "INNER JOIN buyer ON buyer.iduser = user_.iduser "
+            . "WHERE $table.$field::varchar(255) ~* '$text' ");
     $stmt->execute();
     return $stmt->fetch();
 }

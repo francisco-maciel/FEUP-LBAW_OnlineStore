@@ -17,6 +17,11 @@ $table = filter_input(INPUT_GET, 'table');
 $field = filter_input(INPUT_GET, 'field');
 $text = filter_input(INPUT_GET, 'text');
 
-$res = containsSubqueryCount($table, $field, $text);
+if ($table == "user_") {
+    $res = countFilteredUsers($field, $text);
+} else {
+    $res = containsSubqueryCount($table, $field, $text);
+}
+
 
 print_r(json_encode($res));
