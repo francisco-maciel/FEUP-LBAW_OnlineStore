@@ -156,3 +156,12 @@ function isOnWishList($email, $id) {
     $stmt->execute(array($email, $id));
     return $stmt->fetchAll();
 }
+
+function removeWishList($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("DELETE FROM wishlist WHERE wishlist.idproduct = ?
+    AND wishlist.iduser = (select user_.iduser from user_ where email = ?)");
+    return $stmt->execute(array($id, $email));
+
+}

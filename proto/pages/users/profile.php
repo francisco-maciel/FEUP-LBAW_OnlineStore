@@ -33,9 +33,6 @@ if (isset($userid)) {
 
 $smarty->assign('user', $user);
 
-$myOrders = getOrdersByBuyer($user['iduser']);
-$smarty->assign('myOrders', $myOrders);
-
 $smarty->display('users/profile.tpl');
 
 ?>
