@@ -19,10 +19,16 @@ if (!$_GET['id']) {
       $reviewed = productReviewdByBuyer($_SESSION['email'], $_GET['id']);
   }
 
+  $averageRating = averageRatingByProduct($_GET['id']);
+  $reviews = reviewsByProduct($_GET['id']);
+
   $smarty->assign('product', $product);
   $smarty->assign('addWishListButton', $addWishListButton);
   $smarty->assign('purchased', $purchased);
   $smarty->assign('reviewed', $reviewed);
+  $smarty->assign('averageRating', $averageRating);
+  $smarty->assign('reviews', $reviews);
+
 // TODO USAR No template
   $smarty->display('products/product.tpl');
 

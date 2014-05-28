@@ -126,122 +126,37 @@
       <hr>
     </div>
     <div class="ratings">
-      <p class="pull-right">3 reviews</p>
-      <p>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        4.0 stars
+      <p class="pull-right">{$averageRating['numreviews']}</p>
+      <p>   <!-- FIXME: float number? -->
+          {for $i=1 to 3}
+              <span class="glyphicon glyphicon-star"></span>
+          {/for}
+          {for $i=0 to 4-3}
+              <span class="glyphicon glyphicon-star-empty"></span>
+          {/for}
+        3.0 stars
       </p>
     </div>
   </div>
 
   <div class="well">
-                <!--
-                    <div class="text-right">
-                        <a class="btn btn-success">Leave a Review</a>
-                    </div>
-
-                    <hr>
-                  -->
-                  <div class="row">
-                    <div class="col-md-12">
+      {foreach $reviews as $review}
+          <div class="row">
+              <div class="col-md-12">
+                  {for $i=1 to $review['rating']}
                       <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
+                  {/for}
+                  {for $i=0 to 4-$review['rating']}
                       <span class="glyphicon glyphicon-star-empty"></span>
-                      User1
-                      <span class="pull-right">10 days ago</span>
-                      <p>This product was great in terms of quality. I would definitely buy another!</p>
-                    </div>
-                  </div>
+                  {/for}
+                  {$review['name']}
+                  <span class="pull-right">10 days ago</span>
+                  <p>{$review['text']}</p>
+              </div>
+          </div>
+      {/foreach}
+</div>
 
-                  <hr>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star-empty"></span>
-                      User2
-                      <span class="pull-right">12 days ago</span>
-                      <p>I've alredy ordered another one!</p>
-                    </div>
-                  </div>
-
-                  <hr>
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star"></span>
-                      <span class="glyphicon glyphicon-star-empty"></span>
-                      User3
-                      <span class="pull-right">15 days ago</span>
-                      <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div >
-
-                  <hr>
-                  <br><br>
-
-                  <h4><a href="#">Other Products</a>
-                  </h4>
-
-                  <div class="col-sm-4 col-lg-4 col-md-4">
-                   <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                      <h4 class="pull-right">€</h4>
-                      <h4><a href="#">Product 1</a>
-                      </h4>
-                    </div>
-                    <div class="ratings">
-                      <p class="pull-right">15 reviews</p>
-                      <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                  <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                      <h4 class="pull-right">€</h4>
-                      <h4><a href="#">Product 2</a>
-                      </h4>
-                    </div>
-                    <div class="ratings">
-                      <p class="pull-right">12 reviews</p>
-                      <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-            </div>
 
             <div>
 

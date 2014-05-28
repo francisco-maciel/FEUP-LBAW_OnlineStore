@@ -174,3 +174,20 @@ function productReviewdByBuyer($email, $id) {
     $stmt->execute(array($email, $id));
     return $stmt->fetch();
 }
+
+function averageRatingByProduct($id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT AVG(rating) AS average, count(*) AS numreviews FROM review where review.idproduct = ?");
+    $stmt->execute(array($id));
+    return $stmt->fetch();
+}
+
+function reviewsByProduct($id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM review, order_, user_ where review.idproduct = ? AND review.idorder = order_.idorder
+            AND order_.idbuyer = user_.iduser");
+    $stmt->execute(array($id));
+    return $stmt->fetchAll();
+}
