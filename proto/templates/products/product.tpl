@@ -58,6 +58,61 @@
                     <button href="{$BASE_URL}pages/users/wish_list.php" id="wish_list_added" name="" " title="This is item is on your wish list!" class="btn btn-labeled btn-warning" ><span class="glyphicon glyphicon glyphicon-star"></span> </button>
                     {/if}
                 {/if}
+                {if $purchased == true}
+                    {if $reviewed == true}
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-md-6">
+                                <div class="text-left">
+                                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">View My Review</a>
+                                </div>
+
+                                <div class="row" id="post-review-box" style="display:none;">
+                                    <div class="col-md-12">
+                                        <input id="ratings-hidden" name="rating" type="hidden">
+                                        <textarea class="form-control animated" cols="50" id="new-review" name="comment" rows="5" disabled>{$reviewed['text']}</textarea>
+
+                                        <div class="text-right">
+                                            {for $i=1 to $reviewed['rating']}
+                                                <span class="glyphicon glyphicon-star"></span>
+                                            {/for}
+                                            {for $i=0 to 4-$reviewed['rating']}
+                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                            {/for}
+                                            <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="display:none; margin-right: 10px;">
+                                            <span class="glyphicon glyphicon-remove"></span>Close</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {else}
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-md-6">
+                                <div class="text-left">
+                                    <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
+                                </div>
+
+                                <div class="row" id="post-review-box" action="{$BASE_URL}actions/users/leaveReview.php"style="display:none;">
+                                    <div class="col-md-12">
+                                        <form accept-charset="UTF-8" action="" method="post">
+                                            <input id="ratings-hidden" name="rating" type="hidden">
+                                            <textarea class="form-control animated" cols="50" id="new-review" name="comment"
+                                                      placeholder="Enter your review here..." rows="5"></textarea>
+
+                                            <div class="text-right">
+                                                <div class="stars starrr" data-rating="0"></div>
+                                                <a class="btn btn-danger btn-sm" href="#" id="close-review-box"
+                                                   style="display:none; margin-right: 10px;">
+                                                    <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                                <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
+                {/if}
             {/if}
             
           <!--  Botões partilha FB e twitter -->
@@ -262,3 +317,4 @@
 
 <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
 <script src="{$BASE_URL}javascript/products/add_wishlist.js"></script>
+<script src="{$BASE_URL}javascript/review.js"></script>

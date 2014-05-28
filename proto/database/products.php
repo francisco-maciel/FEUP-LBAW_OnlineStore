@@ -156,3 +156,21 @@ function isOnWishList($email, $id) {
     $stmt->execute(array($email, $id));
     return $stmt->fetchAll();
 }
+
+function purchasedProductBuyer($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM user_, order_, orderline where user_.email = ? AND
+    order_.idbuyer = user_.iduser AND orderline.idorder = order_.idorder AND orderline.idproduct = ?");
+    $stmt->execute(array($email, $id));
+    return $stmt->fetchAll();
+}
+
+function productReviewdByBuyer($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT review.text, review.rating FROM review, user_, order_ where user_.email = ? AND
+    order_.idbuyer = user_.iduser AND order_.idorder = review.idorder AND review.idproduct = ?");
+    $stmt->execute(array($email, $id));
+    return $stmt->fetch();
+}

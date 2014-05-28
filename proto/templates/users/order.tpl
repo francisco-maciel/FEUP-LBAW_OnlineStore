@@ -28,6 +28,7 @@
             <div class="row">
                 <div class="col-xs-6">
                     <address>
+                        <!-- FIXME TODO -->
                         <strong>Payment Method:</strong><br>
                         Visa ending **** 4242<br>
                         {$orderDetail['email']}<br>
@@ -77,9 +78,14 @@
                             </tr>
                             </thead>
                             <tbody>
+                            <script>var ite = {count($orderLines)}</script>
                             {foreach $orderLines as $orderLine}
                             <tr>
-                                <td><a href="{$BASE_URL}pages/products/product.php/?id={$orderLine.idproduct}">{$orderLine['title']}</a></td>
+                                <td>
+                                    <a href="{$BASE_URL}pages/products/product.php/?id={$orderLine.idproduct}">{$orderLine['title']}</a>
+
+                                    </div>
+                                </td>
                                 <td class="text-center">{$orderLine['price_per_unit']}</td>
                                 <td class="text-center">{$orderLine['quantity']}</td>
                                 <td class="text-right">{$orderLine['subtotal']}</td>

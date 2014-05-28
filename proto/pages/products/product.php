@@ -15,10 +15,14 @@ if (!$_GET['id']) {
   if (isset($_SESSION['permission']) && isset($_SESSION['email'])) {
 
       $addWishListButton = !isOnWishList($_SESSION['email'], $_GET['id']);
+      $purchased = purchasedProductBuyer($_SESSION['email'], $_GET['id']);
+      $reviewed = productReviewdByBuyer($_SESSION['email'], $_GET['id']);
   }
 
   $smarty->assign('product', $product);
   $smarty->assign('addWishListButton', $addWishListButton);
+  $smarty->assign('purchased', $purchased);
+  $smarty->assign('reviewed', $reviewed);
 // TODO USAR No template
   $smarty->display('products/product.tpl');
 
