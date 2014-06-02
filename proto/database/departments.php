@@ -7,6 +7,12 @@
  */
 
 
+function getDepartmentName($id) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT name FROM department WHERE iddepartment=?');
+    $stmt->execute(array($id));
+    return $stmt->fetch();
+}
 
 function getAllDepartments() {
     global $conn;
@@ -17,7 +23,7 @@ function getAllDepartments() {
 
 function getAllDepartmentsSmarty() {
 	 global $conn;
-    $stmt = $conn->prepare("SELECT * FROM department");
+    $stmt = $conn->prepare("SELECT * FROM department ORDER BY name");
     $stmt->execute();
     return $stmt->fetchAll();
 }
