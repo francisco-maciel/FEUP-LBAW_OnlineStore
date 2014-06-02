@@ -40,7 +40,7 @@
                     <li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
                     {/foreach}
                 {/if}
-                <li class="example sliderbox active2"><div id="prg">Price Range: <text class="pricerange" id=pr1></text> - <text class="pricerange" id=pr2></text></div><div class="slider"></div></li>
+                <li class="sliderbox active2"><div id="prg">Price Range: <text class="pricerange" id=pr1></text> - <text class="pricerange" id=pr2></text></div><div class="slider"></div></li>
 	</ul>
 </div>
 

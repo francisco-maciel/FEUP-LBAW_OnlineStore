@@ -28,9 +28,9 @@
     </ol>
 
         {if $product['img'] }
-            <img class="img-responsive" src="{$BASE_URL}images/products/{$product['img']}" alt="">
+            <img class="img-responsive img-produto" src="{$BASE_URL}images/products/{$product['img']}" alt="">
         {else}
-        <img class="img-responsive" src="{$BASE_URL}images/products/default.png" alt="">
+        <img class="img-responsive img-produto" src="{$BASE_URL}images/products/default.png" alt="">
     {/if}
 
     <div class="caption-full">
