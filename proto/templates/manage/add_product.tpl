@@ -4,9 +4,9 @@
 
     <div class="row">
         {if (isset($param))}
-        <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php{$param}" >
+            <form id="form" class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php{$param}" >
             {else}
-            <form class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php" >
+                <form id="form" class="form-horizontal" method="POST" enctype="multipart/form-data" action="{$BASE_URL}actions/manage/addProduct.php" >
 
             {/if}
 
@@ -84,7 +84,7 @@
                     <div class="col-md-8">
                         <button type="button" id="prod_add_new_row" onclick="appendToForm('form_submit')" name="prod_add_new_row" class="btn btn-info">Add new Field</button>
                         <button type="reset" id="prod_clear" name="prod_clear" class="btn btn-danger">Clear</button>
-                        <button id="prod_save" name="prod_save" class="btn btn-success">Save</button>
+                        <button type="submit" id="prod_save" name="prod_save" class="btn btn-success">Save</button>
                     </div>
                 </div>
 

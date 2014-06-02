@@ -45,9 +45,20 @@ function fetch(arg) {
             //$table = $panel.find('.table'),
             //$rows = $table.find('tbody tr'),
             rowtext = $('.filters>:eq(' + column + ')>input').attr('name');
-
     $('th>input').val("");
     $input.val(inputContent);
+    if (inputContent !== "") {
+        if (rowtext === "user_type") {
+            if ('manager'.indexOf(inputContent) > -1) {
+                inputContent = 1;
+            }
+            if ('buyer'.indexOf(inputContent) > -1) {
+                inputContent = 0;
+            }
+        }
+    }
+    
+    
     var loc = document.URL.replace(/pages\/(.*)/, "actions/manage/getUsers.php?limit=20&offset=0&col=" + rowtext + "&text=" + inputContent);
     $('h3.panel-title').html("Users (Loading...)");
     $.ajax({

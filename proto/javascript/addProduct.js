@@ -69,8 +69,8 @@ function loadDepartments(selected) {
     });
 }
 
-$("form").on("submit", function() {
-    if ($('.glyphicon-remove') !== null) {
+$("#form").on("submit", function() {
+    if ($('.glyphicon-remove').length !== 0) {
         $('span.glyphicon-remove').prev().tooltip('show');
         setTimeout(function() {
             $('span.glyphicon-remove').prev().prev().tooltip('hide');
