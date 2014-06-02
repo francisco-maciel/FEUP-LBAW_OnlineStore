@@ -17,10 +17,10 @@
             <table id="has_context" class="table table-hover">
                 <thead>
                     <tr class="filters">
-                        <th><input type="text" class="form-control" placeholder="Order ID" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="State" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Date Placed" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Subtotal" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Order ID" name="idorder" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="State" name="name" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Date Placed" name="date_placed" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Subtotal" name="total" disabled></th>
                     </tr>
                 </thead>
                 <tbody>

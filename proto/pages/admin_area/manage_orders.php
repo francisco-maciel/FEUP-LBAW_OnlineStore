@@ -8,7 +8,7 @@
 
 include_once '../../config/init.php';
 include_once $BASE_DIR . 'database/orders.php';
-include_once $BASE_DIR . 'database/genericDBsearch.php';
+include_once $BASE_DIR . 'database/genericDB.php';
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);

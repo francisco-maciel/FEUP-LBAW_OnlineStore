@@ -16,8 +16,15 @@ if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
 $offset = filter_input(INPUT_GET, 'offset');
 $limit = filter_input(INPUT_GET, 'limit');
 
+$colname = filter_input(INPUT_GET, 'col');
+$text = filter_input(INPUT_GET, 'text');
+
 if (isset($offset) && isset($limit)) {
-    $res = getOrdersPortion($limit, $offset);
+    if (isset($colname) && isset($text)) {
+        $res = getOrdersPortionFilter($limit, $offset, $colname, $text);
+    } else {
+        $res = getOrdersPortion($limit, $offset);
+    }
 } else {
     $res = getOrders();
 }

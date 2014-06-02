@@ -71,7 +71,7 @@ function fetch(arg) {
         paginate(rowtext, inputContent);
         processData(data);
     }).fail(function(jqXHR, textStatus) {
-        alert("FAILED!\nWhat: Comments\nWhy: " + textStatus);
+        alert("FAILED!\nWhat: Users\nWhy: " + textStatus);
     });
 
 }
