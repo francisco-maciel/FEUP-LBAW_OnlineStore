@@ -19,7 +19,7 @@ if (!$_GET['search']) {
    
     if (isset($_GET['search'])) {
         $namepart = $_GET['search'];
-        $products = getProductsByName($namepart); 
+        $products = getProductsByName($namepart);
         global $smarty;
         if(!empty($products)) {
             $filters = getSearchFilters($products);
