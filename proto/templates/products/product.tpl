@@ -28,20 +28,26 @@
     </ol>
 
         {if $product['img'] }
-            <img class="img-responsive" src="{$BASE_URL}images/products/{$product['img']}" alt="">
+            <img class="img-responsive img-produto" src="{$BASE_URL}images/products/{$product['img']}" alt="">
         {else}
-        <img class="img-responsive" src="{$BASE_URL}images/products/default.png" alt="">
+        <img class="img-responsive img-produto" src="{$BASE_URL}images/products/default.png" alt="">
     {/if}
 
     <div class="caption-full">
 
         <h4 class="pull-right">€{$product['price']}</h4>
-        <h4><a href="#">{$product['title']}</a>
-        </h4>
+        <h2 class="prodtitle">{$product['title']}</h4>
         <p><strong>Description: </strong>{$product['description']}</p>
         <p><strong>Reference:</strong> {$product['idproduct']}</p>
-
-
+        <br>
+        <h4 class="spectitle">Specifications</h4>
+        {foreach $specs as $spec}
+            {if $spec['type']==0}
+                <p><strong>{$spec.name}:</strong> {$spec.vstring}</p>
+            {else}
+                <p><strong>{$spec.name}:</strong> {$spec.vint}</p>
+            {/if}
+        {/foreach}
 
       <!-- Buttons Add Cart & Share -->
       <div class="text-left">

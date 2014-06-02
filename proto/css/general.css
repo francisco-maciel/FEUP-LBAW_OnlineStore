@@ -1,6 +1,6 @@
 .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
     color: #fff;
-    background-color: #D63030;;
+    background-color: #D63030;
 }
 
 .margintop20 {
@@ -35,13 +35,21 @@
     background-color:#F0EBEB;
 }
 
+.active_selected {
+    border-right:4px solid #d17581;
+    font-weight: bold;
+}
+
+.filterson {
+    display:block;
+}
+
 body { margin-top:30px; }
 
 #login-nav input { margin-bottom: 15px; }
 
 li.search-button {
     margin-left: -25px;
-
 }
 
 .badge.shopping-cart {
@@ -59,6 +67,50 @@ li.search-button {
     font-size: 15px;
 }
 
+.prodtitle {
+    color: #D63030;
+}
+
+.spectitle {
+    color: #000090;
+}
+
+/*
+.example:before {
+content: "Example";
+position: absolute;
+
+font: 700 12px Arial;
+color: #bbb;
+text-transform: uppercase;
+letter-spacing: 1px;
+}*/
+
+
+.pricerange {
+    font-weight: bold;
+}
+
+#prg {
+   color:#428bca;
+   padding: 3px 5px 10px;
+}
+
+.sliderbox {
+border: 1px solid #ddd;
+border-radius: 4px;
+position: relative;
+padding: 5px 15px 10px;
+margin: 20px 0;
+overflow: hidden;
+}
+
+.img-produto {
+    max-height: 300px;
+    max-width: 100%;
+}
+
+
 #profile .control-label {
     padding-top: 0px;
 }
@@ -66,3 +118,4 @@ li.search-button {
 #profile .change_password {
     padding-top: 20px;
 }
+

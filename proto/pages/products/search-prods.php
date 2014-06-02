@@ -1,6 +1,9 @@
 <?php
   include_once('../../config/init.php');
   include_once($BASE_DIR .'database/products.php');
+  include_once($BASE_DIR .'database/departments.php');
+  include_once($BASE_DIR .'database/categories.php');
+  include_once($BASE_DIR .'database/filters.php');
 
 /*
 if (!$_GET['search']) {
@@ -11,19 +14,37 @@ if (!$_GET['search']) {
   }
   */
   
+    $departments = getAllDepartmentsSmarty();
+    $smarty->assign('departments', $departments);
    
-    //NEW
     if (isset($_GET['search'])) {
         $namepart = $_GET['search'];
-        $products = getProductsByName($namepart);
+        $products = getProductsByName($namepart); 
         global $smarty;
+        if(!empty($products)) {
+            $filters = getSearchFilters($products);
+            $smarty->assign('filters',$filters);
+        }
+        $smarty->assign('search',$namepart);
         $smarty->assign('FORM_VALUES',$_GET);
     }
     elseif(isset($_GET['cat'])) {
         $products = getProductsByCat($_GET['cat']);
+        $catname = getCategoryName($_GET['cat']);
+        $catid = $_GET['cat'];
+        $smarty->assign('catname',$catname['name']);
+        $smarty->assign('cat',$catid);
+        $depm = getDepfromCat($catid);
+        $smarty->assign('depm',$depm);
+        $filters = getCatFilters($_GET['cat']);
+        $smarty->assign('filters',$filters);
     }
     elseif(isset($_GET['dep'])){
         $products = getProductsByDep($_GET['dep']);
+        $dep = getDepartmentName($_GET['dep']);
+        $smarty->assign('dep',$dep['name']);
+        $categories = getDepartmentCategoriesSmarty($_GET['dep']);
+        $smarty->assign('categories',$categories);
     }
     else
         $products = getNotRemovedProducts();
@@ -45,7 +66,10 @@ foreach ($tweets as $key => $tweet) {
 */
 
   //$smarty->assign('last_tweet_id', $tweets[0]['id']); 
-  
   $smarty->assign('products', $products);
   $smarty->display('products/search.tpl');
 ?>
+
+<script type="text/javascript">
+    var base_url = "<?php echo $BASE_URL; ?>";
+</script>

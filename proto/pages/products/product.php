@@ -11,6 +11,13 @@ if (!$_GET['id']) {
   }
 
   $product = getProductById($_GET['id']);
+
+
+
+  $specs = getProductSpecs($_GET['id']);
+
+
+
   $addWishListButton = false;
   if (isset($_SESSION['permission']) && isset($_SESSION['email'])) {
 
@@ -18,8 +25,13 @@ if (!$_GET['id']) {
   }
 
   $smarty->assign('product', $product);
+
+
+  $smarty->assign('specs', $specs);
+
   $smarty->assign('addWishListButton', $addWishListButton);
 // TODO USAR No template
+
   $smarty->display('products/product.tpl');
 
   ?>

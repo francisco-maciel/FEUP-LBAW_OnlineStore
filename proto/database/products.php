@@ -48,6 +48,20 @@ function getProductsByCat($idcat) {
     return $stmt->fetchAll();
 }
 
+function getFilteredProductsByCat($idcat) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        ");
+    $stmt->execute(array($idcat));
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
 
 function getProductsByDep($iddep) {
     global $conn;
@@ -97,6 +111,18 @@ function getProductById($id) {
         //GROUP BY dep.iddepartment, cat.idcategory, product.idproduct
     $stmt->execute(array($id));
     return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function getProductSpecs($id) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT filter.filter_name as name, prodfilter.type as type, prodfilter.value_int as vint, prodfilter.value_string as vstring
+        FROM prodfilter
+        INNER JOIN filter
+        ON prodfilter.idfilter = filter.idfilter
+        WHERE prodfilter.idproduct = ?");
+        //GROUP BY dep.iddepartment, cat.idcategory, product.idproduct
+    $stmt->execute(array($id));
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 //DEPRECATED - use getNextProdId

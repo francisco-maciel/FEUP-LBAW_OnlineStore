@@ -80,3 +80,42 @@ function addFiltersProduts_Rel($id_product, $filterIds_arr, $types_arr, $values_
     $stmt = $conn->prepare($sql_trimmed);
     return $stmt->execute();
 }
+
+
+function getFilterValues($id) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT value_string, value_int, type
+                            FROM prodfilter
+                            WHERE idfilter=?
+                            GROUP BY value_string, value_int, type');
+    $stmt->execute(array($id));
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+function getFilteredProducts($q) {
+    global $conn;
+    $stmt = $conn->prepare($q);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+function getSearchFilters($list) {
+    global $conn;
+    $wherefield = "where (";
+    for($i=0; $i<sizeof($list); $i++) {
+        if($i!=0){
+            $wherefield .= " OR ";
+        }
+        $wherefield.="prodfilter.idproduct=".($list[$i]['idproduct']);
+    }
+    $wherefield .= ")";
+    $stmt = $conn->prepare("
+        SELECT filter.idfilter as id, filter.filter_name as name
+        FROM filter
+        INNER JOIN prodfilter
+        ON prodfilter.idfilter = filter.idfilter ". $wherefield.
+        " GROUP BY filter.idfilter, filter.filter_name
+        ORDER BY filter_name");
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
