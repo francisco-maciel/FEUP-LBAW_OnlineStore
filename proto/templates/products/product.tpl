@@ -1,4 +1,8 @@
 {include file='common/header.tpl'}
+<div id="fb-root"></div>
+<script src="{$BASE_URL}javascript/external_libs/facebook_sdk.js">
+</script>
+
 
 <div class="container">
 
@@ -68,7 +72,8 @@
             
           <!--  Botões partilha FB e twitter -->
           <div class="pull-right">
-            
+              TODO: crop a length {strlen($product['description'])}
+              <div class="fb-share-button" data-href="http://fe.up.pt/~ei11084/fb_con_lbaw?url={$BASE_URL}pages/products/product.php&title={$product['title']}&description={$product['description']}&debug=7" data-type="button_count"></div>
             <a href="#" class="btn btn-primary"><!--<i class="icon-facebook"></i>--> Share on Facebook </a>
             <a href="#" class="btn btn-info"><!-- <i class="icon-twitter"></i>--> Share on Twitter </a>
           </div>
