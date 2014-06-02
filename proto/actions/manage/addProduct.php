@@ -46,6 +46,18 @@ $img = $_FILES["prod_img"]["name"];
 $cat_id = filter_input(INPUT_POST, 'prod_category');
 $dep_id = filter_input(INPUT_POST, 'prod_family');
 
+if ($price > 2147483647 || $stock > 2147483647) {
+    $_SESSION['error_messages'][] = "Invalid params detected for price and/or product";
+    header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER'));
+    exit();
+}
+
+if ($title == "") {
+    $_SESSION['error_messages'][] = "Invalid params detected for title and/or description";
+    header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER'));
+    exit();
+}
+
 // FIle upload
 
 $allowedExts = array("jpeg", "jpg", "png");

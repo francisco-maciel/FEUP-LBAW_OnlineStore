@@ -6,7 +6,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
     <title>Loja Online - LBAW 2013/14</title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -22,9 +24,17 @@
 
     <link href="{$BASE_URL}css/shop-homepage.css" rel="stylesheet">
     <link href="{$BASE_URL}css/general.css" rel="stylesheet">
+    <link href="{$BASE_URL}css/alertify.core.css" rel="stylesheet">
+
+    <link href="{$BASE_URL}css/alertify.default.css" rel="stylesheet">
 
     <script src="{$BASE_URL}javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
+
+    <meta property="og:title" content="Product Name"/>
+    <meta property="og:image" content="http://davidwalsh.name/wp-content/themes/klass/img/facebooklogo.png"/>
+    <meta property="og:url" content="http://www.fe.up.pt/~ei11084"/>
+    <meta property="og:description" content="product description"/>
 
 </head>
 

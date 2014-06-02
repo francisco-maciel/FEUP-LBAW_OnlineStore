@@ -48,7 +48,7 @@
                 <div class="form-group has-feedback">
                     <label class="col-md-4 control-label" for="prod_stock">Stock available</label>
                     <div class="col-md-2 ">
-                        <input id="prod_stock" name="prod_stock" placeholder="Enter stock" class="form-control input-md" required="">
+                        <input id="prod_stock" name="prod_stock" data-trigger="manual" data-toggle="tooltip" data-placement="top" title="Please enter valid input" placeholder="Enter stock" class="form-control input-md" required="">
                         <span class="form-control-feedback"></span>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                 <div class="form-group has-feedback">
                     <label class="col-md-4 control-label" for="prod_price">Price</label>
                     <div class="col-md-2">
-                        <input id="prod_price" name="prod_price" placeholder="Enter price" class="form-control input-md" required="">
+                        <input id="prod_price" name="prod_price" data-trigger="manual" data-toggle="tooltip" data-placement="top" title="Please enter valid input" placeholder="Enter price" class="form-control input-md" required="">
                         <span class="form-control-feedback"></span>
                     </div>
                 </div>
