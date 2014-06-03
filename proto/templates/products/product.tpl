@@ -60,9 +60,9 @@
             {if $PERMISSION != 0}
                 <button onclick="editProduct()" id="" name="" class="btn btn-warning">Edit details <span class="glyphicon glyphicon-edit"></span> </button>
             {else}
-                <button id="" name="" class="btn btn-success">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span> </button>
+                <button id="" name="" class="btn btn-success" onclick="addProductToCart({$product['idproduct']},'{$product['title']}',{$product['price']},'{$product['img']}')">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span> </button>
                 {if $addWishListButton == true}
-                    <button id="add_wish_list_button" name="" class="btn btn-labeled btn-warning" href="">Add to wish-list <span class="glyphicon glyphicon glyphicon-star"></span> </button>
+                    <button id="add_wish_list_button()" name="" class="btn btn-labeled btn-warning" href="">Add to wish-list <span class="glyphicon glyphicon glyphicon-star"></span> </button>
                 {else}
                     {if isset($PERMISSION) && $PERMISSION == 0 }
                     <button href="{$BASE_URL}pages/users/wish_list.php" id="wish_list_added" name="" " title="This is item is on your wish list!" class="btn btn-labeled btn-warning" ><span class="glyphicon glyphicon glyphicon-star"></span> </button>
@@ -195,61 +195,32 @@
                   </div>
                 </div>
 
-            </div>
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
 
-            <div>
+                            <div class="caption">
+                                <h4 class="pull-right">€</h4>
+                                <h4><a href="#">Product 3</a>
+                                </h4>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">31 reviews</p>
 
-                <hr>
-                <br><br>
-
-                <h4><a href="#">Other Products</a>
-                </h4>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                  <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-                    <div class="caption">
-                      <h4 class="pull-right">€</h4>
-                      <h4><a href="#">Product 3</a>
-                      </h4>
-                    </div>
-                    <div class="ratings">
-                      <p class="pull-right">31 reviews</p>
-                      <p>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
-
-                        <div class="caption">
-                            <h4 class="pull-right">€</h4>
-                            <h4><a href="#">Product 3</a>
-                            </h4>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">31 reviews</p>
-
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
+
+
+
 
         </div>
 

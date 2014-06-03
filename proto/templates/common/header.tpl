@@ -73,8 +73,8 @@
                             {/if}
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        <a type="" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
-                            <span class="badge shopping-cart" >0</span></a>
+                        <div id="cart-open" class="btn btn-danger "><span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span class="badge shopping-cart" >0</span></div>
                     </form>
                 </li>
 
