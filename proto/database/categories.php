@@ -35,6 +35,13 @@ function getDepfromCat($id) {
     return $stmt->fetch();
 }
 
+function addCategory($name, $depid) {
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO proto.category(name, iddepartment)
+	VALUES ('$name', $depid)");
+    return $stmt->execute();
+}
+
 //-----------------------------------------------------------------------------
 // CatFilter table operations
 //-----------------------------------------------------------------------------

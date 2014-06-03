@@ -28,17 +28,27 @@ function getOrders() {
  */
 function getOrdersPortion($limit, $offset) {
     global $conn;
-    $sql = "SELECT order_.idorder, order_.idstate,order_.date_placed , SUM(orderline.price_per_unit*orderline.quantity) AS OrderTotal
-        FROM order_,orderline
-        WHERE order_.idorder = orderline.idorder
-        GROUP BY order_.idorder
-        ORDER BY order_.date_placed
-        OFFSET $offset LIMIT $limit;";
+//    $sql = "SELECT order_.idorder, order_.idstate,order_.date_placed , SUM(orderline.price_per_unit*orderline.quantity) AS OrderTotal
+//        FROM order_,orderline
+//        WHERE order_.idorder = orderline.idorder
+//        GROUP BY order_.idorder
+//        ORDER BY order_.date_placed
+//        OFFSET $offset LIMIT $limit;";
+    $sql = "SELECT * FROM order_sumup "
+            . "OFFSET $offset LIMIT $limit;";
     $stmt = $conn->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll();
 }
 
+function getOrdersPortionFilter($limit, $offset, $col, $text) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM order_sumup "
+            . "WHERE order_sumup.$col::varchar(255) ~* '$text' "
+            . "OFFSET $offset LIMIT $limit;");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function getOrdersByBuyer($idbuyer) {

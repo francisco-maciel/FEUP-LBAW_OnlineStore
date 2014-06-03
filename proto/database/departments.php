@@ -27,3 +27,9 @@ function getAllDepartmentsSmarty() {
     $stmt->execute();
     return $stmt->fetchAll();
 }
+
+function addDepartment($name) {
+    global $conn;
+    $stmt = $conn->prepare("INSERT INTO department(name) VALUES('$name')");
+    return $stmt->execute();
+}

@@ -50,6 +50,28 @@ $('#prod_price').on('input', function() {
     }
 });
 
+function addDep() {
+    var name = $('input#add-dep').val();
+    var loc = document.URL.replace(/pages\/(.*)/, "actions/manage/addDepartment.php" + "?name=" + name);
+    $.ajax(loc).done(function(data) {
+        $('select#prod_family').empty();
+        loadDepartments();
+    });
+}
+
+function addCat() {
+    var dep = $('#prod_family')[0].selectedIndex + 1;
+    var cat = $('input#add-cat').val();
+    var loc = document.URL.replace(/pages\/(.*)/, "actions/manage/addCategory.php?depid=" + dep + "&name=" + cat);
+    $.ajax(loc).done(function(data) {
+        $('select#prod_family').empty();
+        $('select#prod_category').empty();
+        loadDepartments();
+        loadCategories(dep);
+    });
+    
+}
+
 function isInt(n) {
     return (n % 1 === 0 && n >= 0 && n < 2147483647);
 }
@@ -69,15 +91,15 @@ function loadDepartments(selected) {
     });
 }
 
-$("form").on("submit", function() {
-    if ($('.glyphicon-remove') !== null) {
+$("#form").on("submit", function() {
+    if ($('.glyphicon-remove').length !== 0) {
         $('span.glyphicon-remove').prev().tooltip('show');
         setTimeout(function() {
             $('span.glyphicon-remove').prev().prev().tooltip('hide');
         }, 2000);
         return false;
     }
-        
+
 });
 
 
@@ -104,7 +126,7 @@ function getProductFillForm(id) {
     if (id === NaN && !isInt(id)) {
         return false;
     }
-   
+
     var loc = document.URL.replace("pages/admin_area/add_product.php", "actions/products/getProduct.php");
     $.ajax({
         url: loc,
@@ -112,7 +134,7 @@ function getProductFillForm(id) {
         dataType: "json"
     }).done(function(data) {
         if (typeof data.error === 'undefined') {
-                //we got a proper response from api
+            //we got a proper response from api
             $('#prod_name').val(data.title);
             $('#prod_stock').val(data.stock);
             $('#prod_price').val(data.price);
@@ -125,5 +147,5 @@ function getProductFillForm(id) {
         }
 
     });
-    
+
 }
