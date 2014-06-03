@@ -191,3 +191,11 @@ function removeWishList($email, $id) {
     return $stmt->execute(array($id, $email));
 
 }
+
+
+function getNumberOfProducts() {
+    /*
+     $results = mysqli_query($connecDB,"SELECT COUNT(*) FROM paginate");
+     $get_total_rows = mysqli_fetch_array($results); //total records
+     */
+}
