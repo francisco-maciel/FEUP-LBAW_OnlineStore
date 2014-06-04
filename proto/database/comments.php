@@ -60,3 +60,9 @@ function saveReview($idProduct, $idOrder, $comment, $rating) {
 
     //$conn->commit();
 }
+
+function reportReview($idReview) {
+    global $conn;
+    $stmt = $conn->prepare('UPDATE review SET reported = true WHERE idreview = ?');
+    return  $stmt->execute(array($idReview));
+}

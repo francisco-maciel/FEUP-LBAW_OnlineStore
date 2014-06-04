@@ -18,6 +18,27 @@
    <div class="col-md-9">
 -->
 
+<div class="modal fade report-review" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to report this review?</p>
+            </div>
+            <div class="modal-footer">
+                <form accept-charset="UTF-8" method="post" action="{$BASE_URL}actions/users/reportReview.php">
+                    <input name="reviewID" id="reviewID" type="hidden">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning btn-primary">Yes I am</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
     <div class="thumbnail product_id" id="{$product['idproduct']}">
 
      <ol class="breadcrumb">
@@ -154,7 +175,9 @@
                   {/for}
                   <span style="padding-left:10px">{$review['name']}</span>
                   <span class="pull-right">10 days ago</span>
-                  <span class="pull-right" style="padding-right:10px;"><button class="btn btn-warning btn-sm" type="submit">Report</button></span>
+                  <span class="pull-right" style="padding-right:10px;">
+                      <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$review['idreview']}">Report</button>
+                  </span>
 
                   <p>{$review['text']}</p>
               </div>
@@ -227,6 +250,11 @@
             {include file='common/footer.tpl'}
 
 <script type="text/javascript">
+
+    $(document).on("click", ".report-button", function() {
+        var reviewID = $(this).data('id');
+        $(".report-review #reviewID").val(reviewID);
+    });
 
     function editProduct(){
        //var id = window.location.search;
