@@ -8,8 +8,8 @@
 function banUser(id) {
     var loc = document.URL.replace(/pages(.*)/, "actions/manage/banUser.php?id=" + id);
     $.get(loc, function() {
-        alert("Buyer banned");
-        window.location.replace("http://localhost:4567/lbaw-loja-online/proto/pages/admin_area/manage_users.php");
+        //alert("Buyer banned");
+        window.location.replace("http://localhost:4567/lbaw-loja-online/proto/pages/admin_area/manage_users.php?userBanned=1");
     }).fail(function(data) {
         alert("ERROR!\nWhat: Ban User\nWhy: " + data.statusText);
     });

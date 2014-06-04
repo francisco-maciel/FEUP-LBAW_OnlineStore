@@ -9,14 +9,16 @@
 //name is unique
 function getFilterIdByName($name) {
     global $conn;
-    $stmt = $conn->prepare("SELECT idfilter as id FROM filter WHERE filter_name='$name'");
+    $lname = strtolower($name);
+    $stmt = $conn->prepare("SELECT idfilter as id FROM filter WHERE filter_name='$lname'");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
 function addFilter($name) {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO filter(filter_name) VALUES('$name')");
+    $lname = strtolower($name);
+    $stmt = $conn->prepare("INSERT INTO filter(filter_name) VALUES('$lname')");
     return $stmt->execute();
 }
 
@@ -38,10 +40,11 @@ function addFilters_failsafe($name_arr) {
     $base_sql = "INSERT INTO filter(filter_name) VALUES";
 
     foreach ($name_arr as $key => $value) {
-        $res = getFilterIdByName($value);
+        $lvalue = strtolower($value);
+        $res = getFilterIdByName($lvalue);
         if (!$res) {
             //Does not exist on db
-            $stmt = $conn->prepare($base_sql . "('$value')");
+            $stmt = $conn->prepare($base_sql . "('$lvalue')");
             $stmt->execute();
         }
     }
@@ -52,7 +55,8 @@ function getFilterIdsByName_BULK($names_arr) {
     global $conn;
     $sql = "SELECT idfilter AS id, filter_name FROM filter WHERE";
     foreach ($names_arr as $key => $value) {
-        $sql .= " filter_name = '$value' OR";
+        $lvalue = strtolower($value);
+        $sql .= " filter_name = '$lvalue' OR";
     }
     //rtrim($sql, "OR");
     $sql_trimmed = substr($sql, 0, -2);
@@ -79,4 +83,43 @@ function addFiltersProduts_Rel($id_product, $filterIds_arr, $types_arr, $values_
     $sql_trimmed = substr($sql, 0, -1);
     $stmt = $conn->prepare($sql_trimmed);
     return $stmt->execute();
+}
+
+
+function getFilterValues($id) {
+    global $conn;
+    $stmt = $conn->prepare('SELECT value_string, value_int, type
+                            FROM prodfilter
+                            WHERE idfilter=?
+                            GROUP BY value_string, value_int, type');
+    $stmt->execute(array($id));
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+function getFilteredProducts($q) {
+    global $conn;
+    $stmt = $conn->prepare($q);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
+
+function getSearchFilters($list) {
+    global $conn;
+    $wherefield = "where (";
+    for($i=0; $i<sizeof($list); $i++) {
+        if($i!=0){
+            $wherefield .= " OR ";
+        }
+        $wherefield.="prodfilter.idproduct=".($list[$i]['idproduct']);
+    }
+    $wherefield .= ")";
+    $stmt = $conn->prepare("
+        SELECT filter.idfilter as id, filter.filter_name as name
+        FROM filter
+        INNER JOIN prodfilter
+        ON prodfilter.idfilter = filter.idfilter ". $wherefield.
+        " GROUP BY filter.idfilter, filter.filter_name
+        ORDER BY filter_name");
+    $stmt->execute();
+    return $stmt->fetchAll();
 }

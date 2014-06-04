@@ -167,6 +167,28 @@ function getUsersNoAdminsPortion($limit, $offset) {
     return $result;
 }
 
+function getUsersPortionFilter($limit, $offset, $col, $text) {
+    global $conn;
+    if ($col == "banned") {
+        $table = "b";
+    } else {
+        $table = "u";
+    }
+    $stmt = $conn->prepare("SELECT u.iduser, u.user_type, u.email, u.name, b.banned "
+            . "FROM user_ AS u "
+            . "INNER JOIN buyer AS b "
+            . "ON u.iduser = b.iduser "
+            . "WHERE u.iduser IN (SELECT b.iduser FROM buyer AS b "
+            . "INNER JOIN user_ AS u "
+            . "ON b.iduser = u.iduser "
+            . "WHERE $table.$col::varchar(255) ~* '$text') "
+            . "AND u.user_type != 2 "
+            . "ORDER BY u.date_signed "
+            . "OFFSET $offset LIMIT $limit;");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function countBuyers() {
     global $conn;
     $stmt = $conn->prepare("SELECT Count(user_.iduser)

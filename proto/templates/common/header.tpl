@@ -6,7 +6,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+
+    <title>Loja Online - LBAW 2013/14</title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
@@ -26,16 +28,8 @@
 
     <link href="{$BASE_URL}css/alertify.default.css" rel="stylesheet">
 
-    <!--
-    <link href="{$BASE_URL}css/sidebar.css" rel="stylesheet">
-    <link href="{$BASE_URL}css/bootstrap-combined.min.css" rel="stylesheet">
-    <script src="{$BASE_URL}javascript/sidebar.js"></script> -->
-
     <script src="{$BASE_URL}javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
-
-    
-
 
 </head>
 
@@ -79,8 +73,8 @@
                             {/if}
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        <a type="" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
-                            <span class="badge shopping-cart" >0</span></a>
+                        <div id="cart-open" class="btn btn-danger "><span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span class="badge shopping-cart" >0</span></div>
                     </form>
                 </li>
 

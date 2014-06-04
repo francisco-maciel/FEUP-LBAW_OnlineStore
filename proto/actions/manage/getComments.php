@@ -17,8 +17,15 @@ if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
 $offset = filter_input(INPUT_GET, 'offset');
 $limit = filter_input(INPUT_GET, 'limit');
 
+$colname = filter_input(INPUT_GET, 'col');
+$text = filter_input(INPUT_GET, 'text');
+
 if (isset($offset) && isset($limit)) {
-    $res = getCommentsPortion($limit, $offset);
+    if (isset($colname) && isset($text)) {
+        $res = getCommentsPortionFilter($limit, $offset, $colname, $text);
+    } else {
+        $res = getCommentsPortion($limit, $offset);
+    }
 } else {
     $res = getComments();
 }

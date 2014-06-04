@@ -20,19 +20,30 @@ function remove_from_wish_list(id) {
         return;
     }
     else {
-
+        var product = $(this);
         $.ajax({
             dataType:"json",
             url:loc,
             data: {id: selected_id},
             success:function(result) {
+                if (result.error == null) {
+                   $('.thumbnail#'+result.id).parent().fadeOut();
+                    $.when( product.find(".thumbnail").parent().fadeOut(500)).done(function() {
+
+                      if ( $(".thumbnail").filter(":visible").size() - 1 <= 0){
+                          setTimeout(function(){
+                              $("#content.row").append('<div  class="col-sm-12 col-lg-12 col-md-12"><div class="row"></div><h4 style="color:gray">No items on your wish list</h4> </div>');
+                          }, 500);
+                      }
+
+
+
+                    });
+
+                }
             }
         });
     }
 
 }
 
-function select_id() {
-
-    var id = $('')
-}

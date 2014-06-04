@@ -1,9 +1,8 @@
 {include file='common/header.tpl'}
 <!--  TODO already logged in-->
-<!--  TODO check nif and password standards     -->
 <div class="container">
 
-    <div class="row">
+    <div class="row" id="content">
 
         <fieldset>
 
