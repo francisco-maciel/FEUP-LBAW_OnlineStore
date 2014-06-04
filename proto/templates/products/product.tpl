@@ -4,44 +4,29 @@
 </script>
 
 
-<div class="container">
-    <div class="row">
-    <!--
-        <div class="col-md-3 column margintop20">
-         <ul class="nav nav-pills nav-stacked">
-           <li class="active"><a href="#"><span class="glyphicon "></span> Category</a></li>
-           <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 1</a></li>
-           <li><a href="#" class="active2"><span class="glyphicon glyphicon-chevron-right"></span> Category 2</a></li>
-           <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 3</a></li>
-           <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 4</a></li>
-           <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 5</a></li>
-         </ul>
-       </div>
-
-       <div class="col-md-9">
-       -->
-
-        <div class="modal fade report-review" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Do you really want to report this review?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <form accept-charset="UTF-8" method="post" action="{$BASE_URL}actions/users/reportReview.php">
-                            <input name="reviewID" id="reviewID" type="hidden">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-warning btn-primary">Yes I am</button>
-                        </form>
-                    </div>
-                </div>
+<div class="modal fade report-review" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you really want to report this review?</p>
+            </div>
+            <div class="modal-footer">
+                <form accept-charset="UTF-8" method="post" action="{$BASE_URL}actions/users/reportReview.php">
+                    <input name="reviewID" id="reviewID" type="hidden">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning btn-primary">Yes I am</button>
+                </form>
             </div>
         </div>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row">
         <div class="thumbnail product_id" id="{$product['idproduct']}">
 
             <ol class="breadcrumb">
@@ -58,13 +43,12 @@
             {/if}
 
             <div class="caption-full">
-
                 <h4 class="pull-right">€{$product['price']}</h4>
                 <h4 class="prodtitle">{$product['title']}</h4>
 
                 <p><strong>Description: </strong>{$product['description']}</p>
-                <p><strong>Reference:</strong> {$product['idproduct']}</p>
-                <br>
+                <p><strong>Reference:</strong> {$product['idproduct']}</p><br>
+
                 <h4 class="spectitle">Specifications</h4>
                 {foreach $specs as $spec}
                     {if $spec['type']==0}
@@ -174,94 +158,92 @@
                     3.0 stars
                 </p>
             </div>
+        </div>
 
-            <div class="well">
-                {foreach $reviews as $review}
-                    <div class="row">
-                        <div class="col-md-12">
-                            {for $i=1 to $review['rating']}
-                                <span class="glyphicon glyphicon-star"></span>
-                            {/for}
-                            {for $i=0 to 4-$review['rating']}
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            {/for}
-                            <span style="padding-left:10px">{$review['name']}</span>
-                            <span class="pull-right">10 days ago</span>
-                            <span class="pull-right" style="padding-right:10px;">
-                                <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$review['idreview']}">Report</button>
-                            </span>
+        <div class="well">
+            {foreach $reviews as $review}
+                <div class="row">
+                    <div class="col-md-12">
+                        {for $i=1 to $review['rating']}
+                            <span class="glyphicon glyphicon-star"></span>
+                        {/for}
+                        {for $i=0 to 4-$review['rating']}
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        {/for}
+                        <span style="padding-left:10px">{$review['name']}</span>
+                        <span class="pull-right">10 days ago</span>
+                        <span class="pull-right" style="padding-right:10px;">
+                            <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$review['idreview']}">Report</button>
+                        </span>
 
-                            <p>{$review['text']}</p>
-                        </div>
+                        <p>{$review['text']}</p>
                     </div>
-                {/foreach}
+                </div>
+            {/foreach}
+        </div>
+
+        <hr>
+        <div>
+            <h4><a href="#">Other Products</a></h4>
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/320x150" alt="">
+
+                    <div class="caption">
+                        <h4 class="pull-right">€</h4>
+                        <h4><a href="#">Product 3</a></h4>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">31 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </p>
+                    </div>
+                </div>
             </div>
 
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/320x150" alt="">
 
-            <div>
-                <hr><br><br>
-                <h4><a href="#">Other Products</a></h4>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
-
-                        <div class="caption">
-                            <h4 class="pull-right">€</h4>
-                            <h4><a href="#">Product 3</a></h4>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">31 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
+                    <div class="caption">
+                        <h4 class="pull-right">€</h4>
+                        <h4><a href="#">Product 1</a></h4>
+                    </div>
+                    <div class="ratings">
+                        <p class="pull-right">15 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                        </p>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
+            <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="thumbnail">
+                    <img src="http://placehold.it/320x150" alt="">
 
-                        <div class="caption">
-                            <h4 class="pull-right">€</h4>
-                            <h4><a href="#">Product 1</a></h4>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">15 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
-                        </div>
+                    <div class="caption">
+                        <h4 class="pull-right">€</h4>
+                        <h4><a href="#">Product 2</a></h4>
                     </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
-
-                        <div class="caption">
-                            <h4 class="pull-right">€</h4>
-                            <h4><a href="#">Product 2</a></h4>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">12 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
+                    <div class="ratings">
+                        <p class="pull-right">12 reviews</p>
+                        <p>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                        </p>
                     </div>
                 </div>
             </div>
