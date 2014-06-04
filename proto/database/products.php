@@ -163,7 +163,7 @@ function purchasedProductBuyer($email, $id) {
     $stmt = $conn->prepare("SELECT * FROM user_, order_, orderline where user_.email = ? AND
     order_.idbuyer = user_.iduser AND orderline.idorder = order_.idorder AND orderline.idproduct = ?");
     $stmt->execute(array($email, $id));
-    return $stmt->fetchAll();
+    return $stmt->fetch();
 }
 
 function productReviewdByBuyer($email, $id) {

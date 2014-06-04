@@ -58,7 +58,9 @@
                     <button href="{$BASE_URL}pages/users/wish_list.php" id="wish_list_added" name="" " title="This is item is on your wish list!" class="btn btn-labeled btn-warning" ><span class="glyphicon glyphicon glyphicon-star"></span> </button>
                     {/if}
                 {/if}
+                <!--  Se o utilizador tinha comprado o produto -->
                 {if $purchased == true}
+                    <!-- Se ja deixou comentario para o produto, pode ver o comentario deixado -->
                     {if $reviewed == true}
                         <div class="row" style="margin-top:20px;">
                             <div class="col-md-6">
@@ -85,26 +87,27 @@
                                 </div>
                             </div>
                         </div>
-                    {else}
+                    {else}    <!-- Se ainda nao tinha deixado comentario, pode deixar comentario -->
                         <div class="row" style="margin-top:20px;">
                             <div class="col-md-6">
                                 <div class="text-left">
                                     <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box">Leave a Review</a>
                                 </div>
 
-                                <div class="row" id="post-review-box" action="{$BASE_URL}actions/users/leaveReview.php"style="display:none;">
+                                <div class="row" id="post-review-box" style="display:none;">
                                     <div class="col-md-12">
-                                        <form accept-charset="UTF-8" action="" method="post">
+                                        <form accept-charset="UTF-8" method="post" action="{$BASE_URL}actions/users/leaveReview.php">
                                             <input id="ratings-hidden" name="rating" type="hidden">
+                                            <input id="idProduct" name="idProduct" value="{$product['idproduct']}" type="hidden">
+                                            <input id="idOrder" name="idOrder" value="{$purchased['idorder']}" type="hidden">
                                             <textarea class="form-control animated" cols="50" id="new-review" name="comment"
                                                       placeholder="Enter your review here..." rows="5"></textarea>
-
                                             <div class="text-right">
-                                                <div class="stars starrr" data-rating="0"></div>
+                                                <div class="stars starrr" id="rating_value" data-rating="0"></div>
                                                 <a class="btn btn-danger btn-sm" href="#" id="close-review-box"
                                                    style="display:none; margin-right: 10px;">
                                                     <span class="glyphicon glyphicon-remove"></span>Cancel</a>
-                                                <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                                <button type="submit" class="btn btn-success btn-lg">Save</button>
                                             </div>
                                         </form>
                                     </div>
@@ -149,8 +152,10 @@
                   {for $i=0 to 4-$review['rating']}
                       <span class="glyphicon glyphicon-star-empty"></span>
                   {/for}
-                  {$review['name']}
+                  <span style="padding-left:10px">{$review['name']}</span>
                   <span class="pull-right">10 days ago</span>
+                  <span class="pull-right" style="padding-right:10px;"><button class="btn btn-warning btn-sm" type="submit">Report</button></span>
+
                   <p>{$review['text']}</p>
               </div>
           </div>
@@ -221,14 +226,29 @@
 
             {include file='common/footer.tpl'}
 
-            <script type="text/javascript">
+<script type="text/javascript">
 
-                function editProduct(){
-                   //var id = window.location.search;
-                   var loc = document.URL.replace("products/product.php", "admin_area/add_product.php");
-                   window.location = loc;
-                }
-            </script>
+    function editProduct(){
+       //var id = window.location.search;
+       var loc = document.URL.replace("products/product.php", "admin_area/add_product.php");
+       window.location = loc;
+    }
+
+    function postReview(idProduct, idOrder) {
+
+        var comment = $('#new-review').val();
+        var rating = $('#rating_value .glyphicon-star').length;
+
+        if(comment==null)
+           alert("You have to insert your comment!");
+        if(rating == 0)
+            alert("You must give a rating!");
+
+        alert("Comment: " + comment);
+        alert("Rating: " + rating);
+    }
+
+</script>
 
 <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
 <script src="{$BASE_URL}javascript/products/add_wishlist.js"></script>

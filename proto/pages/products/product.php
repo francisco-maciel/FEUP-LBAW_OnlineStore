@@ -16,6 +16,7 @@ if (!$_GET['id']) {
 
       $addWishListButton = !isOnWishList($_SESSION['email'], $_GET['id']);
       $purchased = purchasedProductBuyer($_SESSION['email'], $_GET['id']);
+
       $reviewed = productReviewdByBuyer($_SESSION['email'], $_GET['id']);
   }
 

@@ -50,3 +50,13 @@ function getCommentsPortion($limit, $offset) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function saveReview($idProduct, $idOrder, $comment, $rating) {
+    global $conn;
+
+    //$conn->beginTransaction();
+    $stmt = $conn->prepare('INSERT INTO review VALUES (DEFAULT,?,?,FALSE,?,?,FALSE);');
+    return  $stmt->execute(array($rating, $comment, $idOrder, $idProduct));
+
+    //$conn->commit();
+}
