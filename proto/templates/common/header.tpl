@@ -56,7 +56,7 @@
                 </li>
                 <li><a href="{$BASE_URL}pages/blank.php">Services</a>
                 </li>
-                <li><a href="{$BASE_URL}pages/blank.php">Contact</a>
+                <li><a href="{$BASE_URL}pages/contact.php">Contact</a>
                 </li>
 
 
