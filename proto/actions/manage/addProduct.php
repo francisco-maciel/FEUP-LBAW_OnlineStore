@@ -12,6 +12,8 @@ include_once($BASE_DIR . 'database/filters.php');
 include_once($BASE_DIR . 'database/departments.php');
 include_once($BASE_DIR . 'database/categories.php');
 
+ob_start();
+
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
@@ -77,11 +79,12 @@ if ((($_FILES["prod_img"]["type"] == "image/jpeg") || ($_FILES["prod_img"]["type
         $dir = mkdir($target_dir);
         //echo $target_dir . $_FILES["prod_img"]["name"];
         $res = move_uploaded_file($_FILES["prod_img"]["tmp_name"], $target_dir . $_FILES["prod_img"]["name"]);
+        chmod($target_dir . $_FILES["prod_img"]["name"], 0755);  // octal; correct value of mode
 //        if (!$res) {
 //            echo 'Failed to upload image';
 //            exit();
 //        }
-        echo "Stored in: " . "images/" . ($prod_id + 1) . "/" . $_FILES["prod_img"]["name"];
+        echo "Stored in: " . "images/" . ($prod_id) . "/" . $_FILES["prod_img"]["name"];
     }
 } else {
     echo "Invalid file";
@@ -148,5 +151,6 @@ try {
     $error = $excep->getMessage();
 }
 
-
-header('Location: ' . filter_input(INPUT_SERVER, 'HTTP_REFERER'));
+ob_end_clean();
+header('Location: ' . $BASE_URL . "pages/admin_area/add_product.php");
+exit;

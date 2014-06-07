@@ -107,7 +107,7 @@
                 <div class="form-group" id="form-hide">
                     <label class="col-md-4 control-label" for="prod_stock"></label>
                     <div class="col-md-3">
-                        <p class="form-control-hide">Click <a href="{$BASE_URL}pages/users/myOrders.php" style="color:#0033CC" href="">here</a> to view your past purchases </p>
+                        <p class="form-control-hide">Click <a href="{$BASE_URL}pages/users/myOrders.php" style="color:#0033CC">here</a> to view your past purchases </p>
                     </div>
                 </div>
 

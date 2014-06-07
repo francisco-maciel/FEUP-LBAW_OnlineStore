@@ -53,6 +53,20 @@ function getCommentsPortion($limit, $offset) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function saveReview($idProduct, $idOrder, $comment, $rating) {
+    global $conn;
+    //$conn->beginTransaction();
+    $stmt = $conn->prepare('INSERT INTO review VALUES (DEFAULT,?,?,FALSE,?,?,FALSE);');
+    return  $stmt->execute(array($rating, $comment, $idOrder, $idProduct));
+    //$conn->commit();
+}
+
+function reportReview($idReview) {
+    global $conn;
+    $stmt = $conn->prepare('UPDATE review SET reported = true WHERE idreview = ?');
+    return  $stmt->execute(array($idReview));
+}
+
 function getCommentsPortionFilter($limit, $offset, $col, $text) {
     global $conn;
     if ($col == "idbuyer") {

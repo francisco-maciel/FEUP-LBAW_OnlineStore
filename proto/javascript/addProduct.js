@@ -66,7 +66,7 @@ function addCat() {
     $.ajax(loc).done(function(data) {
         $('select#prod_family').empty();
         $('select#prod_category').empty();
-        loadDepartments();
+        loadDepartments(dep);
         loadCategories(dep);
     });
     
