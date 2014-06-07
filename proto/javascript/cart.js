@@ -42,9 +42,24 @@ $(document).ready(function() {
     }
 
     updateCart(getCart());
-
+    checkCartButton(getCart());
 
 });
+
+function checkCartButton(cart) {
+    var id = currentId();
+    var found = false;
+        cart.items.forEach(function(item, index, array) {
+        if (item.id == id ){
+            found = true;
+        }
+    });
+    // TODO message saying its in cart
+}
+
+function currentId() {
+    return $('.product_id').attr('id');
+}
 
 function setCart(cart) {
     sessionStorage.cart = JSON.stringify(cart);
@@ -83,10 +98,6 @@ function addControllers(cart) {
         return cart.items.length;
     }
 
-    cart.addItem = function(item) {
-        cart.items.push(item);
-
-    }
 
     cart.addProduct = function(id,title,price,img) {
         var item = product(id,title,price,img);

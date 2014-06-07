@@ -126,3 +126,7 @@ body { margin-top:20px; }
 }
 
 .widget img { max-width: 20% }
+
+.modal-backdrop {
+    display: none;
+}

@@ -139,6 +139,6 @@
 
 {include file='common/footer.tpl'}
 
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
 <script src="{$BASE_URL}javascript/register.js"></script>
+<script src="{$BASE_URL}javascript/cart.js" ></script>

@@ -51,9 +51,9 @@
 
 </ul>
 
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="{$BASE_URL}javascript/manageComments.js"></script>
-<script src="{$BASE_URL}javascript/contextMenu.js"></script>
 
 
 {include file='common/footer.tpl'}
+
+<script src="{$BASE_URL}javascript/manageComments.js"></script>
+<script src="{$BASE_URL}javascript/contextMenu.js"></script>

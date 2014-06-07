@@ -220,9 +220,9 @@
 
 </div>
 
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="{$BASE_URL}javascript/addProduct.js"></script>
 
 {include file='common/footer.tpl'}
+
+<script src="{$BASE_URL}javascript/addProduct.js"></script>
 
 

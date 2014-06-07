@@ -17,17 +17,13 @@
 </div>
 
 <!-- /.container -->
-
-{include file='common/footer.tpl'}
-
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{$BASE_URL}javascript/users/wish_list.js"></script>
 
 
-
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div  style="z-index: 1000000" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+        <div class="modal-content" >
 
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -36,7 +32,15 @@
             <div class="modal-body">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="remove_from_wish_list()">Yes</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>            </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
 </div>
+
+
+{include file='common/footer.tpl'}
+
+
+
+
+<script src="{$BASE_URL}javascript/cart.js" ></script>
