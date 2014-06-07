@@ -133,8 +133,8 @@
 
     });
 </script>
-
+<!--
 <script src="{$BASE_URL}javascript/cart.js"></script>
-
+-->
 </body>
 </html>
