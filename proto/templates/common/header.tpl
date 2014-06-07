@@ -31,11 +31,6 @@
     <script src="{$BASE_URL}javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
 
-    <meta property="og:title" content="Product Name"/>
-    <meta property="og:image" content="http://davidwalsh.name/wp-content/themes/klass/img/facebooklogo.png"/>
-    <meta property="og:url" content="http://www.fe.up.pt/~ei11084"/>
-    <meta property="og:description" content="product description"/>
-
 </head>
 
 
@@ -78,8 +73,8 @@
                             {/if}
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                        <a type="" class="btn btn-danger active"><span class="glyphicon glyphicon-shopping-cart"></span>
-                            <span class="badge shopping-cart" >0</span></a>
+                        <div id="cart-open" class="btn btn-danger "><span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span class="badge shopping-cart" >0</span></div>
                     </form>
                 </li>
 
