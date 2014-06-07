@@ -15,13 +15,13 @@
                 <p>These actions are:</p>
                 <ol>
                     <li><a href="#1">Filter users</a></li>
-                    <li><a href="#2">View user profile</a></li>
+                    <li><a href="#2">View a user profile</a></li>
                     <li><a href="#3">Set a user's permission level</a></li>
                     <li><a href="#4">Ban a user</a></li>
                 </ol>
                 <hr>
                 <ol>
-                    <li id="1">Filter the results shown</li>
+                    <li id="1">Filter users</li>
                     <br>
                     <p>Click on <i>Filter</i> button </p>
                     <img src="{$BASE_URL}images/assets/filter_button.png" alt="filter button">
@@ -42,10 +42,10 @@
                         <br>
                         <img src="{$BASE_URL}images/assets/user_context_menu.png" alt="context menu">
                         <br>
-                        <b>NOTE:</b> There is a bug on firefox that will cause the pop-up to automatically disappear after the right-mouse<br>
+                        <b>Note:</b> There is a bug on firefox that will cause the pop-up to automatically disappear after the right-mouse<br>
                         button release, to bypass this hold the right-button and drag the pointer inside the pop-up.</p>
                     <br>
-                    <li id="4">Ban user</li>
+                    <li id="4">Ban a user</li>
                     <br>
                     <p>Banning a user means he/she can no longer sign in on the platform. To ban a user open the user's profile
                         <br> with the steps provbided on <i>item #2</i> and at the bottom of the profile there should be a yellow button<br>
