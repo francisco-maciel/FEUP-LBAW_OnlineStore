@@ -149,13 +149,13 @@
             <div class="ratings">
                 <p class="pull-right">{$averageRating['numreviews']}</p>
                 <p>   <!-- FIXME: float number? -->
-                    {for $i=1 to 3}
+                    {for $i=1 to intval($averageRating['average'])}
                         <span class="glyphicon glyphicon-star"></span>
                     {/for}
-                    {for $i=0 to 4-3}
+                    {for $i=0 to 4-intval($averageRating['average'])}
                         <span class="glyphicon glyphicon-star-empty"></span>
                     {/for}
-                    3.0 stars
+                    {intval($averageRating['average'])}
                 </p>
             </div>
         </div>
