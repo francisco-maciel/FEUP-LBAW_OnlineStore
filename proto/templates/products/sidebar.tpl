@@ -1,20 +1,26 @@
 {if isset($cat) }
 
 <div class="col-md-3 column margintop20">
-	<ul class="nav nav-pills nav-stacked">
+	<ul class="nav nav-pills nav-stacked" id="filtersList">
+
+
 		<li id="cattitle" class="active" catid="{$cat}">  <a><span class="glyphicon "></span> {$catname}</a></li>
-                
+  <!--      
                 {if (!$filters)}
-                   <li class="active2"><a href="#"><span class="glyphicon"></span> No Filters!</a></li>
+                   <li class="active2"><a href="javascript:void(0)"><span class="glyphicon"></span> No Filters!</a></li>
                 {/if}
 
 		{foreach $filters as $filter}
-		<li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
-		{/foreach}
+		<li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
+		{/foreach}  
+                {if !$message}
                 <li class="example sliderbox active2"><text class="pricerange" id=pr1></text> - <text class="pricerange" id=pr2></text><div class="slider"></div></li>
-		<!-- <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Others</a></li> -->
+                {/if}-->
+       	
+            <!-- <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Others</a></li> -->
 		<!-- {$filters|@var_dump} -->
 	</ul>
+
 </div>
 
 {elseif isset($dep)}
@@ -31,16 +37,19 @@
 {elseif isset($search)}
 
 <div class="col-md-3 column margintop20">
-	<ul class="nav nav-pills nav-stacked">
+	<ul class="nav nav-pills nav-stacked" id="filtersList">
 		<li id="searchtitle" class="active" search="{$search}">  <a><span class="glyphicon "></span> Filters</a></li>          
+    
+<!--
 		{if (!isset($filters))}
-                   <li class="active2"><a href="#"><span class="glyphicon"></span> No Filters!</a></li>
+                   <li class="active2"><a href="javascript:void(0)"><span class="glyphicon"></span> No Filters!</a></li>
                 {else}
                     {foreach $filters as $filter}
-                    <li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
+                    <li class="filter active2" id="filter{$filter.id}" fid="{$filter.id}"><a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-right"></span> {$filter.name}</a></li>
                     {/foreach}
                 {/if}
                 <li class="sliderbox active2"><div id="prg">Price Range: <text class="pricerange" id=pr1></text> - <text class="pricerange" id=pr2></text></div><div class="slider"></div></li>
+      -->
 	</ul>
 </div>
 

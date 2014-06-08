@@ -1,11 +1,11 @@
 <?php
-
+    
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+     
 //name is unique
 function getFilterIdByName($name) {
     global $conn;
@@ -14,14 +14,14 @@ function getFilterIdByName($name) {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
-
+    
 function addFilter($name) {
     global $conn;
     $lname = strtolower($name);
     $stmt = $conn->prepare("INSERT INTO filter(filter_name) VALUES('$lname')");
     return $stmt->execute();
 }
-
+    
 // WARNING: it will fail if name is not unique
 function addFilters($name_arr) {
     global $conn;
@@ -33,12 +33,12 @@ function addFilters($name_arr) {
     $stmt = $conn->prepare($sql_trimmed);
     return $stmt->execute();
 }
-
+    
 //Add one by one and ignore if already present (name must be unique)
 function addFilters_failsafe($name_arr) {
     global $conn;
     $base_sql = "INSERT INTO filter(filter_name) VALUES";
-
+        
     foreach ($name_arr as $key => $value) {
         $lvalue = strtolower($value);
         $res = getFilterIdByName($lvalue);
@@ -49,7 +49,7 @@ function addFilters_failsafe($name_arr) {
         }
     }
 }
-
+    
 // BULK
 function getFilterIdsByName_BULK($names_arr) {
     global $conn;
@@ -65,11 +65,11 @@ function getFilterIdsByName_BULK($names_arr) {
     $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $res;
 }
-
+    
 //-----------------------------------------------------------------------------
 // ProdFilter table operations
 //-----------------------------------------------------------------------------
-
+    
 function addFiltersProduts_Rel($id_product, $filterIds_arr, $types_arr, $values_arr) {
     global $conn;
     $sql = "INSERT INTO prodfilter(idproduct,idfilter,value_string,value_int,type) VALUES";
@@ -84,8 +84,8 @@ function addFiltersProduts_Rel($id_product, $filterIds_arr, $types_arr, $values_
     $stmt = $conn->prepare($sql_trimmed);
     return $stmt->execute();
 }
-
-
+    
+    
 function getFilterValues($id) {
     global $conn;
     $stmt = $conn->prepare('SELECT value_string, value_int, type
@@ -95,31 +95,102 @@ function getFilterValues($id) {
     $stmt->execute(array($id));
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
+    
+function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page) {
+    
+   $q = "select q1.* from ";
+            for($i=0; $i < sizeof($filters); $i++) {
+                if($i>0)
+                    $q .= " INNER JOIN ";
+                if($filters[$i]['type'] === 0){
+                    $q .= "(select product.* from product INNER JOIN category cat ON cat.idcategory = product.idcategory INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE cat.idcategory = ". $cat ." AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_string = '" . $filters[$i]['value'] . "' ) as q" . ($i+1) . " ";
+                } else {
+                    $q .= "(select product.* from product INNER JOIN category cat ON cat.idcategory = product.idcategory INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE cat.idcategory = ". $cat ." AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_int = " . $filters[$i]['value'] . " ) as q" . ($i+1) . " ";
+                }
+                if($i>0)
+                    $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";
+            }
+    $q .= "ORDER BY q1.title LIMIT $items_per_page OFFSET $position";           
+    global $conn;
+    $stmt = $conn->prepare($q);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_OBJ);       
+}
 
-function getFilteredProducts($q) {
+function getCountFilteredProdsWithCat($cat, $filters) {
+    
+   $q = "select count(q1.*) as count from ";
+            for($i=0; $i < sizeof($filters); $i++) {
+                if($i>0)
+                    $q .= " INNER JOIN ";
+                if($filters[$i]['type'] === 0){
+                    $q .= "(select product.* from product INNER JOIN category cat ON cat.idcategory = product.idcategory INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE cat.idcategory = ". $cat ." AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_string = '" . $filters[$i]['value'] . "' ) as q" . ($i+1) . " ";
+                } else {
+                    $q .= "(select product.* from product INNER JOIN category cat ON cat.idcategory = product.idcategory INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE cat.idcategory = ". $cat ." AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_int = " . $filters[$i]['value'] . " ) as q" . ($i+1) . " ";
+                }
+                if($i>0)
+                    $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";
+            }
+           
+    global $conn;
+    $stmt = $conn->prepare($q);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
+    
+function getFilteredProductsWithName($namepart, $filters, $position, $items_per_page) {
+    $q = "select q1.* from ";
+          for($i=0; $i < sizeof($filters); $i++) {
+                if($i>0)
+                    $q .= " INNER JOIN ";
+                if($filters[$i]['type'] === 0)
+                    $q .= "(select product.* from product INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE LOWER(product.title) LIKE LOWER('%" . $namepart . "%') AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_string = '" . $filters[$i]['value'] . "' ) as q" . ($i+1) . " ";
+                else 
+                    $q .= "(select product.* from product INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE LOWER(product.title) LIKE LOWER('%" . $namepart . "%') AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_int = " . $filters[$i]['value'] . " ) as q" . ($i+1) . " ";
+                        
+                if($i>0)
+                    $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";  
+            }
+    $q .= "ORDER BY q1.title LIMIT $items_per_page OFFSET $position";           
     global $conn;
     $stmt = $conn->prepare($q);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
-function getSearchFilters($list) {
+function getCountFilteredProdsWithName($namepart, $filters) {
+    $q = "select q1.* from ";
+          for($i=0; $i < sizeof($filters); $i++) {
+                if($i>0)
+                    $q .= " INNER JOIN ";
+                if($filters[$i]['type'] === 0)
+                    $q .= "(select product.* from product INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE LOWER(product.title) LIKE LOWER('%" . $namepart . "%') AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_string = '" . $filters[$i]['value'] . "' ) as q" . ($i+1) . " ";
+                else 
+                    $q .= "(select product.* from product INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE LOWER(product.title) LIKE LOWER('%" . $namepart . "%') AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_int = " . $filters[$i]['value'] . " ) as q" . ($i+1) . " ";
+                        
+                if($i>0)
+                    $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";  
+            }
+           
     global $conn;
-    $wherefield = "where (";
-    for($i=0; $i<sizeof($list); $i++) {
-        if($i!=0){
-            $wherefield .= " OR ";
-        }
-        $wherefield.="prodfilter.idproduct=".($list[$i]['idproduct']);
-    }
-    $wherefield .= ")";
-    $stmt = $conn->prepare("
-        SELECT filter.idfilter as id, filter.filter_name as name
-        FROM filter
-        INNER JOIN prodfilter
-        ON prodfilter.idfilter = filter.idfilter ". $wherefield.
-        " GROUP BY filter.idfilter, filter.filter_name
-        ORDER BY filter_name");
+    $stmt = $conn->prepare($q);
     $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_OBJ);
+}
+    
+function getSearchFilters($namepart) {
+    global $conn;
+        
+    $stmt = $conn->prepare(" SELECT filter.idfilter as id, filter.filter_name as name
+                            FROM filter
+                            INNER JOIN prodfilter
+                            ON prodfilter.idfilter = filter.idfilter
+                            INNER JOIN product
+                            ON product.idproduct = prodfilter.idproduct
+                            WHERE LOWER(product.title) LIKE LOWER(?)
+                            AND product.removed=false
+                            GROUP BY id, name
+                            ORDER BY name");
+    $stmt->execute(array("%" . $namepart . "%"));
     return $stmt->fetchAll();
 }

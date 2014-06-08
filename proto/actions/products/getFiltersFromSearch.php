@@ -9,6 +9,6 @@
 include_once '../../config/init.php';
 include_once $BASE_DIR . 'database/filters.php';
 
-$res = getFilteredProducts(filter_input(INPUT_GET, 'q'));
+$res = getSearchFilters(filter_input(INPUT_GET, 'namepart'));
 
 print_r(json_encode($res));

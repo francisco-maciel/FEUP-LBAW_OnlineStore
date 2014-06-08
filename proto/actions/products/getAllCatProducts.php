@@ -9,6 +9,10 @@
 include_once '../../config/init.php';
 include_once $BASE_DIR . 'database/products.php';
 
-    $res = getFilteredProductsByCat(filter_input(INPUT_GET, 'cid'));
+    $page = filter_input(INPUT_GET, 'page');
+    $items_per_page = filter_input(INPUT_GET, 'ipp');
+    $position = ($page-1)*$items_per_page;
+    
+    $res = getFilteredProductsByCat(filter_input(INPUT_GET, 'cid'),$position,$items_per_page);
 
 print_r(json_encode($res));
