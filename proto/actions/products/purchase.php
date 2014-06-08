@@ -1,13 +1,13 @@
 <?php
 
   $result;
-  include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/products.php');
+  include_once '../../config/init.php';
+  include_once $BASE_DIR .'database/products.php';
+include_once $BASE_DIR .'database/users.php';
 
-$result['dump'] = $_POST;
 
 
-  if ( !isset($_POST['orderDetail']) || !isset($_POST['orderDetail']) ||  !isset($_POST['orderLines']) ) {
+  if ( !isset($_POST['orderDetail']) || !isset($_POST['orderLines']) ||  !isset($_POST['orderTotal']) ) {
 
     $result['error'] = 'Missing purchase data!';
     echo json_encode($result);
@@ -27,24 +27,44 @@ $result['dump'] = $_POST;
         exit;
     }
 
-/*
-  $id = strip_tags($_GET['productid']);
-  $email = strip_tags($_SESSION['email']);
+    $orderDetail = $_POST['orderDetail'];
+    $orderLines = $_POST['orderLines'];
+    $orderTotal = $_POST['orderTotal'];
+
+    $user = getBuyerByEmail($_SESSION['email']);
+try {
+
+    global $conn;
+    $date_signed = date("Y-n-j");
+
+    $conn->beginTransaction();
+    $stmt = $conn->prepare('INSERT INTO order_ VALUES (DEFAULT,?,DEFAULT,?,?,?,?,?) RETURNING idorder;');
+    $stmt->execute(array($date_signed, null, 1, 1, $orderDetail['address'], $user['iduser']));
+    $id = $conn->lastInsertId("order__idorder_seq");
+
+    foreach ($orderLines as $line) {
+        $stmt = $conn->prepare('INSERT INTO orderline VALUES (?,?,?,?);');
+        $stmt->execute(array($line['id'], $id, $line['quantity'], $line['price_per_unit']));
 
 
-global $conn;
 
-  try {
-      addProductToWishList($email, $id);
-  }
-  catch (PDOException $e) {
 
-    $result['error'] = $e->getMessage();
+    }
+
+
+    $conn->commit();
+
+
+    $result['success'] = 'ok';
+    $result['id'] = $id;
     echo json_encode($result);
     exit;
-  }
-*/
- $result['success'] = 'ok';
- echo json_encode($result);
+}
+catch (PDOException $e) {
+    $conn->rollBack();
+    $result['error'] = $e;
+    echo json_encode($result);
+    exit;
+}
 
 ?>

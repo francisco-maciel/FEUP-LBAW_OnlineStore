@@ -161,8 +161,8 @@ var valid_login = true;
         </div>
     </div>
 <div class="row">
-    <div >
-        <button onClick="confirmPurchase()" class="col-lg-12 btn btn-block btn-success" ><h3>Confirm purchase</h3></button>
+    <div id="confirmation">
+        <button id="confirm_button_button" onClick="confirmPurchase()" class="col-lg-12 btn btn-block btn-success" ><h3>Confirm purchase</h3></button>
     </div>
 
 </div>
@@ -247,7 +247,7 @@ var valid_login = true;
         })
 
     });
-
+    loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');
     function confirmPurchase() {
 
         var data = new Object();
@@ -255,13 +255,26 @@ var valid_login = true;
         data.orderLines = orderLines;
         data.orderTotal = orderTotal;
 
-
+        $('#confirm_button_button').attr("disabled", true);
         $.ajax({
             type: "POST",
             url: '{$BASE_URL}actions/products/purchase.php',
             data: data,
             success: function(response) {
                 console.log(response);
+
+                if (response.error) {
+                    alertify.alert(response.error);
+                    $('#confirm_button_button').attr("disabled", false);
+                }
+
+                else {
+                    sessionStorage.clear();
+                    $('#confirmation').html('');
+                    $('#confirmation').append('<a href="'+loc+'pages/users/order.php?id='+response.id+'"><button class="col-lg-12 btn btn-block btn-default" ><h3>View order</h3></button></a>');
+                    alertify.alert("Purchase complete!");
+
+                }
             },
             dataType: 'json'
         });

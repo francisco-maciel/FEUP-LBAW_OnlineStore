@@ -13,7 +13,6 @@ $(document).ready(function() {
 
 
     cart = getCart();
-    updateCart(cart);
     addAdressListeners();
 
 

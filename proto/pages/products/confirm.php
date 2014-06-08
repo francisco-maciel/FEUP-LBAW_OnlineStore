@@ -33,6 +33,7 @@
    $orderDetail['nif'] = $user['nif'];
    $orderDetail['nif'] = $user['nif'];
 
+  $orderDetail['address'] = $cart->address;
   $orderDetail['door_nr_2'] = $address2['door_nr'];
   $orderDetail['formatted_address_2'] = $address2['formatted_address'];
    $orderDetail['street_2'] = $address2['street'];
@@ -43,11 +44,12 @@
   $orderDetail['orderstate'] = 'Waiting for confirmation';
 
 
-  $orderLines = [];
+  $orderLines = array();
 
 $total = 0.0;
 foreach($cart->items as $item) {
     $line = array();
+    $line['id'] = $item->id;
     $line['title'] = $item->name;
     $line['price_per_unit'] = $item->price;
     $line['quantity'] = $item->quantity;
