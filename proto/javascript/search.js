@@ -86,14 +86,23 @@ function listProduct(obj) {
     result+="<h4 class=\"pull-right\">€"+obj.price+"</h4>";
     result+="</div><div class=\"ratings\" rid=\""+obj.idproduct+"\">\n"+
             "<p class=\"pull-right\"> "+obj.nr_reviews+" reviews</p> <p>\n";
-    var ratingInt = parseInt(obj.avgrating);
-    for (var x = 0; x < ratingInt; x++) {
-        result+= "<span class=\"glyphicon glyphicon-star\"></span>\n";
+    
+    if(obj.avgrating === null) {
+        for (var x = 0; x < 5; x++)
+            result+= "<span class=\"glyphicon glyphicon-star-empty\"></span>\n";  
     }
-    for (var x = 0; x < 5-ratingInt; x++) {
-        result+= "<span class=\"glyphicon glyphicon-star-empty\"></span>\n";
+    else
+    {
+        var ratingInt = parseInt(obj.avgrating);
+        for (var x = 0; x < ratingInt; x++) {
+            result+= "<span class=\"glyphicon glyphicon-star\"></span>\n";
+        }
+        for (var x = 0; x < 5-ratingInt; x++) {
+            result+= "<span class=\"glyphicon glyphicon-star-empty\"></span>\n";
+        }
+        result+=""+ratingInt;
     }
-    result+= ratingInt+" </p></div></div><br></div>";
+    result+= " </p></div></div><br></div>";
     
     $('#results').append(result);
 }
