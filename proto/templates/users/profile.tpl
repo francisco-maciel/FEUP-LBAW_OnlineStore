@@ -3,7 +3,6 @@
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
@@ -16,15 +15,12 @@
                 <button type="button" class="btn btn-danger btn-primary" data-dismiss="modal" onclick="banUser({$user['iduser']})">Yes I am</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="modal fade delete-account" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
@@ -37,9 +33,7 @@
                 <button type="button" class="btn btn-danger btn-primary" data-dismiss="modal" onclick="deleteAccount({$user['iduser']})">Yes I am</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="container" id="profile">
