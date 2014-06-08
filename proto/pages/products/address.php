@@ -6,5 +6,6 @@ $addresses = getBuyerAddress($_SESSION['email']);
 
 $smarty->assign('addresses', $addresses);
 $smarty->display('products/address.tpl');
+$smarty->assign('no_cart', true);
 
 ?>

@@ -13,6 +13,14 @@ function getBuyerAddress($email)
     $stmt->execute(array($email));
     return $stmt->fetchAll();
 }
+
+function getAddressById($id)
+{
+    global $conn;
+    $stmt = $conn->prepare('SELECT * FROM address WHERE address.idaddress = ?');
+    $stmt->execute(array($id));
+    return $stmt->fetchAll();
+}
 /*
 function editBuyerAddress($street, $door, $postcode, $city, $iduser)
 {

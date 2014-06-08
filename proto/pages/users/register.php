@@ -7,7 +7,6 @@ if (isset( $_SESSION['permission'])) {
         header('Location: ' . $BASE_URL);
     }
 }
-
-  else $smarty->display('users/register.tpl');
+  $smarty->display('users/register.tpl');
 
 ?>
