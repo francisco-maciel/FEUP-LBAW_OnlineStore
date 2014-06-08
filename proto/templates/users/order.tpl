@@ -29,8 +29,7 @@
                 <div class="col-xs-6">
                     <address>
                         <!-- FIXME TODO -->
-                        <strong>Payment Method:</strong><br>
-                        Visa ending **** 4242<br>
+                        <strong>Payment Data:</strong><br>
                         {$orderDetail['email']}<br>
                         NIF: {$orderDetail['nif']}
                     </address>
