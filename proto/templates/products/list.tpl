@@ -1,7 +1,6 @@
 
-
-    {for $i=0 to (($products|@count)-1)}
-            {$prod = $products[$i]}
+    {foreach $products as $prod}
+             
 
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div  class="thumbnail" id="{$prod.idproduct}">
@@ -21,22 +20,24 @@
                 {/if}
                 <h4 class="pull-right">€{$prod.price}</h4>
             </div>
-            <div class="ratings">
-                <p class="pull-right">{$productsRatings[$i]['numreviews']} reviews</p>
+            {if isset($prod['nr_reviews'])}
+                <div class="ratings">
+                <p class="pull-right">{$prod['nr_reviews']} reviews</p>
                 <p>
-                    {for $x=1 to intval($productsRatings[$i]['average'])}
+                    {for $x=1 to intval($prod['avgrating'])}
                         <span class="glyphicon glyphicon-star"></span>
                     {/for}
-                    {for $x=0 to 4-intval($productsRatings[$i]['average'])}
+                    {for $x=0 to 4-intval($prod['avgrating'])}
                         <span class="glyphicon glyphicon-star-empty"></span>
                     {/for}
-                    {intval($productsRatings[$i]['average'])}
+                    {intval($prod['avgrating'])}
                 </p>
-            </div>
+                </div>
+            {/if}
         </div>
         <br>
     </div>
-{/for}
+{/foreach}
 
 
 {if isset($message)}

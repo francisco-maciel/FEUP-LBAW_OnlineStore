@@ -84,14 +84,20 @@ function listProduct(obj) {
         result+="<h4> <a href=\""+base_url+"pages/products/product.php?id="+obj.idproduct+"\"> "+obj.title+" </a> </h4>\n";    
     
     result+="<h4 class=\"pull-right\">€"+obj.price+"</h4>";
-    result+="</div><div class=\"ratings\">\n"+
-            "<p class=\"pull-right\">15 reviews</p><p>\n"+
-            "<span class=\"glyphicon glyphicon-star\"></span>\n"+
-            "<span class=\"glyphicon glyphicon-star\"></span>\n"+
-            "<span class=\"glyphicon glyphicon-star\"></span>\n"+
-            "<span class=\"glyphicon glyphicon-star\"></span>\n"+
-            "<span class=\"glyphicon glyphicon-star\"></span>\n"+
-            "</p></div></div><br></div>";
+    result+="</div><div class=\"ratings\" rid=\""+obj.idproduct+"\">\n"+
+            "<p class=\"pull-right\"> "+obj.nr_reviews+" reviews</p> <p>\n";
+    var ratingInt = parseInt(obj.avgrating);
+    for (var x = 0; x < ratingInt; x++) {
+        result+= "<span class=\"glyphicon glyphicon-star\"></span>\n";
+    }
+    for (var x = 0; x < 4-ratingInt; x++) {
+        result+= "<span class=\"glyphicon glyphicon-star-empty\"></span>\n";
+    }
+    result+= ratingInt+" </p></div></div><br></div>";
     
     $('#results').append(result);
+}
+
+function showRatings() {
+    
 }

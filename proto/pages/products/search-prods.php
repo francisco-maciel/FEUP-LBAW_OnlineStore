@@ -80,12 +80,13 @@ if (!$_GET['search']) {
     if(!isset($products))
         $products=[];
     
-    for($i=0; $i<sizeof($products);$i++) {
+ /*   for($i=0; $i<sizeof($products);$i++) {
       $productsRatings[$i] = averageRatingByProduct($products[$i]['idproduct']);
-  }
+  }*/
 
   $smarty->assign('products', $products);
-  $smarty->assign('productsRatings', $productsRatings);
+  var_dump($products);
+  //$smarty->assign('productsRatings', $productsRatings);
   $smarty->display('products/search.tpl');
 ?>
 
