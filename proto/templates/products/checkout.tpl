@@ -7,6 +7,13 @@
     var all_products =  {json_encode($products)};
 </script>
 
+<script type="text/javascript">
+var perm = '{$PERMISSION}';
+var valid_login = true;
+    if (perm == '' || perm != 0) {
+        valid_login = false;
+    }
+</script>
 <div class="container">
     <div class="row">
 

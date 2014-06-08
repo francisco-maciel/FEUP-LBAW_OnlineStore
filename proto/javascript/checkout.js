@@ -148,7 +148,16 @@ function setListeners() {
         }
 
         if (!checkInStock()) {
-            alertify.alert("The items you ordered are not available in stock for this quantity");
+            alertify.alert('The items you ordered are not available in stock for this quantity');
+            return false;
+        }
+
+        if (!valid_login) {
+            loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');
+            console.log(loc);
+            var string = 'You need to be registered to continue your purchase.<br/> Dont have an account? Register <a href="'.concat(loc);
+            string = string.concat('pages/users/register.php">here</a>  ')
+            alertify.alert(string);
             return false;
         }
 
@@ -183,7 +192,6 @@ function checkInStock() {
         if (typeof id !== 'undefined') {
             var quantity = $(this).find('.quantity').val();
             var valid = checkValidStock(id, quantity);
-            console.log(valid);
             if (valid) {
                 $(this).find('.stock').html('<strong>In Stock</strong>');
                 $(this).find('.stock').removeClass('text-danger');
