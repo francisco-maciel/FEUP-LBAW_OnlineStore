@@ -32,21 +32,17 @@
                 <hr>
                 {foreach $addresses as $address}
                 <div class="col-sm-4 col-lg-4 col-md-4 form-horizontal">
-                    <form id="address_form" class="form-horizontal" method="post" action="{$BASE_URL}actions/users/editAddress.php" accept-charset="UTF-8">
-                        <p><h4>{$address['name']}</h4></p>
-                        <div>
-                            <span class="form-control-update" name="street">{$address['street']}</span>
-                            <span class="form-control-update" name="door">{$address['door_nr']}</span>
-                        </div>
-                        <div>
-                            <span class="form-control-update" name="city">{$address['formatted_address']}</span>
-                            <span class="form-control-update" name="postcode">{$address['postcode']}</span>
-                        </div>
-                        <p>Portugal<br></p>
-                        <p><button type="submit" class="btn btn-success" id="save_address" style="display: none;">Save</button></p>
-                        <p><button type="button" class="btn btn-default" id="edit_address">Edit</button></p>
-                        <p><a href="#" class="btn btn-primary" role="button">Deliver to this address</a> </p>
-                    </form>
+                    <p><h4>{$address['name']}</h4></p>
+                    <div>
+                        <span>{$address['street']}</span>
+                        <span>{$address['door_nr']}</span>
+                    </div>
+                    <div>
+                        <span>{$address['formatted_address']}</span>
+                        <span>{$address['postcode']}</span>
+                    </div>
+                    <p>Portugal<br></p>
+                    <p><a href="#" class="btn btn-primary" role="button">Deliver to this address</a> </p>
                 </div>
                 {/foreach}
             </div>
@@ -106,15 +102,6 @@
         //Handles menu drop down
         $('.dropdown-menu').find('form').click(function (e) {
             e.stopPropagation();
-        });
-
-        $("#edit_address").click(function () {
-            $('.form-horizontal').find('.form-control-update').each(function () {
-                $("<input type='text' />").attr({ name:$(this).attr("name"), id:$(this).attr("id"), value: $(this).html() }).insertBefore(this);
-            }).remove();
-
-            $("#save_address").css("display", "initial");
-            $(this).css("display", "none");
         });
     });
 </script>

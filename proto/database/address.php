@@ -13,14 +13,14 @@ function getBuyerAddress($email)
     $stmt->execute(array($email));
     return $stmt->fetchAll();
 }
-
+/*
 function editBuyerAddress($street, $door, $postcode, $city, $iduser)
 {
     global $conn;
     $stmt = $conn->prepare('UPDATE address SET street=?, door_nr=?, postcode=?, formatted_address=? WHERE address.idbuyer = ?');
     return $stmt->execute(array($street, $door, $postcode, $city, $iduser));
 }
-
+*/
 function addBuyerAddress($street, $door, $postcode, $city, $iduser)
 {
     global $conn;
@@ -30,12 +30,3 @@ function addBuyerAddress($street, $door, $postcode, $city, $iduser)
 
     $conn->commit();
 }
-
-/*
-function deleteBuyerAddress($addressID)
-{
-    global $conn;
-    $stmt = $conn->prepare('DELETE FROM address WHERE address.idaddress= ?');
-    return $stmt->execute(array($addressID));
-}
-*/
