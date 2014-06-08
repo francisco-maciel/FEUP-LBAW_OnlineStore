@@ -229,6 +229,41 @@ function isOnWishList($email, $id) {
     return $stmt->fetchAll();
 }
 
+function purchasedProductBuyer($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM user_, order_, orderline where user_.email = ? AND
+    order_.idbuyer = user_.iduser AND orderline.idorder = order_.idorder AND orderline.idproduct = ?");
+    $stmt->execute(array($email, $id));
+    return $stmt->fetch();
+}
+
+function productReviewdByBuyer($email, $id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT review.text, review.rating FROM review, user_, order_ where user_.email = ? AND
+    order_.idbuyer = user_.iduser AND order_.idorder = review.idorder AND review.idproduct = ?");
+    $stmt->execute(array($email, $id));
+    return $stmt->fetch();
+}
+
+function averageRatingByProduct($id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT AVG(rating) AS average, count(*) AS numreviews FROM review where review.idproduct = ?");
+    $stmt->execute(array($id));
+    return $stmt->fetch();
+}
+
+function reviewsByProduct($id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT * FROM review, order_, user_ where review.idproduct = ? AND review.idorder = order_.idorder
+            AND order_.idbuyer = user_.iduser");
+    $stmt->execute(array($id));
+    return $stmt->fetchAll();
+}
+
 function removeWishList($email, $id) {
     global $conn;
 
@@ -237,7 +272,6 @@ function removeWishList($email, $id) {
     return $stmt->execute(array($id, $email));
 
 }
-
 
 function getNumberOfProducts() {
     /*

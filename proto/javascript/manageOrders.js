@@ -174,12 +174,12 @@ function getIdStateByName(name) {
     }
 }
 function processData(data) {
-    //var loc = document.URL.replace(/pages(.*)/, "pages/users/profile.php");
+    var loc = document.URL.replace(/pages(.*)/, "pages/users/order.php");
     data.forEach(function(obj) {
         //create row on table
         //getOrderTotal(obj.idorder);
         $('tbody').append('<tr>\n\
-                <td id="order' + obj.idorder + '"><a href="#">' + obj.idorder + '</a></td>' +
+                <td id="order' + obj.idorder + '"><a href="' + loc + '?id=' + obj.idorder + '">' + obj.idorder + '</a></td>' +
                 //'<td><select class="form-control">' + stateSelect + '</select></td>'+
                 '<td>' + obj.name + '</td>' +
                 '<td>' + obj.date_placed + '</td>' +

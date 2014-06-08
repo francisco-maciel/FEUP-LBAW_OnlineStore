@@ -22,7 +22,13 @@ if (!$_GET['id']) {
   if (isset($_SESSION['permission']) && isset($_SESSION['email'])) {
 
       $addWishListButton = !isOnWishList($_SESSION['email'], $_GET['id']);
+      $purchased = purchasedProductBuyer($_SESSION['email'], $_GET['id']);
+
+      $reviewed = productReviewdByBuyer($_SESSION['email'], $_GET['id']);
   }
+
+  $averageRating = averageRatingByProduct($_GET['id']);
+  $reviews = reviewsByProduct($_GET['id']);
 
   $smarty->assign('product', $product);
 
@@ -30,6 +36,14 @@ if (!$_GET['id']) {
   $smarty->assign('specs', $specs);
 
   $smarty->assign('addWishListButton', $addWishListButton);
+
+  $smarty->assign('purchased', $purchased);
+  $smarty->assign('reviewed', $reviewed);
+  $smarty->assign('averageRating', $averageRating);
+  $smarty->assign('reviews', $reviews);
+
+// TODO USAR No template
+
 
   set_fb_variables($product['title'], $product['description'],$smarty);
 
@@ -52,5 +66,4 @@ function set_fb_variables($title, $description,$smarty) {
     $smarty->assign('fb_description', $fb_description );
 }
 
-
-  ?>
+?>

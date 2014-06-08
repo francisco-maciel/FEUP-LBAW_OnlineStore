@@ -12,7 +12,6 @@
     header("Location: $BASE_URL" . 'pages/users/register.php');
     exit;
   }
-
   $realname = strip_tags($_POST['realname']);
   $email = strip_tags($_POST['email']);
   $password = strip_tags($_POST['password']);
@@ -20,9 +19,10 @@
   $postcode = strip_tags($_POST['postcode']);
   $city = strip_tags($_POST['city']);
   $phone = strip_tags($_POST['phone']);
-  $birthdate = strip_tags($_POST['year']."-".$_POST['month']."-".$_POST['day']) ;
+  $birthdate = strip_tags($_POST['day']."-".$_POST['month']."-".$_POST['year']) ;
   $door = strip_tags($_POST['door']);
   $nif = strip_tags($_POST['nif']);
+var_dump($birthdate);
 
 global $conn;
 

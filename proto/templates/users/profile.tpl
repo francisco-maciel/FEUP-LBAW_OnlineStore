@@ -107,7 +107,7 @@
                 <div class="form-group" id="form-hide">
                     <label class="col-md-4 control-label" for="prod_stock"></label>
                     <div class="col-md-3">
-                        <p class="form-control-hide">Click <a href="{$BASE_URL}pages/users/myOrders.php" style="color:#0033CC" href="">here</a> to view your past purchases </p>
+                        <p class="form-control-hide">Click <a href="{$BASE_URL}pages/users/myOrders.php" style="color:#0033CC">here</a> to view your past purchases </p>
                     </div>
                 </div>
 
@@ -203,5 +203,5 @@
 {include file='common/footer.tpl'}
 
 <script src="{$BASE_URL}javascript/profile.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
+<script src="{$BASE_URL}javascript/cart.js" ></script>
