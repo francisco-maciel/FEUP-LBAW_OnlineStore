@@ -3,28 +3,6 @@
 <script src="{$BASE_URL}javascript/external_libs/facebook_sdk.js">
 </script>
 
-
-<<<<<<< HEAD
-<div class="container">
-
-	<div class="row">
-<!--
-    <div class="col-md-3 column margintop20">
-     <ul class="nav nav-pills nav-stacked">
-       <li class="active"><a href="#"><span class="glyphicon "></span> Category</a></li>
-       <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 1</a></li>
-       <li><a href="#" class="active2"><span class="glyphicon glyphicon-chevron-right"></span> Category 2</a></li>
-       <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 3</a></li>
-       <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 4</a></li>
-       <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Category 5</a></li>
-     </ul>
-   </div>
-
-   <div class="col-md-9">
-   -->
-
-   <div class="thumbnail product_id" id="{$product['idproduct']}">
-
 <div class="modal fade report-review" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
