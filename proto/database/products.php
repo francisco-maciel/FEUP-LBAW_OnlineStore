@@ -39,17 +39,24 @@ function getProductsByName($namepart, $position, $item_per_page) {
     return $stmt->fetchAll();
 }
 
+//TODO
 function getProductsByNameJS($namepart, $position, $items_per_page) {
     global $conn;
-   $stmt = $conn->prepare("SELECT product.*, count(rating) as nr_reviews, avg(rating) as avgrating
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+                                product.stock, product.price,
+                                product.img, product.description,
+                                product.idcategory, count(rating) as nr_reviews, avg(rating) as avgrating
                             FROM product 
                             LEFT JOIN review
                             ON review.idproduct = product.idproduct
                             WHERE LOWER(title) LIKE LOWER(?)
                             AND product.removed=false
-                            GROUP BY product.idproduct
+                            GROUP BY product.idproduct, product.title,
+                                product.stock, product.price,
+                                product.img, product.description,
+                                product.idcategory
                             ORDER BY product.title LIMIT ? OFFSET ?");
-    $stmt->execute(array(("%" . $namepart . "%"), $item_per_page, $position));
+    $stmt->execute(array(("%" . $namepart . "%"), $items_per_page, $position));
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
