@@ -9,6 +9,4 @@
   $smarty->assign('no_cart', true);
   $smarty->display('products/checkout.tpl');
 
-
-
 ?>

@@ -1,9 +1,62 @@
 {include file='common/header.tpl'}
 
+<div class="modal fade modal-large" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">User Profile Help</h4>
+            </div>
+            <div class="modal-body">
+                <p>On this page a user can perform various actions on his/her profile.</p>
+                <p>These actions are:</p>
+                <ol>
+                    <li><a href="#1">Check profile details</a></li>
+                    <li><a href="#2">Edit profile</a></li>
+                    <li><a href="#3">Change password</a></li>
+                    <li><a href="#4">Delete account</a></li>
+                </ol>
+                <hr>
+                <ol>
+                    <li id="1">Check profile details</li>
+                    <br>
+                    <p>In this page a user can check all related information about his/her profile. Such as his/her name, email registered,
+                    address for shipping, contact, nif information, birthdate.</p>
+                    <br>
+                    <li id="2">Edit profile</li>
+                    <br>
+                    <p>To edit the user profile simply click on the "Edit Profile" button, all the user data will be transformed to editable
+                    input text fields, the user can change all his/her data besides the email registered, which can not be edited.
+                    The user can at any time click on the "Reset" button to reset all the changed. Can also click the "Cancel" button at any time
+                    to cancel the edition. And finnly he/she can click on the "Save" button to save the changes.
+                    </p>
+                    <br>
+                    <li id="3">Change password</li>
+                    <br>
+                    <p>The user can click on the "Change Password" Button to change his/her password. A new form with varias input text fields will
+                    apper, and the user is asked to insert his/her original password, a new password and confirm the new password. The user can at
+                    any time click the "Cancel" button to cancel the change operation. Finnaly he/she can click on the "Change" button to save the new password.
+                    </p>
+                    <br>
+                    <li id="4">Delete account</li>
+                    <br>
+                    <p>The user can also delete his/her accout if it's necessary. The user has to click the "Delete Account" button, and then will apear
+                    a popup to let the user confirm his/her decision. The user can cancel the delete operation by clicking "Cancel"
+                    in this popup. Finnaly click on the "Yes" button will delete the user account, and all the user data will be erased on our database.
+                    The user is welcome to come back and register a new account at any time</p>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
@@ -16,15 +69,12 @@
                 <button type="button" class="btn btn-danger btn-primary" data-dismiss="modal" onclick="banUser({$user['iduser']})">Yes I am</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="modal fade delete-account" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
-
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="mySmallModalLabel">Are you sure?</h4>
@@ -37,16 +87,14 @@
                 <button type="button" class="btn btn-danger btn-primary" data-dismiss="modal" onclick="deleteAccount({$user['iduser']})">Yes I am</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="container" id="profile">
     <div class="row">
         <form id="profile_form" class="form-horizontal" method="post" action="{$BASE_URL}actions/users/editProfile.php" accept-charset="UTF-8">
             <fieldset>
-                <legend>Your account</legend>
+                <legend>Your account <a href="#" data-toggle="modal" data-target=".modal-large" class="glyphicon glyphicon-info-sign"></a> </legend>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Name</label>
