@@ -9,15 +9,15 @@
                     <p>Shopping cart</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="" type="button" class="btn btn-primary btn-circle">2</a>
+                    <span  type="button" class="btn btn-primary btn-circle">2</span>
                     <p>Address</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="{$BASE_URL}pages/products/payment.php" type="button" class="btn btn-default btn-circle">3</a>
+                    <span type="button" class="btn btn-default btn-circle">3</span>
                     <p>Payment</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="" type="button" class="btn btn-default btn-circle" >4</a>
+                    <span type="button" class="btn btn-default btn-circle" >4</span>
                     <p>Confirm</p>
                 </div>
             </div>

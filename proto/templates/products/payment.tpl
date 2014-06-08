@@ -34,7 +34,7 @@ var valid_login = true;
                     <p>Payment</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="" type="button" class="btn btn-default btn-circle" >4</a>
+                    <span  type="button" class="btn btn-default btn-circle" >4</span>
                     <p>Confirm</p>
                 </div>
             </div>
@@ -97,17 +97,10 @@ var valid_login = true;
                                                 <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
                                             </div>
                                         </div>
-                                        <div class='form-row'>
-                                            <div class='col-md-12'>
-                                                <div class='form-control total btn btn-info'>
-                                                    Total:
-                                                    <span class='amount'>€€€</span>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class='form-row'>
                                             <div class='col-md-12 form-group'>
-                                                <button class='form-control btn btn-primary submit-button' type='submit'>Pay »</button>
+                                                <button class='form-control btn btn-primary' disabled >Pay (method not yet available) </button>
                                             </div>
                                         </div>
                                         <div class='form-row'>
@@ -140,20 +133,8 @@ var valid_login = true;
 
                                     <div class='form-row'>
                                         <div class='col-md-16'>
-                                            <div class='form-control total btn btn-info'>
+                                            <button class='form-control btn btn-primary' disabled >Pay with Paypal™ (method not yet available) </button>
 
-                                                Valor: €€€
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-
-                                    <div class='form-row'>
-                                        <div class='col-md-16'>
-                                            <div class='form-control btn btn-primary submit-button'>
-                                                <span class='glyphicon glyphicon-hand-up'></span>
-                                                Pay with Paypal™
-                                            </div>
                                         </div>
                                     </div>
 
@@ -180,8 +161,8 @@ var valid_login = true;
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h5 class="text-center">In order to process the payment of this purchase, please transfer the total amount to the following bank account: </h5>
-                <h3 class="text-center"> NIB: 0000 0000 0000 0000 0000 0</h3>
-                <h3 class="text-center"> BANK: XPTO</h3> <hr>
+                <h3 class="text-center"> NIB: 0038 0087 1190 0001 1653 5</h3>
+                <h3 class="text-center"> BANK: Online Store Bank</h3> <hr>
                 <!-- -->
 
                 <div class="container">
@@ -192,8 +173,7 @@ var valid_login = true;
                             <div class='form-row'>
                                 <div class='col-md-12'>
                                     <div class='form-control total btn btn-info'>
-                                        Valor:
-                                        <span class='amount'>€€€</span>
+                                        Pay by bank transfer
                                     </div>
                                 </div>
                             </div>
