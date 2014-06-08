@@ -25,15 +25,31 @@ function getNotRemovedProducts() {
     return $stmt->fetchAll();
 }
 
-function getProductsByName($namepart) {
+function getProductsByName($namepart, $position, $item_per_page) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * FROM product WHERE LOWER(title) LIKE LOWER(?) and removed=false");
+    $stmt = $conn->prepare("SELECT * FROM product WHERE LOWER(title) LIKE LOWER(?) AND removed=false
+                            ORDER BY product.title LIMIT $item_per_page OFFSET $position");
     $stmt->execute(array("%" . $namepart . "%"));
     return $stmt->fetchAll();
 }
 
+function getProductsByNameJS($namepart, $position, $items_per_page) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT * FROM product WHERE LOWER(title) LIKE LOWER(?) AND removed=false
+                            ORDER BY product.title LIMIT $items_per_page OFFSET $position");
+    $stmt->execute(array("%" . $namepart . "%"));
+    return $stmt->fetchAll(PDO::FETCH_OBJ);
+}
 
-function getProductsByCat($idcat) {
+function getProdCountByName($namepart) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT Count(*) as count FROM product WHERE LOWER(title) LIKE LOWER(?) AND removed=false");
+    $stmt->execute(array("%" . $namepart . "%"));
+    return $stmt->fetch();
+}
+
+
+function getProductsByCat($idcat, $position, $item_per_page) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
@@ -43,12 +59,25 @@ function getProductsByCat($idcat) {
         INNER JOIN category cat
         ON cat.idcategory = product.idcategory
         WHERE cat.idcategory = ?
-        ");
+        AND removed=false
+        ORDER BY product.title LIMIT $item_per_page OFFSET $position");
     $stmt->execute(array($idcat));
     return $stmt->fetchAll();
 }
 
-function getFilteredProductsByCat($idcat) {
+function getProdCountByCat($idcat) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT Count(*) as count
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        AND removed=false");
+    $stmt->execute(array($idcat));
+    return $stmt->fetch();
+}
+
+function getFilteredProductsByCat($idcat, $position, $items_per_page) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
@@ -58,12 +87,14 @@ function getFilteredProductsByCat($idcat) {
         INNER JOIN category cat
         ON cat.idcategory = product.idcategory
         WHERE cat.idcategory = ?
+        AND removed=false
+        ORDER BY product.title LIMIT $items_per_page OFFSET $position
         ");
     $stmt->execute(array($idcat));
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
-function getProductsByDep($iddep) {
+function getProductsByDep($iddep, $position, $item_per_page) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
@@ -76,9 +107,24 @@ function getProductsByDep($iddep) {
         INNER JOIN department dep
         ON dep.iddepartment = cat.iddepartment
         WHERE dep.iddepartment = ?
-        ");
+        AND removed=false
+        ORDER BY product.title LIMIT $item_per_page OFFSET $position");
     $stmt->execute(array($iddep));
     return $stmt->fetchAll();
+}
+
+function getProdCountByDep($iddep) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT Count(*) as count
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        INNER JOIN department dep
+        ON dep.iddepartment = cat.iddepartment
+        WHERE dep.iddepartment = ?
+        AND removed=false");
+    $stmt->execute(array($iddep));
+    return $stmt->fetch();
 }
 
 //Return a product filters by prod id

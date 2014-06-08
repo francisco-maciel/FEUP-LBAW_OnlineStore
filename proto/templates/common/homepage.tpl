@@ -4,7 +4,7 @@
 
     <div class="row">
 
-        {include file='common/sidebar.tpl'}
+        {include file='products/sidebar.tpl'}
 
         <div class="col-md-9">
 
