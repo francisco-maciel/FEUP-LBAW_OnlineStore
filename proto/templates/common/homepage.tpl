@@ -42,7 +42,7 @@
             </div>
 
             <div class="row">
-                
+                <h4> Most Purchased Products!</h4>
                 {include file='products/list.tpl'}
                 
             </div>

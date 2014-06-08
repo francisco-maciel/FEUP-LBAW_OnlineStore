@@ -179,6 +179,7 @@ $(document).on("click",'li.filterson', function() {
 
 //queries para filtragem de resultados
 function filtering(page) {
+    
     var loc;
     if(activeFilters.length===0) { //no active filters
         if(category === undefined)

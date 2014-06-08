@@ -73,25 +73,14 @@ if (!$_GET['search']) {
     if (empty($products)) $smarty->assign('message', 'No items found that match your search');
     else  $smarty->assign('message', false);
     
-    
-/*
-foreach ($tweets as $key => $tweet) {
-  unset($photo);
-  if (file_exists($BASE_DIR.'images/users/'.$tweet['username'].'.png'))
-    $photo = 'images/users/'.$tweet['username'].'.png';
-  if (file_exists($BASE_DIR.'images/users/'.$tweet['username'].'.jpg'))
-    $photo = 'images/users/'.$tweet['username'].'.jpg';
-  if (!$photo) $photo = 'images/assets/default.png';
-  $tweets[$key]['photo'] = $photo;
-}
-*/
     if(isset($total_rows)){
     $pages = ceil(((int)$total_rows['count'])/$items_per_page);
     $smarty->assign('pages', $pages);
     }
     if(!isset($products))
         $products=[];
-  //$smarty->assign('last_tweet_id', $tweets[0]['id']); 
+
+    
   $smarty->assign('products', $products);
   $smarty->display('products/search.tpl');
 ?>
