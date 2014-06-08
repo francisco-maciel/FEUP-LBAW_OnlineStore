@@ -79,19 +79,9 @@ if (!$_GET['search']) {
     }
     if(!isset($products))
         $products=[];
-    
- /*   for($i=0; $i<sizeof($products);$i++) {
-      $productsRatings[$i] = averageRatingByProduct($products[$i]['idproduct']);
-  }*/
-    /*
-    $x = json_decode('[{"id":3,"type":0,"value":"A5 dual core"}]',true);
-    //var_dump($x);
-    $p = getFilteredProductsWithCat(1, $x, 0, 10);
-    var_dump($p);*/
+
     
   $smarty->assign('products', $products);
-  //var_dump($products);
-  //$smarty->assign('productsRatings', $productsRatings);
   $smarty->display('products/search.tpl');
 ?>
 

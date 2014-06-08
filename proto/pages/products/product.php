@@ -26,12 +26,14 @@ $specs = getProductSpecs($_GET['id']);
   if(sizeof($otherproducts)<3)
         $otherproducts = mostOrderedProductsbyCat_Alternative($product['idcategory'],$product['idproduct']);
 
-  for($i=0; $i<sizeof($otherproducts);$i++) {
-      $otherproductsRatings[$i] = averageRatingByProduct($otherproducts[$i]['idproduct']);
+  if(sizeof($otherproducts)>0) {
+        for($i=0; $i<sizeof($otherproducts);$i++) {
+            $otherproductsRatings[$i] = averageRatingByProduct($otherproducts[$i]['idproduct']);
+        }
+
+        $smarty->assign('otherproducts', $otherproducts);
+        $smarty->assign('otherproductsRatings', $otherproductsRatings);
   }
- 
-  $smarty->assign('otherproducts', $otherproducts);
-  $smarty->assign('otherproductsRatings', $otherproductsRatings);
 
   $addWishListButton = false;
   if (isset($_SESSION['permission']) && isset($_SESSION['email'])) {

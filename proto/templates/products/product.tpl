@@ -232,6 +232,8 @@
         </div>
 
         <hr>
+
+      {if isset($otherproducts)}
         <div> {* OTHER PRODUCTS *}
             <h4><a href="#">Other Products</a></h4>
             
@@ -248,9 +250,9 @@
                     <div class="caption">
                         {if (strlen($otherprod.title)>28)}
                 <h4> <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}">{substr($otherprod.title,0,28)}</a> </h4>
-{else}
+        {else}
                 <h4> <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}">{$otherprod.title}</a> </h4>
-    {/if}
+        {/if}
                 <h4 class="pull-right">€{$otherprod.price}</h4>
                     </div>
                     <div class="ratings">
@@ -270,6 +272,7 @@
         {/for}
             
         </div>
+    {/if}
     </div>
 </div>
 
