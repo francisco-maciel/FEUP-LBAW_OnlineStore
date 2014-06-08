@@ -5,8 +5,33 @@ var openfilters=[];
 
 
 $(document).ready(function() {
-    addfilters();    
+    addfilters();
 });
+
+
+function update_pagination() {
+    if(activeFilters.length===0) { //no active filters
+           showPagination(init_nr_pages);
+    }
+    else {
+        var loc;
+        var farray = JSON.stringify(activeFilters);
+        if(category === undefined)
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getCountFilteredProdswNamepart.php?s="+search+"&filters=" + farray);
+        else
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getCountFilteredProdswCat.php?cat=" + category + "&filters="+farray);
+        
+        $.ajax({
+            url: loc,
+            context: document.body,
+            dataType: "json"
+        }).done(function(data) {
+            var nr_pages = Math.ceil(data.count/items_per_page);
+            showPagination(nr_pages);
+        });
+    }
+}
+
 
 function addfilters() {
     if(type==="cat") {
@@ -141,6 +166,7 @@ $(document).on("click",'li.filterson', function() {
         activeFilters.splice(i,1);
     }
     filtering(1);
+    update_pagination();
 });
 
 //queries para filtragem de resultados

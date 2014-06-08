@@ -39,12 +39,12 @@
                             {if isset($pages)}
                                 <ul class="pagination">
                                 {if $pages > 1}
-                                    <li class="disabled"><a href="javascript:void(0)">&laquo;</a></li>
+                               <!--     <li class="disabled"><a href="javascript:void(0)">&laquo;</a></li> -->
                                     <li class="active paginate_click" id="1-page"><a href="javascript:void(0)">1</a></li>
                                 {for $i=2 to $pages}
                                     <li class="paginate_click" id="{$i}-page"><a href="javascript:void(0)">{$i}</a></li>
                                 {/for}
-                                    <li><a href="javascript:void(0)" class="paginate_click">&raquo;</a></li>
+                                 <!--   <li><a href="javascript:void(0)" class="paginate_click">&raquo;</a></li> -->
                                 {/if}
                                 </ul>
                             {/if}

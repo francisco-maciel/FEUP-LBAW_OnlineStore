@@ -1,33 +1,22 @@
 
 $(document).ready(function() {
     
-    /*if(type==="search") {
-        //getSearchProducts(0);
-    }
-    else
-        if(type==="dep")
-        {
-            //getDepProducts(0);
+    $('.paginate_click').click(function() {
+        var clicked_id = $(this).attr("id").split("-"); //ID of clicked element, split() to get page number.
+        var page_num = parseInt(clicked_id[0]); //clicked_id[0] holds the page number we need
+        $('.paginate_click').removeClass('active');
+        var pos = (page_num-1) * items_per_page;
+        if(type==="dep") { //produtos de dado departamento
+            getDepProducts(pos);
         }
-        else
-            if(type==="cat")
-                   //getCatProducts(0);
-    */
-   if(type==="dep") { //produtos de dado departamento
-     $('.paginate_click').click(function() {
-       var clicked_id = $(this).attr("id").split("-"); //ID of clicked element, split() to get page number.
-       var page_num = parseInt(clicked_id[0]); //clicked_id[0] holds the page number we need
-       $('.paginate_click').removeClass('active');
-       var pos = (page_num-1) * items_per_page;
-       getDepProducts(pos);
-       $(this).addClass('active');
-       return false;
-     });
-   }
-   else //produtos de dada categoria, com filtros
-       {
-           
-       }
+        else //produtos de dada categoria, com filtros
+        {
+            filtering(page_num);
+        }
+        $(this).addClass('active');
+        return false;
+    });
+    
 });
 
 
@@ -59,8 +48,17 @@ function getCatProducts(position) {
     showProducts(loc);
 }
 
-function showPagination(loc) {
-    
+function showPagination(pages) {
+    alert(pages);
+    $(".pagination").empty();
+    if(pages>1) {
+        var s="";
+        for (var i = 1; i <= pages; i++) {
+            s+="<li class=\"paginate_click\" id=\""+i+"-page\"><a href=\"javascript:void(0)\">"+i+"</a></li>\n";
+        }
+        $('.pagination').append(s);
+        $('#1-page').addClass("active");
+    }
 }
 
 function showProducts(loc) {
