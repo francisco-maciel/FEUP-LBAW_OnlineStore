@@ -80,7 +80,7 @@ function updateCart(cart) {
                   + ' <div class="media-body">'
                       + ' <h4 class="media-heading"><a href="#">'+item.name+'</a></h4>'
             + ' <h5 class="media-heading"> ref: <b class="item_id" >'+item.id+'</b></h5>'
-            +     ' <span>Status: </span><span class="text-success"><strong>'+checkInStock()+'</strong></span>'
+            +     ' <span>Status: </span><span class="stock"><strong></strong></span>'
             +       '  </div>'
             +  ' </div></td>'
             + ' <td class="col-sm-1 col-md-1" style="text-align: center">'
@@ -96,7 +96,7 @@ function updateCart(cart) {
 
 
     });
-
+    checkInStock();
 
 }
 
@@ -120,6 +120,7 @@ function setListeners() {
         }
 
         updateTotals(cart);
+        checkInStock();
     });
 
 
@@ -146,6 +147,11 @@ function setListeners() {
             return false;
         }
 
+        if (!checkInStock()) {
+            alertify.alert("The items you ordered are not available in stock for this quantity");
+            return false;
+        }
+
     });
 
 }
@@ -168,5 +174,49 @@ function updateTotals(cart) {
 
 
 function checkInStock() {
-    return 'In Stock';
+
+    var all_in_stock = true;
+
+    $('.cart_row').each(function() {
+        var id = $(this).find('.item_id').html();
+
+        if (typeof id !== 'undefined') {
+            var quantity = $(this).find('.quantity').val();
+            var valid = checkValidStock(id, quantity);
+            console.log(valid);
+            if (valid) {
+                $(this).find('.stock').html('<strong>In Stock</strong>');
+                $(this).find('.stock').removeClass('text-danger');
+                if (!$(this).find('.stock').hasClass('text-success')) $(this).find('.stock').addClass('text-success');
+            }
+            else {
+                all_in_stock = false;
+                $(this).find('.stock').html('<strong>Stock not enough</strong>');
+                if (!$(this).find('.stock').hasClass('text-danger')) $(this).find('.stock').addClass('text-danger');
+                $(this).find('.stock').removeClass('text-success');
+            }
+        }
+
+
+    });
+
+
+
+    return all_in_stock;
+}
+
+function checkValidStock(id, quantity) {
+
+    var in_stock;
+    all_products.forEach(function(product) {
+        if (product.idproduct == id) {
+
+            if (product.stock < quantity) in_stock =  false
+            else in_stock =  true;
+
+        }
+
+    });
+
+    return in_stock;
 }

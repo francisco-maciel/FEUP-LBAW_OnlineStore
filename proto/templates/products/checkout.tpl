@@ -3,6 +3,9 @@
 <script src="{$BASE_URL}javascript/external_libs/facebook_sdk.js">
 </script>
 
+<script type="text/javascript">
+    var all_products =  {json_encode($products)};
+</script>
 
 <div class="container">
     <div class="row">
