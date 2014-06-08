@@ -5,15 +5,15 @@
         <div class="stepwizard">
             <div class="stepwizard-row">
                 <div class="stepwizard-step">
-                    <a href="cart.html" type="button" class="btn btn-default btn-circle">1</a>
+                    <a href="{$BASE_URL}pages/products/checkout.php" type="button" class="btn btn-default btn-circle">1</a>
                     <p>Shopping cart</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="address.html" type="button" class="btn btn-primary btn-circle">2</a>
+                    <a href="" type="button" class="btn btn-primary btn-circle">2</a>
                     <p>Address</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="payment.html" type="button" class="btn btn-default btn-circle">3</a>
+                    <a href="{$BASE_URL}pages/products/payment.php" type="button" class="btn btn-default btn-circle">3</a>
                     <p>Payment</p>
                 </div>
                 <div class="stepwizard-step">
