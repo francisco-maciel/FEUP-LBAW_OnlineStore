@@ -1,6 +1,6 @@
 {include file='common/header.tpl'}
 
-<link href="https://d1o2s7t10tmejf.cloudfront.net/assets/company/company-e0521058f60da78e05536475ec8c20d5.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="{$BASE_URL}css/about.css">
 
 <div class="landing-about">
     <div id="wrap">
@@ -10,14 +10,14 @@
             </div>
         </section>
         <section class="page-section" id="company-about">
-            <div class="container">
+            <div class="container1">
                 <div class="section-content-panel">
                     <p>At Loja Online, we all come to work every day because we want to make shopping easier to every Portuguese.
                         </p>
                 </div>
             </div>
         </section>
-        <div class="container">
+        <div class="container1">
             <section class="page-section" id="company-founders"><h1 class="section-title">Leadership</h1>
                 <ul class="founders-list row-of6">
                     <li class="col-2of6">
@@ -53,7 +53,7 @@
                 </ul>
             </section>
         </div>
-        <div class="container">
+        <div class="container1">
             <section class="page-section" id="company-team"><h1 class="section-title">Team</h1>
                 <ul class="team-list">
                     <li>
@@ -79,7 +79,7 @@
                 </ul>
             </section>
         </div>
-        <div class="container">
+        <div class="container1">
             <section class="page-section" id="company-investors">
                 <div class="section-content"><h1 class="section-title">Investors</h1>
                     <ul class="investors-list">
