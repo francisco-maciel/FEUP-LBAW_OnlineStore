@@ -48,21 +48,21 @@ var valid_login = true;
                 <div class="col-xs-12">
                     <ul class="nav nav-pills nav-justified thumbnail setup-panel">
                         <li class="active"><a href="#step-1">
-                                <h4 class="list-group-item-heading">Credit Card</h4>
+                                <h4 class="list-group-item-heading">Bank Transfer</h4>
                                 <p class="list-group-item-text">Payment Method</p>
                             </a></li>
                         <li class="default"><a href="#step-2">
-                                <h4 class="list-group-item-heading">Paypal™</h4>
+                                <h4 class="list-group-item-heading">Credit card</h4>
                                 <p class="list-group-item-text">Payment Method</p>
                             </a></li>
                         <li class="default"><a href="#step-3">
-                                <h4 class="list-group-item-heading">Bank Transfer</h4>
+                                <h4 class="list-group-item-heading">Paypal™</h4>
                                 <p class="list-group-item-text">Payment Method</p>
                             </a></li>
                     </ul>
                 </div>
             </div>
-            <div class="row setup-content" id="step-1">
+            <div class="row setup-content" id="step-2">
                 <div class="col-xs-12">
                     <div class="col-md-12 well text-center">
                         <div class="container">
@@ -125,7 +125,7 @@ var valid_login = true;
                     </div>
                 </div>
             </div>
-            <div class="row setup-content" id="step-2">
+            <div class="row setup-content" id="step-3">
                 <div class="col-xs-12">
                     <div class="col-md-12 well">
 
@@ -176,7 +176,7 @@ var valid_login = true;
             </div>
         </div>
     </div>
-    <div class="row setup-content" id="step-3">
+    <div class="row setup-content" id="step-1">
         <div class="col-xs-12">
             <div class="col-md-12 well">
                 <h5 class="text-center">In order to process the payment of this purchase, please transfer the total amount to the following bank account: </h5>
