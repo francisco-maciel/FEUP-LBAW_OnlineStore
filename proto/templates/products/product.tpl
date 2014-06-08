@@ -161,25 +161,54 @@
         </div>
 
         <div class="well">
-            {foreach $reviews as $review}
-                <div class="row">
-                    <div class="col-md-12">
-                        {for $i=1 to $review['rating']}
-                            <span class="glyphicon glyphicon-star"></span>
-                        {/for}
-                        {for $i=0 to 4-$review['rating']}
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                        {/for}
-                        <span style="padding-left:10px">{$review['name']}</span>
-                        <span class="pull-right">10 days ago</span>
-                        <span class="pull-right" style="padding-right:10px;">
-                            <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$review['idreview']}">Report</button>
-                        </span>
+            {if $reviews|@count > 3}
+                {for $i=0 to 2}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {for $j=1 to $reviews[$i]['rating']}
+                                <span class="glyphicon glyphicon-star"></span>
+                            {/for}
+                            {for $j=0 to 4-$reviews[$i]['rating']}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            {/for}
+                            <span style="padding-left:10px">{$reviews[$i]['name']}</span>
+                            <span class="pull-right">10 days ago</span>
+                            <span class="pull-right" style="padding-right:10px;">
+                                <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$reviews[$i]['idreview']}">Report</button>
+                            </span>
 
-                        <p>{$review['text']}</p>
+                            <p>{$reviews[$i]['text']}</p>
+                        </div>
+                    </div>
+                {/for}
+                <div>
+                    <a id="view_all_comments">click here to view all comments.</a>
+                </div>
+                <div style="display:none;" id="show_all_comments">
+                {for $i=3 to $reviews|@count - 1}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {for $j=1 to $reviews[$i]['rating']}
+                                <span class="glyphicon glyphicon-star"></span>
+                            {/for}
+                            {for $j=0 to 4-$reviews[$i]['rating']}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            {/for}
+                            <span style="padding-left:10px">{$reviews[$i]['name']}</span>
+                            <span class="pull-right">10 days ago</span>
+                            <span class="pull-right" style="padding-right:10px;">
+                                <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$reviews[$i]['idreview']}">Report</button>
+                            </span>
+
+                            <p>{$reviews[$i]['text']}</p>
+                        </div>
+                    </div>
+                {/for}
+                    <div>
+                        <a id="view_less_comments">click here to view less comments.</a>
                     </div>
                 </div>
-            {/foreach}
+            {/if}
         </div>
 
         <hr>
@@ -254,6 +283,15 @@
 {include file='common/footer.tpl'}
 
 <script type="text/javascript">
+    $(document).on("click", "#view_all_comments", function () {
+        $(this).css("display", "none");
+        $("#show_all_comments").css("display", "initial");
+    });
+
+    $(document).on("click", "#view_less_comments", function () {
+        $("#view_all_comments").css("display", "initial");
+        $("#show_all_comments").css("display", "none");
+    });
 
     $(document).on("click", ".report-button", function () {
         var reviewID = $(this).data('id');
