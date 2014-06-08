@@ -3,7 +3,6 @@
  */
 var selected_id = null;
 
-var loc = document.URL.replace(/pages\/(.*)/, "actions/products/remove_from_wish_list.php");
 
 $(document).ready(function() {
 
@@ -15,6 +14,8 @@ $(document).ready(function() {
 });
 
 function remove_from_wish_list(id) {
+    var loc = document.URL.replace(/pages\/(.*)/, "actions/products/remove_from_wish_list.php");
+
     if (selected_id == null) {
         alertify.alert("No product selected");
         return;

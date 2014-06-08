@@ -67,36 +67,23 @@
         </div>
     </footer>
 
-    <div style="display:none; height:90%; " id="cart-panel" class="panel-left">
+    <div style=" display:none; height:90%; " id="cart-panel" class="panel-left">
         <aside class="widget_shopping_cart">
+            <h3 style="cursor: pointer" onClick="cartPanel.close()"class=" pull-right glyphicon glyphicon-chevron-left"></h3>
             <h3>Shopping Cart</h3>
             <ul class="cart_list">
-                <li>
-                    <a href="http://coffeecreamthemes.com/themes/perfekta/wordpress/s/flying-ninja/">
-                        <img alt="" src="http://placehold.it/60x60">
-                        Reshape Panties
-                    </a>
-                    <span class="quantity">1 × <span class="amount">$12.00</span></span>
-                </li>
-                <li>
-                    <a href="http://coffeecreamthemes.com/themes/perfekta/wordpress/s/flying-ninja/">
-                        <img alt="" src="http://placehold.it/60x60">
-                        Reshape Panties
-                    </a>
-                    <span class="quantity">1 × <span class="amount">$12.00</span></span>
-                </li>
-                <li>
-                    <a href="http://coffeecreamthemes.com/themes/perfekta/wordpress/s/flying-ninja/">
-                        <img alt="" src="http://placehold.it/60x60">
-                        Reshape Panties
-                    </a>
-                    <span class="quantity">1 × <span class="amount">$12.00</span></span>
-                </li>
+
             </ul>
-            <p class="total"><strong>Subtotal:</strong> <span class="amount">$36.00</span></p>
+            <p class="total"><strong>Subtotal:</strong> <span class="total_amount">€0.00</span></p>
             <p class="buttons">
-                <a class="btn btn-default btn-lg btn-block" href="shopping-cart.html">View Cart</a>
-                <a class="btn btn-primary btn-lg btn-block" href="my-account.html">Checkout</a>
+                <br/>
+                <a class="btn btn-primary btn-md btn-block" href="{$BASE_URL}pages\products\cart.php">Checkout</a>
+
+                <br/>
+                <br/>
+                <br/>
+                <a class="btn btn-default btn-sm pull-right" onclick="emptyCart()"> <span class="glyphicon glyphicon-trash"></span>Empty</a>
+
             </p>
         </aside>
     </div>
@@ -106,7 +93,6 @@
 <!-- /.container -->
 
 <!-- JavaScript -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
 <script>window.jQuery || document.write('<script src="{$BASE_URL}javascript/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 <script src="{$BASE_URL}javascript/external_libs/jquery.jpanelmenu.min.js"></script>

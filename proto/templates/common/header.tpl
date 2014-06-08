@@ -32,7 +32,11 @@
     <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
 
 </head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
+{if !isset($no_cart)}
+<script src="{$BASE_URL}javascript/cart.js" ></script>
+{/if}
 
 <body>
 
@@ -73,8 +77,10 @@
                             {/if}
                         </div>
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        {if !isset($no_cart)}
                         <div id="cart-open" class="btn btn-danger "><span class="glyphicon glyphicon-shopping-cart"></span>
                             <span class="badge shopping-cart" >0</span></div>
+                        {/if}
                     </form>
                 </li>
 

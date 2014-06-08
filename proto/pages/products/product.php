@@ -37,8 +37,8 @@ if (!$_GET['id']) {
 
   $smarty->assign('addWishListButton', $addWishListButton);
 
-  $smarty->assign('purchased', $purchased);
-  $smarty->assign('reviewed', $reviewed);
+  $smarty->assign('purchased',isset($purchased)?  $purchased : null);
+  $smarty->assign('reviewed', isset($reviewed)?  $reviewed : null);
   $smarty->assign('averageRating', $averageRating);
   $smarty->assign('reviews', $reviews);
 

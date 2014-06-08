@@ -7,7 +7,7 @@
         <fieldset>
 
             <!-- Form Name -->
-            <legend> <span class="glyphicon glyphicon-star"></span> Wish List	</legend>
+            <legend> <span class="glyphicon glyphicon-heart-empty"></span> Wish List	</legend>
 
         </fieldset>
         {include file='products/list.tpl'}
@@ -40,7 +40,3 @@
 
 {include file='common/footer.tpl'}
 
-
-
-
-<script src="{$BASE_URL}javascript/cart.js" ></script>

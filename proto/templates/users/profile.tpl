@@ -204,4 +204,3 @@
 
 <script src="{$BASE_URL}javascript/profile.js"></script>
 <script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
-<script src="{$BASE_URL}javascript/cart.js" ></script>

@@ -54,4 +54,3 @@
 </div>
 <!-- /.container -->
 {include file='common/footer.tpl'}
-<script src="{$BASE_URL}javascript/cart.js" ></script>
