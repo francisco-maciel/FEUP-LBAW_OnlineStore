@@ -31,16 +31,14 @@
                     <br>
                     <li id="2">View an order detail</li>
                     <br>
-                    <p>To view an order detial simple click on the order's id on the table (first column and you'll be redirected.)</p>
+                    <p>To view an order detial simply click on the order's id on the table (first column and you'll be redirected.)</p>
                 </ol>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="container">
