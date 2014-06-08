@@ -11,7 +11,7 @@ function updateProduct($id, $title, $description, $price, $stock, $img) {
     global $conn;
 
     $sql = 'UPDATE product SET title =?, ' .
-            ($img ? 'img =' . $img . ',' : '') .
+            ($img ? 'img =\'' . $img . '\',' : '') .
             ' description =?, price = ?, stock = ? WHERE idproduct = ?';
 
     $stmt = $conn->prepare($sql);
