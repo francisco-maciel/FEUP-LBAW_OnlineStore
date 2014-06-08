@@ -235,7 +235,7 @@
 
       {if isset($otherproducts)}
         <div> {* OTHER PRODUCTS *}
-            <h4><a href="#">Other Products</a></h4>
+            <h4>Other Products that may interest you!</h4>
             
             {for $i=0 to (($otherproducts|@count)-1)}
             {$otherprod = $otherproducts[$i]}
