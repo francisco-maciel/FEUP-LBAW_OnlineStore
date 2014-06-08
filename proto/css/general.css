@@ -131,3 +131,24 @@ overflow: hidden;
     padding-left:10px;
     padding-right:10px;
 }
+/*
+#carousel-example-generic.carousel.slide {
+   height: 500px;
+    width: 800px;
+}*/
+
+div.carousel-inner {
+    height: 500px;
+    width: 800px;
+}
+/*
+div.item.active {
+    max-height: 500px;
+    max-width: 800px;
+}
+
+img.slide-img {
+    max-height: 500px;
+    max-width: 800px;
+}
+*/

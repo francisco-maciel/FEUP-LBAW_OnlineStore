@@ -22,6 +22,11 @@ if (isset($_SESSION['permission'])) {
 $specs = getProductSpecs($_GET['id']);
 
 
+  $otherproducts = mostOrderedProductsbyCat($product['idcategory'],$product['idproduct'] );
+  if(sizeof($otherproducts)<3)
+        $otherproducts = mostOrderedProductsbyCat_Alternative($product['idcategory'],$product['idproduct']);
+
+  $smarty->assign('otherproducts', $otherproducts);
 
   $addWishListButton = false;
   if (isset($_SESSION['permission']) && isset($_SESSION['email'])) {
