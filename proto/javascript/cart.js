@@ -138,7 +138,7 @@ function updateCart(cart) {
     var total = 0;
     var totalitems = 0;
     cart.items.forEach(function (item) {
-        totalitems += item.quantity;
+        totalitems += parseInt(item.quantity,10);
         total += item.quantity * item.price;
         var element = $('li.cart_item_' + item.id);
         if (element.length == 0) {
@@ -150,7 +150,7 @@ function updateCart(cart) {
     });
 
     $('.total_amount').html('€' + total.toFixed(2));
-    $('.shopping-cart').html(totalitems);
+    $('.shopping-cart').html(parseInt(totalitems,10));
 }
 
 function emptyCart() {

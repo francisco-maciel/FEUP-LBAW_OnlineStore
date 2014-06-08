@@ -234,13 +234,23 @@
         <hr>
         <div>
             <h4><a href="#">Other Products</a></h4>
+
+            {foreach $otherproducts as $otherprod}
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
+                    {if $otherprod.img }
+                <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}"> <img style="min-height:200px; max-height:200px; width:auto;" class="img-responsive" src="{$BASE_URL}images/products/{$otherprod.img}" alt=""> </a>
+                {else}
+                <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}"> <img class="img-responsive" src="{$BASE_URL}images/products/default.png" alt=""> </a>
+                {/if}
 
                     <div class="caption">
-                        <h4 class="pull-right">€</h4>
-                        <h4><a href="#">Product 3</a></h4>
+                        {if (strlen($otherprod.title)>28)}
+                <h4> <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}">{substr($otherprod.title,0,28)}</a> </h4>
+                {else}
+                <h4> <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}">{$otherprod.title}</a> </h4>
+                {/if}
+                <h4 class="pull-right">€{$otherprod.price}</h4>
                     </div>
                     <div class="ratings">
                         <p class="pull-right">31 reviews</p>
@@ -254,48 +264,8 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-4 col-lg-4 col-md-4">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-
-                    <div class="caption">
-                        <h4 class="pull-right">€</h4>
-                        <h4><a href="#">Product 1</a></h4>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">15 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-lg-4 col-md-4">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-
-                    <div class="caption">
-                        <h4 class="pull-right">€</h4>
-                        <h4><a href="#">Product 2</a></h4>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">12 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            {/foreach}
+            
         </div>
     </div>
 </div>
