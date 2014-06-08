@@ -3,7 +3,7 @@
  */
 var cartPanel;
 $(document).ready(function() {
-     loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');
+      loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');
 
     // cart
         cartPanel = $.jPanelMenu({
@@ -51,14 +51,8 @@ $(document).ready(function() {
 });
 
 function checkCartButton(cart) {
-    var id = currentId();
-    var found = false;
-        cart.items.forEach(function(item, index, array) {
-        if (item.id == id ){
-            found = true;
-        }
-    });
-    // TODO message saying its in cart
+
+   if ( cart.items.length > 0 ) $('.checkout').show();
 }
 
 function currentId() {
@@ -121,6 +115,8 @@ function addControllers(cart) {
        }
         setCart(cart);
         updateCart(cart);
+        if ( cart.items.length > 0 ) $('.checkout').show();
+
     }
 
     cart.items.forEach(function(item, index, array) {
@@ -162,6 +158,8 @@ function emptyCart() {
     $('.total_amount').html('€' + 0.00);
     $('.shopping-cart').html(0);
     sessionStorage.clear();
+    $('.checkout').hide();
+
     updateCart(getCart());
     checkCartButton(getCart());
 }

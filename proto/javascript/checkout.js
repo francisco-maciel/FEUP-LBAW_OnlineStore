@@ -10,10 +10,12 @@ $(document).ready(function() {
     {
         alert("Sorry your browse does not support adding items to cart. Please upgrade to a more recent browser as soon as you can. ");
     }
-   // sessionStorage.clear();
-    updateCart(getCart());
-    checkCartButton(getCart());
 
+
+    cart = getCart();
+    updateCart(cart);
+    setListeners(cart);
+    updateTotals(cart);
 });
 
 
@@ -56,29 +58,115 @@ function addControllers(cart) {
     }
 
 
-    cart.addProduct = function(id,title,price,img) {
-
-        var found = false;
-        cart.items.forEach(function (item) {
-            if (item.id == id) {
-                found = true;
-                item.quantity++;
-            }
-        });
-        if (!found) {
-
-        var item = product(id, title, price, img);
-        item.quantity = 1;
-        cart.items.push(item);
-
-       }
-        setCart(cart);
-        updateCart(cart);
-    }
 
     cart.items.forEach(function(item, index, array) {
         addProductControllers(item);
 
     })
 
+}
+
+
+function updateCart(cart) {
+
+    var loc =  document.URL.replace(/(pages|actions)(\/(.*))*/, '');
+
+    cart.items.forEach(function (item) {
+
+        $('.cart_row').last().after('<tr class="cart_row">' +
+            '<td class="col-sm-8 col-md-6 ">'
+          + ' <div class="media">'
+              +  '<a class="thumbnail pull-left" href="'+loc+'pages/products/product.php?id='+item.id+'"> <img class="media-object" style="max-width:80px;min-width:80px; height: auto;" src="'+loc+'images/products/'+item.img+'" style="width: 72px; height: 72px;"> </a>'
+                  + ' <div class="media-body">'
+                      + ' <h4 class="media-heading"><a href="#">'+item.name+'</a></h4>'
+            + ' <h5 class="media-heading"> ref: <b class="item_id" >'+item.id+'</b></h5>'
+            +     ' <span>Status: </span><span class="text-success"><strong>'+checkInStock()+'</strong></span>'
+            +       '  </div>'
+            +  ' </div></td>'
+            + ' <td class="col-sm-1 col-md-1" style="text-align: center">'
+            +  ' <input min="1" required="true" type="number" class="form-control quantity"  value="'+item.quantity+'">'
+            +   '</td>'
+            + '<td class="col-sm-1 col-md-1 text-center"><strong>'+item.price.toFixed(2) +' €</strong></td>'
+            +'<td class="col-sm-1 col-md-1 text-center "><strong class="total" >'+ (item.price * item.quantity).toFixed(2) +' €</strong></td>'
+            + ' <td class="col-sm-1 col-md-1">'
+            + ' <button type="button" class="btn btn-danger remove_button">'
+            + ' <span class="glyphicon glyphicon-remove"></span> Remove'
+            +  '</button></td>'
+            +'  </tr>');
+
+
+    });
+
+
+}
+
+function setListeners() {
+
+    $('.quantity').change(function () {
+        var cart = getCart();
+        var n = $(this).val();
+        if (!isNaN(n)) {
+
+        var row = $(this).closest('.cart_row');
+        var id = $(this).closest('.cart_row').find('.item_id').html();
+        cart.items.forEach(function(item) {
+            if (item.id == id) {
+                item.quantity = n;
+                row.find('.total').html( (item.price * item.quantity).toFixed(2) +' €');
+            }
+
+        });
+            setCart(cart);
+        }
+
+        updateTotals(cart);
+    });
+
+
+    $('.remove_button').click(function () {
+        var row = $(this).closest('.cart_row');
+        var id = $(this).closest('.cart_row').find('.item_id').html();
+
+        cart.items.forEach(function(item, index) {
+            if (item.id == id) {
+               cart.items.splice(index, 1);
+            }
+
+        });
+        setCart(cart);
+        updateTotals(cart);
+        row.remove();
+    });
+
+
+    $('#checkout').submit(function() {
+        var cart = getCart();
+        if (cart.items.length == 0) {
+            alertify.alert("You need to add at least one item to your card to proceed.");
+            return false;
+        }
+
+    });
+
+}
+
+
+function updateTotals(cart) {
+    var total = 0;
+    cart.items.forEach(function(item) {
+        total+= item.quantity * item.price;
+
+    });
+
+    $('#subtotal').html(total.toFixed(2) + ' €');
+    $('#postage').html(1.99 + ' €');
+    $('#total').html((total + 1.99).toFixed(2) + ' €');
+
+
+
+}
+
+
+function checkInStock() {
+    return 'In Stock';
 }

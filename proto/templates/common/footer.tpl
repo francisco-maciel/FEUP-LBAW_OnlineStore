@@ -77,7 +77,7 @@
             <p class="total"><strong>Subtotal:</strong> <span class="total_amount">€0.00</span></p>
             <p class="buttons">
                 <br/>
-                <a class="btn btn-primary btn-md btn-block" href="{$BASE_URL}pages\products\cart.php">Checkout</a>
+                <a style="display: none"  class="checkout btn btn-primary btn-md btn-block" href="{$BASE_URL}pages\products\cart.php">Checkout</a>
 
                 <br/>
                 <br/>

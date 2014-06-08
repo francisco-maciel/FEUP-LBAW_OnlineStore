@@ -28,7 +28,7 @@
             </div>
             <br><br>
         </div>
-
+<form id="checkout">
         <!-- SHOPPING CART -->
         <div class="container">
             <div class="row">
@@ -43,78 +43,43 @@
                             <th> </th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="cart_table">
+                        <tr class="cart_row"> </tr>
+
                         <tr>
-                            <td class="col-sm-8 col-md-6">
-                                <div class="media">
-                                    <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#">Product Name</a></h4>
-                                        <h5 class="media-heading"> by <a href="#">Brand</a></h5>
-                                        <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
-                                    </div>
-                                </div></td>
-                            <td class="col-sm-1 col-md-1" style="text-align: center">
-                                <input type="email" class="form-control" id="exampleInputEmail1" value="3">
-                            </td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>€</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>€</strong></td>
-                            <td class="col-sm-1 col-md-1">
-                                <button type="button" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-remove"></span> Remove
-                                </button></td>
-                        </tr>
-                        <tr>
-                            <td class="col-md-6">
-                                <div class="media">
-                                    <a class="thumbnail pull-left" href="#"> <img class="media-object" src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-2/72/product-icon.png" style="width: 72px; height: 72px;"> </a>
-                                    <div class="media-body">
-                                        <h4 class="media-heading"><a href="#">Product Name</a></h4>
-                                        <h5 class="media-heading"> by <a href="#">Brand</a></h5>
-                                        <span>Status: </span><span class="text-warning"><strong>Leaves warehouse in 5 days</strong></span>
-                                    </div>
-                                </div></td>
-                            <td class="col-md-1" style="text-align: center">
-                                <input type="email" class="form-control" id="exampleInputEmail1" value="2">
-                            </td>
-                            <td class="col-md-1 text-center"><strong>€</strong></td>
-                            <td class="col-md-1 text-center"><strong>€</strong></td>
-                            <td class="col-md-1">
-                                <button type="button" class="btn btn-danger">
-                                    <span class="glyphicon glyphicon-remove"></span> Remove
-                                </button></td>
-                        </tr>
                         <tr>
                             <td>   </td>
                             <td>   </td>
                             <td>   </td>
                             <td><h5>Subtotal</h5></td>
-                            <td class="text-right"><h5><strong>€</strong></h5></td>
+                            <td class="text-right"><h5><strong id="subtotal">€</strong></h5></td>
+                        </tr>
                         </tr>
                         <tr>
                             <td>   </td>
                             <td>   </td>
                             <td>   </td>
                             <td><h5>Postage</h5></td>
-                            <td class="text-right"><h5><strong>€</strong></h5></td>
+                            <td class="text-right"><h5><strong id="postage">€</strong></h5></td>
                         </tr>
                         <tr>
                             <td>   </td>
                             <td>   </td>
                             <td>   </td>
                             <td><h3>Total</h3></td>
-                            <td class="text-right"><h3><strong>€</strong></h3></td>
+                            <td class="text-right"><h3><strong id ="total">€</strong></h3></td>
                         </tr>
                         <tr>
                             <td>   </td>
                             <td>   </td>
                             <td>   </td>
                             <td>
+                                <a href="{$BASE_URL}pages/homepage.php" >
                                 <button type="button" class="btn btn-default">
-                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                                </button></td>
+                                    <span class="glyphicon glyphicon-shopping-cart" ></span> Continue Shopping
+                                </button></a></td>
                             <td>
-                                <button type="button" class="btn btn-success">
+                                <button type="submit" class="btn btn-success">
                                     Checkout <span class="glyphicon glyphicon-play"></span>
                                 </button></td>
                         </tr>
@@ -124,7 +89,7 @@
             </div>
         </div>
         <!-- END SHOPPING CART -->
-
+</form>
     </div>
 
 
@@ -162,3 +127,4 @@
 <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
 <script src="{$BASE_URL}javascript/products/add_wishlist.js"></script>
 <script src="{$BASE_URL}javascript/review.js"></script>
+<script src="{$BASE_URL}javascript/checkout.js"></script>
