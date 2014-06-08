@@ -8,7 +8,7 @@
 
 function getDepartmentCategories($id) {
     global $conn;
-    $stmt = $conn->prepare('SELECT idcategory as id, "name" FROM category WHERE iddepartment=?');
+    $stmt = $conn->prepare('SELECT idcategory as id, "name" FROM category WHERE iddepartment=? ORDER BY "name"');
     $stmt->execute(array($id));
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
@@ -37,7 +37,7 @@ function getDepfromCat($id) {
 
 function addCategory($name, $depid) {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO proto.category(name, iddepartment)
+    $stmt = $conn->prepare("INSERT INTO category(name, iddepartment)
 	VALUES ('$name', $depid)");
     return $stmt->execute();
 }

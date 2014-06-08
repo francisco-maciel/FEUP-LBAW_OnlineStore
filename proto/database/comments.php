@@ -11,7 +11,7 @@ include_once $BASE_DIR . 'database/genericDB.php';
 function getComments() {
     global $conn;
     $stmt = $conn->prepare('SELECT r.idreview, o.idbuyer, r.reported, r.removed, r.text, r.rating
-        FROM proto.review AS r
+        FROM review AS r
         INNER JOIN order_ AS o ON
         o.idorder = r.idorder;');
     $stmt->execute();
@@ -44,7 +44,7 @@ function countComments() {
 function getCommentsPortion($limit, $offset) {
     global $conn;
     $stmt = $conn->prepare("SELECT r.idproduct, r.idreview, o.idbuyer, r.reported, r.removed, r.text, r.rating
-        FROM proto.review AS r
+        FROM review AS r
         INNER JOIN order_ AS o ON
         o.idorder = r.idorder
         ORDER BY r.idreview DESC
@@ -75,7 +75,7 @@ function getCommentsPortionFilter($limit, $offset, $col, $text) {
         $table = "review";
     }
     $stmt = $conn->prepare("SELECT r.idproduct, r.idreview, o.idbuyer, r.reported, r.removed, r.text, r.rating "
-            . "FROM proto.review AS r "
+            . "FROM review AS r "
             . "INNER JOIN order_ AS o ON "
             . "o.idorder = r.idorder "
             . "WHERE r.idreview IN (SELECT review.idreview FROM review "
