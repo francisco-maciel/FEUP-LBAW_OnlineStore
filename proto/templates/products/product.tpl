@@ -147,8 +147,8 @@
             </div>
 
             <div class="ratings">
-                <p class="pull-right">{$averageRating['numreviews']}</p>
-                <p>   <!-- FIXME: float number? -->
+                <p class="pull-right">{$averageRating['numreviews']} Reviews</p>
+                <p>
                     {for $i=1 to intval($averageRating['average'])}
                         <span class="glyphicon glyphicon-star"></span>
                     {/for}
@@ -232,10 +232,11 @@
         </div>
 
         <hr>
-        <div>
+        <div> {* OTHER PRODUCTS *}
             <h4><a href="#">Other Products</a></h4>
-
-            {foreach $otherproducts as $otherprod}
+            
+            {for $i=0 to (($otherproducts|@count)-1)}
+            {$otherprod = $otherproducts[$i]}
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
                     {if $otherprod.img }
@@ -247,24 +248,26 @@
                     <div class="caption">
                         {if (strlen($otherprod.title)>28)}
                 <h4> <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}">{substr($otherprod.title,0,28)}</a> </h4>
-                {else}
+{else}
                 <h4> <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}">{$otherprod.title}</a> </h4>
-                {/if}
+    {/if}
                 <h4 class="pull-right">€{$otherprod.price}</h4>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right">31 reviews</p>
+                        <p class="pull-right">{$otherproductsRatings[$i]['numreviews']} reviews</p>
                         <p>
+                            {for $x=1 to intval($otherproductsRatings[$i]['average'])}
                             <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
+                            {/for}
+                            {for $x=0 to 4-intval($otherproductsRatings[$i]['average'])}
                             <span class="glyphicon glyphicon-star-empty"></span>
+                            {/for}
+                            {intval($otherproductsRatings[$i]['average'])}
                         </p>
                     </div>
                 </div>
             </div>
-            {/foreach}
+        {/for}
             
         </div>
     </div>

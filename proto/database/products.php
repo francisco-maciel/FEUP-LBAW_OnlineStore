@@ -287,6 +287,7 @@ function mostOrderedProducts($nr_items) {
     return $stmt->fetchAll();
 }
 
+//SELECT AVG(rating) AS average, count(*) AS numreviews FROM review where review.idproduct = ?
 function mostOrderedProductsbyCat($id, $idproduct_except) {
     global $conn;
     $stmt = $conn->prepare("SELECT product.*, count(*) as count
