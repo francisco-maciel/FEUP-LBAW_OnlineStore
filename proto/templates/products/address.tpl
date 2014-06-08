@@ -42,7 +42,7 @@
                         <span>{$address['postcode']}</span>
                     </div>
                     <p>Portugal<br></p>
-                    <p><a href="#" class="btn btn-primary" role="button">Deliver to this address</a> </p>
+                    <p><a href="{$BASE_URL}pages/products/payment.php" class="btn btn-primary deliver" role="button" id="{$address['idaddress']}">Deliver to this address</a> </p>
                 </div>
                 {/foreach}
             </div>
@@ -108,3 +108,5 @@
 
 
 {include file='common/footer.tpl'}
+
+<script src="{$BASE_URL}javascript/address.js"></script>

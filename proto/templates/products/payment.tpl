@@ -3,9 +3,6 @@
 <script src="{$BASE_URL}javascript/external_libs/facebook_sdk.js">
 </script>
 
-<script type="text/javascript">
-    var all_products =  {json_encode($products)};
-</script>
 
 <script type="text/javascript">
 var perm = '{$PERMISSION}';
@@ -172,9 +169,9 @@ var valid_login = true;
 
                             <div class='form-row'>
                                 <div class='col-md-12'>
-                                    <div class='form-control total btn btn-info'>
+                                    <a onclick="sendCart()" class='form-control total btn btn-info'>
                                         Pay by bank transfer
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
 
@@ -274,6 +271,51 @@ var valid_login = true;
             $('ul.setup-panel li a[href="#step-2"]').trigger('click');
             $(this).remove();
         })
-    });
 
+
+
+    });
+    loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');
+    function sendCart() {
+        cart = getCart();
+        var data = [];
+        data.data = JSON.stringify(cart);
+        post(loc + 'pages/products/confirm.php',data);
+    }
+
+    function post(path, params, method) {
+        method = method || "post"; // Set method to post by default if not specified.
+
+        // The rest of this code assumes you are not using a library.
+        // It can be made less wordy if you use one.
+        var form = document.createElement("form");
+        form.setAttribute("method", method);
+        form.setAttribute("action", path);
+
+        for(var key in params) {
+            if(params.hasOwnProperty(key)) {
+                var hiddenField = document.createElement("input");
+                hiddenField.setAttribute("type", "hidden");
+                hiddenField.setAttribute("name", key);
+                hiddenField.setAttribute("value", params[key]);
+
+                form.appendChild(hiddenField);
+            }
+        }
+
+        document.body.appendChild(form);
+        form.submit();
+    }
+
+    function getCart() {
+        if (!sessionStorage.cart)
+            sessionStorage.setItem("cart", JSON.stringify({
+                        items: []
+                    }
+            ));
+
+        var cart = JSON.parse(sessionStorage.cart);
+        return cart;
+    }
 </script>
+
