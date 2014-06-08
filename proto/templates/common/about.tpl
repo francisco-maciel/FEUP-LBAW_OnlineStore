@@ -1,7 +1,6 @@
 {include file='common/header.tpl'}
 
-<link href="https://d1o2s7t10tmejf.cloudfront.net/assets/company/company-e0521058f60da78e05536475ec8c20d5.css"
-      media="screen" rel="stylesheet" type="text/css"/>
+<link href="https://d1o2s7t10tmejf.cloudfront.net/assets/company/company-e0521058f60da78e05536475ec8c20d5.css" rel="stylesheet" type="text/css"/>
 
 <div class="landing-about">
     <div id="wrap">

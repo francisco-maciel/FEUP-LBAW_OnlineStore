@@ -2,11 +2,40 @@
 <!--  TODO already logged in-->
 <!--  TODO check nif and password standards     -->
 
+<div class="modal fade modal-large" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Register User Help</h4>
+            </div>
+            <div class="modal-body">
+                <p>On this page a user can register an account on our online service.</p>
+                <hr>
+                <ol>
+                    <li id="1">Create an account</li>
+                    <br>
+                    <p>In this page a user can create an account on our online shopping system. The new user must insert
+                    his/her Name, email, date of birth, address, contact and a valid NIF number. The email can only be
+                    registered once in our system. The user also need to insert a password and confirm it. Finnaly the
+                    user can create the account by clicking the "Register" button. After that, the user must use the email
+                    and password registered to login to our online system. The user is allowed to change his/her password
+                    and other personal data later in his/her perfil page.</p>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="jumbotron" style="background: #3399FF; color:white">
     <div class="container">
-        <h1>Join us now! </h1>
+        <h1>Join us now!</h1>
 
-        <h3>Create an account bellow </h3>
+        <h3>Create an account bellow</h3>
     </div>
 </div>
 <div class="container">
@@ -18,7 +47,7 @@
             <fieldset>
 
                 <!-- Form Name -->
-                <legend>Sign up</legend>
+                <legend>Sign up <a href="#" data-toggle="modal" data-target=".modal-large" class="glyphicon glyphicon-info-sign"></a> </legend>
 
                 <!-- Text input-->
                 <div class="form-group">
