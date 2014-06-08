@@ -3,6 +3,9 @@ include_once('../../config/init.php');
 include_once($BASE_DIR .'database/users.php');
 include_once($BASE_DIR .'database/orders.php');
 
+if ($_SESSION['permission'] != Permisson::BUYER ) {
+    header('Location: ' . $BASE_URL);
+}
 
 /*
  * ******* Changes **********

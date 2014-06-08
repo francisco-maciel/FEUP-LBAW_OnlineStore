@@ -2,6 +2,9 @@
 include_once('../../config/init.php');
 include_once($BASE_DIR .'database/products.php');
 
+if ($_SESSION['permission'] != Permisson::BUYER ) {
+    header('Location: ' . $BASE_URL);
+}
 
 $products = getWishListProducts($_SESSION['email']);
 
