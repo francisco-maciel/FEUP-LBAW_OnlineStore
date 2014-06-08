@@ -16,7 +16,7 @@ function getDepartmentName($id) {
 
 function getAllDepartments() {
     global $conn;
-    $stmt = $conn->prepare("SELECT iddepartment AS id, name FROM department");
+    $stmt = $conn->prepare("SELECT iddepartment AS id, name FROM department ORDER BY name");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }

@@ -140,7 +140,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="prod_name">Product name</label>
                         <div class="col-md-6">
-                            <input id="prod_name" name="prod_name" type="text" placeholder="enter a title" class="form-control input-md" required="">
+                            <input class="col-xs-11 col-sm-11" id="prod_name" name="prod_name" type="text" placeholder="enter a title" class="form-control input-md" required="">
 
                         </div>
                     </div>
@@ -149,18 +149,19 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="prod_family">Product Department</label>
                         <div class="col-md-4">
-                            <select id="prod_family" name="prod_family" class="form-control">
+                            <select class="col-xs-7 col-sm-6" id="prod_family" name="prod_family" class="form-control">
 
 
                             </select>
+                           
                         </div>
-                        <button type="button" data-toggle="modal" data-target="#add-dep" class="btn glyphicon glyphicon-plus-sign"></button>
+                        <button  data-toggle="modal" data-target="#add-dep" class="btn glyphicon glyphicon-plus-sign"></button>
                     </div>
 
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="prod_category">Department Category</label>
                         <div class="col-md-4">
-                            <select id="prod_category" name="prod_category" class="form-control">
+                            <select class="col-xs-7 col-sm-6" id="prod_category" name="prod_category" class="form-control">
 
                             </select>
                         </div>
@@ -171,8 +172,8 @@
                     <!-- Text input-->
                     <div class="form-group has-feedback">
                         <label class="col-md-4 control-label" for="prod_stock">Stock available</label>
-                        <div class="col-md-2 ">
-                            <input id="prod_stock" name="prod_stock" data-trigger="manual" data-toggle="tooltip" data-placement="top" title="Please enter valid input" placeholder="Enter stock" class="form-control input-md" required="">
+                        <div class="col-md-6 ">
+                            <input class="col-xs-6 col-sm-4" id="prod_stock" name="prod_stock" data-trigger="manual" data-toggle="tooltip" data-placement="top" title="Please enter valid input" placeholder="Enter stock" class="form-control input-md" required="">
                             <span class="form-control-feedback"></span>
                         </div>
                     </div>
@@ -180,8 +181,8 @@
                     <!-- Text input-->
                     <div class="form-group has-feedback">
                         <label class="col-md-4 control-label" for="prod_price">Price</label>
-                        <div class="col-md-2">
-                            <input id="prod_price" name="prod_price" data-trigger="manual" data-toggle="tooltip" data-placement="top" title="Please enter valid input" placeholder="Enter price" class="form-control input-md" required="">
+                        <div class="col-md-6">
+                            <input class="col-xs-6 col-sm-4" id="prod_price" name="prod_price" data-trigger="manual" data-toggle="tooltip" data-placement="top" title="Please enter valid input" placeholder="Enter price" class="form-control input-md" required="">
                             <span class="form-control-feedback"></span>
                         </div>
                     </div>
@@ -190,7 +191,7 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="prod_desc">Description</label>
                         <div class="col-md-4">
-                            <textarea onclick="clearText('prod_desc')" class="form-control" id="prod_desc" name="prod_desc">Add a description</textarea>
+                            <textarea class="col-xs-11 col-sm-11" onclick="clearText('prod_desc')" class="form-control" id="prod_desc" name="prod_desc">Add a description</textarea>
                         </div>
                     </div>
 
