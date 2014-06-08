@@ -273,9 +273,92 @@ function removeWishList($email, $id) {
 
 }
 
-function getNumberOfProducts() {
-    /*
-     $results = mysqli_query($connecDB,"SELECT COUNT(*) FROM paginate");
-     $get_total_rows = mysqli_fetch_array($results); //total records
-     */
+function mostOrderedProducts($nr_items) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT product.*, count(*) as count
+                            FROM product
+                            INNER JOIN orderline
+                            ON product.idproduct = orderline.idproduct
+                            WHERE product.removed=false
+                            GROUP BY product.idproduct
+                            ORDER BY count DESC
+                            LIMIT ? OFFSET 0");
+    $stmt->execute(array($nr_items));
+    return $stmt->fetchAll();
 }
+
+function mostOrderedProductsbyCat($id, $idproduct_except) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT product.*, count(*) as count
+                            FROM product
+                            INNER JOIN orderline
+                            ON product.idproduct = orderline.idproduct
+                            WHERE product.removed=false
+                            AND product.idcategory = ?
+                            AND product.idproduct != ?
+                            GROUP BY product.idproduct
+                            ORDER BY count DESC
+                            LIMIT 3 OFFSET 0");
+    $stmt->execute(array($id, $idproduct_except));
+    return $stmt->fetchAll();
+}
+
+
+function mostOrderedProductsbyCat_Alternative($idcat, $idproduct_except) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        AND product.idproduct != ?
+        AND removed=false
+        ORDER BY product.title LIMIT 3 OFFSET 0");
+    $stmt->execute(array($idcat, $idproduct_except));
+    return $stmt->fetchAll();
+}
+/*
+function mostOrderedProductsbyCat_Complementar($idcat, $idproduct_except1, $idproduct_except2, $idproduct_except3) {
+    global $conn;
+        $q = "SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = $idcat
+        AND product.idproduct != $idproduct_except1";
+    if(isset($idproduct_except2))
+        $q .= "AND product.idproduct != $idproduct_except2 ";
+    if(isset($idproduct_except3))
+         $q .= "AND product.idproduct != $idproduct_except3 ";
+    $q .= "AND removed=false ORDER BY product.title LIMIT 3 OFFSET 0";
+    
+    $stmt = $conn->prepare($q);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+function mostOrderedProductsbyCat_ComplementarWithDep($idcat, $idproduct_except) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        AND product.idproduct != ?
+        AND product.idproduct !=2
+        AND product.idproduct != 13
+        AND removed=false
+        ORDER BY product.title LIMIT 3 OFFSET 0
+        ");
+    $stmt->execute(array($idcat, $idproduct_except));
+    return $stmt->fetchAll();
+}*/

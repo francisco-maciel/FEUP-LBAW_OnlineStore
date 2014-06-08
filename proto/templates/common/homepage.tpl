@@ -19,13 +19,14 @@
                         </ol>
                         <div class="carousel-inner">
                             <div class="item active">
-                                <img class="slide-image" src="{$BASE_URL}images/products/5s.png" alt="">
+           
+                                <img class="slide-image" src="{$BASE_URL}images/products/{$products[0].img}" alt="">
                             </div>
                             <div class="item">
-                                <img class="slide-image" src="{$BASE_URL}images/products/nexus5.jpg" alt="">
+                                <img class="slide-image" src="{$BASE_URL}images/products/{$products[1].img}" alt="">
                             </div>
                             <div class="item">
-                                <img class="slide-image" src="{$BASE_URL}images/products/lgg2.jpg" alt="">
+                                <img class="slide-image" src="{$BASE_URL}images/products/{$products[2].img}" alt="">
                             </div>
                         </div>
                         <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -41,7 +42,7 @@
             </div>
 
             <div class="row">
-
+                
                 {include file='products/list.tpl'}
                 
             </div>
