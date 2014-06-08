@@ -155,7 +155,7 @@ function setListeners() {
         if (!valid_login) {
             loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');
             console.log(loc);
-            var string = 'You need to be registered to continue your purchase.<br/> Dont have an account? Register <a href="'.concat(loc);
+            var string = 'You need to be logged in to continue your purchase.<br/> Dont have an account? Register <a href="'.concat(loc);
             string = string.concat('pages/users/register.php">here</a>  ')
             alertify.alert(string);
             return false;
