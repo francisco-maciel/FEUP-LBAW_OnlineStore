@@ -13,7 +13,7 @@
             <div class="container1">
                 <div class="section-content-panel">
                     <p>At Loja Online, we all come to work every day because we want to make shopping easier to every Portuguese.
-                        </p>
+                    And also we want to make our learders and investors happy, in order to get a good grade for our work.</p>
                 </div>
             </div>
         </section>
