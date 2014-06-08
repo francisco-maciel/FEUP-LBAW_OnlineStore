@@ -147,113 +147,147 @@
             </div>
 
             <div class="ratings">
-                <p class="pull-right">{$averageRating['numreviews']}</p>
-                <p>   <!-- FIXME: float number? -->
-                    {for $i=1 to 3}
+                <p class="pull-right">{$averageRating['numreviews']} Reviews</p>
+                <p>
+                    {for $i=1 to intval($averageRating['average'])}
                         <span class="glyphicon glyphicon-star"></span>
                     {/for}
-                    {for $i=0 to 4-3}
+                    {for $i=0 to 4-intval($averageRating['average'])}
                         <span class="glyphicon glyphicon-star-empty"></span>
                     {/for}
-                    3.0 stars
+                    {intval($averageRating['average'])}
                 </p>
             </div>
         </div>
 
         <div class="well">
-            {foreach $reviews as $review}
-                <div class="row">
-                    <div class="col-md-12">
-                        {for $i=1 to $review['rating']}
-                            <span class="glyphicon glyphicon-star"></span>
-                        {/for}
-                        {for $i=0 to 4-$review['rating']}
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                        {/for}
-                        <span style="padding-left:10px">{$review['name']}</span>
-                        <span class="pull-right">10 days ago</span>
-                        <span class="pull-right" style="padding-right:10px;">
-                            <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$review['idreview']}">Report</button>
-                        </span>
+            {if $reviews|@count > 3}
+                {for $i=0 to 2}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {for $j=1 to $reviews[$i]['rating']}
+                                <span class="glyphicon glyphicon-star"></span>
+                            {/for}
+                            {for $j=0 to 4-$reviews[$i]['rating']}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            {/for}
+                            <span style="padding-left:10px">{$reviews[$i]['name']}</span>
+                            <span class="pull-right">10 days ago</span>
+                            <span class="pull-right" style="padding-right:10px;">
+                                <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$reviews[$i]['idreview']}">Report</button>
+                            </span>
 
-                        <p>{$review['text']}</p>
+                            <p>{$reviews[$i]['text']}</p>
+                        </div>
+                    </div>
+                {/for}
+                <div style="text-align: center;">
+                    <a id="view_all_comments">click here to view all comments.</a>
+                </div>
+                <div style="display:none;" id="show_all_comments">
+                {for $i=3 to $reviews|@count - 1}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {for $j=1 to $reviews[$i]['rating']}
+                                <span class="glyphicon glyphicon-star"></span>
+                            {/for}
+                            {for $j=0 to 4-$reviews[$i]['rating']}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            {/for}
+                            <span style="padding-left:10px">{$reviews[$i]['name']}</span>
+                            <span class="pull-right">10 days ago</span>
+                            <span class="pull-right" style="padding-right:10px;">
+                                <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$reviews[$i]['idreview']}">Report</button>
+                            </span>
+
+                            <p>{$reviews[$i]['text']}</p>
+                        </div>
+                    </div>
+                {/for}
+                    <div style="text-align: center;">
+                        <a id="view_less_comments">click here to view less comments.</a>
                     </div>
                 </div>
-            {/foreach}
+            {else}
+                {foreach $reviews as $review}
+                    <div class="row">
+                        <div class="col-md-12">
+                            {for $j=1 to $review['rating']}
+                                <span class="glyphicon glyphicon-star"></span>
+                            {/for}
+                            {for $j=0 to 4-$review['rating']}
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            {/for}
+                            <span style="padding-left:10px">{$review['name']}</span>
+                            <span class="pull-right">10 days ago</span>
+                            <span class="pull-right" style="padding-right:10px;">
+                                <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$review['idreview']}">Report</button>
+                            </span>
+
+                            <p>{$review['text']}</p>
+                        </div>
+                    </div>
+                {/foreach}
+            {/if}
         </div>
 
         <hr>
-        <div>
-            <h4><a href="#">Other Products</a></h4>
+
+      {if isset($otherproducts)}
+        <div> {* OTHER PRODUCTS *}
+            <h4>Other Products that may interest you!</h4>
+            
+            {for $i=0 to (($otherproducts|@count)-1)}
+            {$otherprod = $otherproducts[$i]}
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
+                    {if $otherprod.img }
+                <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}"> <img style="min-height:200px; max-height:200px; width:auto;" class="img-responsive" src="{$BASE_URL}images/products/{$otherprod.img}" alt=""> </a>
+                {else}
+                <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}"> <img class="img-responsive" src="{$BASE_URL}images/products/default.png" alt=""> </a>
+                {/if}
 
                     <div class="caption">
-                        <h4 class="pull-right">€</h4>
-                        <h4><a href="#">Product 3</a></h4>
+                        {if (strlen($otherprod.title)>28)}
+                <h4> <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}">{substr($otherprod.title,0,28)}</a> </h4>
+        {else}
+                <h4> <a href="{$BASE_URL}pages/products/product.php?id={$otherprod.idproduct}">{$otherprod.title}</a> </h4>
+        {/if}
+                <h4 class="pull-right">€{$otherprod.price}</h4>
                     </div>
                     <div class="ratings">
-                        <p class="pull-right">31 reviews</p>
+                        <p class="pull-right">{$otherproductsRatings[$i]['numreviews']} reviews</p>
                         <p>
+                            {for $x=1 to intval($otherproductsRatings[$i]['average'])}
                             <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
+                            {/for}
+                            {for $x=0 to 4-intval($otherproductsRatings[$i]['average'])}
                             <span class="glyphicon glyphicon-star-empty"></span>
+                            {/for}
+                            {intval($otherproductsRatings[$i]['average'])}
                         </p>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-4 col-lg-4 col-md-4">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-
-                    <div class="caption">
-                        <h4 class="pull-right">€</h4>
-                        <h4><a href="#">Product 1</a></h4>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">15 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-lg-4 col-md-4">
-                <div class="thumbnail">
-                    <img src="http://placehold.it/320x150" alt="">
-
-                    <div class="caption">
-                        <h4 class="pull-right">€</h4>
-                        <h4><a href="#">Product 2</a></h4>
-                    </div>
-                    <div class="ratings">
-                        <p class="pull-right">12 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        {/for}
+            
         </div>
+    {/if}
     </div>
 </div>
 
 {include file='common/footer.tpl'}
 
 <script type="text/javascript">
+    $(document).on("click", "#view_all_comments", function () {
+        $(this).css("display", "none");
+        $("#show_all_comments").css("display", "initial");
+    });
+
+    $(document).on("click", "#view_less_comments", function () {
+        $("#view_all_comments").css("display", "initial");
+        $("#show_all_comments").css("display", "none");
+    });
 
     $(document).on("click", ".report-button", function () {
         var reviewID = $(this).data('id');

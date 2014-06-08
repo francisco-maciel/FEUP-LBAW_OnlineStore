@@ -4,10 +4,9 @@
 
     $products = getProductsByName("",0,1000000);
 
+  $smarty->assign('products', $products);
 
-    $smarty->assign('no_cart', true);
+  $smarty->assign('no_cart', true);
   $smarty->display('products/checkout.tpl');
-
-
 
 ?>

@@ -38,17 +38,18 @@ function update_pagination() {
 
 
 function addfilters() {
-    if(type==="cat") {
-        var loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/,
-                              "actions/products/getFiltersFromCat.php?id=" + value);
-        loadFilters(loc);
+    if (typeof type != 'undefined') {
+        if(type==="cat") {
+            var loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/,
+                                  "actions/products/getFiltersFromCat.php?id=" + value);
+            loadFilters(loc);
+        }
+        else if(type==="search") {
+            var loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/,
+                                  "actions/products/getFiltersFromSearch.php?namepart=" + value);
+            loadFilters(loc);
+        }
     }
-    else if(type==="search") {
-        var loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/,
-                              "actions/products/getFiltersFromSearch.php?namepart=" + value);
-        loadFilters(loc);
-    }
-    
     //load slider com preço min e max
 }
 
@@ -178,6 +179,7 @@ $(document).on("click",'li.filterson', function() {
 
 //queries para filtragem de resultados
 function filtering(page) {
+    
     var loc;
     if(activeFilters.length===0) { //no active filters
         if(category === undefined)

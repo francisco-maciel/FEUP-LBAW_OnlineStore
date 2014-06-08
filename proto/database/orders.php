@@ -109,3 +109,11 @@ function countOrders() {
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function getTransporter() {
+    global $conn;
+    $sql = 'select * from transporter where idtransporter = 1;';
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}

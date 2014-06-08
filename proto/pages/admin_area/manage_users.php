@@ -10,7 +10,7 @@ include_once '../../config/init.php';
 include_once $BASE_DIR . 'database/users.php';
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
-    header('Location: ' . $NO_ACCESS);
+    header('Location: ' . $BASE_URL);
 }
 
 $user_banned = filter_input(INPUT_GET, 'userBanned');
@@ -20,6 +20,8 @@ $user_banned = filter_input(INPUT_GET, 'userBanned');
 //}
 
 $count = countBuyers();
+
+$smarty->assign('no_cart', true);
 
 $smarty->assign('pages', (int) ($count['count'] / 20));
 

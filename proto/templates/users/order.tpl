@@ -1,10 +1,45 @@
 {include file='common/header.tpl'}
 
+<div class="modal fade modal-large" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">Order Details Help</h4>
+            </div>
+            <div class="modal-body">
+                <p>On this page a user can perform various actions on user's orders.</p>
+                <p>These actions are:</p>
+                <ol>
+                    <li><a href="#1">Check order details</a></li>
+                    <li><a href="#2">View a purchased product</a></li>
+                </ol>
+                <hr>
+                <ol>
+                    <li id="1">Check order details</li>
+                    <br>
+                    <p>In this page a user can check all related information about the order. Such as the address shipping to, payment information,
+                    transporter information, order states, a list of products purchased and their prices.</p>
+                    <br>
+                    <li id="2">View a purchased product</li>
+                    <br>
+                    <p>To view a purchased product simply click on the product's id on the table (first column and you'll be redirected.)</p>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
             <div class="invoice-title">
-                <h2>Order Invoice</h2><h3 class="pull-right">Order # {$orderDetail['orderid']}</h3>
+                <h2>Order Details <a href="#" data-toggle="modal" data-target=".modal-large" class="glyphicon glyphicon-info-sign"></a> </h2>
+                <h3 class="pull-right">Order # {$orderDetail['orderid']}</h3>
             </div>
             <hr>
             <div class="row">
@@ -29,8 +64,7 @@
                 <div class="col-xs-6">
                     <address>
                         <!-- FIXME TODO -->
-                        <strong>Payment Method:</strong><br>
-                        Visa ending **** 4242<br>
+                        <strong>Payment Data:</strong><br>
                         {$orderDetail['email']}<br>
                         NIF: {$orderDetail['nif']}
                     </address>

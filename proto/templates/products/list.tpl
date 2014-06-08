@@ -1,9 +1,10 @@
 
-{foreach $products as $prod}
+    {foreach $products as $prod}
+             
 
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div  class="thumbnail" id="{$prod.idproduct}">
-            <!-- <img src="http://placehold.it/320x150" alt=""> -->
+            
             {if $prod.img }
                 <a href="{$BASE_URL}pages/products/product.php?id={$prod.idproduct}"> <img style="min-height:200px; max-height:200px; width:auto;" class="img-responsive" src="{$BASE_URL}images/products/{$prod.img}" alt=""> </a>
                 {else}
@@ -19,16 +20,20 @@
                 {/if}
                 <h4 class="pull-right">€{$prod.price}</h4>
             </div>
-            <div class="ratings">
-                <p class="pull-right">15 reviews</p>
+            {if isset($prod['nr_reviews'])}
+                <div class="ratings">
+                <p class="pull-right">{$prod['nr_reviews']} reviews</p>
                 <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
+                    {for $x=1 to intval($prod['avgrating'])}
+                        <span class="glyphicon glyphicon-star"></span>
+                    {/for}
+                    {for $x=0 to 4-intval($prod['avgrating'])}
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    {/for}
+                    {intval($prod['avgrating'])}
                 </p>
-            </div>
+                </div>
+            {/if}
         </div>
         <br>
     </div>

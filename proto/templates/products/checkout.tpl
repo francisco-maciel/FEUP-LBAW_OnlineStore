@@ -3,32 +3,42 @@
 <script src="{$BASE_URL}javascript/external_libs/facebook_sdk.js">
 </script>
 
+<script type="text/javascript">
+    var all_products =  {json_encode($products)};
+</script>
 
+<script type="text/javascript">
+var perm = '{$PERMISSION}';
+var valid_login = true;
+    if (perm == '' || perm != 0) {
+        valid_login = false;
+    }
+</script>
 <div class="container">
     <div class="row">
 
         <div class="stepwizard">
             <div class="stepwizard-row">
                 <div class="stepwizard-step">
-                    <a href="cart.html" type="button" class="btn btn-primary btn-circle">1</a>
+                    <span  type="button" class="btn btn-primary btn-circle">1</span>
                     <p>Shopping cart</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="address.html" type="button" class="btn btn-default btn-circle">2</a>
+                    <span  type="button" class="btn btn-default btn-circle">2</span>
                     <p>Address</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="payment.html" type="button" class="btn btn-default btn-circle">3</a>
+                    <span type="button" class="btn btn-default btn-circle">3</span>
                     <p>Payment</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="" type="button" class="btn btn-default btn-circle" >4</a>
+                    <span href="" type="button" class="btn btn-default btn-circle" >4</span>
                     <p>Confirm</p>
                 </div>
             </div>
             <br><br>
         </div>
-<form id="checkout">
+<form id="checkout" action="{$BASE_URL}pages/products/address.php">
         <!-- SHOPPING CART -->
         <div class="container">
             <div class="row">

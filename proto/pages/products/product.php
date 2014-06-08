@@ -1,22 +1,39 @@
 <?php
-  include_once('../../config/init.php');
-  include_once($BASE_DIR .'database/products.php');
+  include_once '../../config/init.php' ;
+  include_once $BASE_DIR .'database/products.php' ;
 
 
 if (!$_GET['id']) {
     $_SESSION['error_messages'][] = 'Invalid product_id';
     $_SESSION['form_values'] = $_GET;
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    if (isset($_SERVER['HTTP_REFERER']))
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+    else header('Location: ' . $BASE_URL);
     exit;
   }
 
   $product = getProductById($_GET['id']);
 
+if (isset($_SESSION['permission'])) {
+   if ($_SESSION['permission'] == 1 || $_SESSION['permission'] == 2)
+       $smarty->assign('no_cart', true);
+}
+
+$specs = getProductSpecs($_GET['id']);
 
 
-  $specs = getProductSpecs($_GET['id']);
+  $otherproducts = mostOrderedProductsbyCat($product['idcategory'],$product['idproduct'] );
+  if(sizeof($otherproducts)<3)
+        $otherproducts = mostOrderedProductsbyCat_Alternative($product['idcategory'],$product['idproduct']);
 
+  if(sizeof($otherproducts)>0) {
+        for($i=0; $i<sizeof($otherproducts);$i++) {
+            $otherproductsRatings[$i] = averageRatingByProduct($otherproducts[$i]['idproduct']);
+        }
 
+        $smarty->assign('otherproducts', $otherproducts);
+        $smarty->assign('otherproductsRatings', $otherproductsRatings);
+  }
 
   $addWishListButton = false;
   if (isset($_SESSION['permission']) && isset($_SESSION['email'])) {

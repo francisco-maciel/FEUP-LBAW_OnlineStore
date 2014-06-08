@@ -2,8 +2,47 @@
 
 <link rel="stylesheet" href="{$BASE_URL}css/tablefix.css">
 
+<div class="modal fade modal-large" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="mySmallModalLabel">My Orders Help</h4>
+            </div>
+            <div class="modal-body">
+                <p>On this page a user can perform various actions on user's orders.</p>
+                <p>These actions are:</p>
+                <ol>
+                    <li><a href="#1">Filter orders</a></li>
+                    <li><a href="#2">View an order detail</a></li>
+                </ol>
+                <hr>
+                <ol>
+                    <li id="1">Filter orders</li>
+                    <br>
+                    <p>Click on <i>Filter</i> button </p>
+                    <img src="{$BASE_URL}images/assets/filter_button.png" alt="filter button">
+                    <br>
+                    <p>And write in the columns headers the value to filter, to note that it is not possible to combine<br>
+                        multiple columns to use on table filtering in the current version<br><br>If beside the table title the text
+                        <i>(Loading...)</i> is displayed it means the page is still loading information, if the text persists for a<br>
+                        long time please refresh the page</p>
+                    <br>
+                    <li id="2">View an order detail</li>
+                    <br>
+                    <p>To view an order detial simply click on the order's id on the table (first column and you'll be redirected.)</p>
+                </ol>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
-    <h3>My orders</h3>
+    <h3>My orders <a href="#" data-toggle="modal" data-target=".modal-large" class="glyphicon glyphicon-info-sign"></a> </h3>
     <hr>
     <div class="row">
         <div class="panel panel-primary filterable">

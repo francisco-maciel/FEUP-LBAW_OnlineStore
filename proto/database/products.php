@@ -27,17 +27,36 @@ function getNotRemovedProducts() {
 
 function getProductsByName($namepart, $position, $item_per_page) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * FROM product WHERE LOWER(title) LIKE LOWER(?) AND removed=false
-                            ORDER BY product.title LIMIT $item_per_page OFFSET $position");
-    $stmt->execute(array("%" . $namepart . "%"));
+    $stmt = $conn->prepare("SELECT product.*, count(rating) as nr_reviews, avg(rating) as avgrating
+                            FROM product 
+                            LEFT JOIN review
+                            ON review.idproduct = product.idproduct
+                            WHERE LOWER(title) LIKE LOWER(?)
+                            AND product.removed=false
+                            GROUP BY product.idproduct
+                            ORDER BY product.title LIMIT ? OFFSET ?");
+    $stmt->execute(array(("%" . $namepart . "%"), $item_per_page, $position));
     return $stmt->fetchAll();
 }
 
+//TODO
 function getProductsByNameJS($namepart, $position, $items_per_page) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * FROM product WHERE LOWER(title) LIKE LOWER(?) AND removed=false
-                            ORDER BY product.title LIMIT $items_per_page OFFSET $position");
-    $stmt->execute(array("%" . $namepart . "%"));
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+                                product.stock, product.price,
+                                product.img, product.description,
+                                product.idcategory, count(rating) as nr_reviews, avg(rating) as avgrating
+                            FROM product 
+                            LEFT JOIN review
+                            ON review.idproduct = product.idproduct
+                            WHERE LOWER(title) LIKE LOWER(?)
+                            AND product.removed=false
+                            GROUP BY product.idproduct, product.title,
+                                product.stock, product.price,
+                                product.img, product.description,
+                                product.idcategory
+                            ORDER BY product.title LIMIT ? OFFSET ?");
+    $stmt->execute(array(("%" . $namepart . "%"), $items_per_page, $position));
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
 
@@ -54,12 +73,18 @@ function getProductsByCat($idcat, $position, $item_per_page) {
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
         product.img, product.description,
-        product.idcategory, cat.name
+        product.idcategory, cat.name, count(rating) as nr_reviews, avg(rating) as avgrating
         FROM product
         INNER JOIN category cat
         ON cat.idcategory = product.idcategory
+        LEFT JOIN review
+        ON review.idproduct = product.idproduct
         WHERE cat.idcategory = ?
-        AND removed=false
+        AND product.removed=false
+        GROUP BY product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
         ORDER BY product.title LIMIT $item_per_page OFFSET $position");
     $stmt->execute(array($idcat));
     return $stmt->fetchAll();
@@ -82,32 +107,45 @@ function getFilteredProductsByCat($idcat, $position, $items_per_page) {
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
         product.img, product.description,
-        product.idcategory, cat.name
+        product.idcategory, cat.name, count(rating) as nr_reviews, avg(rating) as avgrating
         FROM product
         INNER JOIN category cat
         ON cat.idcategory = product.idcategory
+        LEFT JOIN review
+        ON review.idproduct = product.idproduct
         WHERE cat.idcategory = ?
-        AND removed=false
+        AND product.removed=false
+        GROUP BY product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
         ORDER BY product.title LIMIT $items_per_page OFFSET $position
         ");
     $stmt->execute(array($idcat));
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
-
+ 
 function getProductsByDep($iddep, $position, $item_per_page) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
         product.img, product.description,
         product.idcategory, cat.name,
-        cat.iddepartment, dep.name
+        cat.iddepartment, dep.name, count(rating) as nr_reviews, avg(rating) as avgrating
         FROM product
         INNER JOIN category cat
         ON cat.idcategory = product.idcategory
         INNER JOIN department dep
         ON dep.iddepartment = cat.iddepartment
+        LEFT JOIN review
+        ON review.idproduct = product.idproduct
         WHERE dep.iddepartment = ?
-        AND removed=false
+        AND product.removed=false
+        GROUP BY product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name,
+        cat.iddepartment, dep.name
         ORDER BY product.title LIMIT $item_per_page OFFSET $position");
     $stmt->execute(array($iddep));
     return $stmt->fetchAll();
@@ -154,7 +192,7 @@ function getProductById($id) {
         INNER JOIN department dep
         ON cat.iddepartment = dep.iddepartment
         WHERE product.idproduct = ?");
-        //GROUP BY dep.iddepartment, cat.idcategory, product.idproduct
+
     $stmt->execute(array($id));
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
@@ -273,9 +311,112 @@ function removeWishList($email, $id) {
 
 }
 
-function getNumberOfProducts() {
-    /*
-     $results = mysqli_query($connecDB,"SELECT COUNT(*) FROM paginate");
-     $get_total_rows = mysqli_fetch_array($results); //total records
-     */
+function mostOrderedProducts($nr_items) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT product.*, count(*) as count
+                            FROM product
+                            INNER JOIN orderline
+                            ON product.idproduct = orderline.idproduct
+                            WHERE product.removed=false
+                            GROUP BY product.idproduct
+                            ORDER BY count DESC
+                            LIMIT ? OFFSET 0");
+    $stmt->execute(array($nr_items));
+    return $stmt->fetchAll();
 }
+
+
+
+
+
+
+
+
+
+
+
+/*
+count(rating) as nr_reviews, avg(rating) as avgrating
+LEFT JOIN review
+ON review.idproduct = product.idproduct
+AND product.removed=false
+*/  
+
+
+
+//SELECT AVG(rating) AS average, count(*) AS numreviews FROM review where review.idproduct = ?
+function mostOrderedProductsbyCat($id, $idproduct_except) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT product.*, count(*) as count
+                            FROM product
+                            INNER JOIN orderline
+                            ON product.idproduct = orderline.idproduct
+                            WHERE product.removed=false
+                            AND product.idcategory = ?
+                            AND product.idproduct != ?
+                            GROUP BY product.idproduct
+                            ORDER BY count DESC
+                            LIMIT 3 OFFSET 0");
+    $stmt->execute(array($id, $idproduct_except));
+    return $stmt->fetchAll();
+}
+
+
+function mostOrderedProductsbyCat_Alternative($idcat, $idproduct_except) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        AND product.idproduct != ?
+        AND removed=false
+        ORDER BY product.title LIMIT 3 OFFSET 0");
+    $stmt->execute(array($idcat, $idproduct_except));
+    return $stmt->fetchAll();
+}
+/*
+function mostOrderedProductsbyCat_Complementar($idcat, $idproduct_except1, $idproduct_except2, $idproduct_except3) {
+    global $conn;
+        $q = "SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = $idcat
+        AND product.idproduct != $idproduct_except1";
+    if(isset($idproduct_except2))
+        $q .= "AND product.idproduct != $idproduct_except2 ";
+    if(isset($idproduct_except3))
+         $q .= "AND product.idproduct != $idproduct_except3 ";
+    $q .= "AND removed=false ORDER BY product.title LIMIT 3 OFFSET 0";
+    
+    $stmt = $conn->prepare($q);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
+function mostOrderedProductsbyCat_ComplementarWithDep($idcat, $idproduct_except) {
+    global $conn;
+   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
+        product.stock, product.price,
+        product.img, product.description,
+        product.idcategory, cat.name
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        AND product.idproduct != ?
+        AND product.idproduct !=2
+        AND product.idproduct != 13
+        AND removed=false
+        ORDER BY product.title LIMIT 3 OFFSET 0
+        ");
+    $stmt->execute(array($idcat, $idproduct_except));
+    return $stmt->fetchAll();
+}*/
