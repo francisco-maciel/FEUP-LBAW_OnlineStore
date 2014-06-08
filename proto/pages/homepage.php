@@ -16,5 +16,6 @@
       }
   }
 
+
   $smarty->display('common/homepage.tpl');
 ?>

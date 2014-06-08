@@ -110,6 +110,7 @@
     <!-- /.container -->
 </nav>
 
+
 <div class="container">
     <div class="row">
         {foreach $SUCCESS_MESSAGES as $success}

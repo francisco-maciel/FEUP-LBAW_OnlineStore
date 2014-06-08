@@ -22,5 +22,19 @@
     $_SESSION['error_messages'][] = 'Wrong username or password';
     $_SESSION['form_values'] = $_POST;
   }
+
+    if (isset($_POST['remember_me'])) {
+        if ($_POST['remember_me'] == 'on') {
+            setcookie("remember_me", $_POST['login'], time()+604800, '/');
+        }
+        else {
+            unset($_COOKIE['remember_me']);
+            setcookie('remember_me', null, -1, '/');
+        }
+    }
+   else  {
+       unset($_COOKIE['remember_me']);
+       setcookie('remember_me', null, -1, '/');
+   }
   header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
