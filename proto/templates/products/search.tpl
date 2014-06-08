@@ -2,7 +2,7 @@
 {include file='common/header.tpl'}
 
 <div class="container">
-
+    
 	<div class="row">
 		<ol class="breadcrumb">
 			<li><a href="{$BASE_URL}">Home</a></li>
@@ -22,7 +22,7 @@
                             <li class="active">Search: All Products</li>
 			{/if}
 		</ol>
-		
+		{*include file='products/advanced_search.tpl'*}
 		{include file='products/sidebar.tpl'}
 
 		<div class="col-md-9">

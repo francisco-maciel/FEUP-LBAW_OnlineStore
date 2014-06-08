@@ -6,8 +6,12 @@ var openfilters=[];
 
 $(document).ready(function() {
     addfilters();
+    //updatePriceSlider();
 });
 
+function updatePriceSlider() {
+    $('#filtersList').append("<li class=\"sliderbox active2\"><div id=\"prg\">Price Range: <text class=\"pricerange\" id=\"pr1\"></text> - <text class=\"pricerange\" id=\"pr2\"></text></div><div class=\"slider\"></div></li>");
+}
 
 function update_pagination() {
     if(activeFilters.length===0) { //no active filters
@@ -63,7 +67,9 @@ function loadFilters(loc) {
             $('#filtersList').append("<li class=\"filter active2\" id=\"filter"+ obj.id +"\" fid=\""+obj.id+"\"><a href=\"javascript:void(0)\"><span class=\"glyphicon glyphicon-chevron-right\"></span>  "+ obj.name +"</a></li>");//S.hide().fadeIn(200);
         });
         }
+        
     });
+   
 }
 
 
@@ -165,6 +171,7 @@ $(document).on("click",'li.filterson', function() {
     else{
         activeFilters.splice(i,1);
     }
+     $(".pagination").empty();
     filtering(1);
     update_pagination();
 });

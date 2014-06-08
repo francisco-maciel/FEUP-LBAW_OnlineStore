@@ -119,3 +119,15 @@ overflow: hidden;
     padding-top: 20px;
 }
 
+#filter-panel {
+    margin-left:30px;
+    margin-right:30px;
+}
+#btnAdvancedSearch {
+     margin-left:30px;
+}
+
+.filter-col{
+    padding-left:10px;
+    padding-right:10px;
+}

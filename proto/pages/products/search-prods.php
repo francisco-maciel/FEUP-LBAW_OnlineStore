@@ -5,7 +5,7 @@
   include_once($BASE_DIR .'database/categories.php');
   include_once($BASE_DIR .'database/filters.php');
 
-  $items_per_page = 1;
+  $items_per_page = 3;
   
 /*
 if (!$_GET['search']) {
