@@ -3,8 +3,7 @@
   $result;
   include_once '../../config/init.php';
   include_once $BASE_DIR .'database/products.php';
-include_once $BASE_DIR .'database/users.php';
-
+  include_once $BASE_DIR .'database/users.php';
 
 
   if ( !isset($_POST['orderDetail']) || !isset($_POST['orderLines']) ||  !isset($_POST['orderTotal']) ) {
@@ -46,8 +45,11 @@ try {
         $stmt = $conn->prepare('INSERT INTO orderline VALUES (?,?,?,?);');
         $stmt->execute(array($line['id'], $id, $line['quantity'], $line['price_per_unit']));
 
+        $newStock = getProductStock($line['id']);
 
 
+
+        updateProductStock($line['id'],$newStock['stock'] - $line['quantity']);
 
     }
 
