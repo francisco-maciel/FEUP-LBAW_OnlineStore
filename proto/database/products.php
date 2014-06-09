@@ -6,7 +6,14 @@ function getAllProcucts() {
     $stmt->execute();
     return $stmt->fetchAll();
 }
+function updateProductStock($id, $stock) {
+    global $conn;
 
+    $sql = 'UPDATE product SET stock = ? WHERE idproduct = ?';
+    $stmt = $conn->prepare($sql);
+    return $stmt->execute(array($stock, $id));
+
+}
 function updateProduct($id, $title, $description, $price, $stock, $img) {
     global $conn;
 
@@ -230,6 +237,15 @@ function addProduct($title, $description, $price, $stock, $img, $catid) {
     $stmt = $conn->prepare("INSERT INTO product(title,description,price,stock,img,idcategory) VALUES (?,?,?,?,?,?)");
 
     return $stmt->execute(array($title, $description, $price, $stock, $img, $catid));
+}
+
+function getProductStock($id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT stock FROM product WHERE product.idproduct = ?");
+    $stmt->execute(array($id));
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+
 }
 
 function getWishListProducts($email) {

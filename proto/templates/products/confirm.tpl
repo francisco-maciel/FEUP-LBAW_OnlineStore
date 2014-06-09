@@ -262,7 +262,6 @@ var valid_login = true;
             data: data,
             success: function(response) {
                 console.log(response);
-
                 if (response.error) {
                     alertify.alert(response.error);
                     $('#confirm_button_button').attr("disabled", false);

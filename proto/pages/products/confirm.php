@@ -5,6 +5,11 @@
   include_once   $BASE_DIR.'database/users.php';
   include_once   $BASE_DIR.'database/orders.php';
 
+if (!isset($_SESSION['permission']))     header('Location: ' . $BASE_URL);
+
+if ($_SESSION['permission'] != Permisson::BUYER ) {
+    header('Location: ' . $BASE_URL);
+}
 
   $smarty->assign('no_cart', true);
 
@@ -66,7 +71,7 @@ $orderTotal['total'] = $total;
 
   $smarty->assign('orderDetail',$orderDetail);
   $smarty->assign('orderLines',$orderLines);
-$smarty->assign('orderTotal',$orderTotal);
+  $smarty->assign('orderTotal',$orderTotal);
 
 
 

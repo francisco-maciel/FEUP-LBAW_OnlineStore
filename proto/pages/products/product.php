@@ -3,6 +3,7 @@
   include_once $BASE_DIR .'database/products.php' ;
 
 
+
 if (!$_GET['id']) {
     $_SESSION['error_messages'][] = 'Invalid product_id';
     $_SESSION['form_values'] = $_GET;
