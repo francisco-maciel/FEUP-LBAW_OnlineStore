@@ -5,7 +5,7 @@
   include_once($BASE_DIR .'database/categories.php');
   include_once($BASE_DIR .'database/filters.php');
 
-  $items_per_page = 3;
+  $items_per_page = 6;
   
 /*
 if (!$_GET['search']) {
@@ -29,11 +29,10 @@ if (!$_GET['search']) {
         {
         $products = getProductsByName($namepart,0,$items_per_page);
         $total_rows = getProdCountByName($namepart);
+        $minmax = getMinMaxPriceByName($namepart);
+        
         global $smarty;
-       /* if(!empty($products)) {
-            $filters = getSearchFilters($namepart);
-            $smarty->assign('filters',$filters);
-        }*/
+        
         $smarty->assign('search',$namepart);
         $smarty->assign('FORM_VALUES',$_GET);
         $type = "search";
@@ -49,8 +48,8 @@ if (!$_GET['search']) {
         $smarty->assign('cat',$catid);
         $depm = getDepfromCat($catid);
         $smarty->assign('depm',$depm);
-        //$filters = getCatFilters($catid);
-        //$smarty->assign('filters',$filters);
+        $minmax = getMinMaxPriceByCat($catid);
+        $smarty->assign('minmax',$minmax);
         $type = "cat";
         $value = $_GET['cat'];
     }
@@ -78,7 +77,7 @@ if (!$_GET['search']) {
     $smarty->assign('pages', $pages);
     }
     if(!isset($products))
-        $products=[];
+        $products=array();
 
     
   $smarty->assign('products', $products);

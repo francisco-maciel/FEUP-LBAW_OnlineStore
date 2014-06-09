@@ -2,7 +2,7 @@
 {include file='common/header.tpl'}
 
 <div class="container">
-    
+    <div id="minmaxprice" min="{$minmax['min']}" max="{$minmax['max']}"></div>
 	<div class="row">
 		<ol class="breadcrumb">
 			<li><a href="{$BASE_URL}">Home</a></li>
@@ -22,7 +22,9 @@
                             <li class="active">Search: All Products</li>
 			{/if}
 		</ol>
-		{*include file='products/advanced_search.tpl'*}
+                {if isset($cat) OR isset($search)}
+		{include file='products/advanced_search.tpl'}
+                {/if}
 		{include file='products/sidebar.tpl'}
 
 		<div class="col-md-9">
@@ -61,3 +63,5 @@
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{$BASE_URL}javascript/search.js"></script>
 <script src="{$BASE_URL}javascript/cart.js" ></script>
+
+

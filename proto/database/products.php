@@ -39,8 +39,18 @@ function getProductsByName($namepart, $position, $item_per_page) {
     return $stmt->fetchAll();
 }
 
-//TODO
-function getProductsByNameJS($namepart, $position, $items_per_page) {
+function getMinMaxPriceByName($namepart) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT max(price) as max, min(price) as min
+                            FROM product 
+                            WHERE LOWER(title) LIKE LOWER(?)
+                            AND removed=false");
+    $stmt->execute(array("%" . $namepart . "%"));
+    return $stmt->fetch();
+}
+
+
+function getProductsByNameJS($namepart, $position, $items_per_page, $min, $max) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
                                 product.stock, product.price,
@@ -51,6 +61,7 @@ function getProductsByNameJS($namepart, $position, $items_per_page) {
                             ON review.idproduct = product.idproduct
                             WHERE LOWER(title) LIKE LOWER(?)
                             AND product.removed=false
+                            AND product.price BETWEEN $min AND $max
                             GROUP BY product.idproduct, product.title,
                                 product.stock, product.price,
                                 product.img, product.description,
@@ -90,6 +101,16 @@ function getProductsByCat($idcat, $position, $item_per_page) {
     return $stmt->fetchAll();
 }
 
+function getMinMaxPriceByCat($idcat) {
+    global $conn;
+    $stmt = $conn->prepare("SELECT max(price) as max, min(price) as min
+                            FROM product 
+                            WHERE product.idcategory = ?
+                            AND removed=false");
+    $stmt->execute(array($idcat));
+    return $stmt->fetch();
+}
+
 function getProdCountByCat($idcat) {
     global $conn;
    $stmt = $conn->prepare("SELECT Count(*) as count
@@ -102,7 +123,7 @@ function getProdCountByCat($idcat) {
     return $stmt->fetch();
 }
 
-function getFilteredProductsByCat($idcat, $position, $items_per_page) {
+function getFilteredProductsByCat($idcat, $position, $items_per_page, $min, $max) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
@@ -115,6 +136,7 @@ function getFilteredProductsByCat($idcat, $position, $items_per_page) {
         ON review.idproduct = product.idproduct
         WHERE cat.idcategory = ?
         AND product.removed=false
+        AND product.price BETWEEN $min AND $max
         GROUP BY product.idproduct, product.title,
         product.stock, product.price,
         product.img, product.description,
@@ -378,45 +400,3 @@ function mostOrderedProductsbyCat_Alternative($idcat, $idproduct_except) {
     $stmt->execute(array($idcat, $idproduct_except));
     return $stmt->fetchAll();
 }
-/*
-function mostOrderedProductsbyCat_Complementar($idcat, $idproduct_except1, $idproduct_except2, $idproduct_except3) {
-    global $conn;
-        $q = "SELECT product.idproduct, product.title,
-        product.stock, product.price,
-        product.img, product.description,
-        product.idcategory, cat.name
-        FROM product
-        INNER JOIN category cat
-        ON cat.idcategory = product.idcategory
-        WHERE cat.idcategory = $idcat
-        AND product.idproduct != $idproduct_except1";
-    if(isset($idproduct_except2))
-        $q .= "AND product.idproduct != $idproduct_except2 ";
-    if(isset($idproduct_except3))
-         $q .= "AND product.idproduct != $idproduct_except3 ";
-    $q .= "AND removed=false ORDER BY product.title LIMIT 3 OFFSET 0";
-    
-    $stmt = $conn->prepare($q);
-    $stmt->execute();
-    return $stmt->fetchAll();
-}
-
-function mostOrderedProductsbyCat_ComplementarWithDep($idcat, $idproduct_except) {
-    global $conn;
-   $stmt = $conn->prepare("SELECT product.idproduct, product.title,
-        product.stock, product.price,
-        product.img, product.description,
-        product.idcategory, cat.name
-        FROM product
-        INNER JOIN category cat
-        ON cat.idcategory = product.idcategory
-        WHERE cat.idcategory = ?
-        AND product.idproduct != ?
-        AND product.idproduct !=2
-        AND product.idproduct != 13
-        AND removed=false
-        ORDER BY product.title LIMIT 3 OFFSET 0
-        ");
-    $stmt->execute(array($idcat, $idproduct_except));
-    return $stmt->fetchAll();
-}*/

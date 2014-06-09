@@ -12,7 +12,10 @@ include_once $BASE_DIR . 'database/products.php';
     $page = intval(filter_input(INPUT_GET, 'page'));
     $items_per_page = intval(filter_input(INPUT_GET, 'ipp'));
     $position = ($page-1)*$items_per_page;
+    
+    $min = filter_input(INPUT_GET, 'min');
+    $max = filter_input(INPUT_GET, 'max');
 
-    $res = getProductsByNameJS(filter_input(INPUT_GET, 's'),$position,$items_per_page);
+    $res = getProductsByNameJS(filter_input(INPUT_GET, 's'),$position,$items_per_page, $min, $max);
 
 print_r(json_encode($res));

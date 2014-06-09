@@ -96,7 +96,7 @@ function getFilterValues($id) {
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
     
-function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page) {
+function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page, $min, $max) {
    
    $q = " (select q1.* from ";
             for($i=0; $i < sizeof($filters); $i++) {
@@ -114,6 +114,7 @@ function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page) 
     
     $q2 = "select qx.*, count(rating) as nr_reviews, avg(rating) as avgrating from ". $q ." as qx ";
     $q2.= "LEFT JOIN review ON review.idproduct = qx.idproduct
+        WHERE qx.price BETWEEN $min AND $max
         GROUP BY qx.idproduct, qx.title, qx.description, qx.price, qx.stock, qx.removed, qx.img, qx.idcategory 
         LIMIT $items_per_page OFFSET $position";
     global $conn;
@@ -122,7 +123,7 @@ function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page) 
     return $stmt->fetchAll(PDO::FETCH_OBJ);       
 }
 
-function getCountFilteredProdsWithCat($cat, $filters) {
+function getCountFilteredProdsWithCat($cat, $filters, $min, $max) {
     
    $q = "select count(q1.*) as count from ";
             for($i=0; $i < sizeof($filters); $i++) {
@@ -136,14 +137,14 @@ function getCountFilteredProdsWithCat($cat, $filters) {
                 if($i>0)
                     $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";
             }
-           
+           $q .= "WHERE price BETWEEN $min AND $max";
     global $conn;
     $stmt = $conn->prepare($q);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_OBJ);
 }
     
-function getFilteredProductsWithName($namepart, $filters, $position, $items_per_page) {
+function getFilteredProductsWithName($namepart, $filters, $position, $items_per_page, $min, $max) {
     $q = "(select q1.* from ";
           for($i=0; $i < sizeof($filters); $i++) {
                 if($i>0)
@@ -162,6 +163,7 @@ function getFilteredProductsWithName($namepart, $filters, $position, $items_per_
     
     $q2 = "select qx.*, count(rating) as nr_reviews, avg(rating) as avgrating from ". $q ." as qx ";
     $q2.= "LEFT JOIN review ON review.idproduct = qx.idproduct
+        WHERE qx.price BETWEEN $min AND $max
         GROUP BY qx.idproduct, qx.title, qx.description, qx.price, qx.stock, qx.removed, qx.img, qx.idcategory 
         LIMIT $items_per_page OFFSET $position";
     global $conn;
@@ -169,32 +171,9 @@ function getFilteredProductsWithName($namepart, $filters, $position, $items_per_
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
-/*
-function getFilteredProductsWithName($namepart, $filters, $position, $items_per_page) {
-    $q = "select q1.*, count(rating) as nr_reviews, avg(rating) as avgrating from ";
-          for($i=0; $i < sizeof($filters); $i++) {
-                if($i>0)
-                    $q .= " INNER JOIN ";
-                if($filters[$i]['type'] === 0)
-                    $q .= "(select product.* from product INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE LOWER(product.title) LIKE LOWER('%" . $namepart . "%') AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_string = '" . $filters[$i]['value'] . "' ) as q" . ($i+1) . " ";
-                else 
-                    $q .= "(select product.* from product INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE LOWER(product.title) LIKE LOWER('%" . $namepart . "%') AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_int = " . $filters[$i]['value'] . " ) as q" . ($i+1) . " ";
-                        
-                if($i>0)
-                    $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";  
-            }
-    $q .= "LEFT JOIN review
-            ON q1.idproduct = review.idproduct
-            GROUP BY q1.idproduct
-            ORDER BY q1.title LIMIT $items_per_page OFFSET $position";           
-    global $conn;
-    $stmt = $conn->prepare($q);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_OBJ);
-}
-*/
 
-function getCountFilteredProdsWithName($namepart, $filters) {
+
+function getCountFilteredProdsWithName($namepart, $filters, $min, $max) {
     $q = "select q1.* from ";
           for($i=0; $i < sizeof($filters); $i++) {
                 if($i>0)
@@ -207,7 +186,7 @@ function getCountFilteredProdsWithName($namepart, $filters) {
                 if($i>0)
                     $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";  
             }
-           
+           $q .= "WHERE price BETWEEN $min AND $max";
     global $conn;
     $stmt = $conn->prepare($q);
     $stmt->execute();

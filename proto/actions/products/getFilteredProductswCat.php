@@ -13,8 +13,11 @@ $page = filter_input(INPUT_GET, 'page');
 $items_per_page = filter_input(INPUT_GET, 'ipp');
 $position = ($page-1)*$items_per_page;
 
+$min = filter_input(INPUT_GET, 'min');
+$max = filter_input(INPUT_GET, 'max');
+
 $filters = json_decode(filter_input(INPUT_GET, 'filters'), true);
 
-$res = getFilteredProductsWithCat(filter_input(INPUT_GET, 'cat'), $filters, $position, $items_per_page);
+$res = getFilteredProductsWithCat(filter_input(INPUT_GET, 'cat'), $filters, $position, $items_per_page, $min, $max);
 
 print_r(json_encode($res));
