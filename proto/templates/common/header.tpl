@@ -58,8 +58,6 @@
             <ul class="nav navbar-nav">
                 <li><a href="{$BASE_URL}pages/about.php">About</a>
                 </li>
-                <li><a href="{$BASE_URL}pages/blank.php">Services</a>
-                </li>
                 <li><a href="{$BASE_URL}pages/contact.php">Contact</a>
                 </li>
 
