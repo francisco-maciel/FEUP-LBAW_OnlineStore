@@ -176,4 +176,3 @@ $(document).ready(function(){
         defaultDate: birthdate
     });
 });
-
