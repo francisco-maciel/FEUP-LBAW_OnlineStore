@@ -22,7 +22,6 @@
   $birthdate = strip_tags($_POST['day']."-".$_POST['month']."-".$_POST['year']) ;
   $door = strip_tags($_POST['door']);
   $nif = strip_tags($_POST['nif']);
-var_dump($birthdate);
 
 global $conn;
 
