@@ -241,3 +241,12 @@ function updateRange2(value) {
      $(this).html(value+"€");
      pmax = value;
 }
+
+$('#btnAdvancedSearch').click(function() {
+    $('.slider').noUiSlider({
+		range: {
+			'min': parseInt(p2min),
+			'max': parseInt(p2max)
+		}
+    }, true);
+});
