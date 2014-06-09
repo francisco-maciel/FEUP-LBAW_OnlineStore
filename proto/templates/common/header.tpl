@@ -28,11 +28,12 @@
 
     <link href="{$BASE_URL}css/alertify.default.css" rel="stylesheet">
 
+    <script src="{$BASE_URL}javascript/external_libs/jquery.min.js"></script>
+
     <script src="{$BASE_URL}javascript/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
 
 </head>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
 {if !isset($no_cart)}
 <script src="{$BASE_URL}javascript/cart.js" ></script>
