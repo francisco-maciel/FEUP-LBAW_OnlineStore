@@ -1,7 +1,7 @@
 <?php
   include_once('../../config/init.php');
   include_once($BASE_DIR .'database/users.php');
-// TODO variable checks
+
   if ( !isset($_POST['nif']) ||!isset($_POST['door']) || !isset($_POST['realname']) || !isset($_POST['email']) ||
       !isset($_POST['password']) || !isset($_POST['address']) || !isset($_POST['postcode'])
       || !isset($_POST['city']) || !isset($_POST['phone']) ||

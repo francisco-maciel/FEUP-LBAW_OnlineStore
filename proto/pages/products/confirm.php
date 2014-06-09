@@ -65,17 +65,13 @@ $items = $cart->items;
         $orderLines[] = $line;
     }
 
-$orderDetail['shipping'] = 1.99;
-$orderTotal['total'] = $total;
-
+  $orderDetail['shipping'] = 1.99;
+  $orderTotal['total'] = $total;
 
   $smarty->assign('orderDetail',$orderDetail);
   $smarty->assign('orderLines',$orderLines);
   $smarty->assign('orderTotal',$orderTotal);
 
-
-
   $smarty->display('products/confirm.tpl');
-
 
 ?>

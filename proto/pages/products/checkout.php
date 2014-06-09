@@ -8,7 +8,7 @@ if ($_SESSION['permission'] != Permisson::BUYER ) {
     header('Location: ' . $BASE_URL);
 }
 
-    $products = getProductsByName("",0,1000000);
+  $products = getProductsByName("",0,1000000);
 
   $smarty->assign('products', $products);
 
