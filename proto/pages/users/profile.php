@@ -3,8 +3,11 @@ include_once('../../config/init.php');
 include_once($BASE_DIR .'database/users.php');
 include_once($BASE_DIR .'database/orders.php');
 
-if ($_SESSION['permission'] == Permisson::NONE ) {
-    header('Location: ' . $BASE_URL);
+
+if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
+    if ($_SESSION['email'] == null) {
+        header('Location: ' . $NO_ACCESS);
+    }
 }
 
 $userid = filter_input(INPUT_GET, 'id');

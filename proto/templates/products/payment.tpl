@@ -5,8 +5,8 @@
 
 
 <script type="text/javascript">
-var perm = '{$PERMISSION}';
-var valid_login = true;
+    var perm = '{$PERMISSION}';
+    var valid_login = true;
     if (perm == '' || perm != 0) {
         valid_login = false;
     }
@@ -19,19 +19,25 @@ var valid_login = true;
         <div class="stepwizard">
             <div class="stepwizard-row">
                 <div class="stepwizard-step">
-                    <a href="{$BASE_URL}pages/products/checkout.php" type="button" class="btn btn-default btn-circle">1</a>
+                    <a href="{$BASE_URL}pages/products/checkout.php" type="button"
+                       class="btn btn-default btn-circle">1</a>
+
                     <p>Shopping cart</p>
                 </div>
                 <div class="stepwizard-step">
-                    <a href="{$BASE_URL}pages/products/address.php" type="button" class="btn btn-default btn-circle">2</a>
+                    <a href="{$BASE_URL}pages/products/address.php" type="button"
+                       class="btn btn-default btn-circle">2</a>
+
                     <p>Address</p>
                 </div>
                 <div class="stepwizard-step">
                     <a href="" type="button" class="btn btn-primary btn-circle">3</a>
+
                     <p>Payment</p>
                 </div>
                 <div class="stepwizard-step">
-                    <span  type="button" class="btn btn-default btn-circle" >4</span>
+                    <span type="button" class="btn btn-default btn-circle">4</span>
+
                     <p>Confirm</p>
                 </div>
             </div>
@@ -46,14 +52,17 @@ var valid_login = true;
                     <ul class="nav nav-pills nav-justified thumbnail setup-panel">
                         <li class="active"><a href="#step-1">
                                 <h4 class="list-group-item-heading">Bank Transfer</h4>
+
                                 <p class="list-group-item-text">Payment Method</p>
                             </a></li>
                         <li class="default"><a href="#step-2">
                                 <h4 class="list-group-item-heading">Credit card</h4>
+
                                 <p class="list-group-item-text">Payment Method</p>
                             </a></li>
                         <li class="default"><a href="#step-3">
                                 <h4 class="list-group-item-heading">Paypal™</h4>
+
                                 <p class="list-group-item-text">Payment Method</p>
                             </a></li>
                     </ul>
@@ -67,7 +76,15 @@ var valid_login = true;
                                 <div class='col-md-4'></div>
                                 <div class='col-md-4'>
                                     <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
-                                    <form accept-charset="UTF-8" action="/" class="require-validation" data-cc-on-file="false" data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj" id="payment-form" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓" /><input name="_method" type="hidden" value="PUT" /><input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" /></div>
+                                    <form accept-charset="UTF-8" action="/" class="require-validation"
+                                          data-cc-on-file="false"
+                                          data-stripe-publishable-key="pk_bQQaTxnaZlzv4FnnuZ28LFHccVSaj"
+                                          id="payment-form" method="post">
+                                        <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden"
+                                                                                              value="✓"/><input
+                                                    name="_method" type="hidden" value="PUT"/><input
+                                                    name="authenticity_token" type="hidden"
+                                                    value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8="/></div>
                                         <div class='form-row'>
                                             <div class='col-xs-12 form-group required'>
                                                 <label class='control-label'>Name on Card</label>
@@ -77,27 +94,33 @@ var valid_login = true;
                                         <div class='form-row'>
                                             <div class='col-xs-12 form-group card required'>
                                                 <label class='control-label'>Card Number</label>
-                                                <input autocomplete='off' class='form-control card-number' size='20' type='text'>
+                                                <input autocomplete='off' class='form-control card-number' size='20'
+                                                       type='text'>
                                             </div>
                                         </div>
                                         <div class='form-row'>
                                             <div class='col-xs-4 form-group cvc required'>
                                                 <label class='control-label'>CVC</label>
-                                                <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311' size='4' type='text'>
+                                                <input autocomplete='off' class='form-control card-cvc'
+                                                       placeholder='ex. 311' size='4' type='text'>
                                             </div>
                                             <div class='col-xs-4 form-group expiration required'>
                                                 <label class='control-label'>Expiration</label>
-                                                <input class='form-control card-expiry-month' placeholder='MM' size='2' type='text'>
+                                                <input class='form-control card-expiry-month' placeholder='MM' size='2'
+                                                       type='text'>
                                             </div>
                                             <div class='col-xs-4 form-group expiration required'>
                                                 <label class='control-label'> </label>
-                                                <input class='form-control card-expiry-year' placeholder='YYYY' size='4' type='text'>
+                                                <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
+                                                       type='text'>
                                             </div>
                                         </div>
 
                                         <div class='form-row'>
                                             <div class='col-md-12 form-group'>
-                                                <button class='form-control btn btn-primary' disabled >Pay (method not yet available) </button>
+                                                <button class='form-control btn btn-primary' disabled>Pay (method not
+                                                    yet available)
+                                                </button>
                                             </div>
                                         </div>
                                         <div class='form-row'>
@@ -119,7 +142,8 @@ var valid_login = true;
                 <div class="col-xs-12">
                     <div class="col-md-12 well">
 
-                        <h3 class="text-center"> Payment with Paypal™</h3> <hr>
+                        <h3 class="text-center"> Payment with Paypal™</h3>
+                        <hr>
                         <!-- -->
 
                         <div class="container">
@@ -130,7 +154,9 @@ var valid_login = true;
 
                                     <div class='form-row'>
                                         <div class='col-md-16'>
-                                            <button class='form-control btn btn-primary' disabled >Pay with Paypal™ (method not yet available) </button>
+                                            <button class='form-control btn btn-primary' disabled>Pay with Paypal™
+                                                (method not yet available)
+                                            </button>
 
                                         </div>
                                     </div>
@@ -157,9 +183,13 @@ var valid_login = true;
     <div class="row setup-content" id="step-1">
         <div class="col-xs-12">
             <div class="col-md-12 well">
-                <h5 class="text-center">In order to process the payment of this purchase, please transfer the total amount to the following bank account: </h5>
+                <h5 class="text-center">In order to process the payment of this purchase, please transfer the total
+                    amount to the following bank account: </h5>
+
                 <h3 class="text-center"> NIB: 0038 0087 1190 0001 1653 5</h3>
-                <h3 class="text-center"> BANK: Online Store Bank</h3> <hr>
+
+                <h3 class="text-center"> BANK: Online Store Bank</h3>
+                <hr>
                 <!-- -->
 
                 <div class="container">
@@ -196,14 +226,9 @@ var valid_login = true;
 
 <!-- END PAGAMENTO -->
 
-
-
 </div>
 
-
-
 </div>
-
 
 
 {include file='common/footer.tpl'}
@@ -242,15 +267,14 @@ var valid_login = true;
 <script src="{$BASE_URL}javascript/review.js"></script>
 <script src="{$BASE_URL}javascript/checkout.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
 
         var navListItems = $('ul.setup-panel li a'),
                 allWells = $('.setup-content');
 
         allWells.hide();
 
-        navListItems.click(function(e)
-        {
+        navListItems.click(function (e) {
             e.preventDefault();
             var $target = $($(this).attr('href')),
                     $item = $(this).closest('li');
@@ -266,12 +290,11 @@ var valid_login = true;
         $('ul.setup-panel li.active a').trigger('click');
 
         // DEMO ONLY //
-        $('#activate-step-2').on('click', function(e) {
+        $('#activate-step-2').on('click', function (e) {
             $('ul.setup-panel li:eq(1)').removeClass('disabled');
             $('ul.setup-panel li a[href="#step-2"]').trigger('click');
             $(this).remove();
         })
-
 
 
     });
@@ -280,7 +303,7 @@ var valid_login = true;
         var cart = getCart();
         var data = [];
         data.data = JSON.stringify(cart);
-        post(loc + 'pages/products/confirm.php',data);
+        post(loc + 'pages/products/confirm.php', data);
     }
 
     function post(path, params, method) {
@@ -292,8 +315,8 @@ var valid_login = true;
         form.setAttribute("method", method);
         form.setAttribute("action", path);
 
-        for(var key in params) {
-            if(params.hasOwnProperty(key)) {
+        for (var key in params) {
+            if (params.hasOwnProperty(key)) {
                 var hiddenField = document.createElement("input");
                 hiddenField.setAttribute("type", "hidden");
                 hiddenField.setAttribute("name", key);

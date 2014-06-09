@@ -51,9 +51,7 @@
 
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="container">
@@ -93,7 +91,6 @@
     </div>
 
 </div>
-
 
 
 <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >

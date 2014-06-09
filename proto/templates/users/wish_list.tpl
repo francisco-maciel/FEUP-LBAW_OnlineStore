@@ -1,14 +1,11 @@
 {include file='common/header.tpl'}
-<!--  TODO already logged in-->
+
 <div class="container">
 
     <div class="row" id="content">
 
         <fieldset>
-
-            <!-- Form Name -->
             <legend> <span class="glyphicon glyphicon-heart-empty"></span> Wish List	</legend>
-
         </fieldset>
         {include file='products/list.tpl'}
 
@@ -31,12 +28,11 @@
             </div>
             <div class="modal-body">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="remove_from_wish_list()">Yes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>            </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
-    </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
+    </div>
 </div>
-
 
 {include file='common/footer.tpl'}
 
