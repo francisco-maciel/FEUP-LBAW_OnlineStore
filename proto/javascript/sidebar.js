@@ -23,10 +23,7 @@ $('#SearchBtn').click(function() {
 });
 
 function update_pagination() {
-   /* if(activeFilters.length===0) { //no active filters
-           showPagination(init_nr_pages);
-    }
-    else {*/
+   
         var loc;
         var farray = JSON.stringify(activeFilters);
         if(category === undefined)
@@ -42,7 +39,7 @@ function update_pagination() {
             var nr_pages = Math.ceil(data.count/itemspp);
             showPagination(nr_pages);
         });
-  //  }
+
 }
 
 

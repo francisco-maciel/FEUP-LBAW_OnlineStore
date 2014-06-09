@@ -2,7 +2,7 @@
 {include file='common/header.tpl'}
 
 <div class="container">
-    <div id="minmaxprice" min="{$minmax['min']}" max="{$minmax['max']}"></div>
+
 	<div class="row">
 		<ol class="breadcrumb">
 			<li><a href="{$BASE_URL}">Home</a></li>
@@ -53,8 +53,6 @@
                         </div>
                     </div>
                 </div>
-	</div>
-
 </div>
 
 {include file='common/footer.tpl'}
