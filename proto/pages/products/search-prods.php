@@ -35,7 +35,7 @@ if (!$_GET['search']) {
         {
         $products = getProductsByName($namepart,0,$items_per_page);
         $total_rows = getProdCountByName($namepart);
-        //$minmax = getMinMaxPriceByName($namepart);
+        $minmax = getMinMaxPriceByName($namepart);
         
         global $smarty;
         
@@ -54,7 +54,7 @@ if (!$_GET['search']) {
         $smarty->assign('cat',$catid);
         $depm = getDepfromCat($catid);
         $smarty->assign('depm',$depm);
-        //$minmax = getMinMaxPriceByCat($catid);
+        $minmax = getMinMaxPriceByCat($catid);
         //$smarty->assign('minmax',$minmax);
         $type = "cat";
         $value = $_GET['cat'];
@@ -95,5 +95,7 @@ if (!$_GET['search']) {
     var value = "<?php echo $value; ?>";
     var items_per_page = "<?php echo $items_per_page; ?>";
     var init_nr_pages = "<?php echo $pages; ?>";
+    var p2min = "<?php echo $minmax['min']; ?>";
+    var p2max = "<?php echo $minmax['max']; ?>";
 </script>
 
