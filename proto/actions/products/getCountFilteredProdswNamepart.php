@@ -11,6 +11,9 @@ include_once $BASE_DIR . 'database/filters.php';
 
 $filters = json_decode(filter_input(INPUT_GET, 'filters'), true);
 
-$res = getCountFilteredProdsWithCat(filter_input(INPUT_GET, 'cat'), $filters);
+$min = filter_input(INPUT_GET, 'min');
+$max = filter_input(INPUT_GET, 'max');
+
+$res = getCountFilteredProdsWithName(filter_input(INPUT_GET, 's'), $filters, $min, $max);
 
 print_r(json_encode($res));

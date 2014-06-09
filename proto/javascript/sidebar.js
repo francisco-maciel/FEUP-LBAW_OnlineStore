@@ -2,43 +2,49 @@ var activeFilters=[]; //{id:fid, type:tp, value:val}
 var category = $('#cattitle').attr("catid");
 var search = $('#searchtitle').attr("search");
 var openfilters=[];
-
+var itemspp = 9;
+var orderby = "product.title";
+var order = "ASC";
+var pmin = 0;
+var pmax = 5000;
 
 $(document).ready(function() {
     addfilters();
-    //updatePriceSlider();
 });
 
-function updatePriceSlider() {
-    $('#filtersList').append("<li class=\"sliderbox active2\"><div id=\"prg\">Price Range: <text class=\"pricerange\" id=\"pr1\"></text> - <text class=\"pricerange\" id=\"pr2\"></text></div><div class=\"slider\"></div></li>");
-}
+
+$('#SearchBtn').click(function() {
+    itemspp = $('#pref-perpage').val();
+    orderby = $('#pref-orderby').val();
+    order = $('#pref-order').val();
+    filtering(1);
+    $(".pagination").empty();
+    update_pagination();
+});
 
 function update_pagination() {
-    if(activeFilters.length===0) { //no active filters
-           showPagination(init_nr_pages);
-    }
-    else {
+   
         var loc;
         var farray = JSON.stringify(activeFilters);
         if(category === undefined)
-            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getCountFilteredProdswNamepart.php?s="+search+"&filters=" + farray);
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getCountFilteredProdswNamepart.php?s="+search+"&filters=" + farray + "&min="+pmin+"&max="+pmax);
         else
-            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getCountFilteredProdswCat.php?cat=" + category + "&filters="+farray);
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getCountFilteredProdswCat.php?cat=" + category + "&filters="+farray  + "&min="+pmin+"&max="+pmax);
         
         $.ajax({
             url: loc,
             context: document.body,
             dataType: "json"
         }).done(function(data) {
-            var nr_pages = Math.ceil(data.count/items_per_page);
+            var nr_pages = Math.ceil(data.count/itemspp);
             showPagination(nr_pages);
         });
-    }
+
 }
 
 
 function addfilters() {
-    if (typeof type != 'undefined') {
+    if (typeof type !== 'undefined') {
         if(type==="cat") {
             var loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/,
                                   "actions/products/getFiltersFromCat.php?id=" + value);
@@ -146,8 +152,7 @@ $(document).on("click",'li.filter', function() {
 
 //filter value click
 $(document).on("click",'li.filterson', function() {
-    //verificar se já está activado outro valor p o mesmo filtro
-    
+   
     if(($(this).find("a").attr("class"))!=='active_selected') {
         var ffid=parseInt($(this).attr("filter"));
         var findex = include(ffid);
@@ -183,39 +188,39 @@ function filtering(page) {
     var loc;
     if(activeFilters.length===0) { //no active filters
         if(category === undefined)
-            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllSearchProducts.php?s=" + search + "&page="+ page + "&ipp="+items_per_page);
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllSearchProducts.php?s=" + search + "&page="+ page + "&ipp="+itemspp + "&min="+pmin+"&max="+pmax +"&orderby="+orderby +"&order="+order);
         else
-            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllCatProducts.php?cid=" + category + "&page="+ page + "&ipp="+items_per_page);
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllCatProducts.php?cid=" + category + "&page="+ page + "&ipp="+itemspp + "&min="+pmin+"&max="+pmax+"&orderby="+orderby +"&order="+order);
     }
     else {
         var farray = JSON.stringify(activeFilters);
         if(category === undefined)
-            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilteredProductswNamepart.php?s="+search+"&filters=" + farray + "&page="+ page + "&ipp="+items_per_page);
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilteredProductswNamepart.php?s="+search+"&filters=" + farray + "&page="+ page + "&ipp="+itemspp + "&min="+pmin+"&max="+pmax+"&orderby="+orderby +"&order="+order);
         else
-           loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilteredProductswCat.php?cat=" + category + "&filters="+farray + "&page="+ page + "&ipp="+items_per_page);
+           loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilteredProductswCat.php?cat=" + category + "&filters="+farray + "&page="+ page + "&ipp="+itemspp + "&min="+pmin+"&max="+pmax+"&orderby="+orderby +"&order="+order);
     }
     getProducts(loc);
 }
 
 $('.slider').noUiSlider({
-    start: [ 20, 30 ],
+    start: [ 0, 5000 ],
     connect: true,
     range: {
-        'min': 10,
-        'max': 40
+        'min': 0,
+        'max': 5000
     },
     
     serialization: {
         lower: [
             $.Link({
                 target: $("#pr1"),
-                method: updateRange
+                method: updateRange1
             })
         ],
 		upper: [
             $.Link({
                 target: $("#pr2"),
-                method: updateRange
+                method: updateRange2
             })
         ],
         format: {
@@ -227,6 +232,12 @@ $('.slider').noUiSlider({
 /*
 $('.slider').on('slide', updateRange);
 */
-function updateRange(value) {
+function updateRange1(value) {
      $(this).html(value+"€");
+     pmin = value;
+}
+
+function updateRange2(value) {
+     $(this).html(value+"€");
+     pmax = value;
 }
