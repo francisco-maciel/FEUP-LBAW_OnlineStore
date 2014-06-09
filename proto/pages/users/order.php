@@ -15,7 +15,7 @@ $orderLines = getOrderLinesById($orderId);
 
 if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     if ($_SESSION['email'] == null || $_SESSION['email'] != $orderDetail['email']) {
-        header('Location: ' . $NO_ACCESS);
+        header('Location: ' . $BASE_URL);
     }
 }
 
