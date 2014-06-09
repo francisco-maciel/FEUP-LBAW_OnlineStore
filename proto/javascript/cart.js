@@ -1,6 +1,4 @@
-/**
- * Created by Francisco on 03/06/2014.
- */
+
 var cartPanel;
 $(document).ready(function() {
       loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');

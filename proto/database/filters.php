@@ -10,7 +10,7 @@
 function getFilterIdByName($name) {
     global $conn;
     $lname = strtolower($name);
-    $stmt = $conn->prepare("SELECT idfilter as id FROM filter WHERE filter_name='$lname'");
+    $stmt = $conn->prepare("SELECT idfilter as id FROM filter WHERE LOWER(filter_name)=LOWER('$lname')");
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }

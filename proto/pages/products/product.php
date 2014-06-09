@@ -2,8 +2,6 @@
   include_once '../../config/init.php' ;
   include_once $BASE_DIR .'database/products.php' ;
 
-
-
 if (!$_GET['id']) {
     $_SESSION['error_messages'][] = 'Invalid product_id';
     $_SESSION['form_values'] = $_GET;
@@ -20,8 +18,7 @@ if (isset($_SESSION['permission'])) {
        $smarty->assign('no_cart', true);
 }
 
-$specs = getProductSpecs($_GET['id']);
-
+  $specs = getProductSpecs($_GET['id']);
 
   $otherproducts = mostOrderedProductsbyCat($product['idcategory'],$product['idproduct'] );
   if(sizeof($otherproducts)<3)
@@ -50,7 +47,6 @@ $specs = getProductSpecs($_GET['id']);
 
   $smarty->assign('product', $product);
 
-
   $smarty->assign('specs', $specs);
 
   $smarty->assign('addWishListButton', $addWishListButton);
@@ -60,11 +56,7 @@ $specs = getProductSpecs($_GET['id']);
   $smarty->assign('averageRating', $averageRating);
   $smarty->assign('reviews', $reviews);
 
-// TODO USAR No template
-
-
   set_fb_variables($product['title'], $product['description'],$smarty);
-
 
   $smarty->display('products/product.tpl');
 

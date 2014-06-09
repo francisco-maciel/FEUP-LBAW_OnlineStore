@@ -12,7 +12,6 @@ if (!isset($_POST['realname']) || !isset($_POST['street']) || !isset($_POST['doo
 }
 
 $realname = filter_input(INPUT_POST, 'realname');
-//$email = filter_input(INPUT_POST, 'email');
 $street = filter_input(INPUT_POST, 'street');
 $door = filter_input(INPUT_POST, 'door');
 $postcode = filter_input(INPUT_POST, 'postcode');

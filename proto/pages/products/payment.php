@@ -11,6 +11,4 @@ if ($_SESSION['permission'] != Permisson::BUYER ) {
   $smarty->assign('no_cart', true);
   $smarty->display('products/payment.tpl');
 
-
-
 ?>

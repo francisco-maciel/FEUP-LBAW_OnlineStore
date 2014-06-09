@@ -1,6 +1,4 @@
-/**
- * Created by Francisco on 03/06/2014.
- */
+
 var cartPanel;
 $(document).ready(function() {
      loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');
@@ -11,14 +9,11 @@ $(document).ready(function() {
         alert("Sorry your browse does not support adding items to cart. Please upgrade to a more recent browser as soon as you can. ");
     }
 
-
     cart = getCart();
     updateCart(cart);
     setListeners(cart);
     updateTotals(cart);
 });
-
-
 
 function setCart(cart) {
     sessionStorage.cart = JSON.stringify(cart);
@@ -57,15 +52,10 @@ function addControllers(cart) {
         return cart.items.length;
     }
 
-
-
     cart.items.forEach(function(item, index, array) {
         addProductControllers(item);
-
     })
-
 }
-
 
 function updateCart(cart) {
 
@@ -94,10 +84,8 @@ function updateCart(cart) {
             +  '</button></td>'
             +'  </tr>');
 
-
     });
     checkInStock();
-
 }
 
 function setListeners() {
@@ -114,7 +102,6 @@ function setListeners() {
                 item.quantity = n;
                 row.find('.total').html( (item.price * item.quantity).toFixed(2) +' €');
             }
-
         });
             setCart(cart);
         }
@@ -160,9 +147,7 @@ function setListeners() {
             alertify.alert(string);
             return false;
         }
-
     });
-
 }
 
 
@@ -176,8 +161,6 @@ function updateTotals(cart) {
     $('#subtotal').html(total.toFixed(2) + ' €');
     $('#postage').html(1.99 + ' €');
     $('#total').html((total + 1.99).toFixed(2) + ' €');
-
-
 
 }
 
@@ -204,12 +187,7 @@ function checkInStock() {
                 $(this).find('.stock').removeClass('text-success');
             }
         }
-
-
     });
-
-
-
     return all_in_stock;
 }
 
@@ -221,10 +199,7 @@ function checkValidStock(id, quantity) {
 
             if (product.stock < quantity) in_stock =  false
             else in_stock =  true;
-
         }
-
     });
-
     return in_stock;
 }

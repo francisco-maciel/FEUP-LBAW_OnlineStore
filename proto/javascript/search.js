@@ -106,7 +106,3 @@ function listProduct(obj) {
     
     $('#results').append(result);
 }
-
-function showRatings() {
-    
-}

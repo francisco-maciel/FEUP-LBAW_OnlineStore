@@ -1,6 +1,5 @@
 BASE_URL = '...';
 
-
 $(document).ready(function(){
     initMessageClosers();
 });
@@ -10,7 +9,6 @@ function initMessageClosers() {
     $(this).closest(".message").hide('slow');
   });
 }
-
 
 function clearText(id) {
     var element = document.getElementById(id);

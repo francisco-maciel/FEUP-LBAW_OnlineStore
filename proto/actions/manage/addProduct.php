@@ -18,12 +18,6 @@ if ($_SESSION['permission'] != 1 && $_SESSION['permission'] != 2) {
     header('Location: ' . $NO_ACCESS);
 }
 
-###############################################################################
-#### DONE: Check if indeed is an admin or manager requesting this page
-#### DONE: Check the product has ONE department and ONE Category
-#### DONE: Insert product and filters relations on DB
-#### TODO: Make this script able to process a product update
-###############################################################################
 //-----------------------------------------------------------------------------
 // Add/Edit a product
 //-----------------------------------------------------------------------------
@@ -80,10 +74,7 @@ if ((($_FILES["prod_img"]["type"] == "image/jpeg") || ($_FILES["prod_img"]["type
         //echo $target_dir . $_FILES["prod_img"]["name"];
         $res = move_uploaded_file($_FILES["prod_img"]["tmp_name"], $target_dir . $_FILES["prod_img"]["name"]);
         chmod($target_dir . $_FILES["prod_img"]["name"], 0755);  // octal; correct value of mode
-//        if (!$res) {
-//            echo 'Failed to upload image';
-//            exit();
-//        }
+
         echo "Stored in: " . "images/" . ($prod_id) . "/" . $_FILES["prod_img"]["name"];
     }
 } else {
