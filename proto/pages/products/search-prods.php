@@ -78,7 +78,7 @@ if (!$_GET['search']) {
     $smarty->assign('pages', $pages);
     }
     if(!isset($products))
-        $products=[];
+        $products= array();
 
     
   $smarty->assign('products', $products);
