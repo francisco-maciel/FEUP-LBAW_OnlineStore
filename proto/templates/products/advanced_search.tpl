@@ -47,3 +47,4 @@
  <!--   </div> -->
 </div>
 
+<link href="{$BASE_URL}css/jquery.nouislider.css" rel="stylesheet">
