@@ -37,7 +37,7 @@ function banUser(id) {
     var loc = document.URL.replace(/pages(.*)/, "actions/manage/banUser.php?id=" + id);
     $.get(loc, function() {
         alert("Buyer banned");
-        var loc2 = document.URL.replace(/pages(.*)/, "admin/manage_users.php");
+        var loc2 = document.URL.replace(/pages(.*)/, "pages/admin_area/manage_users.php");
         window.location.replace(loc2);
     }).fail(function(data) {
         alert("ERROR!\nWhat: Ban User\nWhy: " + data.statusText);
@@ -48,7 +48,7 @@ function deleteAccount(id) {
     var loc = document.URL.replace(/pages(.*)/, "actions/users/deleteAccount.php?id=" + id);
     $.get(loc, function() {
         alert("Account Deleted");
-        var loc2 = document.URL.replace(/pages(.*)/, "homepage.php");
+        var loc2 = document.URL.replace(/pages(.*)/, "pages/homepage.php");
         window.location.replace(loc2);
     }).fail(function(data) {
         alert("ERROR!\nWhat: Delete Account\nWhy: " + data.statusText);
