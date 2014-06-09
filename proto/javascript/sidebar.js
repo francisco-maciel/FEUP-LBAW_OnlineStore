@@ -18,14 +18,15 @@ $('#SearchBtn').click(function() {
     orderby = $('#pref-orderby').val();
     order = $('#pref-order').val();
     filtering(1);
+    $(".pagination").empty();
     update_pagination();
 });
 
 function update_pagination() {
-    if(activeFilters.length===0) { //no active filters
+   /* if(activeFilters.length===0) { //no active filters
            showPagination(init_nr_pages);
     }
-    else {
+    else {*/
         var loc;
         var farray = JSON.stringify(activeFilters);
         if(category === undefined)
@@ -41,7 +42,7 @@ function update_pagination() {
             var nr_pages = Math.ceil(data.count/items_per_page);
             showPagination(nr_pages);
         });
-    }
+  //  }
 }
 
 

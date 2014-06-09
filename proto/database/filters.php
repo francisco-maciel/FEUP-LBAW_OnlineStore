@@ -124,7 +124,7 @@ function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page, 
 }
 
 function getCountFilteredProdsWithCat($cat, $filters, $min, $max) {
-    
+   if(sizeof($filters)>0) {
    $q = "select count(q1.*) as count from ";
             for($i=0; $i < sizeof($filters); $i++) {
                 if($i>0)
@@ -138,6 +138,17 @@ function getCountFilteredProdsWithCat($cat, $filters, $min, $max) {
                     $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";
             }
            $q .= "WHERE price BETWEEN $min AND $max";
+   }
+   else
+   {
+       $q = "SELECT Count(*) as count
+        FROM product
+        INNER JOIN category cat
+        ON cat.idcategory = product.idcategory
+        WHERE cat.idcategory = ?
+        AND removed=false
+        AND price BETWEEN $min and $max";
+   }
     global $conn;
     $stmt = $conn->prepare($q);
     $stmt->execute();
@@ -174,7 +185,8 @@ function getFilteredProductsWithName($namepart, $filters, $position, $items_per_
 
 
 function getCountFilteredProdsWithName($namepart, $filters, $min, $max) {
-    $q = "select q1.* from ";
+   if(sizeof($filters)>0) {
+    $q = "select count(q1.*) as count from ";
           for($i=0; $i < sizeof($filters); $i++) {
                 if($i>0)
                     $q .= " INNER JOIN ";
@@ -187,6 +199,11 @@ function getCountFilteredProdsWithName($namepart, $filters, $min, $max) {
                     $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";  
             }
            $q .= "WHERE price BETWEEN $min AND $max";
+   }
+   else {
+       $q = "SELECT Count(*) as count FROM product WHERE LOWER(title) LIKE LOWER('%" . $namepart . "%')
+           AND removed=false AND price BETWEEN $min AND $max";
+   }
     global $conn;
     $stmt = $conn->prepare($q);
     $stmt->execute();
