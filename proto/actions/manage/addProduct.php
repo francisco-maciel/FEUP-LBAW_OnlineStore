@@ -70,7 +70,7 @@ if ((($_FILES["prod_img"]["type"] == "image/jpeg") || ($_FILES["prod_img"]["type
         echo "Type: " . $_FILES["prod_img"]["type"] . "<br>";
         echo "Size: " . ($_FILES["prod_img"]["size"] / 1024) . " kB<br>";
         echo "Temp file: " . $_FILES["prod_img"]["tmp_name"] . "<br>";
-        $dir = mkdir($target_dir);
+        $dir = mkdir($target_dir, 0777);
         //echo $target_dir . $_FILES["prod_img"]["name"];
         $res = move_uploaded_file($_FILES["prod_img"]["tmp_name"], $target_dir . $_FILES["prod_img"]["name"]);
         chmod($target_dir . $_FILES["prod_img"]["name"], 0755);  // octal; correct value of mode
