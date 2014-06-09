@@ -68,7 +68,11 @@
                     <td><a href="{$BASE_URL}pages/users/order.php/?id={$myOrder.idorder}">{$myOrder.idorder}</a></td>
                     <td>{$myOrder.name}</td>
                     <td>{date('Y-m-d H:i:s',strtotime($myOrder.date_placed))}</td>
-                    <td>{date('Y-m-d H:i:s',strtotime($myOrder.date_shipped))}</td>
+                    <td>
+                        {if $myOrder.date_shipped != null}
+                        {date('Y-m-d H:i:s',strtotime($myOrder.date_shipped))}
+                        {/if}
+                    </td>
                     <td>€{$myOrder.ordertotal + $myOrder.price}</td>
                     </tr>
                     {/foreach}

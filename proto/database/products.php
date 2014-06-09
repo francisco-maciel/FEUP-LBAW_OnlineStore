@@ -6,12 +6,19 @@ function getAllProcucts() {
     $stmt->execute();
     return $stmt->fetchAll();
 }
+function updateProductStock($id, $stock) {
+    global $conn;
 
+    $sql = 'UPDATE product SET stock = ? WHERE idproduct = ?';
+    $stmt = $conn->prepare($sql);
+    return $stmt->execute(array($stock, $id));
+
+}
 function updateProduct($id, $title, $description, $price, $stock, $img) {
     global $conn;
 
     $sql = 'UPDATE product SET title =?, ' .
-            ($img ? 'img =' . $img . ',' : '') .
+            ($img ? 'img =\'' . $img . '\',' : '') .
             ' description =?, price = ?, stock = ? WHERE idproduct = ?';
 
     $stmt = $conn->prepare($sql);
@@ -254,6 +261,15 @@ function addProduct($title, $description, $price, $stock, $img, $catid) {
     return $stmt->execute(array($title, $description, $price, $stock, $img, $catid));
 }
 
+function getProductStock($id) {
+    global $conn;
+
+    $stmt = $conn->prepare("SELECT stock FROM product WHERE product.idproduct = ?");
+    $stmt->execute(array($id));
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+
+}
+
 function getWishListProducts($email) {
     global $conn;
 
@@ -347,26 +363,6 @@ function mostOrderedProducts($nr_items) {
     return $stmt->fetchAll();
 }
 
-
-
-
-
-
-
-
-
-
-
-/*
-count(rating) as nr_reviews, avg(rating) as avgrating
-LEFT JOIN review
-ON review.idproduct = product.idproduct
-AND product.removed=false
-*/  
-
-
-
-//SELECT AVG(rating) AS average, count(*) AS numreviews FROM review where review.idproduct = ?
 function mostOrderedProductsbyCat($id, $idproduct_except) {
     global $conn;
     $stmt = $conn->prepare("SELECT product.*, count(*) as count

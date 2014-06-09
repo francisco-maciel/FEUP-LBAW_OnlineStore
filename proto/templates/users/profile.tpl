@@ -231,22 +231,15 @@
                     </button>
                 </div>
             {else}
-                <!-- Added on 19-05 by Vitor Mota, add admin ban funcionality -->
                 <div class="col-md-1">
                     <button class="btn btn-warning btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">
                         Ban User
                     </button>
-                    {*<button type="button" class="btn btn-danger" onclick="banUser({$user['iduser']})">Ban User</button>*}
                 </div>
             {/if}
-
         </div>
-
     </div>
-
-
 </div>
-<!-- /.container -->
 
 {include file='common/footer.tpl'}
 

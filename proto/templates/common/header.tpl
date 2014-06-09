@@ -56,9 +56,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{$BASE_URL}pages/blank.php">About</a>
-                </li>
-                <li><a href="{$BASE_URL}pages/blank.php">Services</a>
+                <li><a href="{$BASE_URL}pages/about.php">About</a>
                 </li>
                 <li><a href="{$BASE_URL}pages/contact.php">Contact</a>
                 </li>

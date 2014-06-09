@@ -13,36 +13,32 @@
                             <div class="col-md-3">
                                 <ul class="list-unstyled">
                                     <li>Loja Online<li>
-                                    <li id="test" ><a >About us</a></li>
-                                    <li><a href="#">Contact & support</a></li>
-                                    <li><a href="#">Enterprise</a></li>
-                                    <li><a href="#">Group</a></li>
+                                    <li href="{$BASE_URL}pages/about.php" ><a >About us</a></li>
+                                    <li><a href="{$BASE_URL}pages/contact.php">Contact & support</a></li>
+                                    <li><a href="http://sigarra.up.pt/feup/pt/web_page.inicial">Enterprise</a></li>
+                                    <li><a href="http://lbaw.fe.up.pt/201314/doku.php">Group</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-3">
                                 <ul class="list-unstyled">
-                                    <li>Help<li>
-                                    <li><a href="#">Frequently Asked Questions</a></li>
-                                    <li><a href="#">Payment</a></li>
-                                    <li><a href="#">Delivery Rates & Policies</a></li>
-                                    <li><a href="#">Returns</a></li>
-                                    <li><a href="#">Customer Support</a></li>
+                                    <li >Help<li>
+                                    <li><a href="https://developer.paypal.com/">Payment</a></li>
+                                    <li><a href="http://www.ctt.pt/fectt/wcmservlet/ctt/particulares/correio/encomendas/encomendas.html">Delivery Rates & Policies</a></li>
+                                    <li><a href="{$BASE_URL}pages/contact.php" >Customer Support</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-3">
                                 <ul class="list-unstyled">
                                     <li>Legal Information<li>
-                                    <li><a href="#">General Conditions of Sale</a></li>
-                                    <li><a href="#">Privacy Notice</a></li>
-                                    <li><a href="#">Security and confidentiality</a></li>
-                                    <li><a href="#"> Cookies & Internet Advertising</a></li>
+                                    <li><a href="http://www.sha1-online.com/">Security and confidentiality</a></li>
+                                    <li><a href="http://www.w3schools.com/html/html5_webstorage.asp"> Cookies & Internet Advertising</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-3">
                                 <ul class="list-unstyled">
                                     <li>Other Services<li>
-                                    <li><a href="#">Product Help</a></li>
-                                    <li><a href="#">Jobs</a></li>
+                                    <li><a href="{$BASE_URL}pages/about.php" >Product Help</a></li>
+                                    <li><a href="http://paginas.fe.up.pt/~firstjob/pt/">Jobs</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -77,7 +73,7 @@
             <p class="total"><strong>Subtotal:</strong> <span class="total_amount">€0.00</span></p>
             <p class="buttons">
                 <br/>
-                <a style="display: none"  class="checkout btn btn-primary btn-md btn-block" href="{$BASE_URL}pages\products\checkout.php">Checkout</a>
+                <a style="display: none"  class="checkout btn btn-primary btn-md btn-block" href="{$BASE_URL}pages/products/checkout.php">Checkout</a>
 
                 <br/>
                 <br/>

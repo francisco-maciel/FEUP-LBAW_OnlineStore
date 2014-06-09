@@ -219,8 +219,7 @@
                                 <span class="glyphicon glyphicon-star-empty"></span>
                             {/for}
                             <span style="padding-left:10px">{$review['name']}</span>
-                            <span class="pull-right">10 days ago</span>
-                            <span class="pull-right" style="padding-right:10px;">
+                            <span class="pull-right">
                                 <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$review['idreview']}">Report</button>
                             </span>
 

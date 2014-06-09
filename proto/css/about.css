@@ -1,0 +1,334 @@
+
+ol, ul {
+    list-style: none
+}
+
+
+.col66 {
+    width: 66.66%
+}
+
+.row-of6.show-grid .col-6of6 {
+    background: rgba(255, 0, 0, 0.1);
+    outline: 1px solid rgba(255, 0, 0, 0.25)
+}
+
+
+.col-2of6 {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    min-height: 1px;
+    padding: 0 15px;
+    position: relative;
+    width: 33.33333%
+}
+
+
+b, strong {
+    font-weight: bold
+}
+
+i, em {
+    font-style: italic
+}
+
+h1 {
+    font-size: 30px
+}
+
+h2 {
+    font-size: 24px
+}
+
+h3 {
+    font-size: 20px
+}
+
+h1.section-title {
+    clear: both;
+    color: #333;
+    display: block;
+    font-size: 34px;
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 300;
+    margin: 20px 0;
+    text-align: center
+}
+
+h2.header-title {
+    font-size: 34px;
+    line-height: 42px;
+    font-weight: 300
+}
+
+h2.content-title {
+    color: #333;
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 300;
+    text-align: center;
+    margin: 0 0 40px 0
+}
+
+h3.post-title {
+    font-size: 22px;
+    text-align: center;
+    font-weight: 300;
+    margin: 0 0 30px 0
+}
+
+h3.section-title {
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center
+}
+
+.rounded-image {
+    display: inline-block;
+    -moz-border-radius: 100% 100% 100% 100%;
+    -webkit-border-radius: 100% 100% 100% 100%;
+    border-radius: 100% 100% 100% 100%
+}
+
+.rounded-image img {
+    display: block;
+    -moz-border-radius: 100% 100% 100% 100%;
+    -webkit-border-radius: 100% 100% 100% 100%;
+    border-radius: 100% 100% 100% 100%
+}
+
+.rounded-image.bordered {
+    border: 1px solid #D0E4E7;
+    background: #fff
+}
+
+.rounded-image.bordered img {
+    border: 8px solid #fff
+}
+
+label {
+    display: block
+}
+
+.page-section:before, .page-section:after {
+    clear: both;
+    content: '';
+    display: table
+}
+
+.section-content {
+    width: 800px;
+    margin: 0 auto;
+    padding: 70px 0
+}
+
+.section-content:after {
+    clear: both;
+    content: '';
+    display: table
+}
+
+.section-content .section-content-panel {
+    padding: 68px
+}
+
+#company-mission {
+    padding: 40px 0 0
+}
+
+#company-mission h1.section-title {
+    font-size: 60px
+}
+
+#company-mission p {
+    font-size: 34px;
+    line-height: 1;
+    text-align: center;
+    font-weight: 300;
+    margin: 0
+}
+
+#company-about {
+    color: #333;
+    background: #fff url(https://d35fvnoiqz2rrt.cloudfront.net/assets/company/about/pattern-5abb29952056947efd641e5077668d08.png) repeat-x 0 0;
+    padding: 66px 0 0
+}
+
+#company-about .section-content-panel {
+    background: #fff;
+    padding: 60px 100px;
+    position: relative;
+    font-size: 18px
+}
+
+#company-about h2 {
+    color: #666;
+    font-weight: bold;
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 56px 0
+}
+
+#company-about h2 img {
+    display: inline-block;
+    width: 24px;
+    margin-right: 20px;
+    vertical-align: middle
+}
+
+#company-about p {
+    font-size: 18px;
+    font-weight: 300
+}
+
+#company-join, #company-team, #company-investors, #company-founders {
+    background: #fff url(https://d1o2s7t10tmejf.cloudfront.net/assets/company/bg-shadow0-6ae9094eeb91cac582f66afa1a078314.png) no-repeat 50% 0;
+    border-top: 1px solid #dcdcdc
+}
+
+#company-founders {
+    color: #333;
+    background: #fff url(https://d1o2s7t10tmejf.cloudfront.net/assets/company/bg-shadow0-6ae9094eeb91cac582f66afa1a078314.png) no-repeat 50% 0;
+    border-top: 1px solid #dcdcdc;
+    font-size: 16px;
+    padding: 80px 0
+}
+
+#company-founders .founders-list {
+    margin: 0 auto;
+    padding: 20px 0 0 0
+}
+
+#company-founders .founders-list .founder-pic {
+    text-align: center;
+    margin: 0 0 30px 0
+}
+
+#company-founders .founders-list h3 {
+    color: #333;
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.5
+}
+
+#company-founders .founders-list h4 {
+    color: #444;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.5
+}
+
+#company-founders .founders-list p {
+    margin-bottom: 20px
+}
+
+#company-founders .founders-list .favourite-apps {
+    color: #999;
+    font-size: 18px
+}
+
+
+#company-investors {
+    color: #666
+}
+
+#company-investors ul.investors-list {
+    margin: 20px auto;
+    text-align: center;
+    width: 660px
+}
+
+#company-investors ul.investors-list li {
+    display: inline-block;
+    height: 220px;
+    margin: 10px 0;
+    padding: 0;
+    vertical-align: top;
+    width: 200px
+}
+
+#company-investors .plain-image {
+    margin-bottom: 20px
+}
+
+#company-investors h3, #company-investors h4 {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 600;
+    margin: 0
+}
+
+#company-investors h4 {
+    font-weight: normal;
+    letter-spacing: 1px
+}
+
+#company-team {
+    color: #808080;
+    padding: 80px 0
+}
+
+#company-team ul.team-list {
+    font-size: 0;
+    margin: 100px 0 0;
+    padding: 0;
+    text-align: center
+}
+
+#company-team ul.team-list > li {
+    display: inline-block;
+    font-size: 12px;
+    height: 280px;
+    position: relative;
+    transition: all .5s;
+    vertical-align: top;
+    width: 188px
+}
+
+#company-team h3 {
+    font-size: 20px;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    font-weight: 300
+}
+
+#company-team h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold
+}
+
+#company-team .rounded-image {
+    border-radius: 102px;
+    transition: all .5s;
+    overflow: hidden
+}
+
+#company-team .description {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    font-size: 14px;
+    transition: all .5s
+}
+
+#company-team .description h4 {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold
+}
+
+#company-team .description ul {
+    color: #656565;
+    list-style: disc
+}
+
+.container1{
+    width:940px;
+    margin:0 auto
+}

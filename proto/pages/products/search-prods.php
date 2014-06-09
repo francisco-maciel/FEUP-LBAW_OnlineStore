@@ -78,7 +78,6 @@ if (!$_GET['search']) {
     }
     if(!isset($products))
         $products=array();
-
     
   $smarty->assign('products', $products);
   $smarty->display('products/search.tpl');
