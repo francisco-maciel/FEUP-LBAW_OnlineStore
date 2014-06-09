@@ -5,8 +5,14 @@
   include_once($BASE_DIR .'database/categories.php');
   include_once($BASE_DIR .'database/filters.php');
 
+  if(isset($_SESSION['permission'])) {
+  if ($_SESSION['permission'] != 0) {
+    $smarty->assign('no_cart', true);
+    }
+  }
+      
   $items_per_page = 9;
-  
+      
 /*
 if (!$_GET['search']) {
     $_SESSION['error_messages'][] = 'Invalid search';
