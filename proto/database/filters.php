@@ -141,9 +141,9 @@ function getCountFilteredProdsWithCat($cat, $filters, $min, $max) {
                     $q .= "(select product.* from product INNER JOIN category cat ON cat.idcategory = product.idcategory INNER JOIN prodfilter ON product.idproduct = prodfilter.idproduct WHERE cat.idcategory = ". $cat ." AND product.removed=false AND prodfilter.idfilter = " . $filters[$i]['id'] . " AND prodfilter.value_int = " . $filters[$i]['value'] . " ) as q" . ($i+1) . " ";
                 }
                 if($i>0)
-                    $q .= "ON q1.idproduct = q" . ($i+1) . ".idproduct ";
+                    $q .= " ON q1.idproduct = q" . ($i+1) . ".idproduct ";
             }
-           $q .= "WHERE price BETWEEN $min AND $max";
+           $q .= " WHERE price BETWEEN $min AND $max ";
    }
    else
    {
@@ -151,8 +151,8 @@ function getCountFilteredProdsWithCat($cat, $filters, $min, $max) {
         FROM product
         INNER JOIN category cat
         ON cat.idcategory = product.idcategory
-        WHERE cat.idcategory = ?
-        AND removed=false
+        WHERE cat.idcategory = $cat
+        AND removed=false 
         AND price BETWEEN $min and $max";
    }
     global $conn;
