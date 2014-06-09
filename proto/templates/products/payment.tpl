@@ -277,7 +277,7 @@ var valid_login = true;
     });
     loc = document.URL.replace(/(pages|actions)(\/(.*))*/, '');
     function sendCart() {
-        cart = getCart();
+        var cart = getCart();
         var data = [];
         data.data = JSON.stringify(cart);
         post(loc + 'pages/products/confirm.php',data);

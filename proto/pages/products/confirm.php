@@ -10,7 +10,7 @@
 
 
   if (!isset($_POST['data']) )   header('Location: ' . $BASE_URL);
-  $cart = json_decode($_POST['data']);
+  $cart = json_decode(str_replace('\\','',$_POST['data']));
 
    $orderDetail['orderid'] = 'Confirmation';
    $orderDetail['buyername'] = $_SESSION['username'];
@@ -47,16 +47,18 @@
   $orderLines = array();
 
 $total = 0.0;
-foreach($cart->items as $item) {
-    $line = array();
-    $line['id'] = $item->id;
-    $line['title'] = $item->name;
-    $line['price_per_unit'] = $item->price;
-    $line['quantity'] = $item->quantity;
-    $line['subtotal'] = $item->price * $item->quantity;
-    $total += $item->price * $item->quantity;
-    $orderLines[] = $line;
-}
+$items = $cart->items;
+
+    foreach($items as $item) {
+        $line = array();
+        $line['id'] = $item->id;
+        $line['title'] = $item->name;
+        $line['price_per_unit'] = $item->price;
+        $line['quantity'] = $item->quantity;
+        $line['subtotal'] = $item->price * $item->quantity;
+        $total += $item->price * $item->quantity;
+        $orderLines[] = $line;
+    }
 
 $orderDetail['shipping'] = 1.99;
 $orderTotal['total'] = $total;
