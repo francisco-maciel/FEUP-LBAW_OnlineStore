@@ -90,7 +90,6 @@
 
 <!-- JavaScript -->
 
-<script>window.jQuery || document.write('<script src="{$BASE_URL}javascript/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 <script src="{$BASE_URL}javascript/external_libs/jquery.jpanelmenu.min.js"></script>
 
 <script src="{$BASE_URL}javascript/vendor/bootstrap.min.js"></script>
