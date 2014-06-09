@@ -37,7 +37,6 @@ function update_pagination() {
             dataType: "json"
         }).done(function(data) {
             var nr_pages = Math.ceil(data.count/itemspp);
-            alert(nr_pages);
             showPagination(nr_pages);
         });
 
