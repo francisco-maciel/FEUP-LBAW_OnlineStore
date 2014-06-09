@@ -49,12 +49,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="container">
@@ -97,15 +94,12 @@
 </div>
 
 
-
 <ul id="contextMenu" class="dropdown-menu" role="menu" style="display:none" >
     <li role="presentation" class="dropdown-header">Set Hidden?</li>
     <li class="divider"></li>
     <li class="item"><a href="#">Yes</a></li>
     <li class="item"><a href="#">No</a></li>
-
 </ul>
-
 
 
 {include file='common/footer.tpl'}

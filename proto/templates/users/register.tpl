@@ -1,6 +1,4 @@
 {include file='common/header.tpl'}
-<!--  TODO already logged in-->
-<!--  TODO check nif and password standards     -->
 
 <div class="modal fade modal-large" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">

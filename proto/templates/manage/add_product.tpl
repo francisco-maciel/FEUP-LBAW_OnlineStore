@@ -66,7 +66,6 @@
                         <br>Just type in the name and the value and you are good to go, you can add multiple filters by repeating the process.
                     </p>
                     <br>
-                    
                 </ol>
             </div>
             <div class="modal-footer">
@@ -74,9 +73,7 @@
 
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="modal fade .bs-add-dep-modal-sm" id="add-dep" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -95,9 +92,7 @@
                 <button type="button" class="btn btn-success btn-primary" data-dismiss="modal" onclick="addDep()">Add</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="modal fade .bs-add-cat-modal-sm" id="add-cat" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -116,9 +111,7 @@
                 <button type="button" class="btn btn-success btn-primary" data-dismiss="modal" onclick="addCat()">Add</button>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
 
 <div class="container">
@@ -150,7 +143,6 @@
                         <label class="col-md-4 control-label" for="prod_family">Product Department</label>
                         <div class="col-md-4">
                             <select class="col-xs-7 col-sm-6" id="prod_family" name="prod_family" class="form-control">
-
 
                             </select>
                            
@@ -212,7 +204,6 @@
                             <button type="submit" id="prod_save" name="prod_save" class="btn btn-success">Save</button>
                         </div>
                     </div>
-
 
                 </fieldset>
             </form>

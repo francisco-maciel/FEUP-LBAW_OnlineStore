@@ -16,9 +16,7 @@
                 -webkit-background-size: 70% 70%;
                 -moz-background-size: 70% 70%;
                 -o-background-size: 70% 70%;
-
             }
-
         </style>
 
     </head>

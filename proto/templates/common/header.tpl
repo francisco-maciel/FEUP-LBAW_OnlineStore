@@ -98,9 +98,7 @@
 
                 {/if}*}
 
-
             </ul>
-
 
         </div>
         <!-- /.navbar-collapse -->
@@ -142,20 +140,3 @@
 
     </div>
 </div>
-<!-- TODO adicionar field erros
-    <div class="row">
-
-        <div class="col-md-12">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Warning1</h3>
-                    <span class="pull-right clickable message-closer"><i class="glyphicon glyphicon-remove"></i></span>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</div>
-
--->
