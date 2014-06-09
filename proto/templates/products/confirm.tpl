@@ -179,7 +179,7 @@
 {include file='common/footer.tpl'}
 
 <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
-<script src="{$BASE_URL}javascript/checkout.js"></script>
+<script src="{$BASE_URL}javascript/cart/checkout.js"></script>
 <script>
     $(document).ready(function () {
 

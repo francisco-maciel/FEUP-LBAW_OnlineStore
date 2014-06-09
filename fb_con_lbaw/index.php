@@ -8,7 +8,7 @@ $description = isset($_GET['description']) ? $_GET['description'] : "Default des
 <html>
     <head>
         <meta property="og:title" content="<?php echo $title; ?>"/>
-        <meta property="og:image" content="http://i.imgur.com/EWRf50D"/>
+        <meta property="og:image" content="http://i.imgur.com/EWRf50D.png"/>
         <meta property="og:url" content="<?php echo $url; ?>"/>
         <meta property="og:description" content="<?php echo $description; ?>"/>
         <meta http-equiv="refresh" content="0; URL=<?php echo $url; ?>">

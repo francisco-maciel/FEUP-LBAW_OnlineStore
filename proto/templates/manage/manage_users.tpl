@@ -113,6 +113,6 @@
 
 {include file='common/footer.tpl'}
 
-<script src="{$BASE_URL}javascript/manageUsers.js"></script>
-<script src="{$BASE_URL}javascript/contextMenu.js"></script>
+<script src="{$BASE_URL}javascript/managing/manageUsers.js"></script>
+<script src="{$BASE_URL}javascript/managing/contextMenu.js"></script>
 

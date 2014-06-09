@@ -104,5 +104,5 @@
 
 {include file='common/footer.tpl'}
 
-<script src="{$BASE_URL}javascript/manageComments.js"></script>
-<script src="{$BASE_URL}javascript/contextMenu.js"></script>
+<script src="{$BASE_URL}javascript/managing/manageComments.js"></script>
+<script src="{$BASE_URL}javascript/managing/contextMenu.js"></script>

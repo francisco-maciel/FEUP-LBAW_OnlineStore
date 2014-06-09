@@ -56,6 +56,6 @@
 {include file='common/footer.tpl'}
 
 
-<script src="{$BASE_URL}javascript/search.js"></script>
+<script src="{$BASE_URL}javascript/products/search.js"></script>
 
 

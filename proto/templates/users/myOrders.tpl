@@ -91,6 +91,6 @@
     </div>
 {/if}
 
-<script src="{$BASE_URL}javascript/myOrders.js"></script>
+<script src="{$BASE_URL}javascript/users/myOrders.js"></script>
 
 {include file='common/footer.tpl'}

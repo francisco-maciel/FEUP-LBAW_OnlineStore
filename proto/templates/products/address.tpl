@@ -109,4 +109,4 @@
 
 {include file='common/footer.tpl'}
 
-<script src="{$BASE_URL}javascript/address.js"></script>
+<script src="{$BASE_URL}javascript/users/address.js"></script>

@@ -64,6 +64,6 @@
 
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="{$BASE_URL}javascript/vendor/jquery.nouislider.min.js"></script>
-<script src="{$BASE_URL}javascript/sidebar.js"></script>
+<script src="{$BASE_URL}javascript/products/sidebar.js"></script>
 
 <link href="{$BASE_URL}css/jquery.nouislider.css" rel="stylesheet">

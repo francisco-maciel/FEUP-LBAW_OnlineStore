@@ -36,7 +36,7 @@
 </head>
 
 {if !isset($no_cart)}
-<script src="{$BASE_URL}javascript/cart.js" ></script>
+<script src="{$BASE_URL}javascript/cart/cart.js" ></script>
 {/if}
 
 <body>

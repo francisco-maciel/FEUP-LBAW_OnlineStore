@@ -317,4 +317,4 @@
 
 <script src="{$BASE_URL}javascript/external_libs/alertify.min.js"></script>
 <script src="{$BASE_URL}javascript/products/add_wishlist.js"></script>
-<script src="{$BASE_URL}javascript/review.js"></script>
+<script src="{$BASE_URL}javascript/users/review.js"></script>

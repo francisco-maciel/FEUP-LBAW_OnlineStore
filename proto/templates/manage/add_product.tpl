@@ -215,6 +215,6 @@
 
 {include file='common/footer.tpl'}
 
-<script src="{$BASE_URL}javascript/addProduct.js"></script>
+<script src="{$BASE_URL}javascript/products/addProduct.js"></script>
 
 

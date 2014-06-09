@@ -243,5 +243,5 @@
 
 {include file='common/footer.tpl'}
 
-<script src="{$BASE_URL}javascript/profile.js"></script>
+<script src="{$BASE_URL}javascript/users/profile.js"></script>
 <script type="text/javascript" src="{$BASE_URL}javascript/external_libs/bday-picker.js"></script>
