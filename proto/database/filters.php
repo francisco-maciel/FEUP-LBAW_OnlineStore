@@ -96,7 +96,7 @@ function getFilterValues($id) {
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
     
-function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page, $min, $max) {
+function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page, $min, $max, $orderby, $order) {
    
    $q = " (select q1.* from ";
             for($i=0; $i < sizeof($filters); $i++) {
@@ -115,8 +115,14 @@ function getFilteredProductsWithCat($cat, $filters, $position, $items_per_page, 
     $q2 = "select qx.*, count(rating) as nr_reviews, avg(rating) as avgrating from ". $q ." as qx ";
     $q2.= "LEFT JOIN review ON review.idproduct = qx.idproduct
         WHERE qx.price BETWEEN $min AND $max
-        GROUP BY qx.idproduct, qx.title, qx.description, qx.price, qx.stock, qx.removed, qx.img, qx.idcategory 
-        LIMIT $items_per_page OFFSET $position";
+        GROUP BY qx.idproduct, qx.title, qx.description, qx.price, qx.stock, qx.removed, qx.img, qx.idcategory ";
+    
+       if($orderby == "product.title")
+        $q2.= " ORDER BY qx.title $order ";
+    else
+        $q2.= " ORDER BY qx.price $order ";
+    
+    $q2.= " LIMIT $items_per_page OFFSET $position";
     global $conn;
     $stmt = $conn->prepare($q2);
     $stmt->execute();
@@ -155,7 +161,7 @@ function getCountFilteredProdsWithCat($cat, $filters, $min, $max) {
     return $stmt->fetch(PDO::FETCH_OBJ);
 }
     
-function getFilteredProductsWithName($namepart, $filters, $position, $items_per_page, $min, $max) {
+function getFilteredProductsWithName($namepart, $filters, $position, $items_per_page, $min, $max, $orderby, $order) {
     $q = "(select q1.* from ";
           for($i=0; $i < sizeof($filters); $i++) {
                 if($i>0)
@@ -175,8 +181,13 @@ function getFilteredProductsWithName($namepart, $filters, $position, $items_per_
     $q2 = "select qx.*, count(rating) as nr_reviews, avg(rating) as avgrating from ". $q ." as qx ";
     $q2.= "LEFT JOIN review ON review.idproduct = qx.idproduct
         WHERE qx.price BETWEEN $min AND $max
-        GROUP BY qx.idproduct, qx.title, qx.description, qx.price, qx.stock, qx.removed, qx.img, qx.idcategory 
-        LIMIT $items_per_page OFFSET $position";
+        GROUP BY qx.idproduct, qx.title, qx.description, qx.price, qx.stock, qx.removed, qx.img, qx.idcategory ";
+    if($orderby == "product.title")
+        $q2.= " ORDER BY qx.title $order ";
+    else
+        $q2.= " ORDER BY qx.price $order ";
+    
+      $q2.= " LIMIT $items_per_page OFFSET $position ";
     global $conn;
     $stmt = $conn->prepare($q2);
     $stmt->execute();

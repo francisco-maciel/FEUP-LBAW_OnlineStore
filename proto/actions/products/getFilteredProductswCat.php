@@ -15,9 +15,11 @@ $position = ($page-1)*$items_per_page;
 
 $min = filter_input(INPUT_GET, 'min');
 $max = filter_input(INPUT_GET, 'max');
+$orderby = filter_input(INPUT_GET, 'orderby');
+$order = filter_input(INPUT_GET, 'order');
 
 $filters = json_decode(filter_input(INPUT_GET, 'filters'), true);
 
-$res = getFilteredProductsWithCat(filter_input(INPUT_GET, 'cat'), $filters, $position, $items_per_page, $min, $max);
+$res = getFilteredProductsWithCat(filter_input(INPUT_GET, 'cat'), $filters, $position, $items_per_page, $min, $max, $orderby, $order);
 
 print_r(json_encode($res));

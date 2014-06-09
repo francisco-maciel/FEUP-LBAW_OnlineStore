@@ -50,7 +50,7 @@ function getMinMaxPriceByName($namepart) {
 }
 
 
-function getProductsByNameJS($namepart, $position, $items_per_page, $min, $max) {
+function getProductsByNameJS($namepart, $position, $items_per_page, $min, $max, $orderby, $order) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
                                 product.stock, product.price,
@@ -66,7 +66,7 @@ function getProductsByNameJS($namepart, $position, $items_per_page, $min, $max) 
                                 product.stock, product.price,
                                 product.img, product.description,
                                 product.idcategory
-                            ORDER BY product.title LIMIT ? OFFSET ?");
+                            ORDER BY $orderby $order LIMIT ? OFFSET ?");
     $stmt->execute(array(("%" . $namepart . "%"), $items_per_page, $position));
     return $stmt->fetchAll(PDO::FETCH_OBJ);
 }
@@ -123,7 +123,7 @@ function getProdCountByCat($idcat) {
     return $stmt->fetch();
 }
 
-function getFilteredProductsByCat($idcat, $position, $items_per_page, $min, $max) {
+function getFilteredProductsByCat($idcat, $position, $items_per_page, $min, $max, $orderby, $order) {
     global $conn;
    $stmt = $conn->prepare("SELECT product.idproduct, product.title,
         product.stock, product.price,
@@ -141,7 +141,7 @@ function getFilteredProductsByCat($idcat, $position, $items_per_page, $min, $max
         product.stock, product.price,
         product.img, product.description,
         product.idcategory, cat.name
-        ORDER BY product.title LIMIT $items_per_page OFFSET $position
+        ORDER BY $orderby $order LIMIT $items_per_page OFFSET $position
         ");
     $stmt->execute(array($idcat));
     return $stmt->fetchAll(PDO::FETCH_OBJ);

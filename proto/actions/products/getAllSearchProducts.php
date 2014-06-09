@@ -15,7 +15,9 @@ include_once $BASE_DIR . 'database/products.php';
     
     $min = filter_input(INPUT_GET, 'min');
     $max = filter_input(INPUT_GET, 'max');
-
-    $res = getProductsByNameJS(filter_input(INPUT_GET, 's'),$position,$items_per_page, $min, $max);
+    $orderby = filter_input(INPUT_GET, 'orderby');
+    $order = filter_input(INPUT_GET, 'order');
+    
+    $res = getProductsByNameJS(filter_input(INPUT_GET, 's'),$position,$items_per_page, $min, $max, $orderby, $order);
 
 print_r(json_encode($res));

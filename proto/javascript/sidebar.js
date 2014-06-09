@@ -39,7 +39,7 @@ function update_pagination() {
             context: document.body,
             dataType: "json"
         }).done(function(data) {
-            var nr_pages = Math.ceil(data.count/items_per_page);
+            var nr_pages = Math.ceil(data.count/itemspp);
             showPagination(nr_pages);
         });
   //  }
@@ -191,16 +191,16 @@ function filtering(page) {
     var loc;
     if(activeFilters.length===0) { //no active filters
         if(category === undefined)
-            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllSearchProducts.php?s=" + search + "&page="+ page + "&ipp="+items_per_page + "&min="+pmin+"&max="+pmax);
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllSearchProducts.php?s=" + search + "&page="+ page + "&ipp="+itemspp + "&min="+pmin+"&max="+pmax +"&orderby="+orderby +"&order="+order);
         else
-            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllCatProducts.php?cid=" + category + "&page="+ page + "&ipp="+items_per_page + "&min="+pmin+"&max="+pmax);
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getAllCatProducts.php?cid=" + category + "&page="+ page + "&ipp="+itemspp + "&min="+pmin+"&max="+pmax+"&orderby="+orderby +"&order="+order);
     }
     else {
         var farray = JSON.stringify(activeFilters);
         if(category === undefined)
-            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilteredProductswNamepart.php?s="+search+"&filters=" + farray + "&page="+ page + "&ipp="+items_per_page + "&min="+pmin+"&max="+pmax);
+            loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilteredProductswNamepart.php?s="+search+"&filters=" + farray + "&page="+ page + "&ipp="+itemspp + "&min="+pmin+"&max="+pmax+"&orderby="+orderby +"&order="+order);
         else
-           loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilteredProductswCat.php?cat=" + category + "&filters="+farray + "&page="+ page + "&ipp="+items_per_page + "&min="+pmin+"&max="+pmax);
+           loc = document.URL.replace(/pages\/products\/search-prods.php(.*)/, "actions/products/getFilteredProductswCat.php?cat=" + category + "&filters="+farray + "&page="+ page + "&ipp="+itemspp + "&min="+pmin+"&max="+pmax+"&orderby="+orderby +"&order="+order);
     }
     getProducts(loc);
 }
