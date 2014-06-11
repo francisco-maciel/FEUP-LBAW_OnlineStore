@@ -100,7 +100,7 @@ function listProduct(obj) {
         for (var x = 0; x < 5-ratingInt; x++) {
             result+= "<span class=\"glyphicon glyphicon-star-empty\"></span>\n";
         }
-        result+=""+ratingInt;
+        result+=""+parseFloat(obj.avgrating).toFixed(1);
     }
     result+= " </p></div></div><br></div>";
     
