@@ -34,7 +34,9 @@
                         {for $x=0 to 4-intval($prod['avgrating'])}
                             <span class="glyphicon glyphicon-star-empty"></span>
                         {/for}
+                        {if $prod['avgrating'] > 0}
                         {round($prod['avgrating'],1)}
+                        {/if}
                     </p>
                 </div>
             {/if}

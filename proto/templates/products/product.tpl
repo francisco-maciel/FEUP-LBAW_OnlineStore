@@ -263,7 +263,9 @@
                             {for $x=0 to 4-intval($otherproductsRatings[$i]['average'])}
                             <span class="glyphicon glyphicon-star-empty"></span>
                             {/for}
-                            {round($otherproductsRatings[$i]['average'],1)}
+                            {if $otherproductsRatings[$i]['average'] > 0 }
+                                {round($otherproductsRatings[$i]['average'],1)}
+                            {/if}
                         </p>
                     </div>
                 </div>
