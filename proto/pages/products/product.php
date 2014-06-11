@@ -1,6 +1,7 @@
 <?php
   include_once '../../config/init.php' ;
   include_once $BASE_DIR .'database/products.php' ;
+  include_once $BASE_DIR .'database/users.php' ;
 
 if (!$_GET['id']) {
     $_SESSION['error_messages'][] = 'Invalid product_id';
@@ -17,6 +18,8 @@ if (isset($_SESSION['permission'])) {
    if ($_SESSION['permission'] == 1 || $_SESSION['permission'] == 2)
        $smarty->assign('no_cart', true);
 }
+
+  $user = getBuyerByEmail($_SESSION['email']);
 
   $specs = getProductSpecs($_GET['id']);
 
@@ -57,6 +60,8 @@ if (isset($_SESSION['permission'])) {
   $smarty->assign('reviews', $reviews);
 
   set_fb_variables($product['title'], $product['description'],$smarty);
+
+  $smarty->assign('user', $user);
 
   $smarty->display('products/product.tpl');
 
