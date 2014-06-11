@@ -219,10 +219,11 @@
                                 <span class="glyphicon glyphicon-star-empty"></span>
                             {/for}
                             <span style="padding-left:10px">{$review['name']}</span>
+                            {if $user['user_type'] == 0}
                             <span class="pull-right">
                                 <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$review['idreview']}">Report</button>
                             </span>
-
+                            {/if}
                             <p>{$review['text']}</p>
                         </div>
                     </div>
