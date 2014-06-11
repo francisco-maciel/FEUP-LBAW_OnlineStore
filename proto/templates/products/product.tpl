@@ -172,7 +172,6 @@
                                 <span class="glyphicon glyphicon-star-empty"></span>
                             {/for}
                             <span style="padding-left:10px">{$reviews[$i]['name']}</span>
-                            <span class="pull-right">10 days ago</span>
                             <span class="pull-right" style="padding-right:10px;">
                                 <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$reviews[$i]['idreview']}">Report</button>
                             </span>
@@ -195,7 +194,6 @@
                                 <span class="glyphicon glyphicon-star-empty"></span>
                             {/for}
                             <span style="padding-left:10px">{$reviews[$i]['name']}</span>
-                            <span class="pull-right">10 days ago</span>
                             <span class="pull-right" style="padding-right:10px;">
                                 <button class="btn btn-warning btn-sm report-button" data-toggle="modal" data-target=".report-review" data-id="{$reviews[$i]['idreview']}">Report</button>
                             </span>
